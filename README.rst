@@ -1,5 +1,4 @@
-collective.cart
-===============
+bda.plone.cart
+==============
 
 Write me
-

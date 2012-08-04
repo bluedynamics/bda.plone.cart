@@ -5,7 +5,7 @@ version = '1.0dev'
 shortdesc = "Shopping Cart"
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 
-setup(name='collective.cart',
+setup(name='bda.plone.cart',
       version=version,
       description=shortdesc,
       long_description=longdesc,
@@ -21,7 +21,7 @@ setup(name='collective.cart',
       license='GNU General Public Licence',
       packages=find_packages('src'),
       package_dir = {'': 'src'},
-      namespace_packages=['collective'],
+      namespace_packages=['bda', 'bda.plone'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
@@ -33,4 +33,3 @@ setup(name='collective.cart',
       target = plone
       """,
 )
-
