@@ -1,0 +1,62 @@
+<div id="cart">
+
+  <ul id="card_item_template" style="display: none;">
+    <li class="cart_item">
+      <div>
+        <strong class="cart_item_title">Title</strong>
+      </div>
+      <div class="cart_item_styling">
+        <span>Amount</span>
+        <span>
+          <span class="cart_item_uid" style="display: none;">uid</span>
+          <input type="text" size="2" class="cart_item_count" />
+          <a href=""
+             class="update_cart_item"
+             title="update">
+            <img src="++resource++bda.plone.cart.images/cart_put.png"
+                 alt="update" />
+          </a>
+        </span>
+        <span>&nbsp;
+        </span>       
+        <span>
+          <span class="cart_item_uid" style="display: none;">uid</span>
+          <span class="cart_item_count" style="display: none;">0</span>
+          <a href=""
+             class="update_cart_item"
+             title="remove">
+            <img src="++resource++bda.plone.cart.images/cart_delete.png"
+                 alt="remove" />
+          </a>
+        </span>
+      </div>
+      <div>
+        <span ia8n:translate="cost">Cost:</span>
+        <span class="cart_item_price">cost</span>
+      </div>
+    </li>
+  </ul>
+  
+  <ul id="cart_items" style="display: none;">
+    <li>
+      <div id="cart_no_items" style="display: none;">
+        <p>
+          Cart is empty
+        </p>
+      </div>
+    </li>
+  </ul>
+  
+  <div id="cart_summary" style="display: none;">
+    <div tal:condition="view/show_summary">
+      <p>
+        <tal:details condition="not:view/summary_total_only">
+          <span>Net: </span><span class="cart_net">Net</span><br />
+          <span>VAT.: </span><span class="cart_vat">VAT</span><br />
+        </tal:details>
+        <strong>Total: </strong><span class="cart_total">Total</span>
+      </p> 
+    </div>
+  </div>
+  
+</div>

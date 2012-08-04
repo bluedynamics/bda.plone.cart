@@ -1,0 +1,58 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:plone="http://namespaces.plone.org/plone"> 
+  
+  <plone:portlet
+    name="portlets.Cart"
+    interface=".ICartPortlet"
+    assignment=".CartAssignment"
+    renderer=".CartRenderer"
+    addview=".CartAddForm" />
+
+  <browser:resource
+    name="bda.plone.cart.js"
+    file="cart.js" />
+
+  <browser:resource
+    name="bda.plone.cart.css"
+    file="cart.css" />
+  
+  <browser:resourceDirectory
+    name="bda.plone.cart.images"
+    directory="images" />
+  
+  <browser:page
+    for="*"
+    name="cartData"
+    class=".CartDataView"
+    attribute="cartData"
+    permission="zope2.View" />
+  
+  <browser:page
+    for="*"
+    name="validateItemCount"
+    class=".CartDataView"
+    attribute="validateItemCount"
+    permission="zope2.View" />
+  
+  <browser:page
+    for="*"
+    name="carttemplate"
+    class=".CartView"
+    template="cart.pt"
+    permission="zope2.View" />
+  
+  <browser:page
+    for="*"
+    name="cart"
+    class=".CartView"
+    template="cartview.pt"
+    permission="zope2.View" />
+  
+  <browser:page
+    for="*"
+    name="cartexample"
+    template="example.pt"
+    permission="zope2.View" />
+
+</configure>

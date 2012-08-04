@@ -26,7 +26,9 @@ setup(name='bda.plone.cart',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'simplejson',
           'Plone',
+          'bda.plone.ajax',
       ],
       entry_points="""
       [z3c.autoinclude.plugin]
