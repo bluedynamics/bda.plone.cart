@@ -13,17 +13,16 @@
              i18n:translate="cart">Cart</a>
           <span class="portletTopRight"></span>
       </dt>
-      <dd class="portletItem lastItem">
+      <dd class="portletItem">
           <tal:cart replace="structure context/@@cart_tile" />
+      </dd>
+      <dd class="portletItem lastItem">
+          <a href="@@cart"
+             class="go_to_cart_action"
+             tal:attributes="href view/cart_url"
+             i18n:translate="cart">Cart</a>
           <span class="portletBottomLeft"></span>
           <span class="portletBottomRight"></span>
-      </dd>
-      <dd class="cart-button-cart">
-        <a href="@@cart"
-           tal:attributes="href view/cart_url">
-          <img src="++resource++bda.plone.cart.images/cart_go.png" />
-          <span i18n:translate="cart">Cart</span>
-        </a>
       </dd>
   </dl>
   
