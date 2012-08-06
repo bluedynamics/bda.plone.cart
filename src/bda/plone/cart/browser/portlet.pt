@@ -14,7 +14,7 @@
           <span class="portletTopRight"></span>
       </dt>
       <dd class="portletItem lastItem">
-          <tal:cart replace="structure context/@@carttemplate" />
+          <tal:cart replace="structure context/@@cart_tile" />
           <span class="portletBottomLeft"></span>
           <span class="portletBottomRight"></span>
       </dd>

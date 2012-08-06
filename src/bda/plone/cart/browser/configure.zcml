@@ -37,16 +37,22 @@
   
   <browser:page
     for="*"
-    name="carttemplate"
+    name="cart_tile"
     class=".CartView"
-    template="cart.pt"
+    template="tile.pt"
+    permission="zope2.View" />
+  
+  <browser:page
+    for="*"
+    name="cart_summary"
+    class=".CartView"
+    template="summary.pt"
     permission="zope2.View" />
   
   <browser:page
     for="*"
     name="cart"
-    class=".CartView"
-    template="cartview.pt"
+    template="view.pt"
     permission="zope2.View" />
   
   <browser:page
