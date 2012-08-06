@@ -21,8 +21,8 @@ class DataProviderMixin(object):
 class CartView(BrowserView, DataProviderMixin):
     
     @property
-    def show_summary(self):
-        return self.data_provider.show_summary
+    def disable_max_article_count(self):
+        return self.data_provider.disable_max_article
     
     @property
     def summary_total_only(self):
@@ -73,10 +73,6 @@ class CartRenderer(base.Renderer, DataProviderMixin):
         if not self.show:
             return u''
         return self.template()
-    
-    @property
-    def disable_max_article_count(self):
-        return self.data_provider.disable_max_article
     
     @property
     def cart_url(self):

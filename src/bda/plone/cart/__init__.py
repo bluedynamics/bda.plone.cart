@@ -62,8 +62,6 @@ class ICartDataProvider(Interface):
     disable_max_article = Attribute(u"Flag whether to disable max article "
                                     u"limit.")
     
-    show_summary = Attribute(u"Flag whether to show cart summary.")
-    
     summary_total_only = Attribute(u"Flag whether to show total sum only in "
                                    u"summary.")
     
@@ -88,11 +86,6 @@ class CartDataProviderBase(object):
     def disable_max_article_count(self):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``disable_max_article_count``.")
-    
-    @property
-    def show_summary(self):
-        raise NotImplementedError(u"CartDataProviderBase does not implement "
-                                  u"``show_summary``.")
     
     @property
     def summary_total_only(self):

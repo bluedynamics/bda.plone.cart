@@ -38,10 +38,6 @@ class ExampleCartDataProvider(CartDataProviderBase):
         return False
     
     @property
-    def show_summary(self):
-        return True
-    
-    @property
     def summary_total_only(self):
         return False
     

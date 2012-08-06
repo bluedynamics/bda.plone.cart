@@ -1,8 +1,5 @@
-<tal:block i18n:domain="bda.plone.cart">
-<div id="cartWrapper">
-  <span tal:condition="view/disable_max_article_count"
-        style="display:none;"
-        class="disable_max_article_count">&nbsp;</span>
+<div id="cartWrapper"
+     i18n:domain="bda.plone.cart">
   
   <dl class="portlet portletCart"
       id="portlet-cart" style="display:none;">
@@ -10,13 +7,10 @@
           <span class="portletTopLeft"></span>
           <a href="@@cart" 
              class="tile"
-             title="Details Checkout"
+             title="Cart"
              tal:attributes="href view/cart_url"
-             tal:condition="not:view/disable_max_article_count"
+             i18n:attributes="title cart_summary"
              i18n:translate="cart">Cart</a>
-          <span tal:condition="view/disable_max_article_count"
-                i18n:translate="cart"
-                i18n:attributes="title details_checkout">Cart</span>
           <span class="portletTopRight"></span>
       </dt>
       <dd class="portletItem lastItem">
@@ -24,15 +18,16 @@
           <span class="portletBottomLeft"></span>
           <span class="portletBottomRight"></span>
       </dd>
-      <dd class="cart-button-cart">      
+      <dd class="cart-button-cart">
         <a href="@@cart"
-           tal:attributes="href view/cart_url"
-           i18n:translate="details_checkout"><img src="++resource++bda.plone.cart.images/cart_go.png" 
-             alt="Checkout/ Details" />Details/ Checkout</a>
+           tal:attributes="href view/cart_url">
+          <img src="++resource++bda.plone.cart.images/cart_go.png" />
+          <span i18n:translate="cart">Cart</span>
+        </a>
       </dd>
   </dl>
   
   <div class="clearFix">
   </div>
-  
-</tal:block>
+
+</div>

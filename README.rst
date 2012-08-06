@@ -55,11 +55,6 @@ Implement data provider inheriting from
     ...         """
     ...     
     ...     @property
-    ...     def show_summary(self):
-    ...         """Flag whether to show cart summary.
-    ...         """
-    ...     
-    ...     @property
     ...     def summary_total_only(self):
     ...         """Flag whether to show total sum only in summary.
     ...         """

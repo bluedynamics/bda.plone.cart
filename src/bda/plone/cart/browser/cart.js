@@ -1,14 +1,13 @@
 // Dependencies: $, cookie_functions.js
 
 (function($) {
-
+    
     $(document).ready(function() {
         if ($('.disable_max_article_count').length) {
             CART_MAX_ARTICLE_COUNT = 100000;
         }
         cart.init();
         cart.query();
-        
         if (typeof(window['Faceted']) != "undefined") {
             $(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS,
                                    function(e){
@@ -17,8 +16,8 @@
         }
     });
     
-    CART_HIDE_CONTAINER_IF_EMPTY = false;
-    CART_CONTAINER_IDENTIFYER = '#portlet-cart';
+    CART_HIDE_PORTLET_IF_EMPTY = false;
+    CART_PORTLET_IDENTIFYER = '#portlet-cart';
     CART_MAX_ARTICLE_COUNT = 5;
     
     function Cart() {
@@ -37,9 +36,7 @@
         if (!this.cart_node) {
             return;
         }
-        var item_template = $('#card_item_template .cart_item',
-                              this.cart_node).get(0);
-        this.item_template = $(item_template).clone();
+        this.item_template = $($('.cart_item').get(0)).clone();
         $('#card_item_template').remove();
     }
     
@@ -95,16 +92,16 @@
     
     Cart.prototype.render = function(data) {
         if (data['cart_items'].length == 0) {
-            if (!CART_HIDE_CONTAINER_IF_EMPTY) {
-                $(CART_CONTAINER_IDENTIFYER).css('display', 'block');
+            if (!CART_HIDE_PORTLET_IF_EMPTY) {
+                $(CART_PORTLET_IDENTIFYER).css('display', 'block');
             } else {
-                $(CART_CONTAINER_IDENTIFYER).css('display', 'none');
+                $(CART_PORTLET_IDENTIFYER).css('display', 'none');
             }
             $('#cart_items', this.cart_node).css('display', 'none');
             $('#cart_no_items', this.cart_node).css('display', 'block');
             $('#cart_summary', this.cart_node).css('display', 'none');
         } else {
-            $(CART_CONTAINER_IDENTIFYER).css('display', 'block');
+            $(CART_PORTLET_IDENTIFYER).css('display', 'block');
             $('#cart_no_items', this.cart_node).css('display', 'none');
             $('#cart_items', this.cart_node).empty();
             $('#cart_items', this.cart_node).css('display', 'block');
@@ -322,6 +319,6 @@
         });
     }
     
-    cart = new Cart();
+    var cart = new Cart();
 
 })(jQuery);
