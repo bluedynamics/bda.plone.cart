@@ -50,7 +50,7 @@
   
   <div id="cart_summary"
        style="display: none;">
-    <div class="cart-sum-content">
+    <div class="cart_sum_content">
       <tal:details condition="not:view/summary_total_only">
         <span i18n:translate="summary_net">Net:</span>
         <span class="cart_net">Net</span><br />

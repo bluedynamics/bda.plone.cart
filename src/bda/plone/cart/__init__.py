@@ -123,13 +123,14 @@ class CartDataProviderBase(object):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``cart_items``.")
     
-    def item(self, uid, title, count, price, url):
+    def item(self, uid, title, count, price, url, description=''):
         """
         @param uid: catalog uid
         @param title: string
         @param count: item count as int
         @param price: item price as float
         @param url: item URL
+        @param description: item description
         """
         return {
             'cart_item_uid': uid,
@@ -137,6 +138,7 @@ class CartDataProviderBase(object):
             'cart_item_count': count,
             'cart_item_price': ascur(price),
             'cart_item_location:href': url,
+            'cart_item_description': description,
         }
     
     @property
