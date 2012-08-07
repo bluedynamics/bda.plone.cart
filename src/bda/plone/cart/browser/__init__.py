@@ -53,7 +53,7 @@ class CartAssignment(base.Assignment):
 
     @property
     def title(self):
-        return _(u"Cart")
+        return _(u'cart', u'Cart')
 
 
 class CartRenderer(base.Renderer, DataProviderMixin):

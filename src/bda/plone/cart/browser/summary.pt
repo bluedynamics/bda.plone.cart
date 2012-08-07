@@ -33,7 +33,7 @@
           <span class="cart_item_count" style="display: none;">0</span>
           <a href=""
              class="update_cart_item remove_from_cart_action"
-             title="remove from cart"
+             title="Remove from cart"
              i18n:attributes="title remove_from_cart">&nbsp;</a>
         </li>
         <li>
