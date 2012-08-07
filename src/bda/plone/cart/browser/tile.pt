@@ -16,22 +16,27 @@
         <span i18n:translate="amount">Amount</span>
         <span>
           <span class="cart_item_uid" style="display: none;">uid</span>
+          <span class="cart_item_comment" style="display: none;">comment</span>
           <input type="text" size="2" class="cart_item_count" />
           <a href=""
              class="update_cart_item update_cart_action"
              title="update cart"
              i18n:attributes="title update_cart">&nbsp;</a>
         </span>
-        <span>&nbsp;
-        </span>       
+        <span>&nbsp;</span>
         <span>
           <span class="cart_item_uid" style="display: none;">uid</span>
+          <span class="cart_item_comment" style="display: none;">comment</span>
           <span class="cart_item_count" style="display: none;">0</span>
           <a href=""
              class="update_cart_item remove_from_cart_action"
              title="remove from cart"
              i18n:attributes="title remove_from_cart">&nbsp;</a>
         </span>
+      </div>
+      <div>
+        <span i18n:translate="comment">Comment</span>
+        <span class="cart_item_comment">comment</span>
       </div>
       <div>
         <span i18n:translate="price">Price</span>

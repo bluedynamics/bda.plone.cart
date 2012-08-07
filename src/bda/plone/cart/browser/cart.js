@@ -25,10 +25,15 @@
     
     Cart.prototype.messages = {
         article_limit_reached: "Die gewünschte Bestellmenge übersteigt die " +
-              "maximale Bestellmenge für diesen Artikel.",
+            "maximale Bestellmenge für diesen Artikel.",
         total_limit_reached: "Die gewünschte Bestellmenge übersteigt die " +
-              "maximale Gesamtbestellmenge.",
-        not_a_number: "Die Eingabe muss eine Ganzzahl sein"
+            "maximale Gesamtbestellmenge.",
+        not_a_number: "Die Eingabe muss eine Ganzzahl sein",
+        max_unique_articles_reached: "Die maximale Anzahl von verschiedenen " +
+            "Artikeln wurde erreicht. Es ist nicht möglicg, weiter Artikel " +
+            "in den Warenkorb zu legen. Bitte schließen Sie die aktuelle " +
+            "Bestellung ab.",
+        invalid_comment_character: "Ungültiges Zeichen in Kommentar"
     }
     
     Cart.prototype.init = function() {
@@ -40,35 +45,41 @@
         $('#card_item_template').remove();
     }
     
-    Cart.prototype.add = function(uid, count) {
+    Cart.prototype.add = function(uid, count, comment) {
         if (!this.validateOverallCountAdd(count)) {
             return;
         }
-        this.writecookie(uid, count, true);
+        this.writecookie(uid, count, comment, true);
         this.query();
     }
     
-    Cart.prototype.set = function(uid, count) {
+    Cart.prototype.set = function(uid, count, comment) {
         if (!this.validateOverallCountSet(uid, count)) {
             return;
         }
-        this.writecookie(uid, count, false);
+        this.writecookie(uid, count, comment, false);
         this.query();
     }
     
-    Cart.prototype.writecookie = function(uid, count, inc) {
+    Cart.prototype.writecookie = function(uid, count, comment, add) {
+        // XXX: support cookie size > 4096 by splitting up cookie
         count = new Number(count);
+        if (comment.indexOf(':') > -1) {
+            bdajax.error(cart.messages['invalid_comment_character']);
+            return;
+        }
+        uid = uid + ';' + comment;
         var items = this.items();
         var existent = false;
-        for (var item in items) {
-            if (!item) {
+        for (var itemuid in items) {
+            if (!itemuid) {
                 continue;
             }
-            if (uid == item) {
-                if (inc) {
-                    items[item] += count;
+            if (uid == itemuid) {
+                if (add) {
+                    items[itemuid] += count;
                 } else {
-                    items[item] = count;
+                    items[itemuid] = count;
                 }
                 existent = true;
                 break;
@@ -78,14 +89,18 @@
             items[uid] = new Number(count);
         }
         var cookie = '';
-        for (var item in items) {
-            if (!item || items[item] == 0) {
+        for (var itemuid in items) {
+            if (!itemuid || items[itemuid] == 0) {
                 continue;
             }
-            cookie = cookie + item + ':' + new String(items[item]) + ',';
+            cookie = cookie + itemuid + ':' + new String(items[itemuid]) + ',';
         }
         if (cookie) {
             cookie = cookie.substring(0, cookie.length - 1);
+        }
+        if (cookie.length > 4096) {
+            bdajax.error(cart.messages['max_unique_articles_reached']);
+            return;
         }
         createCookie('cart', cookie);
     }
@@ -180,7 +195,7 @@
                                 msg = cart.messages['article_limit_reached'];
                                 bdajax.info(unescape(msg));
                             } else {
-                                cart.add(defs[0], defs[1]);
+                                cart.add(defs[0], defs[1], defs[2]);
                                 var evt = $.Event('cart_modified');
                                 evt.uid = defs[0];
                                 evt.count = defs[1];
@@ -208,7 +223,7 @@
                                 msg = cart.messages['article_limit_reached'];
                                 bdajax.info(unescape(msg));
                             } else {
-                                cart.set(defs[0], defs[1]);
+                                cart.set(defs[0], defs[1], defs[2]);
                                 var evt = $.Event('cart_modified');
                                 evt.uid = defs[0];
                                 evt.count = defs[1];
@@ -233,7 +248,16 @@
         } else {
             count = $(count_node).text();
         }
-        return [uid, count];
+        var comment_node = $('.cart_item_comment', parents).get(0);
+        var comment = '';
+        if (comment_node) {
+            if (comment_node.tagName.toUpperCase() == 'INPUT') {
+                comment = $(comment_node).val();
+            } else {
+                comment = $(comment_node).text();
+            }
+        }
+        return [uid, count, comment];
     }
     
     Cart.prototype.validateInt = function(count) {
@@ -245,6 +269,7 @@
     }
     
     Cart.prototype.cookie = function() {
+        // XXX: support cookie size > 4096 by splitting up cookie
         var cookie = readCookie('cart');
         if (cookie == null) {
             cookie = '';

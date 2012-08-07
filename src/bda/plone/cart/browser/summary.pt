@@ -13,12 +13,14 @@
         </a>
       </h3>
       <p class="cart_item_description">Description</p>
+      <p class="cart_item_comment" >comment</p>
       <ul class="cart_item_content">
         <li class="shop-cartlisting-count" i18n:translate="amount">
           Amount
         </li>
         <li>
           <span class="cart_item_uid" style="display: none;">uid</span>
+          <span class="cart_item_comment" style="display: none;">comment</span>
           <input type="text" size="2" class="cart_item_count" />
           <a href=""
              class="update_cart_item update_cart_action"
@@ -27,6 +29,7 @@
         </li>
         <li>
           <span class="cart_item_uid" style="display: none;">uid</span>
+          <span class="cart_item_comment" style="display: none;">comment</span>
           <span class="cart_item_count" style="display: none;">0</span>
           <a href=""
              class="update_cart_item remove_from_cart_action"

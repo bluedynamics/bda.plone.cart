@@ -43,7 +43,7 @@ Implement data provider inheriting from
     ...     
     ...     def cart_items(self, items):
     ...         """Return list of dicts with format returned by ``self.item``.
-    ...         """  
+    ...         """
     ...     
     ...     def validate_count(self, uid, count):
     ...         """Validate if ordering n items of UID is allowed.
@@ -89,30 +89,27 @@ Take a look at ``bda.plone.cart.browser:example.pt`` how HTML markup
 for adding items to cart might look like.
 
 Basically a shop item consists of a container DOM element, containing an
-element with CSS class ``cart_item_uid``, where the item UID is taken from,
-
-::
+element with CSS class ``cart_item_uid``, where the item UID is taken from::
 
     <span class="cart_item_uid" style="display: none;">12345678</span>
 
 a text input field with CSS class ``cart_item_count`` which is read for
-item count,
-
-::
+item count::
 
     <input type="text" size="2" value="1" class="cart_item_count" />Stück
 
-the "add to Cart" action,
-
-::
+the "add to Cart" action::
 
     <a href="" class="add_cart_item">add to cart</a>
 
-and the "update cart" avtion.
-
-::
+and the "update cart" action::
 
     <a href="" class="update_cart_item">update cart</a>
+
+and optionally an element defining a comment or an input for entering a 
+comment::
+
+    <input type="text" size="20" value="" class="cart_item_comment" />
 
 
 Javascript
@@ -133,6 +130,7 @@ Client side dislog messages::
     cart.messages['article_limit_reached'] = "Article limit reached";
     cart.messages['total_limit_reached'] = "Total limit reached";
     cart.messages['not_a_number'] = "Input not a number";
+    cart.messages['max_unique_articles_reached'] = "Unique article limit reached";
 
 
 Contributors

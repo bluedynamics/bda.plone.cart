@@ -36,7 +36,7 @@ def extractitems(items):
     """Cart items are stored in a cookie. The format is
     ``uid:count,uid:count,...``.
     
-    Return a list of 2-tuples containing ``(uid, count)``.
+    Return a list of 3-tuples containing ``(uid, count, comment)``.
     """
     if not items:
         return []
@@ -46,8 +46,11 @@ def extractitems(items):
         if not item:
             continue
         item = item.split(':')
+        uid = item[0].split(';')[0]
+        count = item[1]
+        comment = item[0][len(uid) + 1:]
         try:
-            ret.append((item[0], int(item[1])))
+            ret.append((uid, int(count), comment))
         except ValueError:
             # item[1] may be a 'NaN'
             #ret.append((item[0], 0))
@@ -123,13 +126,14 @@ class CartDataProviderBase(object):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``cart_items``.")
     
-    def item(self, uid, title, count, price, url, description=''):
+    def item(self, uid, title, count, price, url, comment='', description=''):
         """
         @param uid: catalog uid
         @param title: string
         @param count: item count as int
         @param price: item price as float
         @param url: item URL
+        @param comment: item comment
         @param description: item description
         """
         return {
@@ -138,6 +142,7 @@ class CartDataProviderBase(object):
             'cart_item_count': count,
             'cart_item_price': ascur(price),
             'cart_item_location:href': url,
+            'cart_item_comment': comment,
             'cart_item_description': description,
         }
     
