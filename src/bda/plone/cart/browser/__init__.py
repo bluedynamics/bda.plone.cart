@@ -1,13 +1,16 @@
 import simplejson as json
 from zope.interface import implements
 from zope.component import getMultiAdapter
+from zope.i18nmessageid import MessageFactory
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFPlone import PloneMessageFactory as _
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.memoize import instance
 from bda.plone.cart import ICartDataProvider
+
+
+_ = MessageFactory('bda.plone.cart')
 
 
 class DataProviderMixin(object):

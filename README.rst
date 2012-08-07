@@ -133,8 +133,11 @@ Client side dislog messages::
     cart.messages['max_unique_articles_reached'] = "Unique article limit reached";
 
 
-Create translations::
-    
+Create translations
+-------------------
+
+::
+
     cd src/bda/plone/cart/
     
     i18ndude rebuild-pot --pot locales/bda.plone.cart.pot \
