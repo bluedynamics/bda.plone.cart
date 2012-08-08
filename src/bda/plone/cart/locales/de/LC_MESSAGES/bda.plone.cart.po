@@ -46,7 +46,7 @@ msgstr "Warenkorb"
 
 #: ./browser/summary.pt:72
 msgid "checkout"
-msgstr "Kasse"
+msgstr "Kassa"
 
 #. Default: "Comment"
 #: ./browser/tile.pt:38
