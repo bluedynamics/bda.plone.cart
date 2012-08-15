@@ -132,6 +132,9 @@
                     }
                     var value = data['cart_items'][i][item];
                     var placeholder = $(css, cart_item);
+                    if (item == 'cart_item_comment' && !value) {
+                        $('.cart_item_comment_wrapper', cart_item).hide();
+                    }
                     $(placeholder).each(function(e) {
                         if (attribute != '') {
                             $(this).attr(attribute, value);
@@ -140,7 +143,7 @@
                             $(this).val(value);
                         } else {
                             var idx = $(this).attr(
-                                          'class').indexOf('cart_item_count');
+                                'class').indexOf('cart_item_count');
                             if (idx == -1) {
                                 // no count placeholder
                                 $(this).html(value);

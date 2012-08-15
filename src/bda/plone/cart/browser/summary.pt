@@ -13,7 +13,9 @@
         </a>
       </h3>
       <p class="cart_item_description">Description</p>
-      <p class="cart_item_comment" >comment</p>
+      <div class="cart_item_comment_wrapper">
+        <p class="cart_item_comment">comment</p>
+      </div>
       <ul class="cart_item_content">
         <li class="shop-cartlisting-count" i18n:translate="amount">
           Amount
