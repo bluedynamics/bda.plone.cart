@@ -6,6 +6,7 @@ from zope.interface import (
 )
 from zope.component import adapts
 from zope.publisher.interfaces.browser import IBrowserRequest
+from Products.CMFCore.utils import getToolByName
 
 
 def ascur(val, comma=False):
@@ -163,3 +164,20 @@ class CartDataProviderBase(object):
             ret['cart_summary']['cart_total'] = ascur(net + vat)
             ret['cart_summary']['cart_total_raw'] = net + vat
         return ret
+
+
+def get_catalog_brain(context, uid):
+    cat = getToolByName(context, 'portal_catalog')
+    brains = cat(UID=uid)
+    if brains:
+        if len(brains) > 1:
+            raise RuntimeError(u"FATAL: duplicate objects with same UID found.")
+        return brains[0]
+    return None
+
+
+def get_object_by_uid(context, uid):
+    brain = get_catalog_brain(context, uid)
+    if brain:
+        return brain.getObject()
+    return None
