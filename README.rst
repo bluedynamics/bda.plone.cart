@@ -98,6 +98,11 @@ item count::
 
     <input type="text" size="2" value="1" class="cart_item_count" />Stück
 
+If type of item count should be float, add ``quantity_unit_float`` CSS class::
+
+    <input type="text" size="2" value="1"
+           class="cart_item_count quantity_unit_float" />Stück
+
 the "add to Cart" action::
 
     <a href="" class="add_cart_item">add to cart</a>
@@ -139,6 +144,7 @@ Client side dialog messages::
     cart.messages['max_unique_articles_reached'] = "Unique article limit reached";
     cart.messages['invalid_comment_character'] = "Invalid comment characters";
     cart.messages['comment_required'] = "Comment is required";
+    cart.messages['integer_required'] = "Input not an integer";
 
 
 Create translations

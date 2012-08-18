@@ -125,9 +125,9 @@
             for (var i = 0; i < data['cart_items'].length; i++) {
                 var cart_item = $(this.item_template).clone();
                 var cart_item_data = data['cart_items'][i];
-                var metaware = cart_item_data.metaware;
+                var quantity_unit_float = cart_item_data.quantity_unit_float;
                 var comment_required = cart_item_data.comment_required;
-                delete cart_item_data.metaware;
+                delete cart_item_data.quantity_unit_float;
                 delete cart_item_data.comment_required;
                 for (var item in cart_item_data) {
                     var attribute = '';
@@ -153,10 +153,10 @@
                             if (is_comment && comment_required) {
                                 $(this).addClass('required');
                             }
-                            // check if count and set metaware class
+                            // check if count and set quantity_unit_float class
                             var is_count = item == 'cart_item_count';
-                            if (is_count && metaware) {
-                                $(this).addClass('metaware');
+                            if (is_count && quantity_unit_float) {
+                                $(this).addClass('quantity_unit_float');
                                 value = cart.round(value);
                             }
                             $(this).attr('value', value);
@@ -291,7 +291,7 @@
                 message: cart.messages['not_a_number']
             };
         }
-        var force_int = !$(count_node).hasClass('metaware');
+        var force_int = !$(count_node).hasClass('quantity_unit_float');
         if (force_int && count > 0 && count % 1 != 0) {
             throw {
                 name: 'Integer Required',

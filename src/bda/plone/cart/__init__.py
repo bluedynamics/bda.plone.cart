@@ -129,7 +129,7 @@ class CartDataProviderBase(object):
                                   u"``cart_items``.")
     
     def item(self, uid, title, count, price, url, comment='', description='',
-             comment_required=False, metaware=False):
+             comment_required=False, quantity_unit_float=False):
         """
         @param uid: catalog uid
         @param title: string
@@ -139,7 +139,7 @@ class CartDataProviderBase(object):
         @param comment: item comment
         @param description: item description
         @param comment_required: Flag whether comment is required
-        @param metaware: Flag whether item is meta-ware
+        @param quantity_unit_float: Flag whether item count can be float
         """
         return {
             # placeholders
@@ -152,7 +152,7 @@ class CartDataProviderBase(object):
             'cart_item_description': description,
             # control flags
             'comment_required': comment_required,
-            'metaware': metaware,
+            'quantity_unit_float': quantity_unit_float,
         }
     
     @property
