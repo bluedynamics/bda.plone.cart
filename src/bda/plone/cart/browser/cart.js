@@ -28,13 +28,14 @@
             "maximale Bestellmenge für diesen Artikel.",
         total_limit_reached: "Die gewünschte Bestellmenge übersteigt die " +
             "maximale Gesamtbestellmenge.",
-        not_a_number: "Die Eingabe muss eine Ganzzahl sein",
+        not_a_number: "Die Eingabe ist keine Zahl",
         max_unique_articles_reached: "Die maximale Anzahl von verschiedenen " +
             "Artikeln wurde erreicht. Es ist nicht möglicg, weiter Artikel " +
             "in den Warenkorb zu legen. Bitte schließen Sie die aktuelle " +
             "Bestellung ab.",
         invalid_comment_character: "Ungültiges Zeichen in Kommentar",
-        comment_required: "Zusatzangabe ist erforderlich"
+        comment_required: "Zusatzangabe ist erforderlich",
+        integer_required: "Eingabe muss eine Ganzzahl sein"
     }
     
     Cart.prototype.init = function() {
@@ -156,6 +157,7 @@
                             var is_count = item == 'cart_item_count';
                             if (is_count && metaware) {
                                 $(this).addClass('metaware');
+                                value = cart.round(value);
                             }
                             $(this).attr('value', value);
                             $(this).val(value);
@@ -201,37 +203,34 @@
                     bdajax.error(ex.message);
                     return;
                 }
-                if (cart.validateInt(defs[1])) {
-                    var uid = defs[0];
-                    var count = defs[1];
-                    var items = cart.items();
-                    for (var item in items) {
-                        if (uid == item) {
-                            count = parseInt(count) + parseInt(items[item]);
-                            break;
+                var uid = defs[0];
+                var count = defs[1];
+                var items = cart.items();
+                for (var item in items) {
+                    if (uid == item) {
+                        count = count + items[item];
+                        break;
+                    }
+                }
+                var url = 'validateItemCount?uid=' + defs[0];
+                url = url + '&count=' + count;
+                bdajax.request({
+                    url: url,
+                    type: 'json',
+                    success: function(data) {
+                        if (data == false) {
+                            var msg;
+                            msg = cart.messages['article_limit_reached'];
+                            bdajax.info(unescape(msg));
+                        } else {
+                            cart.add(defs[0], defs[1], defs[2]);
+                            var evt = $.Event('cart_modified');
+                            evt.uid = defs[0];
+                            evt.count = defs[1];
+                            $('*').trigger(evt);
                         }
                     }
-                    var url = 'validateItemCount?uid=' + defs[0];
-                    url = url + '&count=' + count;
-                    bdajax.request({
-                        url: url,
-                        type: 'json',
-                        success: function(data) {
-                            if (data == false) {
-                                var msg;
-                                msg = cart.messages['article_limit_reached'];
-                                bdajax.info(unescape(msg));
-                            } else {
-                                cart.add(defs[0], defs[1], defs[2]);
-                                var evt = $.Event('cart_modified');
-                                evt.uid = defs[0];
-                                evt.count = defs[1];
-                                $('*').trigger(evt);
-                            }
-                        }
-                    });
-                }
-                return false;
+                });
             });
         });
         $('.update_cart_item').each(function() {
@@ -245,30 +244,33 @@
                     bdajax.error(ex.message);
                     return;
                 }
-                if (cart.validateInt(defs[1])) {
-                    var url = 'validateItemCount?uid=' + defs[0];
-                    url = url + '&count=' + defs[1];
-                    bdajax.request({
-                        url: url,
-                        type: 'json',
-                        success: function(data) {
-                            if (data == false) {
-                                var msg;
-                                msg = cart.messages['article_limit_reached'];
-                                bdajax.info(unescape(msg));
-                            } else {
-                                cart.set(defs[0], defs[1], defs[2]);
-                                var evt = $.Event('cart_modified');
-                                evt.uid = defs[0];
-                                evt.count = defs[1];
-                                $('*').trigger(evt);
-                            }
+                var url = 'validateItemCount?uid=' + defs[0];
+                url = url + '&count=' + defs[1];
+                bdajax.request({
+                    url: url,
+                    type: 'json',
+                    success: function(data) {
+                        if (data == false) {
+                            var msg;
+                            msg = cart.messages['article_limit_reached'];
+                            bdajax.info(unescape(msg));
+                        } else {
+                            cart.set(defs[0], defs[1], defs[2]);
+                            var evt = $.Event('cart_modified');
+                            evt.uid = defs[0];
+                            evt.count = defs[1];
+                            $('*').trigger(evt);
                         }
-                    });
-                }
-                return false;
+                    }
+                });
             });
         });
+    }
+    
+    Cart.prototype.round = function(x) {
+        var ret = (Math.round(x * 100) / 100).toString();
+        ret += (ret.indexOf('.') == -1) ? '.00' : '00';
+        return ret.substring(0, ret.indexOf('.') + 3);
     }
     
     Cart.prototype.extract = function(node) {
@@ -281,6 +283,20 @@
             count = $(count_node).val();
         } else {
             count = $(count_node).text();
+        }
+        count = new Number(count);
+        if (isNaN(count)) {
+            throw {
+                name: 'Number Required',
+                message: cart.messages['not_a_number']
+            };
+        }
+        var force_int = !$(count_node).hasClass('metaware');
+        if (force_int && count > 0 && count % 1 != 0) {
+            throw {
+                name: 'Integer Required',
+                message: cart.messages['integer_required']
+            };
         }
         var comment_node = $('.cart_item_comment', parents).get(0);
         var comment = '';
@@ -298,14 +314,6 @@
             }
         }
         return [uid, count, comment];
-    }
-    
-    Cart.prototype.validateInt = function(count) {
-        if (isNaN(parseInt(count))) {
-            bdajax.info(cart.messages['not_a_number']);
-            return false;
-        }
-        return true;
     }
     
     Cart.prototype.cookie = function() {
@@ -335,9 +343,9 @@
             if (!item) {
                 continue;
             }
-            count += parseInt(items[item]);
+            count += items[item];
         }
-        count += parseInt(addcount);
+        count += new Number(addcount);
         if (count > CART_MAX_ARTICLE_COUNT) {
             var msg;
             msg = cart.messages['total_limit_reached'];
@@ -354,9 +362,9 @@
             if (!item || uid == item) {
                 continue;
             }
-            count += parseInt(items[item]);
+            count += items[item];
         }
-        count += parseInt(setcount);
+        count += new Number(setcount);
         if (count > CART_MAX_ARTICLE_COUNT) {
             var msg;
             msg = cart.messages['total_limit_reached']
