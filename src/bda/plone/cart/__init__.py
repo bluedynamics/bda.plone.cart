@@ -1,13 +1,13 @@
 import urllib2
 from decimal import Decimal
 from zope.interface import (
-    Interface,
-    Attribute,
     implements,
+    Interface,
 )
 from zope.component import adapts
 from zope.publisher.interfaces.browser import IBrowserRequest
 from Products.CMFCore.utils import getToolByName
+from .interfaces import ICartDataProvider
 
 
 def ascur(val, comma=False):
@@ -58,25 +58,6 @@ def extractitems(items):
             print e
             pass
     return ret
-
-
-class ICartDataProvider(Interface):
-    
-    data = Attribute(u"Cart data as list of dicts.")
-    
-    disable_max_article = Attribute(u"Flag whether to disable max article "
-                                    u"limit.")
-    
-    summary_total_only = Attribute(u"Flag whether to show total sum only in "
-                                   u"summary.")
-    
-    checkout_url = Attribute(u"URL to checkout view.")
-    
-    cart_url = Attribute(u"URL to cart view.")
-    
-    def validate_count(uid, count):
-        """Validate if ordering n items of UID is allowed.
-        """
 
 
 class CartDataProviderBase(object):
