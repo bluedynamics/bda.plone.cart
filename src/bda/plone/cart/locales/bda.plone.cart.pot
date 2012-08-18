@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-08-07 18:02+0000\n"
+"POT-Creation-Date: 2012-08-18 11:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,26 +14,26 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./browser/__init__.py:83
+#: ./browser/__init__.py:86
 msgid "Add Cart Portlet"
 msgstr ""
 
-#: ./browser/__init__.py:84
+#: ./browser/__init__.py:87
 msgid "This portlet displays the shopping cart."
 msgstr ""
 
 #. Default: "Amount"
-#: ./browser/summary.pt:18
+#: ./browser/summary.pt:20
 #: ./browser/tile.pt:16
 msgid "amount"
 msgstr ""
 
-#: ./browser/summary.pt:70
+#: ./browser/summary.pt:72
 msgid "back"
 msgstr ""
 
 #. Default: "Cart"
-#: ./browser/__init__.py:56
+#: ./browser/__init__.py:59
 #: ./browser/portlet.pt:8
 #: ./browser/view.pt:20
 msgid "cart"
@@ -44,7 +44,7 @@ msgstr ""
 msgid "cart_summary"
 msgstr ""
 
-#: ./browser/summary.pt:72
+#: ./browser/summary.pt:74
 msgid "checkout"
 msgstr ""
 
@@ -54,43 +54,43 @@ msgid "comment"
 msgstr ""
 
 #. Default: "Cart is empty"
-#: ./browser/summary.pt:51
+#: ./browser/summary.pt:53
 #: ./browser/tile.pt:51
 msgid "empty_cart"
 msgstr ""
 
 #. Default: "Price"
-#: ./browser/summary.pt:41
+#: ./browser/summary.pt:43
 #: ./browser/tile.pt:42
 msgid "price"
 msgstr ""
 
 #. Default: "Remove from cart"
-#: ./browser/summary.pt:34
+#: ./browser/summary.pt:36
 #: ./browser/tile.pt:31
 msgid "remove_from_cart"
 msgstr ""
 
 #. Default: "Net:"
-#: ./browser/summary.pt:58
+#: ./browser/summary.pt:60
 #: ./browser/tile.pt:60
 msgid "summary_net"
 msgstr ""
 
 #. Default: "Total:"
-#: ./browser/summary.pt:64
+#: ./browser/summary.pt:66
 #: ./browser/tile.pt:65
 msgid "summary_total"
 msgstr ""
 
 #. Default: "VAT.:"
-#: ./browser/summary.pt:60
+#: ./browser/summary.pt:62
 #: ./browser/tile.pt:62
 msgid "summary_vat"
 msgstr ""
 
 #. Default: "Update cart"
-#: ./browser/summary.pt:25
+#: ./browser/summary.pt:27
 #: ./browser/tile.pt:21
 msgid "update_cart"
 msgstr ""

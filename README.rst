@@ -111,6 +111,12 @@ comment::
 
     <input type="text" size="20" value="" class="cart_item_comment" />
 
+If comment should be required, add CSS class ``required`` to comment input.
+If comment is empty, an error message gets shown to the user when trying to
+add or update a cart item::
+
+    <input type="text" size="20" value="" class="cart_item_comment required" />
+
 
 Javascript
 ----------
@@ -125,12 +131,14 @@ Maximum number of allowed articles in order::
 
     CART_MAX_ARTICLE_COUNT = 20;
 
-Client side dislog messages::
+Client side dialog messages::
 
     cart.messages['article_limit_reached'] = "Article limit reached";
     cart.messages['total_limit_reached'] = "Total limit reached";
     cart.messages['not_a_number'] = "Input not a number";
     cart.messages['max_unique_articles_reached'] = "Unique article limit reached";
+    cart.messages['invalid_comment_character'] = "Invalid comment characters";
+    cart.messages['comment_required'] = "Comment is required";
 
 
 Create translations

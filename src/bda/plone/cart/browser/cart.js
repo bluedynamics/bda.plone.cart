@@ -33,7 +33,8 @@
             "Artikeln wurde erreicht. Es ist nicht möglicg, weiter Artikel " +
             "in den Warenkorb zu legen. Bitte schließen Sie die aktuelle " +
             "Bestellung ab.",
-        invalid_comment_character: "Ungültiges Zeichen in Kommentar"
+        invalid_comment_character: "Ungültiges Zeichen in Kommentar",
+        comment_required: "Zusatzangabe ist erforderlich"
     }
     
     Cart.prototype.init = function() {
@@ -176,7 +177,14 @@
         $('.add_cart_item').each(function() {
             $(this).unbind('click');
             $(this).bind('click', function(e) {
-                var defs = cart.extract(this);
+                e.preventDefault();
+                var defs;
+                try {
+                    defs = cart.extract(this);
+                } catch (ex) {
+                    bdajax.error(ex.message);
+                    return;
+                }
                 if (cart.validateInt(defs[1])) {
                     var uid = defs[0];
                     var count = defs[1];
@@ -213,7 +221,14 @@
         $('.update_cart_item').each(function() {
             $(this).unbind('click');
             $(this).bind('click', function(e) {
-                var defs = cart.extract(this);
+                e.preventDefault();
+                var defs;
+                try {
+                    defs = cart.extract(this);
+                } catch (ex) {
+                    bdajax.error(ex.message);
+                    return;
+                }
                 if (cart.validateInt(defs[1])) {
                     var url = 'validateItemCount?uid=' + defs[0];
                     url = url + '&count=' + defs[1];
@@ -256,6 +271,12 @@
         if (comment_node) {
             if (comment_node.tagName.toUpperCase() == 'INPUT') {
                 comment = $(comment_node).val();
+                if ($(comment_node).hasClass('required') && !comment.trim()) {
+                    throw {
+                        name: 'Comment Required',
+                        message: cart.messages['comment_required']
+                    };
+                }
             } else {
                 comment = $(comment_node).text();
             }
