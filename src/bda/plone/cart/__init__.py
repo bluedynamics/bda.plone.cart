@@ -92,36 +92,19 @@ class CartDataProviderBase(object):
                                   u"``validate_count``.")
     
     def net(self, items):
-        """Calculate net sum of cart items.
-        """
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``net``.")
     
     def vat(self, items):
-        """Calculate vat sum of cart items.
-        """
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``vat``.")
     
     def cart_items(self, items):
-        """Return list of dicts with format returned by ``self.item``.
-        """
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``cart_items``.")
     
     def item(self, uid, title, count, price, url, comment='', description='',
              comment_required=False, quantity_unit_float=False):
-        """
-        @param uid: catalog uid
-        @param title: string
-        @param count: item count as int
-        @param price: item price as float
-        @param url: item URL
-        @param comment: item comment
-        @param description: item description
-        @param comment_required: Flag whether comment is required
-        @param quantity_unit_float: Flag whether item count can be float
-        """
         return {
             # placeholders
             'cart_item_uid': uid,

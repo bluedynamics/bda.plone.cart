@@ -1,5 +1,6 @@
 from bda.plone.cart import CartDataProviderBase
 
+
 class ExampleCartDataProvider(CartDataProviderBase):
     
     # dummy uids from example.pt to price mapping
