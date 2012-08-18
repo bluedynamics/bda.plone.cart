@@ -123,36 +123,52 @@
             $('#cart_items', this.cart_node).css('display', 'block');
             for (var i = 0; i < data['cart_items'].length; i++) {
                 var cart_item = $(this.item_template).clone();
-                for (var item in data['cart_items'][i]) {
-                    var css = '.' + item;
+                var cart_item_data = data['cart_items'][i];
+                var metaware = cart_item_data.metaware;
+                var comment_required = cart_item_data.comment_required;
+                delete cart_item_data.metaware;
+                delete cart_item_data.comment_required;
+                for (var item in cart_item_data) {
                     var attribute = '';
+                    var css = '.' + item;
                     if (item.indexOf(':') != -1) {
                         attribute = item.substring(item.indexOf(':') + 1,
                                                    item.length);
                         css = css.substring(0, item.indexOf(':') + 1);
                     }
-                    var value = data['cart_items'][i][item];
-                    var placeholder = $(css, cart_item);
+                    var value = cart_item_data[item];
                     if (item == 'cart_item_comment' && !value) {
                         $('.cart_item_comment_wrapper', cart_item).hide();
                     }
+                    var placeholder = $(css, cart_item);
                     $(placeholder).each(function(e) {
+                        // case set attribute of element
                         if (attribute != '') {
                             $(this).attr(attribute, value);
+                        // case element is input
                         } else if (this.tagName.toUpperCase() == 'INPUT') {
+                            // check if comment and set required class
+                            var is_comment = item == 'cart_item_comment';
+                            if (is_comment && comment_required) {
+                                $(this).addClass('required');
+                            }
+                            // check if count and set metaware class
+                            var is_count = item == 'cart_item_count';
+                            if (is_count && metaware) {
+                                $(this).addClass('metaware');
+                            }
                             $(this).attr('value', value);
                             $(this).val(value);
+                        // case set element text
                         } else {
-                            var idx = $(this).attr(
-                                'class').indexOf('cart_item_count');
-                            if (idx == -1) {
-                                // no count placeholder
+                            // not count element, set value
+                            var is_count = item == 'cart_item_count';
+                            if (!is_count) {
                                 $(this).html(value);
+                            // if count element has 'style' attribute 'display'
+                            // set to 'none', do not change it's value. This is
+                            // necessary for cart item removal.
                             } else {
-                                // if count placeholder in template has 'style'
-                                // attribute 'display' set to 'none', do not
-                                // change the value. This is necessary items
-                                // removal from cart.
                                 var mode = $(this).css('display');
                                 if (mode == 'inline') {
                                     $(this).html(value);

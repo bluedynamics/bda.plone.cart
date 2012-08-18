@@ -1,4 +1,5 @@
 import urllib2
+from decimal import Decimal
 from zope.interface import (
     Interface,
     Attribute,
@@ -51,10 +52,10 @@ def extractitems(items):
         count = item[1]
         comment = item[0][len(uid) + 1:]
         try:
-            ret.append((uid, int(count), comment))
-        except ValueError:
-            # item[1] may be a 'NaN'
-            #ret.append((item[0], 0))
+            ret.append((uid, Decimal(count), comment))
+        except ValueError, e:
+            # item[1] may be a 'NaN' -> Should be ok with Decimal now.
+            print e
             pass
     return ret
 
@@ -127,7 +128,8 @@ class CartDataProviderBase(object):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``cart_items``.")
     
-    def item(self, uid, title, count, price, url, comment='', description=''):
+    def item(self, uid, title, count, price, url, comment='', description='',
+             comment_required=False, metaware=False):
         """
         @param uid: catalog uid
         @param title: string
@@ -136,8 +138,11 @@ class CartDataProviderBase(object):
         @param url: item URL
         @param comment: item comment
         @param description: item description
+        @param comment_required: Flag whether comment is required
+        @param metaware: Flag whether item is meta-ware
         """
         return {
+            # placeholders
             'cart_item_uid': uid,
             'cart_item_title': title,
             'cart_item_count': count,
@@ -145,6 +150,9 @@ class CartDataProviderBase(object):
             'cart_item_location:href': url,
             'cart_item_comment': comment,
             'cart_item_description': description,
+            # control flags
+            'comment_required': comment_required,
+            'metaware': metaware,
         }
     
     @property

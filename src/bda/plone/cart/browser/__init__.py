@@ -1,4 +1,5 @@
 import simplejson as json
+from decimal import Decimal
 from zope.interface import implements
 from zope.component import getMultiAdapter
 from zope.i18nmessageid import MessageFactory
@@ -40,7 +41,7 @@ class CartDataView(BrowserView, DataProviderMixin):
     
     def validateItemCount(self):
         uid = self.request.form.get('uid'),
-        count = int(self.request.form.get('count')),
+        count = Decimal(self.request.form.get('count')),
         return json.dumps(self.data_provider.validate_count(uid, count))
     
     def cartData(self):
