@@ -31,7 +31,7 @@ a.update_cart_action {
     float:right;
     margin-top:1px;
     cursor:pointer;
-    background:url('/++resource++bda.plone.cart.images/cart_put.png') 50% 50% no-repeat;
+    background:url('/++resource++bda.plone.cart.images/cart_refresh.png') 50% 50% no-repeat;
 }
 a.remove_from_cart_action {
     line-height:16px;
