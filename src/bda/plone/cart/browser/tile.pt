@@ -9,7 +9,7 @@
     <li class="cart_item">
       <div>
         <a href="#" class="cart_item_location">
-          <strong class="cart_item_title">Title</strong>
+          <h3 class="cart_item_title">Title</h3>
         </a>
       </div>
       <div class="cart_item_content">
@@ -65,6 +65,7 @@
       <strong i18n:translate="summary_total">Total:</strong>
       <strong class="cart_total">Total</strong>
     </div>
+    <div class="visualClear"></div>
   </div>
   
 </div>
