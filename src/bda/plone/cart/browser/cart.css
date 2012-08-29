@@ -51,7 +51,7 @@ a.remove_from_cart_action {
 }
 .summary_item ul.cart_item_content li {
     display:inline !important;
-    padding-right: 0.5em;
+    padding-left: 0.5em;
 }
 .summary_item .price {
     width: 7em;
@@ -66,7 +66,6 @@ a.remove_from_cart_action {
 }
 .summary_wrapper {
     text-align:right;
-    padding-top:1.2em;
 }
 .cart_sum_content {
   float: right;
