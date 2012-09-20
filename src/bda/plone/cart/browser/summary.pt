@@ -49,10 +49,10 @@
     </div>
   </span>
   
-  <div id="cart_items" style="display: none;">
-    <div id="cart_no_items" style="display: none;">
-      <p i18n:translate="empty_cart">Cart is empty</p>
-    </div>
+  <div id="cart_items" style="display: none;"></div>
+  
+  <div id="cart_no_items" style="display: none;">
+    <p i18n:translate="empty_cart">Cart is empty</p>
   </div>
   
   <div id="cart_summary" style="display: none;" class="summary_wrapper">
