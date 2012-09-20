@@ -1,0 +1,97 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-08-18 11:44+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: ./browser/__init__.py:86
+msgid "Add Cart Portlet"
+msgstr "Warenkorb Portlet hinzufügen"
+
+#: ./browser/__init__.py:87
+msgid "This portlet displays the shopping cart."
+msgstr "Dieses Portlet zeigt den Warenkorb"
+
+#. Default: "Amount"
+#: ./browser/summary.pt:20
+#: ./browser/tile.pt:16
+msgid "amount"
+msgstr "Anzahl"
+
+#: ./browser/summary.pt:72
+msgid "back"
+msgstr "zurück"
+
+#. Default: "Cart"
+#: ./browser/__init__.py:59
+#: ./browser/portlet.pt:8
+#: ./browser/view.pt:20
+msgid "cart"
+msgstr "Warenkorb"
+
+#. Default: "Cart"
+#: ./browser/portlet.pt:8
+msgid "cart_summary"
+msgstr "Warenkorb"
+
+#: ./browser/summary.pt:74
+msgid "checkout"
+msgstr "Kassa"
+
+#. Default: "Comment"
+#: ./browser/tile.pt:38
+msgid "comment"
+msgstr "Zusatz"
+
+#. Default: "Cart is empty"
+#: ./browser/summary.pt:53
+#: ./browser/tile.pt:51
+msgid "empty_cart"
+msgstr "Warenkorb ist leer"
+
+#. Default: "Price"
+#: ./browser/summary.pt:43
+#: ./browser/tile.pt:42
+msgid "price"
+msgstr "Preis"
+
+#. Default: "Remove from cart"
+#: ./browser/summary.pt:36
+#: ./browser/tile.pt:31
+msgid "remove_from_cart"
+msgstr "aus Warenkorm entfernen"
+
+#. Default: "Net:"
+#: ./browser/summary.pt:60
+#: ./browser/tile.pt:60
+msgid "summary_net"
+msgstr "Netto:"
+
+#. Default: "Total:"
+#: ./browser/summary.pt:66
+#: ./browser/tile.pt:65
+msgid "summary_total"
+msgstr "Gesamt:"
+
+#. Default: "VAT.:"
+#: ./browser/summary.pt:62
+#: ./browser/tile.pt:62
+msgid "summary_vat"
+msgstr "USt.:"
+
+#. Default: "Update cart"
+#: ./browser/summary.pt:27
+#: ./browser/tile.pt:21
+msgid "update_cart"
+msgstr "Warenkorb aktualisieren"
+
