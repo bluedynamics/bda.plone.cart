@@ -8,7 +8,10 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.memoize import instance
-from bda.plone.cart import ICartDataProvider
+from bda.plone.cart import (
+    ICartDataProvider,
+    readcookie,
+)
 
 
 _ = MessageFactory('bda.plone.cart')
@@ -34,6 +37,9 @@ class CartView(BrowserView, DataProviderMixin):
     
     @property
     def checkout_url(self):
+        cookie = readcookie(self.request)
+        if not cookie:
+            return
         return self.data_provider.checkout_url
 
 
