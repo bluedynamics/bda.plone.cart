@@ -26,7 +26,7 @@ msgstr "Dieses Portlet zeigt den Warenkorb"
 #: ./browser/summary.pt:20
 #: ./browser/tile.pt:16
 msgid "amount"
-msgstr "Anzahl"
+msgstr "Anzahl:"
 
 #: ./browser/summary.pt:72
 msgid "back"
@@ -63,7 +63,7 @@ msgstr "Warenkorb ist leer"
 #: ./browser/summary.pt:43
 #: ./browser/tile.pt:42
 msgid "price"
-msgstr "Preis"
+msgstr "Preis:"
 
 #. Default: "Remove from cart"
 #: ./browser/summary.pt:36
