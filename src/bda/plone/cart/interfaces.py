@@ -18,8 +18,22 @@ class ICartDataProvider(Interface):
     
     cart_url = Attribute(u"URL to cart view.")
     
+    def validate_set(uid):
+        """Validate if setting item with UID is allowed.
+        
+        return {
+            'success': [True|False],
+            'error': 'Error message if no success',
+        }
+        """
+    
     def validate_count(uid, count):
-        """Validate if ordering n items of UID is allowed.
+        """Validate if setting n items with UID is allowed.
+        
+        return {
+            'success': [True|False],
+            'error': 'Error message if no success',
+        }
         """
     
     def net(items):

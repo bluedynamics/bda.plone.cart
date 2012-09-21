@@ -212,15 +212,19 @@
                         break;
                     }
                 }
-                var url = 'validateItemCount?uid=' + defs[0];
+                var url = 'validate_cart_item?uid=' + defs[0];
                 url = url + '&count=' + count;
                 bdajax.request({
                     url: url,
                     type: 'json',
                     success: function(data) {
-                        if (data == false) {
+                        if (data.success == false) {
                             var msg;
-                            msg = cart.messages['article_limit_reached'];
+                            if (data.error) {
+                                msg = data.error;
+                            } else {
+                                msg = cart.messages['article_limit_reached'];
+                            }
                             bdajax.info(unescape(msg));
                         } else {
                             cart.add(defs[0], defs[1], defs[2]);
@@ -244,15 +248,19 @@
                     bdajax.error(ex.message);
                     return;
                 }
-                var url = 'validateItemCount?uid=' + defs[0];
+                var url = 'validate_cart_item?uid=' + defs[0];
                 url = url + '&count=' + defs[1];
                 bdajax.request({
                     url: url,
                     type: 'json',
                     success: function(data) {
-                        if (data == false) {
+                        if (data.success == false) {
                             var msg;
-                            msg = cart.messages['article_limit_reached'];
+                            if (data.error) {
+                                msg = data.error;
+                            } else {
+                                msg = cart.messages['article_limit_reached'];
+                            }
                             bdajax.info(unescape(msg));
                         } else {
                             cart.set(defs[0], defs[1], defs[2]);

@@ -45,14 +45,27 @@ Implement data provider inheriting from
     ...         """Return list of dicts with format returned by ``self.item``.
     ...         """
     ...     
-    ...     def validate_count(self, uid, count):
-    ...         """Validate if ordering n items of UID is allowed.
+    ...     def validate_set(self, uid):
+    ...         """Validate if setting item with UID is allowed.
     ...         """
+    ...         return {
+    ...             'success': True,
+    ...             'error': '',
+    ...         }
+    ...     
+    ...     def validate_count(self, uid, count):
+    ...         """Validate if setting n items with UID is allowed.
+    ...         """
+    ...         return {
+    ...             'success': True,
+    ...             'error': '',
+    ...         }
     ...     
     ...     @property
     ...     def disable_max_article(self):
     ...         """Flag whether to disable max article limit.
     ...         """
+    ...         return True
     ...     
     ...     @property
     ...     def summary_total_only(self):

@@ -45,10 +45,15 @@ class CartView(BrowserView, DataProviderMixin):
 
 class CartDataView(BrowserView, DataProviderMixin):
     
-    def validateItemCount(self):
+    def validate_cart_item(self):
         uid = self.request.form.get('uid'),
         count = Decimal(self.request.form.get('count')),
-        return json.dumps(self.data_provider.validate_count(uid, count))
+        provider = self.data_provider
+        ret = dict()
+        ret = provider.validate_set(uid)
+        if ret['success']:
+            ret = provider.validate_count(uid, count)
+        return json.dumps(ret)
     
     def cartData(self):
         return json.dumps(self.data_provider.data)

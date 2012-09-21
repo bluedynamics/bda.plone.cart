@@ -30,9 +30,9 @@
   
   <browser:page
     for="*"
-    name="validateItemCount"
+    name="validate_cart_item"
     class=".CartDataView"
-    attribute="validateItemCount"
+    attribute="validate_cart_item"
     permission="zope2.View" />
   
   <browser:page

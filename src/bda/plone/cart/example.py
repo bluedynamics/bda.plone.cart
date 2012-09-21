@@ -31,6 +31,18 @@ class ExampleCartDataProvider(CartDataProviderBase):
             ret.append(self.item(uid, title, count, price, url))
         return ret        
     
+    def validate_set(self, uid):
+        return {
+            'success': True,
+            'error': '',
+        }
+    
+    def validate_count(self, uid, count):
+        return {
+            'success': True,
+            'error': '',
+        }
+    
     def validate_count(self, uid, count):
         return True
     
