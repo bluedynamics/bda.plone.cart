@@ -55,10 +55,13 @@
     template="view.pt"
     permission="zope2.View" />
   
+  <!-- example -->
+  <!--
   <browser:page
     for="*"
     name="cartexample"
     template="example.pt"
     permission="zope2.View" />
+  -->
 
 </configure>

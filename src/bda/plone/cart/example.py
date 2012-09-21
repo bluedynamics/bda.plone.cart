@@ -28,7 +28,13 @@ class ExampleCartDataProvider(CartDataProviderBase):
             count = item[1]
             price = self.PRICES[uid] * count
             url = self.context.absolute_url()
-            ret.append(self.item(uid, title, count, price, url))
+            comment = ''
+            description = ''
+            comment_required = False
+            quantity_unit_float = False
+            ret.append(self.item(uid, title, count, price, url, comment,
+                                 description, comment_required,
+                                 quantity_unit_float))
         return ret        
     
     def validate_set(self, uid):
