@@ -53,6 +53,10 @@ class ExampleCartDataProvider(CartDataProviderBase):
         return True
     
     @property
+    def currency(self):
+        return 'EUR'
+    
+    @property
     def disable_max_article(self):
         return False
     

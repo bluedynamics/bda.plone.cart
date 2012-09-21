@@ -18,6 +18,8 @@ class ICartDataProvider(Interface):
     
     cart_url = Attribute(u"URL to cart view.")
     
+    currency = Attribute(u"Currency.")
+    
     def validate_set(uid):
         """Validate if setting item with UID is allowed.
         
@@ -70,9 +72,6 @@ class ICartItemDataProvider(Interface):
     net = Attribute(u"Item net price as float")
     
     vat = Attribute(u"Item vat as float")
-    
-    # XXX
-    #currency = Attribute(u"Item currency")
     
     display_gross = Attribute(u"Flag whether whether to display gross "
                               u"instead of net")
