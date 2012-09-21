@@ -18,7 +18,12 @@ a.go_to_cart_action:visited {
     cursor:pointer;
     background:#75ad0a url('/++resource++bda.plone.cart.images/cart_go.png') left center no-repeat;
 }
+a.go_to_cart_action:hover {
+    background-color:#eeeeee;
+    color:#205C90 !important;
+}
 a.update_cart_action {
+    margin-left: 0.6em;
     display: inline-block;
     width: 16px;
     text-decoration:none;
@@ -57,7 +62,11 @@ a.remove_from_cart_action {
     width: 7em;
     display: inline-block;
 }
-.summary_item input.cart_item_count {
+.summary_item input.cart_item_count,
+.portletCart input.cart_item_count {
+    margin-right: 0.1em;
+}
+.summary_item span.cart_item_quantity_unit_label {
     margin-right: 0.5em;
 }
 .summary_item a.update_cart_action,
@@ -87,4 +96,8 @@ a.remove_from_cart_action {
     text-align:center;
     text-decoration:none;
     cursor:pointer;
+}
+.cart_summary_buttons a:hover {
+	background-color:#eeeeee;
+	color:#205C90 !important;
 }

@@ -13,11 +13,11 @@
         </a>
       </div>
       <div class="cart_item_content">
-        <span i18n:translate="amount">Amount</span>
         <span>
           <span class="cart_item_uid" style="display: none;">uid</span>
           <span class="cart_item_comment" style="display: none;">comment</span>
           <input type="text" size="2" class="cart_item_count" />
+          <span class="cart_item_quantity_unit_label">Quantity</span>
           <a href=""
              class="update_cart_item update_cart_action"
              title="Update cart"

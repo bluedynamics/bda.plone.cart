@@ -110,6 +110,10 @@ element with CSS class ``cart_item_uid``, where the item UID is taken from::
 
     <span class="cart_item_uid" style="display: none;">12345678</span>
 
+a quantity unit label::
+
+    <span class="cart_item_quantity_unit_label">Quantity</span>
+
 a text input field with CSS class ``cart_item_count`` which is read for
 item count::
 
