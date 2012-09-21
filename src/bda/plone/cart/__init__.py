@@ -4,10 +4,16 @@ from zope.interface import (
     implements,
     Interface,
 )
-from zope.component import adapts
+from zope.component import (
+    adapts,
+    getMultiAdapter,
+)
 from zope.publisher.interfaces.browser import IBrowserRequest
 from Products.CMFCore.utils import getToolByName
-from .interfaces import ICartDataProvider
+from .interfaces import (
+    ICartDataProvider,
+    ICartItemDataProvider,
+)
 
 
 def ascur(val, comma=False):
@@ -140,6 +146,18 @@ class CartDataProviderBase(object):
             ret['cart_summary']['cart_total'] = ascur(net + vat)
             ret['cart_summary']['cart_total_raw'] = net + vat
         return ret
+
+
+def get_data_provider(context):
+    """Return ICartDataProvider implementation.
+    """
+    return getMultiAdapter((context, context.REQUEST), ICartDataProvider)
+
+
+def get_item_data_provider(context):
+    """Return ICartItemDataProvider implementation.
+    """
+    return ICartItemDataProvider(context)
 
 
 def get_catalog_brain(context, uid):

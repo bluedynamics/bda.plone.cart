@@ -1,16 +1,15 @@
 import simplejson as json
 from decimal import Decimal
-from zope.interface import implements
-from zope.component import getMultiAdapter
+from zope.interface import implementer
 from zope.i18nmessageid import MessageFactory
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.memoize import instance
-from bda.plone.cart import (
-    ICartDataProvider,
+from .. import (
     readcookie,
+    get_data_provider,
 )
 
 
@@ -21,8 +20,7 @@ class DataProviderMixin(object):
     
     @property
     def data_provider(self):
-        return getMultiAdapter(
-            (self.context, self.request), ICartDataProvider)
+        return get_data_provider(self.context)
 
 
 class CartView(BrowserView, DataProviderMixin):
@@ -63,8 +61,8 @@ class ICartPortlet(IPortletDataProvider):
     pass
 
 
+@implementer(ICartPortlet)
 class CartAssignment(base.Assignment):
-    implements(ICartPortlet)
 
     @property
     def title(self):
