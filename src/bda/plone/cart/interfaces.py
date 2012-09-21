@@ -85,5 +85,4 @@ class ICartItemDataProvider(Interface):
     quantity_unit_float = Attribute(u"Flag whether quantity unit value is "
                                     u"allowed as float")
     
-    # XXX
-    #quantity_label = Attribute(u"Quantity label")
+    quantity_label = Attribute(u"Quantity label")
