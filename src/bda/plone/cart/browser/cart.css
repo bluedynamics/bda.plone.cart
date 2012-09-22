@@ -20,7 +20,7 @@ a.go_to_cart_action:visited {
 }
 a.go_to_cart_action:hover {
     background-color:#eeeeee;
-    color:#205C90 !important;
+    color:#75ad0a !important;
 }
 a.update_cart_action {
     margin-left: 0.6em;
@@ -98,6 +98,6 @@ a.remove_from_cart_action {
     cursor:pointer;
 }
 .cart_summary_buttons a:hover {
-	background-color:#eeeeee;
-	color:#205C90 !important;
+    background-color:#eeeeee;
+    color:#75ad0a !important;
 }
