@@ -375,7 +375,7 @@
         count += new Number(setcount);
         if (count > CART_MAX_ARTICLE_COUNT) {
             var msg;
-            msg = cart.messages['total_limit_reached']
+            msg = cart.messages['total_limit_reached'];
             bdajax.info(unescape(msg));
             return false;
         }

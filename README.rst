@@ -110,19 +110,19 @@ element with CSS class ``cart_item_uid``, where the item UID is taken from::
 
     <span class="cart_item_uid" style="display: none;">12345678</span>
 
-a quantity unit label::
-
-    <span class="cart_item_quantity_unit_label">Quantity</span>
-
 a text input field with CSS class ``cart_item_count`` which is read for
 item count::
 
-    <input type="text" size="2" value="1" class="cart_item_count" />Stück
+    <input type="text" size="2" value="1" class="cart_item_count" />
 
-If type of item count should be float, add ``quantity_unit_float`` CSS class::
+a quantity unit::
+
+    <span class="cart_item_quantity_unit">Quantity</span>
+
+If quantity unit can be be float, add ``quantity_unit_float`` CSS class::
 
     <input type="text" size="2" value="1"
-           class="cart_item_count quantity_unit_float" />Stück
+           class="cart_item_count quantity_unit_float" />
 
 the "add to Cart" action::
 

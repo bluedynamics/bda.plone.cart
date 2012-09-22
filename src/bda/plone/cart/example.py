@@ -32,11 +32,11 @@ class ExampleCartDataProvider(CartDataProviderBase):
             description = ''
             comment_required = False
             quantity_unit_float = False
-            quantity_label = 'Quantity'
+            quantity_unit = 'Quantity'
             ret.append(self.item(uid, title, count, price, url, comment,
                                  description, comment_required,
-                                 quantity_unit_float, quantity_label))
-        return ret        
+                                 quantity_unit_float, quantity_unit))
+        return ret
     
     def validate_set(self, uid):
         return {
