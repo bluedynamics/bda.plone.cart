@@ -53,16 +53,22 @@
   
   <div id="cart_summary"
        style="display: none;">
-    <div class="cart_sum_content">
+    <table class="cart_sum_content">
       <tal:details condition="not:view/summary_total_only">
-        <span i18n:translate="summary_net">Net:</span>
-        <span class="cart_net">Net</span><br />
-        <span i18n:translate="summary_vat">VAT.:</span>
-        <span class="cart_vat">VAT</span><br />
+      <tr>
+        <td i18n:translate="summary_net">Net:</td>
+        <td class="cart_net">Net</td>
+      </tr>
+      <tr>
+        <td i18n:translate="summary_vat">VAT.:</td>
+        <td class="cart_vat">VAT</td>
+      </tr>
       </tal:details>
-      <strong i18n:translate="summary_total">Total:</strong>
-      <strong class="cart_total">Total</strong>
-    </div>
+      <tr>
+        <td><strong i18n:translate="summary_total">Total:</strong></td>
+        <td><strong class="cart_total">Total</strong></td>
+      </tr>
+    </table>
     <div class="visualClear"></div>
   </div>
   

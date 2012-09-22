@@ -13,7 +13,7 @@ a.go_to_cart_action:visited {
     color:white !important;
     font-weight:bold;
     display: inline-block;
-    padding: 0.3em 0.5em 0.3em 2.75em;
+    padding: 0.3em 0.75em 0.3em 2.75em;
     text-decoration:none;
     cursor:pointer;
     background:#75ad0a url('/++resource++bda.plone.cart.images/cart_go.png') left center no-repeat;
@@ -79,6 +79,10 @@ a.remove_from_cart_action {
 .cart_sum_content {
   float: right;
 }
+.cart_sum_content td {
+  text-align: right;
+  padding-left: 1em;
+}
 .cart_summary_buttons {
     text-align:right;
     padding-top:1.2em;
@@ -93,6 +97,7 @@ a.remove_from_cart_action {
     font-weight:bold;
     display:inline-block;
     padding: 0.3em 0.75em;
+    margin-left: 1em;
     text-align:center;
     text-decoration:none;
     cursor:pointer;
@@ -100,4 +105,7 @@ a.remove_from_cart_action {
 .cart_summary_buttons a:hover {
     background-color:#eeeeee;
     color:#75ad0a !important;
+}
+.portletCart .lastItem {
+  text-align: center;
 }
