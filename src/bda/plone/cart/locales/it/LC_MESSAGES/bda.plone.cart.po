@@ -13,6 +13,7 @@ msgstr ""
 "Language-Name: Italian\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"X-Is-Fallback-For: it-ch it-it\n"
 
 #: ./browser/__init__.py:100
 msgid "Add Cart Portlet"
