@@ -34,6 +34,10 @@ class CartView(BrowserView, DataProviderMixin):
         return self.data_provider.summary_total_only
     
     @property
+    def include_shipping_costs(self):
+        return self.data_provider.include_shipping_costs
+    
+    @property
     def checkout_url(self):
         cookie = readcookie(self.request)
         if not cookie:

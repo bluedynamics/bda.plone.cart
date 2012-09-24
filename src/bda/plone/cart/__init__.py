@@ -85,7 +85,7 @@ class CartDataProviderBase(object):
                                   u"``summary_total_only``.")
     
     @property
-    def display_shipping_costs(self):
+    def include_shipping_costs(self):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``display_shipping_costs``.")
     
@@ -154,7 +154,12 @@ class CartDataProviderBase(object):
             ret['cart_items'] = cart_items
             ret['cart_summary']['cart_net'] = ascur(net)
             ret['cart_summary']['cart_vat'] = ascur(vat)
-            ret['cart_summary']['cart_total'] = ascur(net + vat)
+            if self.include_shipping_costs:
+                shipping = self.shipping(items)
+                ret['cart_summary']['cart_shipping'] = ascur(shipping)
+                ret['cart_summary']['cart_total'] = ascur(net + vat + shipping)
+            else:
+                ret['cart_summary']['cart_total'] = ascur(net + vat)
             ret['cart_summary']['cart_total_raw'] = net + vat
         return ret
 

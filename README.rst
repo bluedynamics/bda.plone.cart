@@ -76,7 +76,7 @@ Implement data provider inheriting from
     ...         return False
     ...     
     ...     @property
-    ...     def display_shipping_costs(self):
+    ...     def include_shipping_costs(self):
     ...         return False
     ...     
     ...     @property
