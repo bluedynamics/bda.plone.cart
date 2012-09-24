@@ -87,7 +87,7 @@ class CartDataProviderBase(object):
     @property
     def include_shipping_costs(self):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
-                                  u"``display_shipping_costs``.")
+                                  u"``include_shipping_costs``.")
     
     @property
     def checkout_url(self):
