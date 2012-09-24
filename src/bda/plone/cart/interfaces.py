@@ -46,6 +46,10 @@ class ICartDataProvider(Interface):
         """Calculate vat sum of cart items.
         """
     
+    def shipping(items):
+        """Calculate shipping costs for cart items.
+        """
+    
     def cart_items(items):
         """Return list of dicts with format returned by ``self.item``.
         """

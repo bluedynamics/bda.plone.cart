@@ -10,8 +10,6 @@ Installation
 Depend your instance to ``bda.plone.cart`` and install it as addon
 in plone control panel.
 
-Test if it works by navigating to ``http://your.site/cartexample``.
-
 
 Provide data
 ------------
@@ -31,14 +29,14 @@ Implement data provider inheriting from
     ...     
     ...     def net(self, items):
     ...         """Return net price for items as float.
-    ...         Items is a list of 2-tuples containing (uid, count).
-    ...         
-    ...         See ``bda.plone.cart.example``
     ...         """
     ...     
     ...     def vat(self, items):
     ...         """Return VAT for items as float.
-    ...         Items is a list of 2-tuples containing (uid, count).
+    ...         """
+    ...     
+    ...     def shipping(self, items):
+    ...         """Calculate shipping costs for cart items.
     ...         """
     ...     
     ...     def cart_items(self, items):

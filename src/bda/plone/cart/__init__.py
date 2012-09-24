@@ -109,6 +109,10 @@ class CartDataProviderBase(object):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``vat``.")
     
+    def shipping(self, items):
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``shipping``.")
+    
     def cart_items(self, items):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``cart_items``.")
