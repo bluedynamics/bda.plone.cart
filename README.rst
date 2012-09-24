@@ -35,10 +35,6 @@ Implement data provider inheriting from
     ...         """Return VAT for items as float.
     ...         """
     ...     
-    ...     def shipping(self, items):
-    ...         """Calculate shipping costs for cart items.
-    ...         """
-    ...     
     ...     def cart_items(self, items):
     ...         """Return list of dicts with format returned by ``self.item``.
     ...         """
@@ -77,7 +73,11 @@ Implement data provider inheriting from
     ...     
     ...     @property
     ...     def include_shipping_costs(self):
-    ...         return False
+    ...         return True
+    ...     
+    ...     @property
+    ...     def shipping_method(self):
+    ...         return 'flat_rate'
     ...     
     ...     @property
     ...     def checkout_url(self):

@@ -10,6 +10,7 @@ from zope.component import (
 )
 from zope.publisher.interfaces.browser import IBrowserRequest
 from Products.CMFCore.utils import getToolByName
+from bda.plone.shipping import Shippings
 from .interfaces import (
     ICartDataProvider,
     ICartItemDataProvider,
@@ -85,18 +86,9 @@ class CartDataProviderBase(object):
                                   u"``summary_total_only``.")
     
     @property
-    def include_shipping_costs(self):
-        raise NotImplementedError(u"CartDataProviderBase does not implement "
-                                  u"``include_shipping_costs``.")
-    
-    @property
     def checkout_url(self):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``checkout_url``.")
-    
-    @property
-    def cart_url(self):
-        return '%s/@@cart' % self.context.absolute_url()
     
     def validate_set(self, uid):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
@@ -114,13 +106,24 @@ class CartDataProviderBase(object):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``vat``.")
     
-    def shipping(self, items):
-        raise NotImplementedError(u"CartDataProviderBase does not implement "
-                                  u"``shipping``.")
-    
     def cart_items(self, items):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``cart_items``.")
+    
+    @property
+    def include_shipping_costs(self):
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``include_shipping_costs``.")
+    
+    @property
+    def shipping_method(self):
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``shipping_method``.")
+    
+    def shipping(self, items):
+        shippings = Shippings(self.context)
+        shipping = shippings.get(self.shipping_method)
+        return shipping.calculate(items)
     
     def item(self, uid, title, count, price, url, comment='', description='',
              comment_required=False, quantity_unit_float=False,
@@ -139,6 +142,10 @@ class CartDataProviderBase(object):
             'comment_required': comment_required,
             'quantity_unit_float': quantity_unit_float,
         }
+    
+    @property
+    def cart_url(self):
+        return '%s/@@cart' % self.context.absolute_url()
     
     @property
     def data(self):

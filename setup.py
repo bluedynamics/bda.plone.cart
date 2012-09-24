@@ -29,6 +29,7 @@ setup(name='bda.plone.cart',
           'simplejson',
           'Plone',
           'bda.plone.ajax',
+          'bda.plone.shipping',
       ],
       entry_points="""
       [z3c.autoinclude.plugin]

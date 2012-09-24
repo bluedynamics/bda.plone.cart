@@ -15,7 +15,9 @@ class ICartDataProvider(Interface):
                                    u"summary.")
     
     include_shipping_costs = Attribute(u"Flag whether to display shipping "
-                                       u"costs")
+                                       u"costs.")
+    
+    shipping_method = Attribute(u"Current shipping method identifyer.")
     
     checkout_url = Attribute(u"URL to checkout view.")
     
