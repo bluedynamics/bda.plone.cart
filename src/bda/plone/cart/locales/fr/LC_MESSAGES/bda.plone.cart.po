@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-08-18 11:44+0000\n"
+"POT-Creation-Date: 2012-09-24 14:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9,31 +9,25 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"Language-Code: fr\n"
+"Language-Name: French\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./browser/__init__.py:86
+#: ./browser/__init__.py:100
 msgid "Add Cart Portlet"
 msgstr "Warenkorb Portlet hinzufügen"
 
-#: ./browser/__init__.py:87
+#: ./browser/__init__.py:101
 msgid "This portlet displays the shopping cart."
 msgstr "Dieses Portlet zeigt den Warenkorb"
 
-#. Default: "Amount"
-#: ./browser/summary.pt:20
-#: ./browser/tile.pt:16
-msgid "amount"
-msgstr "Anzahl"
-
-#: ./browser/summary.pt:72
+#: ./browser/summary.pt:83
 msgid "back"
 msgstr "zurück"
 
 #. Default: "Cart"
-#: ./browser/__init__.py:59
+#: ./browser/__init__.py:73
 #: ./browser/portlet.pt:8
 #: ./browser/view.pt:20
 msgid "cart"
@@ -44,7 +38,7 @@ msgstr "Warenkorb"
 msgid "cart_summary"
 msgstr "Warenkorb"
 
-#: ./browser/summary.pt:74
+#: ./browser/summary.pt:85
 msgid "checkout"
 msgstr "Kassa"
 
@@ -60,37 +54,43 @@ msgid "empty_cart"
 msgstr "Warenkorb ist leer"
 
 #. Default: "Price"
-#: ./browser/summary.pt:43
+#: ./browser/summary.pt:41
 #: ./browser/tile.pt:42
 msgid "price"
 msgstr "Preis"
 
 #. Default: "Remove from cart"
-#: ./browser/summary.pt:36
+#: ./browser/summary.pt:34
 #: ./browser/tile.pt:31
 msgid "remove_from_cart"
 msgstr "aus Warenkorm entfernen"
 
 #. Default: "Net:"
 #: ./browser/summary.pt:60
-#: ./browser/tile.pt:60
+#: ./browser/tile.pt:59
 msgid "summary_net"
 msgstr "Netto:"
 
+#. Default: "Shipping:"
+#: ./browser/summary.pt:70
+#: ./browser/tile.pt:69
+msgid "summary_shipping"
+msgstr ""
+
 #. Default: "Total:"
-#: ./browser/summary.pt:66
-#: ./browser/tile.pt:65
+#: ./browser/summary.pt:75
+#: ./browser/tile.pt:74
 msgid "summary_total"
 msgstr "Gesamt:"
 
 #. Default: "VAT.:"
-#: ./browser/summary.pt:62
-#: ./browser/tile.pt:62
+#: ./browser/summary.pt:64
+#: ./browser/tile.pt:63
 msgid "summary_vat"
 msgstr "USt.:"
 
 #. Default: "Update cart"
-#: ./browser/summary.pt:27
+#: ./browser/summary.pt:25
 #: ./browser/tile.pt:21
 msgid "update_cart"
 msgstr "Warenkorb aktualisieren"
