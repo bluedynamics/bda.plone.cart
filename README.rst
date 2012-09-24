@@ -76,6 +76,10 @@ Implement data provider inheriting from
     ...         return False
     ...     
     ...     @property
+    ...     def display_shipping_costs(self):
+    ...         return False
+    ...     
+    ...     @property
     ...     def checkout_url(self):
     ...         """URL to checkout view.
     ...         """

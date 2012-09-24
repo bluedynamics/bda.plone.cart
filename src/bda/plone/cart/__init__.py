@@ -85,6 +85,11 @@ class CartDataProviderBase(object):
                                   u"``summary_total_only``.")
     
     @property
+    def display_shipping_costs(self):
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``display_shipping_costs``.")
+    
+    @property
     def checkout_url(self):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``checkout_url``.")
