@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-09-21 18:59+0000\n"
+"POT-Creation-Date: 2012-09-24 10:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,20 +14,20 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./browser/__init__.py:96
+#: ./browser/__init__.py:100
 msgid "Add Cart Portlet"
 msgstr "Warenkorb Portlet hinzufügen"
 
-#: ./browser/__init__.py:97
+#: ./browser/__init__.py:101
 msgid "This portlet displays the shopping cart."
 msgstr "Dieses Portlet zeigt den Warenkorb"
 
-#: ./browser/summary.pt:77
+#: ./browser/summary.pt:83
 msgid "back"
 msgstr "zurück"
 
 #. Default: "Cart"
-#: ./browser/__init__.py:69
+#: ./browser/__init__.py:73
 #: ./browser/portlet.pt:8
 #: ./browser/view.pt:20
 msgid "cart"
@@ -38,7 +38,7 @@ msgstr "Warenkorb"
 msgid "cart_summary"
 msgstr "Warenkorb"
 
-#: ./browser/summary.pt:79
+#: ./browser/summary.pt:85
 msgid "checkout"
 msgstr "Kassa"
 
@@ -67,19 +67,25 @@ msgstr "aus Warenkorm entfernen"
 
 #. Default: "Net:"
 #: ./browser/summary.pt:60
-#: ./browser/tile.pt:58
+#: ./browser/tile.pt:59
 msgid "summary_net"
 msgstr "Netto:"
 
+#. Default: "Shipping:"
+#: ./browser/summary.pt:70
+#: ./browser/tile.pt:69
+msgid "summary_shipping"
+msgstr "Versand:"
+
 #. Default: "Total:"
-#: ./browser/summary.pt:69
-#: ./browser/tile.pt:63
+#: ./browser/summary.pt:75
+#: ./browser/tile.pt:74
 msgid "summary_total"
 msgstr "Gesamt:"
 
 #. Default: "VAT.:"
 #: ./browser/summary.pt:64
-#: ./browser/tile.pt:60
+#: ./browser/tile.pt:63
 msgid "summary_vat"
 msgstr "USt.:"
 
