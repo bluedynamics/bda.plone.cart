@@ -2,9 +2,15 @@
 
 (function($) {
     
+    
+    
     $(document).ready(function() {
         if ($('.disable_max_article_count').length) {
             CART_MAX_ARTICLE_COUNT = 100000;
+        }
+        var execution_context = $('.cart_execution_context');
+        if (execution_context.length) {
+            CART_EXECUTION_CONTEXT = execution_context.text();
         }
         cart.init();
         cart.query();
@@ -16,6 +22,7 @@
         }
     });
     
+    CART_EXECUTION_CONTEXT = null;
     CART_HIDE_PORTLET_IF_EMPTY = false;
     CART_PORTLET_IDENTIFYER = '#portlet-cart';
     CART_MAX_ARTICLE_COUNT = 5;
@@ -212,10 +219,16 @@
                         break;
                     }
                 }
-                var url = 'validate_cart_item?uid=' + defs[0];
-                url = url + '&count=' + count;
+                var params = {
+                    uid: defs[0],
+                    count: count + ''
+                };
+                if (CART_EXECUTION_CONTEXT) {
+                    params.execution_context = CART_EXECUTION_CONTEXT;
+                }
                 bdajax.request({
-                    url: url,
+                    url: 'validate_cart_item',
+                    params: params,
                     type: 'json',
                     success: function(data) {
                         if (data.success == false) {
@@ -248,10 +261,16 @@
                     bdajax.error(ex.message);
                     return;
                 }
-                var url = 'validate_cart_item?uid=' + defs[0];
-                url = url + '&count=' + defs[1];
+                var params = {
+                    uid: defs[0],
+                    count: defs[1] + ''
+                };
+                if (CART_EXECUTION_CONTEXT) {
+                    params.execution_context = CART_EXECUTION_CONTEXT;
+                }
                 bdajax.request({
-                    url: url,
+                    url: 'validate_cart_item',
+                    params: params,
                     type: 'json',
                     success: function(data) {
                         if (data.success == false) {
@@ -389,9 +408,13 @@
         if (document.location.href.indexOf('/portal_factory/') != -1) {
             return;
         }
-        var url = 'cartData?items=' + this.cookie();
+        var params = { items: this.cookie() };
+        if (CART_EXECUTION_CONTEXT) {
+            params.execution_context = CART_EXECUTION_CONTEXT;
+        }
         bdajax.request({
-            url: url,
+            url: 'cartData',
+            params: params,
             type: 'json',
             success: function(data) {
                  cart.render(data);

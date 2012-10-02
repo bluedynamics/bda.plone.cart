@@ -5,6 +5,9 @@
         style="display:none;"
         class="disable_max_article_count">&nbsp;</span>
   
+  <span style="display:none;"
+        class="cart_execution_context">portlet</span>
+  
   <ul id="card_item_template" style="display: none;">
     <li class="cart_item">
       <div>
