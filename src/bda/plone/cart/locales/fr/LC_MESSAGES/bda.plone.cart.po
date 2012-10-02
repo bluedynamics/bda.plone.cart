@@ -41,7 +41,7 @@ msgstr "Warenkorb"
 
 #: ./browser/summary.pt:85
 msgid "checkout"
-msgstr "Kassa"
+msgstr "zur Kasse"
 
 #. Default: "Comment"
 #: ./browser/tile.pt:38
@@ -64,7 +64,7 @@ msgstr "Preis"
 #: ./browser/summary.pt:34
 #: ./browser/tile.pt:31
 msgid "remove_from_cart"
-msgstr "aus Warenkorm entfernen"
+msgstr "aus Warenkorb entfernen"
 
 #. Default: "Net:"
 #: ./browser/summary.pt:60
