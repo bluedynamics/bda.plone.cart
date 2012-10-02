@@ -76,7 +76,7 @@ msgstr "Netto:"
 #: ./browser/summary.pt:70
 #: ./browser/tile.pt:69
 msgid "summary_shipping"
-msgstr "Versand:"
+msgstr "Versandkosten:"
 
 #. Default: "Total:"
 #: ./browser/summary.pt:75
