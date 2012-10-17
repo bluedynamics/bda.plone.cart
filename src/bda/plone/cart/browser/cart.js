@@ -179,7 +179,7 @@
                             // necessary for cart item removal.
                             } else {
                                 var mode = $(this).css('display');
-                                if (mode == 'inline') {
+                                if (mode.toLowerCase() != 'none') {
                                     $(this).html(value);
                                 }
                             }
