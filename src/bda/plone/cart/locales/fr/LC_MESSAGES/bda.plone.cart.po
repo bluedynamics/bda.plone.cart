@@ -1,4 +1,4 @@
-msgid ""
+﻿msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2012-09-24 14:22+0000\n"
@@ -17,31 +17,31 @@ msgstr ""
 
 #: ./browser/__init__.py:100
 msgid "Add Cart Portlet"
-msgstr "Warenkorb Portlet hinzufügen"
+msgstr "Fonction  ajouter panier"
 
 #: ./browser/__init__.py:101
 msgid "This portlet displays the shopping cart."
-msgstr "Dieses Portlet zeigt den Warenkorb"
+msgstr "Fonction montrer panier"
 
 #: ./browser/summary.pt:83
 msgid "back"
-msgstr "zurück"
+msgstr "retour"
 
 #. Default: "Cart"
 #: ./browser/__init__.py:73
 #: ./browser/portlet.pt:8
 #: ./browser/view.pt:20
 msgid "cart"
-msgstr "Warenkorb"
+msgstr "Panier"
 
 #. Default: "Cart"
 #: ./browser/portlet.pt:8
 msgid "cart_summary"
-msgstr "Warenkorb"
+msgstr "Panier"
 
 #: ./browser/summary.pt:85
 msgid "checkout"
-msgstr "zur Kasse"
+msgstr "Caisse"
 
 #. Default: "Comment"
 #: ./browser/tile.pt:38
@@ -52,25 +52,25 @@ msgstr "Zusatz"
 #: ./browser/summary.pt:53
 #: ./browser/tile.pt:51
 msgid "empty_cart"
-msgstr "Warenkorb ist leer"
+msgstr "Le panier est vide"
 
 #. Default: "Price"
 #: ./browser/summary.pt:41
 #: ./browser/tile.pt:42
 msgid "price"
-msgstr "Preis"
+msgstr "Prix"
 
 #. Default: "Remove from cart"
 #: ./browser/summary.pt:34
 #: ./browser/tile.pt:31
 msgid "remove_from_cart"
-msgstr "aus Warenkorb entfernen"
+msgstr "Eliminer du panier"
 
 #. Default: "Net:"
 #: ./browser/summary.pt:60
 #: ./browser/tile.pt:59
 msgid "summary_net"
-msgstr "Netto:"
+msgstr "Net:"
 
 #. Default: "Shipping:"
 #: ./browser/summary.pt:70
@@ -82,17 +82,17 @@ msgstr ""
 #: ./browser/summary.pt:75
 #: ./browser/tile.pt:74
 msgid "summary_total"
-msgstr "Gesamt:"
+msgstr "Total:"
 
 #. Default: "VAT.:"
 #: ./browser/summary.pt:64
 #: ./browser/tile.pt:63
 msgid "summary_vat"
-msgstr "USt.:"
+msgstr "TVA:"
 
 #. Default: "Update cart"
 #: ./browser/summary.pt:25
 #: ./browser/tile.pt:21
 msgid "update_cart"
-msgstr "Warenkorb aktualisieren"
+msgstr "Actualiser le panier"
 
