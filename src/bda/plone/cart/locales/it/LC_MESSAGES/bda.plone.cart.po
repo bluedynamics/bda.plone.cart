@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-09-24 14:22+0000\n"
+"POT-Creation-Date: 2012-11-07 16:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "This portlet displays the shopping cart."
 msgstr ""
 
-#: ./browser/summary.pt:83
+#: ./browser/summary.pt:86
 msgid "back"
 msgstr ""
 
@@ -39,60 +39,60 @@ msgstr ""
 msgid "cart_summary"
 msgstr ""
 
-#: ./browser/summary.pt:85
+#: ./browser/summary.pt:88
 msgid "checkout"
 msgstr ""
 
 #. Default: "Comment"
-#: ./browser/tile.pt:38
+#: ./browser/tile.pt:41
 msgid "comment"
 msgstr ""
 
 #. Default: "Cart is empty"
-#: ./browser/summary.pt:53
-#: ./browser/tile.pt:51
+#: ./browser/summary.pt:56
+#: ./browser/tile.pt:54
 msgid "empty_cart"
 msgstr ""
 
 #. Default: "Price"
-#: ./browser/summary.pt:41
-#: ./browser/tile.pt:42
+#: ./browser/summary.pt:44
+#: ./browser/tile.pt:45
 msgid "price"
 msgstr ""
 
 #. Default: "Remove from cart"
-#: ./browser/summary.pt:34
-#: ./browser/tile.pt:31
+#: ./browser/summary.pt:37
+#: ./browser/tile.pt:34
 msgid "remove_from_cart"
 msgstr ""
 
 #. Default: "Net:"
-#: ./browser/summary.pt:60
-#: ./browser/tile.pt:59
+#: ./browser/summary.pt:63
+#: ./browser/tile.pt:62
 msgid "summary_net"
 msgstr ""
 
 #. Default: "Shipping:"
-#: ./browser/summary.pt:70
-#: ./browser/tile.pt:69
+#: ./browser/summary.pt:73
+#: ./browser/tile.pt:72
 msgid "summary_shipping"
 msgstr ""
 
 #. Default: "Total:"
-#: ./browser/summary.pt:75
-#: ./browser/tile.pt:74
+#: ./browser/summary.pt:78
+#: ./browser/tile.pt:77
 msgid "summary_total"
 msgstr ""
 
 #. Default: "VAT.:"
-#: ./browser/summary.pt:64
-#: ./browser/tile.pt:63
+#: ./browser/summary.pt:67
+#: ./browser/tile.pt:66
 msgid "summary_vat"
 msgstr ""
 
 #. Default: "Update cart"
-#: ./browser/summary.pt:25
-#: ./browser/tile.pt:21
+#: ./browser/summary.pt:28
+#: ./browser/tile.pt:24
 msgid "update_cart"
 msgstr ""
 
