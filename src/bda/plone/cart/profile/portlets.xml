@@ -6,7 +6,6 @@
     addview="portlets.Cart"
     title="Cart portlet"
     description="A portlet which renders a shopping cart.">
-    <for interface="plone.app.portlets.interfaces.IRightColumn" />
   </portlet>
   <assignment
     manager="plone.rightcolumn"

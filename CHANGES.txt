@@ -1,6 +1,13 @@
 Changelog
 =========
-    
+
+after
+-----
+
+- Allow the cart portlet in the left column too.
+  [fRiSi]
+  
+  
 0.1
 ---
 
