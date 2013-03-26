@@ -1,18 +1,19 @@
 bda.plone.cart
-==============
+##############
 
 Shopping cart portlet for plone.
 
+.. contents::
 
 Installation
-------------
+============
 
 Depend your instance to ``bda.plone.cart`` and install it as addon
 in plone control panel.
 
 
 Provide data
-------------
+============
 
 This package only provides components needed to render shopping cart. It does
 not expect any contracts but ``bda.plone.cart.ICartDataProvider``.
@@ -102,7 +103,7 @@ and request, these attributes are available on ``context`` respective
 
 
 Markup
-------
+======
 
 Take a look at ``bda.plone.cart.browser:example.pt`` how HTML markup
 for adding items to cart might look like.
@@ -147,7 +148,7 @@ add or update a cart item::
 
 
 Javascript
-----------
+==========
 
 The cart can be customizes on client side.
 
@@ -171,21 +172,16 @@ Client side dialog messages::
 
 
 Create translations
--------------------
+===================
 
 ::
 
-    cd src/bda/plone/cart/
-    
-    i18ndude rebuild-pot --pot locales/bda.plone.cart.pot \
-        --merge locales/manual.pot --create bda.plone.cart .
-    
-    i18ndude sync --pot locales/bda.plone.cart.pot \
-        locales/de/LC_MESSAGES/bda.plone.cart.po
+    $ cd src/bda/plone/cart/
+    $ ./i18n.sh
 
 
 Contributors
-------------
+============
 
 - Robert Niederreiter
 
@@ -193,13 +189,8 @@ Contributors
 
 - Sven Plage
 
+- Harald Friessnegger, Webmeisterei GmbH
+
 - Icons by famfamfam
 
 
-History
--------
-
-1.0dev
-------
-
-- initial

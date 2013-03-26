@@ -3,7 +3,11 @@ import os
 
 version = '1.0dev'
 shortdesc = "Shopping Cart"
-longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
+longdesc = (
+            open(os.path.join(os.path.dirname(__file__), 'README.rst')).read() 
+            + '\n' +
+            open('CHANGES.txt').read()
+            + '\n')
 
 setup(name='bda.plone.cart',
       version=version,
