@@ -1,13 +1,13 @@
 <div id="cart"
      i18n:domain="bda.plone.cart">
-    
+
   <span tal:condition="view/disable_max_article_count"
         style="display:none;"
         class="disable_max_article_count">&nbsp;</span>
-  
+
   <span style="display:none;"
         class="cart_execution_context">summary</span>
-  
+
   <span id="cart_item_template" style="display: none;">
     <div class="cart_item summary_item">
       <h3>
@@ -15,6 +15,7 @@
           <span class="cart_item_title">Title</span>
         </a>
       </h3>
+      <img class="cart_item_preview_image" src="" />
       <p class="cart_item_description">Description</p>
       <div class="cart_item_comment_wrapper">
         <p class="cart_item_comment">comment</p>
@@ -49,13 +50,13 @@
       <div class="visualClear"></div>
     </div>
   </span>
-  
+
   <div id="cart_items" style="display: none;"></div>
-  
+
   <div id="cart_no_items" style="display: none;">
     <p i18n:translate="empty_cart">Cart is empty</p>
   </div>
-  
+
   <div id="cart_summary" style="display: none;" class="summary_wrapper">
     <table class="cart_sum_content">
       <tal:details condition="not:view/summary_total_only">
@@ -81,7 +82,7 @@
     </table>
     <div class="visualClear"></div>
   </div>
-  
+
   <div class="cart_summary_buttons">
     <a href="javascript:history.back()" class="cart_back"
        i18n:translate="back">back</a>
@@ -91,6 +92,6 @@
        tal:condition="checkout_url"
        tal:attributes="href checkout_url"
        i18n:translate="checkout">checkout</a>
-  </div> 
+  </div>
 
 </div>

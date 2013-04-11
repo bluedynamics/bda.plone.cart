@@ -15,7 +15,7 @@ in plone control panel.
 Provide data
 ============
 
-This package only provides components needed to render shopping cart. It does
+This package provides components needed to render shopping cart. It does
 not expect any contracts but ``bda.plone.cart.ICartDataProvider``.
 
 Implement data provider inheriting from
@@ -27,19 +27,19 @@ Implement data provider inheriting from
     >>> class AppCartDataProvider(CartDataProviderBase):
     ...     """Also look at ``bda.plone.cart.example`` source code.
     ...     """
-    ...     
+    ...
     ...     def net(self, items):
     ...         """Return net price for items as float.
     ...         """
-    ...     
+    ...
     ...     def vat(self, items):
     ...         """Return VAT for items as float.
     ...         """
-    ...     
+    ...
     ...     def cart_items(self, items):
     ...         """Return list of dicts with format returned by ``self.item``.
     ...         """
-    ...     
+    ...
     ...     def validate_set(self, uid):
     ...         """Validate if setting item with UID is allowed.
     ...         """
@@ -47,7 +47,7 @@ Implement data provider inheriting from
     ...             'success': True,
     ...             'error': '',
     ...         }
-    ...     
+    ...
     ...     def validate_count(self, uid, count):
     ...         """Validate if setting n items with UID is allowed.
     ...         """
@@ -55,37 +55,37 @@ Implement data provider inheriting from
     ...             'success': True,
     ...             'error': '',
     ...         }
-    ...     
+    ...
     ...     @property
     ...     def currency(self):
     ...         return 'EUR'
-    ...     
+    ...
     ...     @property
     ...     def disable_max_article(self):
     ...         """Flag whether to disable max article limit.
     ...         """
     ...         return True
-    ...     
+    ...
     ...     @property
     ...     def summary_total_only(self):
     ...         """Flag whether to show total sum only in summary.
     ...         """
     ...         return False
-    ...     
+    ...
     ...     @property
     ...     def include_shipping_costs(self):
     ...         return True
-    ...     
+    ...
     ...     @property
     ...     def shipping_method(self):
     ...         return 'flat_rate'
-    ...     
+    ...
     ...     @property
     ...     def checkout_url(self):
     ...         """URL to checkout view.
     ...         """
     ...         return '%s/@@checkout' % self.context.absolute_url()
-    ...     
+    ...
     ...     @property
     ...     def cart_url(self):
     ...         """URL to cart view.
@@ -102,10 +102,43 @@ and request, these attributes are available on ``context`` respective
         factory="some.package.AppCartDataProvider" />
 
 
+Cart Item Preview Image
+=======================
+
+The Cart renders a preview image for the cart items for two cases
+
+    1. the context has a field named "image"
+    2. collective.contentleadimage is installed
+
+You can easily change the preview image rendering by adapt your buyable items.
+if you only want to change the scale of the image you can::
+
+    from bda.plone.shop.cartdata import CartItemPreviewImage
+
+    class MyCartItemPreviewImage(CartItemPreviewImage):
+        preview_scale = "my_scale"
+
+to do more complex preview image rendering you can override the *url*
+property::
+
+    from bda.plone.shop.cartdata import CartItemPreviewImage
+
+    class MyCartItemPreviewImage(CartItemPreviewImage):
+
+        @property
+        def url(self):
+            # do sophisticated stuff to get your preview image
+            return preview_url
+
+in both cases don't forget to define in configure.zcml::
+
+    <adapter for="some.package.IContent"
+        factory=".youradater.MyCartItemPreviewImage" />
+
 Markup
 ======
 
-Take a look at ``bda.plone.cart.browser:example.pt`` how HTML markup
+Take a look at ``bda.plone.cart.browser:tile.pt`` how HTML markup
 for adding items to cart might look like.
 
 Basically a shop item consists of a container DOM element, containing an
@@ -135,7 +168,7 @@ and the "update cart" action::
 
     <a href="" class="update_cart_item">update cart</a>
 
-and optionally an element defining a comment or an input for entering a 
+and optionally an element defining a comment or an input for entering a
 comment::
 
     <input type="text" size="20" value="" class="cart_item_comment" />
@@ -190,6 +223,8 @@ Contributors
 - Sven Plage
 
 - Harald Friessnegger, Webmeisterei GmbH
+
+- Peter Mathis, Kombinat Media Gestalter GmbH
 
 - Icons by famfamfam
 
