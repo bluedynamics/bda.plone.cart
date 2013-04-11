@@ -1,9 +1,9 @@
 // Dependencies: $, cookie_functions.js
 
 (function($) {
-    
-    
-    
+
+
+
     $(document).ready(function() {
         if ($('.disable_max_article_count').length) {
             CART_MAX_ARTICLE_COUNT = 100000;
@@ -21,15 +21,15 @@
             });
         }
     });
-    
+
     CART_EXECUTION_CONTEXT = null;
     CART_HIDE_PORTLET_IF_EMPTY = false;
     CART_PORTLET_IDENTIFYER = '#portlet-cart';
     CART_MAX_ARTICLE_COUNT = 5;
-    
+
     function Cart() {
     }
-    
+
     Cart.prototype.messages = {
         article_limit_reached: "Die gewünschte Bestellmenge übersteigt die " +
             "maximale Bestellmenge für diesen Artikel.",
@@ -44,7 +44,7 @@
         comment_required: "Zusatzangabe ist erforderlich",
         integer_required: "Eingabe muss eine Ganzzahl sein"
     }
-    
+
     Cart.prototype.init = function() {
         this.cart_node = $('#cart').get(0);
         if (!this.cart_node) {
@@ -53,7 +53,7 @@
         this.item_template = $($('.cart_item').get(0)).clone();
         $('#card_item_template').remove();
     }
-    
+
     Cart.prototype.add = function(uid, count, comment) {
         if (!this.validateOverallCountAdd(count)) {
             return;
@@ -61,7 +61,7 @@
         this.writecookie(uid, count, comment, true);
         this.query();
     }
-    
+
     Cart.prototype.set = function(uid, count, comment) {
         if (!this.validateOverallCountSet(uid, count)) {
             return;
@@ -69,7 +69,7 @@
         this.writecookie(uid, count, comment, false);
         this.query();
     }
-    
+
     Cart.prototype.writecookie = function(uid, count, comment, add) {
         // XXX: support cookie size > 4096 by splitting up cookie
         count = new Number(count);
@@ -113,7 +113,7 @@
         }
         createCookie('cart', cookie);
     }
-    
+
     Cart.prototype.render = function(data) {
         if (data['cart_items'].length == 0) {
             if (!CART_HIDE_PORTLET_IF_EMPTY) {
@@ -129,6 +129,7 @@
             $('#cart_no_items', this.cart_node).css('display', 'none');
             $('#cart_items', this.cart_node).empty();
             $('#cart_items', this.cart_node).css('display', 'block');
+            console.log(data);
             for (var i = 0; i < data['cart_items'].length; i++) {
                 var cart_item = $(this.item_template).clone();
                 var cart_item_data = data['cart_items'][i];
@@ -197,7 +198,7 @@
             $('#cart_summary', this.cart_node).css('display', 'block');
         }
     }
-    
+
     Cart.prototype.bind = function() {
         $('.add_cart_item').each(function() {
             $(this).unbind('click');
@@ -293,13 +294,13 @@
             });
         });
     }
-    
+
     Cart.prototype.round = function(x) {
         var ret = (Math.round(x * 100) / 100).toString();
         ret += (ret.indexOf('.') == -1) ? '.00' : '00';
         return ret.substring(0, ret.indexOf('.') + 3);
     }
-    
+
     Cart.prototype.extract = function(node) {
         node = $(node);
         var parents = node.parents();
@@ -342,7 +343,7 @@
         }
         return [uid, count, comment];
     }
-    
+
     Cart.prototype.cookie = function() {
         // XXX: support cookie size > 4096 by splitting up cookie
         var cookie = readCookie('cart');
@@ -351,7 +352,7 @@
         }
         return cookie;
     }
-    
+
     Cart.prototype.items = function() {
         var cookie = this.cookie();
         var cookieitems = cookie.split(',');
@@ -362,7 +363,7 @@
         }
         return items;
     }
-    
+
     Cart.prototype.validateOverallCountAdd = function(addcount) {
         var count = 0;
         var items = this.items();
@@ -381,7 +382,7 @@
         }
         return true;
     }
-    
+
     Cart.prototype.validateOverallCountSet = function(uid, setcount) {
         var count = 0;
         var items = this.items();
@@ -400,7 +401,7 @@
         }
         return true;
     }
-    
+
     Cart.prototype.query = function() {
         if (!this.cart_node) {
             return;
@@ -422,7 +423,7 @@
             }
         });
     }
-    
+
     var cart = new Cart();
 
 })(jQuery);
