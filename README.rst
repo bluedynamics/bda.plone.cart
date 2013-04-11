@@ -110,25 +110,30 @@ The Cart renders a preview image for the cart items for two cases
     1. the context has a field named "image"
     2. collective.contentleadimage is installed
 
-You can easily change the preview image rendering by adapt your buyable items::
+You can easily change the preview image rendering by adapt your buyable items.
+if you only want to change the scale of the image you can::
 
-    from bda.plone.cart import CartItemPreviewAdapterBase
-    from zope.component import adapts, provideAdapter
-    import some.package.interfaces.IContent
+    from bda.plone.shop.cartdata import CartItemPreviewImage
 
+    class MyCartItemPreviewImage(CartItemPreviewImage):
+        preview_scale = "my_scale"
 
-    class CartItemPreviewImage(CartItemPreviewAdapterBase):
-        adapts(some.package.interfaces.IContent)
+to do more complex preview image rendering you can override the *url*
+property::
+
+    from bda.plone.shop.cartdata import CartItemPreviewImage
+
+    class MyCartItemPreviewImage(CartItemPreviewImage):
 
         @property
         def url(self):
-            # do what ever you need to get the preview image url
-            # with self.context as your item context
-            return your_preview_image_url
+            # do sophisticated stuff to get your preview image
+            return preview_url
 
+in both cases don't forget to define in configure.zcml::
 
-    provideAdapter(CartItemPreviewImage)
-
+    <adapter for="some.package.IContent"
+        factory=".youradater.MyCartItemPreviewImage" />
 
 Markup
 ======
