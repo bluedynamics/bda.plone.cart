@@ -1,18 +1,19 @@
 <div id="cart"
      i18n:domain="bda.plone.cart">
-  
+
   <span tal:condition="view/disable_max_article_count"
         style="display:none;"
         class="disable_max_article_count">&nbsp;</span>
-  
+
   <span style="display:none;"
         class="cart_execution_context">portlet</span>
-  
+
   <ul id="card_item_template" style="display: none;">
     <li class="cart_item">
       <div>
         <a href="#" class="cart_item_location">
           <h3 class="cart_item_title">Title</h3>
+          <img class="cart_item_preview_image" src="" />
         </a>
       </div>
       <div class="cart_item_content">
@@ -47,13 +48,13 @@
       </div>
     </li>
   </ul>
-  
+
   <ul id="cart_items" style="display: none;"></ul>
-  
+
   <div id="cart_no_items" style="display: none;">
     <p i18n:translate="empty_cart">Cart is empty</p>
   </div>
-  
+
   <div id="cart_summary"
        style="display: none;">
     <table class="cart_sum_content">
@@ -80,5 +81,5 @@
     </table>
     <div class="visualClear"></div>
   </div>
-  
+
 </div>
