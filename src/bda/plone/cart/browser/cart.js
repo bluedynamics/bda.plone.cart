@@ -129,7 +129,6 @@
             $('#cart_no_items', this.cart_node).css('display', 'none');
             $('#cart_items', this.cart_node).empty();
             $('#cart_items', this.cart_node).css('display', 'block');
-            console.log(data);
             for (var i = 0; i < data['cart_items'].length; i++) {
                 var cart_item = $(this.item_template).clone();
                 var cart_item_data = data['cart_items'][i];
