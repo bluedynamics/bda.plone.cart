@@ -2,8 +2,6 @@
 
 (function($) {
 
-
-
     $(document).ready(function() {
         if ($('.disable_max_article_count').length) {
             CART_MAX_ARTICLE_COUNT = 100000;
