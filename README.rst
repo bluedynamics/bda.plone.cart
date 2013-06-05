@@ -1,9 +1,11 @@
+==============
 bda.plone.cart
-##############
+==============
 
 Shopping cart portlet for plone.
 
 .. contents::
+
 
 Installation
 ============
@@ -227,5 +229,3 @@ Contributors
 - Peter Mathis, Kombinat Media Gestalter GmbH
 
 - Icons by famfamfam
-
-
