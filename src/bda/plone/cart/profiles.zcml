@@ -8,7 +8,7 @@
   <genericsetup:registerProfile
     name="default"
     title="bda.plone.cart"
-    directory="profile"
+    directory="profiles/default"
     description="A generic cart"
     provides="Products.GenericSetup.interfaces.EXTENSION" />
   
