@@ -1,10 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: bda.plone.shipping\n"
 "POT-Creation-Date: 2012-11-07 16:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Peter Holzer <hpeter@agitator.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,87 +11,87 @@ msgstr ""
 "Language-Code: it\n"
 "Language-Name: Italian\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: bda.plone.shipping\n"
 "X-Is-Fallback-For: it-ch it-it\n"
 
 #: ./browser/__init__.py:100
 msgid "Add Cart Portlet"
-msgstr ""
+msgstr "Aggiungere il portlet del carrello"
 
 #: ./browser/__init__.py:101
 msgid "This portlet displays the shopping cart."
-msgstr ""
+msgstr "Questo portlet mostra il carrello"
 
 #: ./browser/summary.pt:86
 msgid "back"
-msgstr ""
+msgstr "indietro"
 
 #. Default: "Cart"
 #: ./browser/__init__.py:73
 #: ./browser/portlet.pt:8
 #: ./browser/view.pt:20
 msgid "cart"
-msgstr ""
+msgstr "Carrello"
 
 #. Default: "Cart"
 #: ./browser/portlet.pt:8
 msgid "cart_summary"
-msgstr ""
+msgstr "Carrello"
 
 #: ./browser/summary.pt:88
 msgid "checkout"
-msgstr ""
+msgstr "checkout"
 
 #. Default: "Comment"
 #: ./browser/tile.pt:41
 msgid "comment"
-msgstr ""
+msgstr "Commenti"
 
 #. Default: "Cart is empty"
 #: ./browser/summary.pt:56
 #: ./browser/tile.pt:54
 msgid "empty_cart"
-msgstr ""
+msgstr "Il carrello è vuoto"
 
 #. Default: "Price"
 #: ./browser/summary.pt:44
 #: ./browser/tile.pt:45
 msgid "price"
-msgstr ""
+msgstr "Prezzo"
 
 #. Default: "Remove from cart"
 #: ./browser/summary.pt:37
 #: ./browser/tile.pt:34
 msgid "remove_from_cart"
-msgstr ""
+msgstr "Togli dal carrello"
 
 #. Default: "Net:"
 #: ./browser/summary.pt:63
 #: ./browser/tile.pt:62
 msgid "summary_net"
-msgstr ""
+msgstr "Netto:"
 
 #. Default: "Shipping:"
 #: ./browser/summary.pt:73
 #: ./browser/tile.pt:72
 msgid "summary_shipping"
-msgstr ""
+msgstr "Totale:"
 
 #. Default: "Total:"
 #: ./browser/summary.pt:78
 #: ./browser/tile.pt:77
 msgid "summary_total"
-msgstr ""
+msgstr "Totale:"
 
 #. Default: "VAT.:"
 #: ./browser/summary.pt:67
 #: ./browser/tile.pt:66
 msgid "summary_vat"
-msgstr ""
+msgstr "IVA:"
 
 #. Default: "Update cart"
 #: ./browser/summary.pt:28
 #: ./browser/tile.pt:24
 msgid "update_cart"
-msgstr ""
+msgstr "Aggiorna il carrello"
 
