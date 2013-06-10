@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2012-11-07 16:19+0000\n"
-"PO-Revision-Date: 2013-06-10 10:08+0100\n"
+"PO-Revision-Date: 2013-06-10 10:57+0100\n"
 "Last-Translator: Espen Moe-Nilssen <espen@medialog.no>\n"
 "Language-Team: LANGUAGE <espen@medialog.no>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ./browser/__init__.py:100
 msgid "Add Cart Portlet"
-msgstr "Legg til handlekurv boks"
+msgstr "Legg til handlekurvboks"
 
 #: ./browser/__init__.py:101
 msgid "This portlet displays the shopping cart."
@@ -48,7 +48,7 @@ msgstr "Til kassen"
 #. Default: "Comment"
 #: ./browser/tile.pt:41
 msgid "comment"
-msgstr "Kommenta"
+msgstr "Kommentar"
 
 #. Default: "Cart is empty"
 #: ./browser/summary.pt:56
