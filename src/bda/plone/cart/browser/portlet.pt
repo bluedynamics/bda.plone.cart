@@ -21,7 +21,7 @@
              class="go_to_cart_action"
              tal:attributes="href view/checkout_url"
              tal:condition="view/shop_show_checkout"
-             i18n:translate="checkout">Checout</a>
+             i18n:translate="checkout">Checkout</a>
           <a href="@@cart"
              class="go_to_cart_action"
              tal:attributes="href view/cart_url"

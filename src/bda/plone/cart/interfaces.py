@@ -19,11 +19,17 @@ class ICartDataProvider(Interface):
 
     shipping_method = Attribute(u"Current shipping method identifyer.")
 
-    checkout_url = Attribute(u"URL to checkout view.")
+    checkout_url = Attribute(u"URL to checkout form.")
 
-    cart_url = Attribute(u"URL to cart view.")
+    cart_url = Attribute(u"URL to cart overview.")
 
-    currency = Attribute(u"Currency.")
+    shop_show_to_cart = Attribute(u"Flag whether to display link to cart "
+                                  u"overview in cart portlet")
+
+    shop_show_checkout = Attribute(u"Flag whether to display link to checkout "
+                                   u"form in cart portlet")
+
+    currency = Attribute(u"Currency")
 
     def validate_set(uid):
         """Validate if setting item with UID is allowed.

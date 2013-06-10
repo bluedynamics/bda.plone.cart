@@ -113,6 +113,18 @@ class CartDataProviderBase(object):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``shipping_method``.")
 
+    @property
+    def cart_url(self):
+        return '%s/@@cart' % self.context.absolute_url()
+
+    @property
+    def shop_show_to_cart(self):
+        return True
+
+    @property
+    def shop_show_checkout(self):
+        return False
+
     def shipping(self, items):
         shippings = Shippings(self.context)
         shipping = shippings.get(self.shipping_method)
@@ -136,10 +148,6 @@ class CartDataProviderBase(object):
             'comment_required': comment_required,
             'quantity_unit_float': quantity_unit_float,
         }
-
-    @property
-    def cart_url(self):
-        return '%s/@@cart' % self.context.absolute_url()
 
     @property
     def data(self):
