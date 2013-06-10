@@ -1,100 +1,88 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: bda cart no translation\n"
 "POT-Creation-Date: 2012-11-07 16:19+0000\n"
-"PO-Revision-Date: 2013-06-10 10:57+0100\n"
+"PO-Revision-Date: 2013-06-10 11:25+0100\n"
 "Last-Translator: Espen Moe-Nilssen <espen@medialog.no>\n"
 "Language-Team: LANGUAGE <espen@medialog.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: de\n"
-"Language-Name: German\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: no\n"
+"Language-Name: Norsk\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
-"X-Is-Fallback-For: de-at de-li de-lu de-ch de-de\n"
-"X-Poedit-Language: Norwegian Bokmal\n"
-"X-Poedit-Country: NORWAY\n"
+"Language: nb_NO\n"
+"X-Generator: Poedit 1.5.5\n"
 
-#: ./browser/__init__.py:100
+#: browser/__init__.py:100
 msgid "Add Cart Portlet"
 msgstr "Legg til handlekurvboks"
 
-#: ./browser/__init__.py:101
+#: browser/__init__.py:101
 msgid "This portlet displays the shopping cart."
 msgstr "Denne boksen viser handlekurven"
 
-#: ./browser/summary.pt:86
+#: browser/summary.pt:86
 msgid "back"
 msgstr "Tilbake"
 
 #. Default: "Cart"
-#: ./browser/__init__.py:73
-#: ./browser/portlet.pt:8
-#: ./browser/view.pt:20
+#: browser/__init__.py:73 browser/portlet.pt:8 browser/view.pt:20
 msgid "cart"
 msgstr "Handlekurv"
 
 #. Default: "Cart"
-#: ./browser/portlet.pt:8
+#: browser/portlet.pt:8
 msgid "cart_summary"
 msgstr "Handlekurv"
 
-#: ./browser/summary.pt:88
+#: browser/summary.pt:88
 msgid "checkout"
 msgstr "Til kassen"
 
 #. Default: "Comment"
-#: ./browser/tile.pt:41
+#: browser/tile.pt:41
 msgid "comment"
 msgstr "Kommentar"
 
 #. Default: "Cart is empty"
-#: ./browser/summary.pt:56
-#: ./browser/tile.pt:54
+#: browser/summary.pt:56 browser/tile.pt:54
 msgid "empty_cart"
 msgstr "Handlekurven er tom"
 
 #. Default: "Price"
-#: ./browser/summary.pt:44
-#: ./browser/tile.pt:45
+#: browser/summary.pt:44 browser/tile.pt:45
 msgid "price"
 msgstr "Pris:"
 
 #. Default: "Remove from cart"
-#: ./browser/summary.pt:37
-#: ./browser/tile.pt:34
+#: browser/summary.pt:37 browser/tile.pt:34
 msgid "remove_from_cart"
 msgstr "Fjern fra handlekurven"
 
 #. Default: "Net:"
-#: ./browser/summary.pt:63
-#: ./browser/tile.pt:62
+#: browser/summary.pt:63 browser/tile.pt:62
 msgid "summary_net"
 msgstr "Nettopris:"
 
 #. Default: "Shipping:"
-#: ./browser/summary.pt:73
-#: ./browser/tile.pt:72
+#: browser/summary.pt:73 browser/tile.pt:72
 msgid "summary_shipping"
 msgstr "Fraktkostnad:"
 
 #. Default: "Total:"
-#: ./browser/summary.pt:78
-#: ./browser/tile.pt:77
+#: browser/summary.pt:78 browser/tile.pt:77
 msgid "summary_total"
 msgstr "Totalt:"
 
 #. Default: "VAT.:"
-#: ./browser/summary.pt:67
-#: ./browser/tile.pt:66
+#: browser/summary.pt:67 browser/tile.pt:66
 msgid "summary_vat"
 msgstr "moms: "
 
 #. Default: "Update cart"
-#: ./browser/summary.pt:28
-#: ./browser/tile.pt:24
+#: browser/summary.pt:28 browser/tile.pt:24
 msgid "update_cart"
 msgstr "Oppdater handlekurv"
-
