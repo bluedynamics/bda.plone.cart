@@ -94,6 +94,18 @@ class CartRenderer(base.Renderer, DataProviderMixin):
     @property
     def cart_url(self):
         return self.data_provider.cart_url
+    
+    @property
+    def checkout_url(self):
+        return self.data_provider.checkout_url
+
+    @property
+    def shop_show_to_cart(self):
+        return self.data_provider.shop_show_to_cart
+
+    @property
+    def shop_show_checkout(self):
+        return self.data_provider.shop_show_checkout
 
 
 class CartAddForm(base.NullAddForm):
