@@ -17,9 +17,15 @@
           <tal:cart replace="structure context/@@cart_tile" />
       </dd>
       <dd class="portletItem lastItem">
+          <a href="@@checkout"
+             class="go_to_cart_action"
+             tal:attributes="href view/checkout_url"
+             tal:condition="view/shop_show_checkout"
+             i18n:translate="checkout">Checout</a>
           <a href="@@cart"
              class="go_to_cart_action"
              tal:attributes="href view/cart_url"
+             tal:condition="view/shop_show_to_cart"
              i18n:translate="cart">Cart</a>
           <span class="portletBottomLeft"></span>
           <span class="portletBottomRight"></span>
@@ -30,3 +36,4 @@
   </div>
 
 </div>
+
