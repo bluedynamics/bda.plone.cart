@@ -106,7 +106,6 @@ class ICartItemDataProvider(Interface):
     quantity_unit = Attribute(u"Quantity unit")
 
 
-
 class ICartItemPreviewImage(Interface):
     """ provides preview image url for cart item
     """
