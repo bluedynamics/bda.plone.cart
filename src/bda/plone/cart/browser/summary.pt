@@ -15,7 +15,7 @@
           <span class="cart_item_title">Title</span>
         </a>
       </h3>
-      <img class="cart_item_preview_image" src="" />
+      <img class="cart_item_preview_image" alt="cart item" src="" />
       <p class="cart_item_description">Description</p>
       <div class="cart_item_comment_wrapper">
         <p class="cart_item_comment">comment</p>
