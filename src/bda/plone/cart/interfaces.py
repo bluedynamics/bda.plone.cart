@@ -23,11 +23,17 @@ class ICartDataProvider(Interface):
 
     cart_url = Attribute(u"URL to cart overview.")
 
+    # XXX: without ``shop_`` prefix
     shop_show_to_cart = Attribute(u"Flag whether to display link to cart "
                                   u"overview in cart portlet")
 
+    # XXX: without ``shop_`` prefix
     shop_show_checkout = Attribute(u"Flag whether to display link to checkout "
                                    u"form in cart portlet")
+
+    # XXX: without ``shop_`` prefix
+    show_currency_in_cart = Attribute(u"Show the currency for items in "
+                                      u"portlet")
 
     currency = Attribute(u"Currency")
 
