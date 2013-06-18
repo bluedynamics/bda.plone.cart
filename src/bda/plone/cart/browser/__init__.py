@@ -42,7 +42,7 @@ class DataProviderMixin(object):
 class CartView(BrowserView, DataProviderMixin):
 
     @property
-    def disable_max_article_count(self):
+    def disable_max_article(self):
         return self.data_provider.disable_max_article
 
     @property

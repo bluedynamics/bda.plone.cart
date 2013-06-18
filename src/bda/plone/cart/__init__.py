@@ -82,9 +82,9 @@ class CartDataProviderBase(object):
         return 'EUR'
 
     @property
-    def disable_max_article_count(self):
+    def disable_max_article(self):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
-                                  u"``disable_max_article_count``.")
+                                  u"``disable_max_article``.")
 
     @property
     def summary_total_only(self):
