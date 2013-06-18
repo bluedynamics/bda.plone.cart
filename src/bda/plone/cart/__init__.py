@@ -220,9 +220,9 @@ def get_object_by_uid(context, uid):
     return None
 
 
+@implementer(ICartItemPreviewImage)
+@adapter(IBaseObject)
 class CartItemPreviewAdapterBase(object):
-    implements(ICartItemPreviewImage)
-    adapts(IBaseObject)
 
     def __init__(self, context):
         self.context = context
