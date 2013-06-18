@@ -1,3 +1,5 @@
+ # -*- coding: utf-8 -*-
+ 
 import simplejson as json
 from decimal import Decimal
 from zope.interface import implementer
@@ -24,7 +26,7 @@ class DataProviderMixin(object):
 
 
 class CartView(BrowserView, DataProviderMixin):
-    
+ 
     @property
     def disable_max_article_count(self):
         return self.data_provider.disable_max_article_count
