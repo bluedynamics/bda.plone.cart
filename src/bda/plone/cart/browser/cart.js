@@ -18,6 +18,11 @@
                 cart.bind();
             });
         }
+        if (typeof(window['bdajax']) != "undefined") {
+            $.extend(bdajax.binders, {
+                cart_binder: cart.bind
+            });
+        }
     });
 
     CART_EXECUTION_CONTEXT = null;
@@ -57,7 +62,7 @@
             return;
         }
         this.writecookie(uid, count, comment, true);
-        this.query();
+        this.query(uid);
     }
 
     Cart.prototype.set = function(uid, count, comment) {
@@ -65,7 +70,7 @@
             return;
         }
         this.writecookie(uid, count, comment, false);
-        this.query();
+        this.query(uid);
     }
 
     Cart.prototype.writecookie = function(uid, count, comment, add) {
@@ -196,8 +201,8 @@
         }
     }
 
-    Cart.prototype.bind = function() {
-        $('.add_cart_item').each(function() {
+    Cart.prototype.bind = function(context) {
+        $('.add_cart_item', context).each(function() {
             $(this).unbind('click');
             $(this).bind('click', function(e) {
                 e.preventDefault();
@@ -248,7 +253,7 @@
                 });
             });
         });
-        $('.update_cart_item').each(function() {
+        $('.update_cart_item', context).each(function() {
             $(this).unbind('click');
             $(this).bind('click', function(e) {
                 e.preventDefault();
@@ -399,7 +404,17 @@
         return true;
     }
 
-    Cart.prototype.query = function() {
+    /*
+     * @param uid_changed: uid of item which was added or set before querying
+     */
+    Cart.prototype.query = function(uid_changed) {
+        // trigger cart_changed event on elements with
+        // css class ``cart_item_${uid_changed}``
+        if (uid_changed) {
+            var evt = $.Event('cart_changed');
+            var selector = '.cart_item_' + uid_changed;
+            $(selector).trigger(evt);
+        }
         if (!this.cart_node) {
             return;
         }
