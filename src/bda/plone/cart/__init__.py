@@ -197,13 +197,14 @@ AVAILABILITY_CRITICAL_LIMIT = 5.0
 
 
 @implementer(ICartItemAvailability)
-@adapter(ICartItem)
+@adapter(ICartItem, IBrowserRequest)
 class CartItemAvailabilityBase(object):
     """Base cart item availability display behavior adapter.
     """
 
-    def __init__(self, context):
+    def __init__(self, context, request):
         self.context = context
+        self.request = request
 
     @property
     def _stock(self):
@@ -276,7 +277,7 @@ class CartItemPreviewAdapterBase(object):
 
 
 def get_data_provider(context, request=None):
-    """Return ICartDataProvider implementation for context.
+    """Return ICartDataProvider implementation.
     """
     if request is None:
         request = context.REQUEST
@@ -284,15 +285,17 @@ def get_data_provider(context, request=None):
 
 
 def get_item_data_provider(context):
-    """Return ICartItemDataProvider implementation for context.
+    """Return ICartItemDataProvider implementation.
     """
     return ICartItemDataProvider(context)
 
 
-def get_item_availability(context):
-    """Return ICartItemAvailability implementation for context.
+def get_item_availability(context, request=None):
+    """Return ICartItemAvailability implementation.
     """
-    return ICartItemAvailability(context)
+    if request is None:
+        request = context.REQUEST
+    return getMultiAdapter((context, request), ICartItemAvailability)
 
 
 def get_catalog_brain(context, uid):
