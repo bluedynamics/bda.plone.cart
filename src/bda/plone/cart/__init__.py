@@ -191,10 +191,12 @@ class CartDataProviderBase(object):
         return ret
 
 
-def get_data_provider(context):
+def get_data_provider(context, request=None):
     """Return ICartDataProvider implementation for context.
     """
-    return getMultiAdapter((context, context.REQUEST), ICartDataProvider)
+    if request is None:
+        request = context.REQUEST
+    return getMultiAdapter((context, request), ICartDataProvider)
 
 
 def get_item_data_provider(context):
