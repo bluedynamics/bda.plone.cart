@@ -8,7 +8,7 @@ class ICartDataProvider(Interface):
 
     data = Attribute(u"Cart data as list of dicts.")
 
-    disable_max_article = Attribute(u"Flag whether to disable max article "
+    disable_max_article_count = Attribute(u"Flag whether to disable max article "
                                     u"limit.")
 
     summary_total_only = Attribute(u"Flag whether to show total sum only in "

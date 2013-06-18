@@ -27,7 +27,7 @@ class CartView(BrowserView, DataProviderMixin):
     
     @property
     def disable_max_article_count(self):
-        return self.data_provider.disable_max_article
+        return self.data_provider.disable_max_article_count
     
     @property
     def summary_total_only(self):
