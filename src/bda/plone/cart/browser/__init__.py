@@ -24,10 +24,10 @@ class DataProviderMixin(object):
 
 
 class CartView(BrowserView, DataProviderMixin):
-    
+ 
     @property
     def disable_max_article_count(self):
-        return self.data_provider.disable_max_article
+        return self.data_provider.disable_max_article_count
     
     @property
     def summary_total_only(self):
@@ -43,8 +43,15 @@ class CartView(BrowserView, DataProviderMixin):
         if not cookie:
             return
         return self.data_provider.checkout_url
+            
+    @property
+    def shop_show_currency_in_cart(self):
+        return self.data_provider.shop_show_currency_in_cart
 
-
+    @property
+    def currency(self):
+        return self.data_provider.currency
+        
 class CartDataView(BrowserView, DataProviderMixin):
     
     def validate_cart_item(self):
