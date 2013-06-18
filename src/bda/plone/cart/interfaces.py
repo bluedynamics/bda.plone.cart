@@ -8,6 +8,8 @@ class ICartDataProvider(Interface):
 
     data = Attribute(u"Cart data as list of dicts.")
 
+    currency = Attribute(u"Currency")
+
     disable_max_article = Attribute(u"Flag whether to disable max article "
                                     u"limit.")
 
@@ -23,19 +25,13 @@ class ICartDataProvider(Interface):
 
     cart_url = Attribute(u"URL to cart overview.")
 
-    # XXX: without ``shop_`` prefix
-    shop_show_to_cart = Attribute(u"Flag whether to display link to cart "
-                                  u"overview in cart portlet")
+    show_to_cart = Attribute(u"Flag whether to display link to cart "
+                             u"overview in cart portlet")
 
-    # XXX: without ``shop_`` prefix
-    shop_show_checkout = Attribute(u"Flag whether to display link to checkout "
-                                   u"form in cart portlet")
+    show_checkout = Attribute(u"Flag whether to display link to checkout "
+                              u"form in cart portlet")
 
-    # XXX: without ``shop_`` prefix
-    show_currency_in_cart = Attribute(u"Show the currency for items in "
-                                      u"portlet")
-
-    currency = Attribute(u"Currency")
+    show_currency = Attribute(u"Show the currency for items in portlet")
 
     def validate_set(uid):
         """Validate if setting item with UID is allowed.
@@ -112,13 +108,6 @@ class ICartItemDataProvider(Interface):
     quantity_unit = Attribute(u"Quantity unit")
 
 
-class ICartItemPreviewImage(Interface):
-    """ provides preview image url for cart item
-    """
-
-    url = Attribute(u"Item preview image url")
-
-
 class ICartItemStock(Interface):
     """Access and modify stock information for buyable items.
     """
@@ -126,6 +115,13 @@ class ICartItemStock(Interface):
     available = Attribute(u"Number of item available in stock")
 
     overbook = Attribute(u"Allowed overbooking count. None means unlimited")
+
+
+class ICartItemPreviewImage(Interface):
+    """ provides preview image url for cart item
+    """
+
+    url = Attribute(u"Item preview image url")
 
 
 class ICartItemAvailability(Interface):
