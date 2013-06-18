@@ -193,7 +193,7 @@ class CartDataProviderBase(object):
         return ret
 
 
-CRITICAL_AVAILABILITY_LIMIT = 5.0
+AVAILABILITY_CRITICAL_LIMIT = 5.0
 
 
 @implementer(ICartItemAvailability)
@@ -210,14 +210,19 @@ class CartItemAvailabilityBase(object):
         return ICartItemStock(self.context)
 
     @property
-    def _available(self):
+    def available(self):
         # XXX: calculate added cart item from context
         return self._stock.available
 
     @property
-    def _overbook(self):
+    def overbook(self):
         return self._stock.overbook
 
+    @property
+    def critical_limit(self):
+        return AVAILABILITY_CRITICAL_LIMIT
+
+    @property
     def addable(self):
         """Default addable rules:
 
@@ -226,14 +231,15 @@ class CartItemAvailabilityBase(object):
         * if available > overbook * -1, addable
         * not addable atm
         """
-        if self._available is None:
+        if self.available is None:
             return True
-        if self._overbook is None:
+        if self.overbook is None:
             return True
-        if self._available > self._overbook * -1:
+        if self.available > self.overbook * -1:
             return True
         return False
 
+    @property
     def signal(self):
         """Default signal rules:
 
@@ -242,14 +248,15 @@ class CartItemAvailabilityBase(object):
         * if available > 0, yellow
         * if available <= 0, red
         """
-        if self._available is None:
+        if self.available is None:
             return 'green'
-        if self._available > CRITICAL_AVAILABILITY_LIMIT:
+        if self.available > self.critical_limit:
             return 'green'
-        if self._available > 0:
+        if self.available > 0:
             return 'yellow'
         return 'red'
 
+    @property
     def details(self):
         raise NotImplementedError(u"CartItemAvailabilityBase does not "
                                   u"implement ``details``.")

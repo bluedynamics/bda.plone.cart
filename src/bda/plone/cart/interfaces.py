@@ -125,7 +125,7 @@ class ICartItemStock(Interface):
 
 
 class ICartItemPreviewImage(Interface):
-    """ provides preview image url for cart item
+    """Provides preview image url for cart item
     """
 
     url = Attribute(u"Item preview image url")
