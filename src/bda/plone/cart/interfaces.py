@@ -112,9 +112,11 @@ class ICartItemStock(Interface):
     """Access and modify stock information for buyable items.
     """
 
-    available = Attribute(u"Number of item available in stock")
+    available = Attribute(u"Number of item available in stock. ``None`` "
+                          u"means unlimited")
 
-    overbook = Attribute(u"Allowed overbooking count. None means unlimited")
+    overbook = Attribute(u"Allowed overbooking count. ``None`` "
+                         u"means unlimited")
 
 
 class ICartItemPreviewImage(Interface):
@@ -127,6 +129,8 @@ class ICartItemPreviewImage(Interface):
 class ICartItemAvailability(Interface):
     """Interface for displaying availability information.
     """
+
+    addable = Attribute(u"Flag whether item is addable to cart.")
 
     signal = Attribute(u"Availability signal color. Either red, yellow or "
                        u"green")

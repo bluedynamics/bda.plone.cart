@@ -16,6 +16,7 @@ from bda.plone.shipping import Shippings
 from .interfaces import (
     ICartDataProvider,
     ICartItemDataProvider,
+    ICartItemAvailability,
 )
 
 
@@ -191,15 +192,21 @@ class CartDataProviderBase(object):
 
 
 def get_data_provider(context):
-    """Return ICartDataProvider implementation.
+    """Return ICartDataProvider implementation for context.
     """
     return getMultiAdapter((context, context.REQUEST), ICartDataProvider)
 
 
 def get_item_data_provider(context):
-    """Return ICartItemDataProvider implementation.
+    """Return ICartItemDataProvider implementation for context.
     """
     return ICartItemDataProvider(context)
+
+
+def get_item_availability(context):
+    """Return ICartItemAvailability implementation for context.
+    """
+    return ICartItemAvailability(context)
 
 
 def get_catalog_brain(context, uid):
