@@ -4,6 +4,11 @@ from zope.interface import (
 )
 
 
+class ICartItem(Interface):
+    """Marker for items which are addable to cart.
+    """
+
+
 class ICartDataProvider(Interface):
 
     data = Attribute(u"Cart data as list of dicts.")

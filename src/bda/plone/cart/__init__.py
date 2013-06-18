@@ -14,9 +14,11 @@ from Products.CMFCore.utils import getToolByName
 from bda.plone.cart.interfaces import ICartItemPreviewImage
 from bda.plone.shipping import Shippings
 from .interfaces import (
+    ICartItem,
     ICartDataProvider,
     ICartItemDataProvider,
     ICartItemAvailability,
+    ICartItemStock,
 )
 
 
@@ -191,6 +193,81 @@ class CartDataProviderBase(object):
         return ret
 
 
+CRITICAL_AVAILABILITY_LIMIT = 5.0
+
+
+@implementer(ICartItemAvailability)
+@adapter(ICartItem)
+class CartItemAvailabilityBase(object):
+    """Base cart item availability display behavior adapter.
+    """
+
+    def __init__(self, context):
+        self.context = context
+
+    @property
+    def _stock(self):
+        return ICartItemStock(self.context)
+
+    @property
+    def _available(self):
+        # XXX: calculate added cart item from context
+        return self._stock.available
+
+    @property
+    def _overbook(self):
+        return self._stock.overbook
+
+    def addable(self):
+        """Default addable rules:
+
+        * if available None, no availability defined, unlimited addable
+        * if overbook is None, unlimited overbooking
+        * if available > overbook * -1, addable
+        * not addable atm
+        """
+        if self._available is None:
+            return True
+        if self._overbook is None:
+            return True
+        if self._available > self._overbook * -1:
+            return True
+        return False
+
+    def signal(self):
+        """Default signal rules:
+
+        * if available is None, green
+        * if available > CRITICAL_LIMIT, green
+        * if available > 0, yellow
+        * if available <= 0, red
+        """
+        if self._available is None:
+            return 'green'
+        if self._available > CRITICAL_AVAILABILITY_LIMIT:
+            return 'green'
+        if self._available > 0:
+            return 'yellow'
+        return 'red'
+
+    def details(self):
+        raise NotImplementedError(u"CartItemAvailabilityBase does not "
+                                  u"implement ``details``.")
+
+
+@implementer(ICartItemPreviewImage)
+@adapter(IBaseObject)
+class CartItemPreviewAdapterBase(object):
+
+    def __init__(self, context):
+        self.context = context
+
+    @property
+    def url(self):
+        raise NotImplementedError(
+            u"CartItemPreviewAdapterBase does not implement ``url``.")
+
+
 def get_data_provider(context, request=None):
     """Return ICartDataProvider implementation for context.
     """
@@ -227,16 +304,3 @@ def get_object_by_uid(context, uid):
     if brain:
         return brain.getObject()
     return None
-
-
-@implementer(ICartItemPreviewImage)
-@adapter(IBaseObject)
-class CartItemPreviewAdapterBase(object):
-
-    def __init__(self, context):
-        self.context = context
-
-    @property
-    def url(self):
-        raise NotImplementedError(
-            u"CartItemPreviewAdapterBase does not implement ``url``.")
