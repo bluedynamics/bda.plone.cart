@@ -212,8 +212,15 @@ class CartItemAvailabilityBase(object):
 
     @property
     def available(self):
-        # XXX: calculate added cart item from context
-        return self._stock.available
+        available = self._stock.available
+        # reduce available count if item already in cart
+        if available is not None:
+            cart_items = extractitems(readcookie(self.request))
+            item_uid = self.context.UID()
+            for uid, count, comment in cart_items:
+                if uid == item_uid:
+                    available -= float(count)
+        return available
 
     @property
     def overbook(self):
