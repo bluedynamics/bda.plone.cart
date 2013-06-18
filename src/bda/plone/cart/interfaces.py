@@ -117,3 +117,24 @@ class ICartItemPreviewImage(Interface):
     """
 
     url = Attribute(u"Item preview image url")
+
+
+class ICartItemStock(Interface):
+    """Access and modify stock information for buyable items.
+    """
+
+    available = Attribute(u"Number of item available in stock")
+
+    overbook = Attribute(u"Allowed overbooking count. None means unlimited")
+
+
+class ICartItemAvailability(Interface):
+    """Interface for displaying availability information.
+    """
+
+    signal = Attribute(u"Availability signal color. Either red, yellow or "
+                       u"green")
+
+    details = Attribute(u"Rendered availability details. Gets displayed in "
+                        u"buyable viewlet availability overlay.")
+
