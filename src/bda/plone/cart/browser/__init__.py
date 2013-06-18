@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import simplejson as json
 from decimal import Decimal
 from zope.interface import implementer
@@ -14,6 +15,21 @@ from .. import (
 
 
 _ = MessageFactory('bda.plone.cart')
+
+
+CURRENCY_LITERALS = {
+    'EUR': u"€",
+    'USD': u"$",
+    'INR': u"₹",
+    'CAD': u"$",
+    'CHF': u"CHF",
+    'GBP': u"£",
+    'AUD': u"$",
+    'NOK': u"Kr.",
+    'SEK': u"Kr.",
+    'DKK': u"K.",
+    'YEN': u"¥",
+}
 
 
 class DataProviderMixin(object):
