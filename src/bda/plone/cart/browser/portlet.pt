@@ -1,6 +1,6 @@
 <div id="cartWrapper"
      i18n:domain="bda.plone.cart">
-  
+
   <dl class="portlet portletCart"
       id="portlet-cart" style="display:none;">
       <dt class="portletHeader">
@@ -20,20 +20,19 @@
           <a href="@@checkout"
              class="go_to_cart_action"
              tal:attributes="href view/checkout_url"
-             tal:condition="view/shop_show_checkout"
+             tal:condition="view/show_checkout"
              i18n:translate="checkout">Checkout</a>
           <a href="@@cart"
              class="go_to_cart_action"
              tal:attributes="href view/cart_url"
-             tal:condition="view/shop_show_to_cart"
+             tal:condition="view/show_to_cart"
              i18n:translate="cart">Cart</a>
           <span class="portletBottomLeft"></span>
           <span class="portletBottomRight"></span>
       </dd>
   </dl>
-  
+
   <div class="clearFix">
   </div>
 
 </div>
-

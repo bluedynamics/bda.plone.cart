@@ -4,11 +4,18 @@ from zope.interface import (
 )
 
 
+class ICartItem(Interface):
+    """Marker for items which are addable to cart.
+    """
+
+
 class ICartDataProvider(Interface):
 
     data = Attribute(u"Cart data as list of dicts.")
 
-    disable_max_article_count = Attribute(u"Flag whether to disable max article "
+    currency = Attribute(u"Currency")
+
+    disable_max_article = Attribute(u"Flag whether to disable max article "
                                     u"limit.")
 
     summary_total_only = Attribute(u"Flag whether to show total sum only in "
@@ -23,13 +30,13 @@ class ICartDataProvider(Interface):
 
     cart_url = Attribute(u"URL to cart overview.")
 
-    shop_show_to_cart = Attribute(u"Flag whether to display link to cart "
-                                  u"overview in cart portlet")
+    show_to_cart = Attribute(u"Flag whether to display link to cart "
+                             u"overview in cart portlet")
 
-    shop_show_checkout = Attribute(u"Flag whether to display link to checkout "
-                                   u"form in cart portlet")
+    show_checkout = Attribute(u"Flag whether to display link to checkout "
+                              u"form in cart portlet")
 
-    currency = Attribute(u"Currency")
+    show_currency = Attribute(u"Show the currency for items in portlet")
 
     def validate_set(uid):
         """Validate if setting item with UID is allowed.
@@ -106,8 +113,32 @@ class ICartItemDataProvider(Interface):
     quantity_unit = Attribute(u"Quantity unit")
 
 
+class ICartItemStock(Interface):
+    """Access and modify stock information for buyable items.
+    """
+
+    available = Attribute(u"Number of item available in stock. ``None`` "
+                          u"means unlimited")
+
+    overbook = Attribute(u"Allowed overbooking count. ``None`` "
+                         u"means unlimited")
+
+
 class ICartItemPreviewImage(Interface):
-    """ provides preview image url for cart item
+    """Provides preview image url for cart item
     """
 
     url = Attribute(u"Item preview image url")
+
+
+class ICartItemAvailability(Interface):
+    """Interface for displaying availability information.
+    """
+
+    addable = Attribute(u"Flag whether item is addable to cart.")
+
+    signal = Attribute(u"Availability signal color. Either red, yellow or "
+                       u"green")
+
+    details = Attribute(u"Rendered availability details. Gets displayed in "
+                        u"buyable viewlet availability overlay.")

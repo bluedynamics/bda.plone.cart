@@ -3,7 +3,7 @@
 (function($) {
 
     $(document).ready(function() {
-        if ($('.disable_max_article_count').length) {
+        if ($('.disable_max_article').length) {
             CART_MAX_ARTICLE_COUNT = 100000;
         }
         var execution_context = $('.cart_execution_context');

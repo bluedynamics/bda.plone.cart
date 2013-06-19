@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import simplejson as json
 from decimal import Decimal
 from zope.interface import implementer
@@ -16,27 +17,42 @@ from .. import (
 _ = MessageFactory('bda.plone.cart')
 
 
+CURRENCY_LITERALS = {
+    'EUR': u"€",
+    'USD': u"$",
+    'INR': u"₹",
+    'CAD': u"$",
+    'CHF': u"CHF",
+    'GBP': u"£",
+    'AUD': u"$",
+    'NOK': u"Kr.",
+    'SEK': u"Kr.",
+    'DKK': u"K.",
+    'YEN': u"¥",
+}
+
+
 class DataProviderMixin(object):
-    
+
     @property
     def data_provider(self):
         return get_data_provider(self.context)
 
 
 class CartView(BrowserView, DataProviderMixin):
- 
+
     @property
-    def disable_max_article_count(self):
-        return self.data_provider.disable_max_article_count
-    
+    def disable_max_article(self):
+        return self.data_provider.disable_max_article
+
     @property
     def summary_total_only(self):
         return self.data_provider.summary_total_only
-    
+
     @property
     def include_shipping_costs(self):
         return self.data_provider.include_shipping_costs
-    
+
     @property
     def checkout_url(self):
         cookie = readcookie(self.request)
@@ -45,15 +61,19 @@ class CartView(BrowserView, DataProviderMixin):
         return self.data_provider.checkout_url
             
     @property
-    def shop_show_currency_in_cart(self):
-        return self.data_provider.shop_show_currency_in_cart
+    def show_currency_in_cart(self):
+        return self.data_provider.show_currency_in_cart
 
     @property
     def currency(self):
         return self.data_provider.currency
         
+    @property
+    def currency_symbol(self):
+        return self.currency
+        
 class CartDataView(BrowserView, DataProviderMixin):
-    
+
     def validate_cart_item(self):
         uid = self.request.form.get('uid'),
         count = Decimal(self.request.form.get('count')),
@@ -63,7 +83,7 @@ class CartDataView(BrowserView, DataProviderMixin):
         if ret['success']:
             ret = provider.validate_count(uid, count)
         return json.dumps(ret)
-    
+
     def cartData(self):
         return json.dumps(self.data_provider.data)
 
@@ -92,27 +112,27 @@ class CartRenderer(base.Renderer, DataProviderMixin):
             self.show = False
         else:
             self.show = True
-    
+
     def render(self):
         if not self.show:
             return u''
         return self.template()
-    
+
     @property
     def cart_url(self):
         return self.data_provider.cart_url
-    
+
     @property
     def checkout_url(self):
         return self.data_provider.checkout_url
 
     @property
-    def shop_show_to_cart(self):
-        return self.data_provider.shop_show_to_cart
+    def show_to_cart(self):
+        return self.data_provider.show_to_cart
 
     @property
-    def shop_show_checkout(self):
-        return self.data_provider.shop_show_checkout
+    def show_checkout(self):
+        return self.data_provider.show_checkout
 
 
 class CartAddForm(base.NullAddForm):
