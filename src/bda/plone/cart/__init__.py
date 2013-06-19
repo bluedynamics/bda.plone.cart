@@ -166,6 +166,13 @@ class CartDataProviderBase(object):
         shipping = shippings.get(self.shipping_method)
         return shipping.calculate(items)
 
+    def aggregate_count_for(self, aggregate_uid, items):
+        aggregated_count = 0
+        for uid, count, comment in items:
+            if aggregate_uid == uid:
+                aggregated_count += count
+        return aggregated_count
+
     def item(self, uid, title, count, price, url, comment='', description='',
              comment_required=False, quantity_unit_float=False,
              quantity_unit='', preview_image_url='',

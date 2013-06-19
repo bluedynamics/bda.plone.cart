@@ -68,6 +68,10 @@ class ICartDataProvider(Interface):
         """Calculate shipping costs for cart items.
         """
 
+    def aggregate_count_for(aggregate_uid, items):
+        """aggregate count of items with uid, comment is not considered.
+        """
+
     def cart_items(items):
         """Return list of dicts with format returned by ``self.item``.
         """
