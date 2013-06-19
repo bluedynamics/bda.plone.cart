@@ -61,8 +61,8 @@ class CartView(BrowserView, DataProviderMixin):
         return self.data_provider.checkout_url
             
     @property
-    def show_currency_in_cart(self):
-        return self.data_provider.show_currency_in_cart
+    def show_currency(self):
+        return self.data_provider.show_currency
 
     @property
     def currency(self):

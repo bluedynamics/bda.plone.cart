@@ -1,7 +1,7 @@
 <div id="cart"
      i18n:domain="bda.plone.cart">
 
-  <span tal:condition="view/disable_max_article_count"
+  <span tal:condition="view/disable_max_article"
         style="display:none;"
         class="disable_max_article_count">&nbsp;</span>
 
@@ -59,8 +59,8 @@
        style="display: none;">
     <table class="cart_sum_content"
             tal:define="currency view/currency;
-            show_currency python:view.shop_show_currency_in_cart=='Yes';
-            show_symbol   python:view.shop_show_currency_in_cart=='Symbol';
+            show_currency python:view.show_currency=='Yes';
+            show_symbol   python:view.show_currency=='Symbol';
             currency_image python:'/++resource++bda.plone.cart.images/' + currency + '.png'">
       <tal:details condition="not:view/summary_total_only">
         <tr>

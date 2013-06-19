@@ -141,10 +141,23 @@ class CartDataProviderBase(object):
     def show_checkout(self):
         return False
 
+    #@property
+    #def show_currency(self):
+    #    return True
+        
+    @property
+    def currency(self):
+        return self.data_provider.currency
+                    
     @property
     def show_currency(self):
-        return True
+        return self.data_provider.show_currency
 
+    #to do
+    @property
+    def currency_symbol(self):
+        return self.currency    
+        
     def shipping(self, items):
         shippings = Shippings(self.context)
         shipping = shippings.get(self.shipping_method)
