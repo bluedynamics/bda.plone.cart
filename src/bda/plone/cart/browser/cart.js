@@ -268,9 +268,26 @@
                     bdajax.error(ex.message);
                     return;
                 }
+                var uid = defs[0];
+                var count = defs[1];
+                if (count > 0) {
+                    var items = cart.items();
+                    for (var item in items) {
+                        if (!item) {
+                            continue;
+                        }
+                        if (item == uid + ';' + defs[2]) {
+                            continue;
+                        }
+                        var item_uid = item.split(';')[0];
+                        if (uid == item_uid) {
+                            count += items[item];
+                        }
+                    }
+                }
                 var params = {
                     uid: defs[0],
-                    count: defs[1] + ''
+                    count: count + ''
                 };
                 if (CART_EXECUTION_CONTEXT) {
                     params.execution_context = CART_EXECUTION_CONTEXT;
@@ -292,7 +309,7 @@
                             cart.set(defs[0], defs[1], defs[2]);
                             var evt = $.Event('cart_modified');
                             evt.uid = defs[0];
-                            evt.count = defs[1];
+                            evt.count = count;
                             $('*').trigger(evt);
                         }
                     }
