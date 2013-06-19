@@ -3,7 +3,7 @@
 
   <span tal:condition="view/disable_max_article"
         style="display:none;"
-        class="disable_max_article_count">&nbsp;</span>
+        class="disable_max_article">&nbsp;</span>
 
   <span style="display:none;"
         class="cart_execution_context">summary</span>

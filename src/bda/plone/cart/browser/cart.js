@@ -18,6 +18,11 @@
                 cart.bind();
             });
         }
+        if (typeof(window['bdajax']) != "undefined") {
+            $.extend(bdajax.binders, {
+                cart_binder: cart.bind
+            });
+        }
     });
 
     CART_EXECUTION_CONTEXT = null;
@@ -57,7 +62,7 @@
             return;
         }
         this.writecookie(uid, count, comment, true);
-        this.query();
+        this.query(uid);
     }
 
     Cart.prototype.set = function(uid, count, comment) {
@@ -65,7 +70,7 @@
             return;
         }
         this.writecookie(uid, count, comment, false);
-        this.query();
+        this.query(uid);
     }
 
     Cart.prototype.writecookie = function(uid, count, comment, add) {
@@ -75,6 +80,7 @@
             bdajax.error(cart.messages['invalid_comment_character']);
             return;
         }
+        // item uid consists of ``object_uid;comment``
         uid = uid + ';' + comment;
         var items = this.items();
         var existent = false;
@@ -196,8 +202,8 @@
         }
     }
 
-    Cart.prototype.bind = function() {
-        $('.add_cart_item').each(function() {
+    Cart.prototype.bind = function(context) {
+        $('.add_cart_item', context).each(function() {
             $(this).unbind('click');
             $(this).bind('click', function(e) {
                 e.preventDefault();
@@ -212,9 +218,12 @@
                 var count = defs[1];
                 var items = cart.items();
                 for (var item in items) {
-                    if (uid == item) {
-                        count = count + items[item];
-                        break;
+                    if (!item) {
+                        continue;
+                    }
+                    var item_uid = item.split(';')[0];
+                    if (uid == item_uid) {
+                        count += items[item];
                     }
                 }
                 var params = {
@@ -241,14 +250,14 @@
                             cart.add(defs[0], defs[1], defs[2]);
                             var evt = $.Event('cart_modified');
                             evt.uid = defs[0];
-                            evt.count = defs[1];
+                            evt.count = count;
                             $('*').trigger(evt);
                         }
                     }
                 });
             });
         });
-        $('.update_cart_item').each(function() {
+        $('.update_cart_item', context).each(function() {
             $(this).unbind('click');
             $(this).bind('click', function(e) {
                 e.preventDefault();
@@ -350,6 +359,9 @@
         return cookie;
     }
 
+    /*
+     * items is a key/value mapping in format items['obj_uid;comment'] = count 
+     */
     Cart.prototype.items = function() {
         var cookie = this.cookie();
         var cookieitems = cookie.split(',');
@@ -384,7 +396,11 @@
         var count = 0;
         var items = this.items();
         for (var item in items) {
-            if (!item || uid == item) {
+            if (!item) {
+                continue;
+            }
+            var item_uid = item.split(';')[0];
+            if (uid == item_uid) {
                 continue;
             }
             count += items[item];
@@ -399,7 +415,17 @@
         return true;
     }
 
-    Cart.prototype.query = function() {
+    /*
+     * @param uid_changed: uid of item which was added or set before querying
+     */
+    Cart.prototype.query = function(uid_changed) {
+        // trigger cart_changed event on elements with
+        // css class ``cart_item_${uid_changed}``
+        if (uid_changed) {
+            var evt = $.Event('cart_changed');
+            var selector = '.cart_item_' + uid_changed;
+            $(selector).trigger(evt);
+        }
         if (!this.cart_node) {
             return;
         }

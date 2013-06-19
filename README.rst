@@ -193,7 +193,7 @@ Flag whether to hide cart container if cart is empty::
 
 Maximum number of allowed articles in order::
 
-    CART_MAX_ARTICLE_COUNT = 20;
+    CART_max_article = 20;
 
 Client side dialog messages::
 
