@@ -8,6 +8,8 @@ from zope.component import (
     adapter,
     getMultiAdapter,
 )
+from zope.i18n import translate
+from zope.i18nmessageid import MessageFactory
 from zope.publisher.interfaces.browser import IBrowserRequest
 from Products.CMFCore.utils import getToolByName
 from bda.plone.cart.interfaces import ICartItemPreviewImage
@@ -19,6 +21,9 @@ from .interfaces import (
     ICartItemAvailability,
     ICartItemStock,
 )
+
+
+_ = MessageFactory('bda.plone.cart')
 
 
 def ascur(val, comma=False):
@@ -139,20 +144,22 @@ class CartDataProviderBase(object):
     def validate_set(self, uid):
         """By default, all items generally may be set.
         """
-        return {
-            'success': True,
-            'error': '',
-        }
+        return {'success': True, 'error': ''}
 
     def validate_count(self, uid, count):
-        obj = get_object_by_uid(self.context, uid)
-        availability = get_item_availability(obj)
+        stock = get_item_stock(get_object_by_uid(self.context, uid))
         count = float(count)
-        # XXX
-        return {
-            'success': True,
-            'error': '',
-        }
+        available = stock.available
+        overbook = stock.overbook
+        if available is None or overbook is None:
+            return {'success': True, 'error': ''}
+        available -= count
+        if available >= overbook * -1:
+            return {'success': True, 'error': ''}
+        message = translate(_('trying_to_add_more_items_than_available',
+                              default="Not enough items available, abort."),
+                            context=self.request)
+        return {'success': False, 'error': message}
 
     def shipping(self, items):
         shippings = Shippings(self.context)
@@ -216,12 +223,12 @@ class CartItemAvailabilityBase(object):
         self.request = request
 
     @property
-    def _stock(self):
-        return ICartItemStock(self.context)
+    def stock(self):
+        return get_item_stock(self.context)
 
     @property
     def available(self):
-        available = self._stock.available
+        available = self.stock.available
         # reduce available count if item already in cart
         if available is not None:
             cart_items = extractitems(readcookie(self.request))
@@ -233,7 +240,7 @@ class CartItemAvailabilityBase(object):
 
     @property
     def overbook(self):
-        return self._stock.overbook
+        return self.stock.overbook
 
     @property
     def critical_limit(self):
@@ -303,6 +310,12 @@ def get_item_data_provider(context):
     """Return ICartItemDataProvider implementation.
     """
     return ICartItemDataProvider(context)
+
+
+def get_item_stock(context):
+    """Return ICartItemStock implementation.
+    """
+    return ICartItemStock(context)
 
 
 def get_item_availability(context, request=None):
