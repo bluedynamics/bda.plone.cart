@@ -59,13 +59,13 @@
        style="display: none;">
     <table class="cart_sum_content"
             tal:define="currency view/currency;
-            show_currency python:view.show_currency=='Yes';
-            show_symbol   python:view.show_currency=='Symbol';
-            currency_image python:'/++resource++bda.plone.cart.images/' + currency + '.png'">
+            show_currency python:view.show_currency=='yes';
+            show_symbol   python:view.show_currency=='symbol';
+            currency_symbol view/currency_symbol">
       <tal:details condition="not:view/summary_total_only">
         <tr>
           <td i18n:translate="summary_net">Net:</td>
-          <td tal:content="currency" tal:condition="show_symbol">EUR</td>
+          <td tal:content="currency_symbol" tal:condition="show_symbol">CHK</td>
           <td class="cart_net">0.00</td>
           <td tal:content="currency" tal:condition="show_currency">EUR</td>
         </tr>
