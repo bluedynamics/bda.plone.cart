@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import simplejson as json
 from decimal import Decimal
 from zope.interface import implementer
