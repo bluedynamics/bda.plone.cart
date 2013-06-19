@@ -270,16 +270,20 @@ class CartItemAvailabilityBase(object):
         """Default signal rules:
 
         * if available is None, green
-        * if available > CRITICAL_LIMIT, green
+        * if available > limit, green
         * if available > 0, yellow
-        * if available <= 0, red
+        * if available > self.overbook * -1, orange
+        * else, red
         """
-        if self.available is None:
+        available = self.available
+        if available is None:
             return 'green'
-        if self.available > self.critical_limit:
+        if available > self.critical_limit:
             return 'green'
-        if self.available > 0:
+        if available > 0:
             return 'yellow'
+        if available > self.overbook * -1:
+            return 'orange'
         return 'red'
 
     @property
