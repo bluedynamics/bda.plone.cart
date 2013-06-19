@@ -80,6 +80,7 @@
             bdajax.error(cart.messages['invalid_comment_character']);
             return;
         }
+        // item uid consists of ``object_uid;comment``
         uid = uid + ';' + comment;
         var items = this.items();
         var existent = false;
@@ -217,9 +218,12 @@
                 var count = defs[1];
                 var items = cart.items();
                 for (var item in items) {
-                    if (uid == item) {
-                        count = count + items[item];
-                        break;
+                    if (!item) {
+                        continue;
+                    }
+                    var item_uid = item.split(';')[0];
+                    if (uid == item_uid) {
+                        count += items[item];
                     }
                 }
                 var params = {
@@ -246,7 +250,7 @@
                             cart.add(defs[0], defs[1], defs[2]);
                             var evt = $.Event('cart_modified');
                             evt.uid = defs[0];
-                            evt.count = defs[1];
+                            evt.count = count;
                             $('*').trigger(evt);
                         }
                     }
@@ -355,6 +359,9 @@
         return cookie;
     }
 
+    /*
+     * items is a key/value mapping in format items['obj_uid;comment'] = count 
+     */
     Cart.prototype.items = function() {
         var cookie = this.cookie();
         var cookieitems = cookie.split(',');
@@ -389,7 +396,11 @@
         var count = 0;
         var items = this.items();
         for (var item in items) {
-            if (!item || uid == item) {
+            if (!item) {
+                continue;
+            }
+            var item_uid = item.split(';')[0];
+            if (uid == item_uid) {
                 continue;
             }
             count += items[item];

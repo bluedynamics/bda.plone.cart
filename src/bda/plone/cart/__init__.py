@@ -81,10 +81,6 @@ class CartDataProviderBase(object):
         self.request = request
 
     @property
-    def currency(self):
-        return 'EUR'
-
-    @property
     def disable_max_article(self):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``disable_max_article``.")
@@ -98,14 +94,6 @@ class CartDataProviderBase(object):
     def checkout_url(self):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``checkout_url``.")
-
-    def validate_set(self, uid):
-        raise NotImplementedError(u"CartDataProviderBase does not implement "
-                                  u"``validate_set``.")
-
-    def validate_count(self, uid, count):
-        raise NotImplementedError(u"CartDataProviderBase does not implement "
-                                  u"``validate_count``.")
 
     def net(self, items):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
@@ -130,6 +118,10 @@ class CartDataProviderBase(object):
                                   u"``shipping_method``.")
 
     @property
+    def currency(self):
+        return 'EUR'
+
+    @property
     def cart_url(self):
         return '%s/@@cart' % self.context.absolute_url()
 
@@ -144,6 +136,24 @@ class CartDataProviderBase(object):
     @property
     def show_currency(self):
         return True
+
+    def validate_set(self, uid):
+        """By default, all items generally may be set.
+        """
+        return {
+            'success': True,
+            'error': '',
+        }
+
+    def validate_count(self, uid, count):
+        obj = get_object_by_uid(self.context, uid)
+        availability = get_item_availability(obj)
+        count = float(count)
+        # XXX
+        return {
+            'success': True,
+            'error': '',
+        }
 
     def shipping(self, items):
         shippings = Shippings(self.context)

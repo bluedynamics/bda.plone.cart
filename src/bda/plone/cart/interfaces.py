@@ -48,7 +48,7 @@ class ICartDataProvider(Interface):
         """
 
     def validate_count(uid, count):
-        """Validate if setting n items with UID is allowed.
+        """Validate if n items with UID are allowed in cart.
 
         return {
             'success': [True|False],
