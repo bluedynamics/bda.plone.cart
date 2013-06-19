@@ -31,6 +31,8 @@
     CART_MAX_ARTICLE_COUNT = 5;
 
     function Cart() {
+        // flag whether cart contains items which are no longer available
+        this.no_longer_available = false;
     }
 
     Cart.prototype.messages = {
@@ -216,12 +218,23 @@
             }
             $('#cart_summary', this.cart_node).css('display', 'block');
             if (render_no_longer_available) {
+                this.no_longer_available = true;
                 bdajax.warning(cart.messages['no_longer_available']);
+            } else {
+                this.no_longer_available = false;
             }
         }
     }
 
     Cart.prototype.bind = function(context) {
+        $('.prevent_if_no_longer_available', context)
+            .unbind('click')
+            .bind('click', function(e) {
+                if (cart.no_longer_available) {
+                    e.preventDefault();
+                    bdajax.warning(cart.messages['no_longer_available']);
+                }
+            });
         $('.add_cart_item', context).each(function() {
             $(this).unbind('click');
             $(this).bind('click', function(e) {

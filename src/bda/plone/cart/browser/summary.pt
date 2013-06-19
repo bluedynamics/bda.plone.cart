@@ -87,7 +87,7 @@
     <a href="javascript:history.back()" class="cart_back"
        i18n:translate="back">back</a>
     <a href="@@checkout"
-       class="cart_checkout_button"
+       class="cart_checkout_button prevent_if_no_longer_available"
        tal:define="checkout_url view/checkout_url"
        tal:condition="checkout_url"
        tal:attributes="href checkout_url"
