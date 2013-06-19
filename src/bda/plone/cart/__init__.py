@@ -1,13 +1,25 @@
-from .interfaces import ICartDataProvider, ICartItemDataProvider
+import urllib2
+from decimal import Decimal
+from zope.interface import (
+    implementer,
+    Interface,
+)
+from zope.component import (
+    adapter,
+    getMultiAdapter,
+)
+from zope.publisher.interfaces.browser import IBrowserRequest
 from Products.Archetypes.interfaces.base import IBaseObject
 from Products.CMFCore.utils import getToolByName
 from bda.plone.cart.interfaces import ICartItemPreviewImage
 from bda.plone.shipping import Shippings
-from decimal import Decimal
-from zope.component import adapts, getMultiAdapter
-from zope.interface import implements, Interface
-from zope.publisher.interfaces.browser import IBrowserRequest
-import urllib2
+from .interfaces import (
+    ICartItem,
+    ICartDataProvider,
+    ICartItemDataProvider,
+    ICartItemAvailability,
+    ICartItemStock,
+)
 
 
 def ascur(val, comma=False):
@@ -60,18 +72,22 @@ def extractitems(items):
     return ret
 
 
+@implementer(ICartDataProvider)
+@adapter(Interface, IBrowserRequest)
 class CartDataProviderBase(object):
-    implements(ICartDataProvider)
-    adapts(Interface, IBrowserRequest)
 
     def __init__(self, context, request):
         self.context = context
         self.request = request
 
     @property
-    def disable_max_article_count(self):
+    def currency(self):
+        return 'EUR'
+
+    @property
+    def disable_max_article(self):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
-                                  u"``disable_max_article_count``.")
+                                  u"``disable_max_article``.")
 
     @property
     def summary_total_only(self):
@@ -118,12 +134,16 @@ class CartDataProviderBase(object):
         return '%s/@@cart' % self.context.absolute_url()
 
     @property
-    def shop_show_to_cart(self):
+    def show_to_cart(self):
         return True
 
     @property
-    def shop_show_checkout(self):
+    def show_checkout(self):
         return False
+
+    @property
+    def show_currency(self):
+        return True
 
     def shipping(self, items):
         shippings = Shippings(self.context)
@@ -173,16 +193,116 @@ class CartDataProviderBase(object):
         return ret
 
 
-def get_data_provider(context):
+AVAILABILITY_CRITICAL_LIMIT = 5.0
+
+
+@implementer(ICartItemAvailability)
+@adapter(ICartItem, IBrowserRequest)
+class CartItemAvailabilityBase(object):
+    """Base cart item availability display behavior adapter.
+    """
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    @property
+    def _stock(self):
+        return ICartItemStock(self.context)
+
+    @property
+    def available(self):
+        available = self._stock.available
+        # reduce available count if item already in cart
+        if available is not None:
+            cart_items = extractitems(readcookie(self.request))
+            item_uid = self.context.UID()
+            for uid, count, comment in cart_items:
+                if uid == item_uid:
+                    available -= float(count)
+        return available
+
+    @property
+    def overbook(self):
+        return self._stock.overbook
+
+    @property
+    def critical_limit(self):
+        return AVAILABILITY_CRITICAL_LIMIT
+
+    @property
+    def addable(self):
+        """Default addable rules:
+
+        * if available None, no availability defined, unlimited addable
+        * if overbook is None, unlimited overbooking
+        * if available > overbook * -1, addable
+        * not addable atm
+        """
+        if self.available is None:
+            return True
+        if self.overbook is None:
+            return True
+        if self.available > self.overbook * -1:
+            return True
+        return False
+
+    @property
+    def signal(self):
+        """Default signal rules:
+
+        * if available is None, green
+        * if available > CRITICAL_LIMIT, green
+        * if available > 0, yellow
+        * if available <= 0, red
+        """
+        if self.available is None:
+            return 'green'
+        if self.available > self.critical_limit:
+            return 'green'
+        if self.available > 0:
+            return 'yellow'
+        return 'red'
+
+    @property
+    def details(self):
+        raise NotImplementedError(u"CartItemAvailabilityBase does not "
+                                  u"implement ``details``.")
+
+
+@implementer(ICartItemPreviewImage)
+@adapter(IBaseObject)
+class CartItemPreviewAdapterBase(object):
+
+    def __init__(self, context):
+        self.context = context
+
+    @property
+    def url(self):
+        raise NotImplementedError(
+            u"CartItemPreviewAdapterBase does not implement ``url``.")
+
+
+def get_data_provider(context, request=None):
     """Return ICartDataProvider implementation.
     """
-    return getMultiAdapter((context, context.REQUEST), ICartDataProvider)
+    if request is None:
+        request = context.REQUEST
+    return getMultiAdapter((context, request), ICartDataProvider)
 
 
 def get_item_data_provider(context):
     """Return ICartItemDataProvider implementation.
     """
     return ICartItemDataProvider(context)
+
+
+def get_item_availability(context, request=None):
+    """Return ICartItemAvailability implementation.
+    """
+    if request is None:
+        request = context.REQUEST
+    return getMultiAdapter((context, request), ICartItemAvailability)
 
 
 def get_catalog_brain(context, uid):
@@ -201,16 +321,3 @@ def get_object_by_uid(context, uid):
     if brain:
         return brain.getObject()
     return None
-
-
-class CartItemPreviewAdapterBase(object):
-    implements(ICartItemPreviewImage)
-    adapts(IBaseObject)
-
-    def __init__(self, context):
-        self.context = context
-
-    @property
-    def url(self):
-        raise NotImplementedError(
-            u"CartItemPreviewAdapterBase does not implement ``url``.")

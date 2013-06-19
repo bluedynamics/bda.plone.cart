@@ -63,7 +63,7 @@ Implement data provider inheriting from
     ...         return 'EUR'
     ...
     ...     @property
-    ...     def disable_max_article_count(self):
+    ...     def disable_max_article(self):
     ...         """Flag whether to disable max article limit.
     ...         """
     ...         return True
