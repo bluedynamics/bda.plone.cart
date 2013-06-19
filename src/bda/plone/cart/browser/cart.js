@@ -45,7 +45,11 @@
             "Bestellung ab.",
         invalid_comment_character: "Ungültiges Zeichen in Kommentar",
         comment_required: "Zusatzangabe ist erforderlich",
-        integer_required: "Eingabe muss eine Ganzzahl sein"
+        integer_required: "Eingabe muss eine Ganzzahl sein",
+        no_longer_available: "Ein oder mehrere Artikel im Warenkorb sind in " +
+            "der gewünschten Anzahl nicht oder nur mehr teilweise " +
+            "verfügbar. Bitte aktualisieren oder entfernen Sie die " +
+            "ensprechenden Artikel vor dem Abschluss Ihres Einkaufs."
     }
 
     Cart.prototype.init = function() {
@@ -133,13 +137,25 @@
             $('#cart_no_items', this.cart_node).css('display', 'none');
             $('#cart_items', this.cart_node).empty();
             $('#cart_items', this.cart_node).css('display', 'block');
+            var render_no_longer_available = false;
             for (var i = 0; i < data['cart_items'].length; i++) {
                 var cart_item = $(this.item_template).clone();
                 var cart_item_data = data['cart_items'][i];
+                // item control flags
                 var quantity_unit_float = cart_item_data.quantity_unit_float;
                 var comment_required = cart_item_data.comment_required;
+                var no_longer_available = cart_item_data.no_longer_available;
+                // delete item control flags from cart_item_data
                 delete cart_item_data.quantity_unit_float;
                 delete cart_item_data.comment_required;
+                delete cart_item_data.no_longer_available;
+                if (no_longer_available) {
+                    $('input', cart_item).prop('disabled', true);
+                    $('input.cart_item_count', cart_item)
+                        .prop('disabled', false)
+                        .css('background-color', 'red');
+                    render_no_longer_available = true;
+                }
                 for (var item in cart_item_data) {
                     var attribute = '';
                     var css = '.' + item;
@@ -199,6 +215,9 @@
                 $(css, cart_summary).html(value);
             }
             $('#cart_summary', this.cart_node).css('display', 'block');
+            if (render_no_longer_available) {
+                bdajax.warning(cart.messages['no_longer_available']);
+            }
         }
     }
 

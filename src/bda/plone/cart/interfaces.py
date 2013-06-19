@@ -74,7 +74,8 @@ class ICartDataProvider(Interface):
 
     def item(uid, title, count, price, url, comment='', description='',
              comment_required=False, quantity_unit_float=False,
-             quantity_unit='', preview_image_url=''):
+             quantity_unit='', preview_image_url='',
+             no_longer_available=False):
         """Create cart item entry for JSON response.
 
         @param uid: catalog uid
@@ -88,6 +89,7 @@ class ICartDataProvider(Interface):
         @param quantity_unit_float: Flag whether item count can be float
         @param quantity_unit: Quantity unit
         @param preview_image_url: URL for item preview image
+        @param no_longer_available: Item is no longer available
         """
 
 
