@@ -9,7 +9,6 @@ from zope.component import (
     getMultiAdapter,
 )
 from zope.publisher.interfaces.browser import IBrowserRequest
-from Products.Archetypes.interfaces.base import IBaseObject
 from Products.CMFCore.utils import getToolByName
 from bda.plone.cart.interfaces import ICartItemPreviewImage
 from bda.plone.shipping import Shippings
@@ -281,7 +280,6 @@ class CartItemAvailabilityBase(object):
 
 
 @implementer(ICartItemPreviewImage)
-@adapter(IBaseObject)
 class CartItemPreviewAdapterBase(object):
 
     def __init__(self, context):
