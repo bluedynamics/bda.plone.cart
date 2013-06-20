@@ -84,11 +84,11 @@
           <td tal:content="currency" tal:condition="show_currency">EUR</td>
         </tr>
       </tal:shipping>
-      <tr>
+      <tr class="summary_total">
         <td><strong i18n:translate="summary_total">Total:</strong></td>
         <td><strong class="cart_total">Total</strong></td>
-        <td tal:content="currency_symbol" tal:condition="show_symbol">CHK</td>
-        <td tal:content="currency" tal:condition="show_currency">EUR</td>
+        <td tal:condition="show_symbol"><strong tal:content="currency_symbol" >CHK</strong></td>
+        <td tal:condition="show_currency"><strong tal:content="currency">EUR</strong></td>
       </tr>
     </table>
     <div class="visualClear"></div>

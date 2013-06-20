@@ -25,7 +25,7 @@ CURRENCY_LITERALS = {
     'CHF': u"CHF",
     'GBP': u"£",
     'AUD': u"$",
-    'NOK': u"Kr.",
+    'NOK': u"kr.",
     'SEK': u"Kr.",
     'DKK': u"K.",
     'YEN': u"¥",
