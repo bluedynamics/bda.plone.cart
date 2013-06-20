@@ -6,23 +6,18 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="bda.plone.cart">
 
-<head>
-  <metal:top fill-slot="top_slot">
-    <tal:border define="dummy python:request.set('disable_border', True)" />
-  </metal:top>
-</head>
+    <head>
+      <metal:top fill-slot="top_slot">
+        <tal:border define="dummy python:request.set('disable_border', True)" />
+      </metal:top>
+    </head>
 
-<body>
-
-<metal:main fill-slot="main">
-  <tal:main-macro metal:define-macro="main">
-    
-    <h1 class="documentFirstHeading" i18n:translate="cart">Cart</h1>
-    
-    <tal:cart replace="structure context/@@cart_summary" />
-
-  </tal:main-macro>
-</metal:main>
-
-</body>
+    <body>
+        <metal:main fill-slot="main">
+            <tal:main-macro metal:define-macro="main">
+                <h1 class="documentFirstHeading" i18n:translate="cart">Cart</h1>
+                <tal:cart replace="structure context/@@cart_summary" />
+            </tal:main-macro>
+        </metal:main>
+    </body>
 </html>
