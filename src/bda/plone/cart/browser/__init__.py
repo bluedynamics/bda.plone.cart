@@ -59,7 +59,7 @@ class CartView(BrowserView, DataProviderMixin):
         if not cookie:
             return
         return self.data_provider.checkout_url
-        
+
     @property
     def show_currency(self):
         return self.data_provider.show_currency
@@ -67,7 +67,7 @@ class CartView(BrowserView, DataProviderMixin):
     @property
     def currency(self):
         return self.data_provider.currency
-        
+
     @property
     def currency_symbol(self):
         return CURRENCY_LITERALS[self.currency]
