@@ -170,6 +170,9 @@
                     if (item == 'cart_item_comment' && !value) {
                         $('.cart_item_comment_wrapper', cart_item).hide();
                     }
+                    if (item == 'cart_item_alert') {
+                        $('.cart_item_alert', cart_item).show();
+                    }
                     var placeholder = $(css, cart_item);
                     $(placeholder).each(function(e) {
                         // case set attribute of element

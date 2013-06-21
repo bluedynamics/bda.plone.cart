@@ -16,6 +16,7 @@
           <img class="cart_item_preview_image" src="" />
         </a>
       </div>
+      <div class="cart_item_alert" style="display: none;">Alert</div>
       <div class="cart_item_content">
         <span>
           <span class="cart_item_uid" style="display: none;">uid</span>

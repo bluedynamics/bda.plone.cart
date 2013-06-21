@@ -1,3 +1,8 @@
+/* general styles */
+div.cart_item_alert {
+    color:red;
+    font-weight:bold;
+}
 /* cart styles */
 .cart_item_title {
 }
@@ -49,7 +54,6 @@ a.remove_from_cart_action {
     padding-bottom:0.6em;
     border-bottom:#ccc 1px solid;
 }
-
 .summary_item ul.cart_item_content {
     list-style-type:none !important;
     text-align:right;
