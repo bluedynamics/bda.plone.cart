@@ -12,14 +12,15 @@ from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
 from zope.publisher.interfaces.browser import IBrowserRequest
 from Products.CMFCore.utils import getToolByName
-from bda.plone.cart.interfaces import ICartItemPreviewImage
 from bda.plone.shipping import Shippings
 from .interfaces import (
     ICartItem,
     ICartDataProvider,
     ICartItemDataProvider,
     ICartItemAvailability,
+    ICartItemPreviewImage,
     ICartItemStock,
+    ICartItemState,
 )
 
 
@@ -74,6 +75,16 @@ def extractitems(items):
             print e
             pass
     return ret
+
+
+def aggregate_cart_item_count(target_uid, items):
+    """Aggregate count for items in cart with target uid.
+    """
+    aggregated_count = 0
+    for uid, count, comment in items:
+        if target_uid == uid:
+            aggregated_count += count
+    return aggregated_count
 
 
 @implementer(ICartDataProvider)
@@ -147,14 +158,9 @@ class CartDataProviderBase(object):
         return {'success': True, 'error': ''}
 
     def validate_count(self, uid, count):
-        stock = get_item_stock(get_object_by_uid(self.context, uid))
-        count = float(count)
-        available = stock.available
-        overbook = stock.overbook
-        if available is None or overbook is None:
-            return {'success': True, 'error': ''}
-        available -= count
-        if available >= overbook * -1:
+        cart_item = get_object_by_uid(self.context, uid)
+        item_state = get_item_state(cart_item, self.request)
+        if item_state.validate_count(count):
             return {'success': True, 'error': ''}
         message = translate(_('trying_to_add_more_items_than_available',
                               default="Not enough items available, abort."),
@@ -165,13 +171,6 @@ class CartDataProviderBase(object):
         shippings = Shippings(self.context)
         shipping = shippings.get(self.shipping_method)
         return shipping.calculate(items)
-
-    def aggregate_count_for(self, aggregate_uid, items):
-        aggregated_count = 0
-        for uid, count, comment in items:
-            if aggregate_uid == uid:
-                aggregated_count += count
-        return aggregated_count
 
     def item(self, uid, title, count, price, url, comment='', description='',
              comment_required=False, quantity_unit_float=False,
@@ -300,6 +299,25 @@ class CartItemAvailabilityBase(object):
                                   u"implement ``details``.")
 
 
+@implementer(ICartItemState)
+@adapter(ICartItem, IBrowserRequest)
+class CartItemStateBase(object):
+    """Interface for generating alert messages for cart items.
+    """
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def message(self, count):
+        raise NotImplementedError(u"CartItemStateBase does not "
+                                  u"implement ``message``.")
+
+    def validate_count(self, count):
+        raise NotImplementedError(u"CartItemStateBase does not "
+                                  u"implement ``validate_count``.")
+
+
 @implementer(ICartItemPreviewImage)
 class CartItemPreviewAdapterBase(object):
 
@@ -338,6 +356,20 @@ def get_item_availability(context, request=None):
     if request is None:
         request = context.REQUEST
     return getMultiAdapter((context, request), ICartItemAvailability)
+
+
+def get_item_state(context, request=None):
+    """Return ICartItemState implementation.
+    """
+    if request is None:
+        request = context.REQUEST
+    return getMultiAdapter((context, request), ICartItemState)
+
+
+def get_item_preview(context):
+    """Return ICartItemPreviewImage implementation.
+    """
+    return ICartItemPreviewImage(context)
 
 
 def get_catalog_brain(context, uid):

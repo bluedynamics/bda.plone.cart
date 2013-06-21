@@ -68,10 +68,6 @@ class ICartDataProvider(Interface):
         """Calculate shipping costs for cart items.
         """
 
-    def aggregate_count_for(aggregate_uid, items):
-        """aggregate count of items with uid, comment is not considered.
-        """
-
     def cart_items(items):
         """Return list of dicts with format returned by ``self.item``.
         """
@@ -150,3 +146,15 @@ class ICartItemAvailability(Interface):
     details = Attribute(u"Rendered availability details. Gets displayed in "
                         u"buyable viewlet availability overlay.")
 
+
+class ICartItemState(Interface):
+    """Interface for generating alert messages for cart items.
+    """
+
+    def message(count):
+        """Cart item alert message based on desired count.
+        """
+
+    def validate_count(count):
+        """Validate if n items are allowed in cart.
+        """
