@@ -279,6 +279,7 @@ class CartItemAvailabilityBase(object):
         * if available is None, green
         * if available > limit, green
         * if available > 0, yellow
+        * if self.overbook is None, orange
         * if available > self.overbook * -1, orange
         * else, red
         """
@@ -289,6 +290,8 @@ class CartItemAvailabilityBase(object):
             return 'green'
         if available > 0:
             return 'yellow'
+        if self.overbook is None:
+            return 'orange'
         if available > self.overbook * -1:
             return 'orange'
         return 'red'
