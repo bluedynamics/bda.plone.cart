@@ -58,39 +58,30 @@
   <div id="cart_summary"
        style="display: none;">
     <table class="cart_sum_content"
-           tal:define="currency view/currency;
-                       show_currency python:view.show_currency == 'yes';
-                       show_symbol python:view.show_currency == 'symbol';
-                       currency_symbol view/currency_symbol">
+           tal:define="currency view/currency">
       <tal:details condition="not:view/summary_total_only">
         <tr>
           <td i18n:translate="summary_net">Net:</td>
           <td class="cart_net">0.00</td>
-          <td tal:content="currency_symbol" tal:condition="show_symbol">CHK</td>
-          <td tal:content="currency" tal:condition="show_currency">EUR</td>
+          <td tal:content="currency" tal:condition="currency">EUR</td>
         </tr>
         <tr>
           <td i18n:translate="summary_vat">VAT.:</td>
           <td class="cart_vat">0.00</td>
-          <td tal:content="currency_symbol" tal:condition="show_symbol">CHK</td>
-          <td tal:content="currency" tal:condition="show_currency">EUR</td>
+          <td tal:content="currency" tal:condition="currency">EUR</td>
         </tr>
       </tal:details>
       <tal:shipping condition="view/include_shipping_costs">
         <tr>
           <td i18n:translate="summary_shipping">Shipping:</td>
           <td class="cart_shipping">0.00</td>
-          <td tal:content="currency_symbol" tal:condition="show_symbol">CHK</td>
-          <td tal:content="currency" tal:condition="show_currency">EUR</td>
+          <td tal:content="currency" tal:condition="currency">EUR</td>
         </tr>
       </tal:shipping>
       <tr class="summary_total">
         <td><strong i18n:translate="summary_total">Total:</strong></td>
         <td><strong class="cart_total">Total</strong></td>
-        <td tal:condition="show_symbol">
-          <strong tal:content="currency_symbol">CHK</strong>
-        </td>
-        <td tal:condition="show_currency">
+        <td tal:condition="currency">
           <strong tal:content="currency">EUR</strong>
         </td>
       </tr>
