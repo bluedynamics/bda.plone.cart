@@ -151,10 +151,18 @@ class ICartItemState(Interface):
     """Interface for generating alert messages for cart items.
     """
 
-    def message(count):
-        """Cart item alert message based on desired count.
-        """
+    aggregated_count = Attribute(u"Aggregated item count for item in cart.")
+
+    reserved = Attribute(u"Number of reserved items.")
+
+    exceed = Attribute(u"Number of items exceeded limit.")
+
+    remaining_available = Attribute(u"Number of remaining available items.")
 
     def validate_count(count):
         """Validate if n items are allowed in cart.
+        """
+
+    def alert(count):
+        """Cart item alert message based on desired count.
         """

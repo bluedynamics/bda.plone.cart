@@ -312,13 +312,60 @@ class CartItemStateBase(object):
         self.context = context
         self.request = request
 
-    def message(self, count):
-        raise NotImplementedError(u"CartItemStateBase does not "
-                                  u"implement ``message``.")
+    @property
+    def aggregated_count(self):
+        items = extractitems(readcookie(self.request))
+        return aggregate_cart_item_count(self.context.UID(), items)
+
+    @property
+    def reserved(self):
+        aggregated_count = float(self.aggregated_count)
+        stock = get_item_stock(self.context)
+        available = stock.available
+        reserved = 0.0
+        if available <= 0:
+            reserved = aggregated_count
+        elif available - aggregated_count < 0:
+            reserved = abs(available - aggregated_count)
+        return reserved
+
+    @property
+    def exceed(self):
+        stock = get_item_stock(self.context)
+        overbook = stock.overbook
+        reserved = self.reserved
+        exceed = 0.0
+        if overbook is not None:
+            if reserved > overbook:
+                exceed = reserved - overbook
+        return exceed
+
+    @property
+    def remaining_available(self):
+        stock = get_item_stock(self.context)
+        available = stock.available
+        overbook = stock.overbook
+        if available >= 0:
+            remaining_available = available + overbook
+        else:
+            remaining_available = overbook - available
+        return remaining_available
 
     def validate_count(self, count):
+        count = float(count)
+        stock = get_item_stock(self.context)
+        available = stock.available
+        overbook = stock.overbook
+        if available is None or overbook is None:
+            return True
+        available -= count
+        if available >= overbook * -1:
+            return True
+        return False
+
+    def alert(self, count):
         raise NotImplementedError(u"CartItemStateBase does not "
-                                  u"implement ``validate_count``.")
+                                  u"implement ``alert``.")
 
 
 @implementer(ICartItemPreviewImage)
