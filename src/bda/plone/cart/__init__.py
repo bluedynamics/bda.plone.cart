@@ -305,7 +305,7 @@ class CartItemAvailabilityBase(object):
 @implementer(ICartItemState)
 @adapter(ICartItem, IBrowserRequest)
 class CartItemStateBase(object):
-    """Interface for generating alert messages for cart items.
+    """Base cart item state implementation.
     """
 
     def __init__(self, context, request):
