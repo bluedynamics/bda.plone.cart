@@ -114,3 +114,8 @@ a.remove_from_cart_action {
 .portletCart .lastItem {
   text-align: center;
 }
+
+img.cart_item_preview_image {
+  float: right;
+  margin-top: 0.25em;
+}
