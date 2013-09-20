@@ -38,6 +38,12 @@ setup(name='bda.plone.cart',
           'bda.plone.ajax',
           'bda.plone.shipping',
       ],
+      extras_require={
+          'test': [
+              'plone.app.testing',
+              'bda.plone.cart',
+          ]
+      },
       entry_points="""
       [z3c.autoinclude.plugin]
       target = plone

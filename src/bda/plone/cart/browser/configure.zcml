@@ -11,48 +11,56 @@
 
   <browser:resource
     name="bda.plone.cart.js"
-    file="cart.js" />
+    file="cart.js"
+    layer="..interfaces.ICartExtensionLayer" />
 
   <browser:resource
     name="bda.plone.cart.css"
-    file="cart.css" />
+    file="cart.css"
+    layer="..interfaces.ICartExtensionLayer" />
   
   <browser:resourceDirectory
     name="bda.plone.cart.images"
-    directory="images" />
+    directory="images"
+    layer="..interfaces.ICartExtensionLayer" />
   
   <browser:page
     for="*"
     name="cartData"
     class=".CartDataView"
     attribute="cartData"
-    permission="zope2.View" />
+    permission="zope2.View"
+    layer="..interfaces.ICartExtensionLayer" />
   
   <browser:page
     for="*"
     name="validate_cart_item"
     class=".CartDataView"
     attribute="validate_cart_item"
-    permission="zope2.View" />
+    permission="zope2.View"
+    layer="..interfaces.ICartExtensionLayer" />
   
   <browser:page
     for="*"
     name="cart_tile"
     class=".CartView"
     template="tile.pt"
-    permission="zope2.View" />
+    permission="zope2.View"
+    layer="..interfaces.ICartExtensionLayer" />
   
   <browser:page
     for="*"
     name="cart_summary"
     class=".CartView"
     template="summary.pt"
-    permission="zope2.View" />
+    permission="zope2.View"
+    layer="..interfaces.ICartExtensionLayer" />
   
   <browser:page
     for="*"
     name="cart"
     template="view.pt"
-    permission="zope2.View" />
+    permission="zope2.View"
+    layer="..interfaces.ICartExtensionLayer" />
 
 </configure>

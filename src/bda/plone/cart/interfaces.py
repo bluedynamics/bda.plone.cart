@@ -4,6 +4,11 @@ from zope.interface import (
 )
 
 
+class ICartExtensionLayer(Interface):
+    """Browser layer for bda.plone.cart
+    """
+
+
 class ICartItem(Interface):
     """Marker for items which are addable to cart.
     """
