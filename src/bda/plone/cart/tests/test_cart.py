@@ -14,6 +14,13 @@ from bda.plone.cart.interfaces import (
     ICartItemState,
 )
 from bda.plone.shipping.tests.test_shipping import MockShipping
+from plone.app.testing import (
+    login,
+    setRoles,
+    TEST_USER_ID,
+    TEST_USER_NAME,
+)
+from plone.uuid.interfaces import IUUID
 from zope.component import (
     provideAdapter,
     getMultiAdapter,
@@ -140,3 +147,108 @@ class TestCartDataProvider(unittest.TestCase):
                 'no_longer_available': False,
             }
         )
+
+
+class TestHelpers(unittest.TestCase):
+    """Test helper methods."""
+    layer = Cart_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        set_browserlayer(self.request)
+
+        # create an object for testing
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        login(self.portal, TEST_USER_NAME)
+        self.portal.invokeFactory('Document', 'doc')
+        self.doc = self.portal['doc']
+
+    def test_ascur(self):
+        from bda.plone.cart import ascur
+
+        self.assertEquals(ascur(5.0), '5.00')
+        self.assertEquals(ascur(5.0, comma=True), '5,00')
+
+    def test_extractitems_malformed_items(self):
+        from bda.plone.cart import extractitems
+
+        self.assertRaises(IndexError, extractitems, 'foo')
+
+    def test_extractitems_has_items(self):
+        from bda.plone.cart import extractitems
+
+        items = 'uid-1:5,uid-2:100,uid-3:7'
+        self.assertEquals(
+            extractitems(items),
+            [('uid-1', 5, '', ), ('uid-2', 100, '', ), ('uid-3', 7, '', )]
+        )
+
+    def test_aggregate_cart_item_count_non_existing_uid(self):
+        from bda.plone.cart import aggregate_cart_item_count
+
+        items = [
+            ('uid-1', 5, 'no comment', ),
+            ('uid-2', 100, 'no comment', ),
+            ('uid-1', 7, 'no comment', )
+        ]
+
+        self.assertEquals(aggregate_cart_item_count('uid-foo', items), 0)
+
+    def test_aggregate_cart_item_count_matching_uid(self):
+        from bda.plone.cart import aggregate_cart_item_count
+
+        items = [
+            ('uid-1', 5, 'no comment', ),
+            ('uid-2', 100, 'no comment', ),
+            ('uid-1', 7, 'no comment', )
+        ]
+
+        self.assertEquals(aggregate_cart_item_count('uid-1', items), 12)
+
+    def test_get_catalog_brain(self):
+        from bda.plone.cart import get_catalog_brain
+
+        self.assertEquals(get_catalog_brain(self.portal, 'foo'), None)
+        brain = get_catalog_brain(self.portal, IUUID(self.doc))
+        self.assertEquals(brain.getObject(), self.doc)
+
+    def test_get_object_by_uid(self):
+        from bda.plone.cart import get_object_by_uid
+
+        self.assertEquals(get_object_by_uid(self.portal, 'foo'), None)
+        obj = get_object_by_uid(self.portal, IUUID(self.doc))
+        self.assertEquals(obj, self.doc)
+
+
+class TestCookie(unittest.TestCase):
+    layer = Cart_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        set_browserlayer(self.request)
+
+    def _set_cookie(self, value):
+        # set cookie on the request
+        self.request.cookies['cart'] = value
+
+    def test_readcookie_no_cookie(self):
+        from bda.plone.cart import readcookie
+
+        self.assertEquals(readcookie(self.request), '')
+
+    def test_readcookie_has_cookie(self):
+        from bda.plone.cart import readcookie
+
+        self._set_cookie('uid-1:5,uid-2:100,uid-3:7')
+        self.assertEquals(
+            readcookie(self.request), 'uid-1:5,uid-2:100,uid-3:7')
+
+    def test_deletecookie(self):
+        from bda.plone.cart import deletecookie
+
+        self.assertEquals(self.request.response.cookies, {})
+        deletecookie(self.request)
+        cookie = self.request.response.cookies['cart']
+        self.assertEquals(cookie['value'], 'deleted')
