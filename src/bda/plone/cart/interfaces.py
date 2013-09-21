@@ -63,18 +63,30 @@ class ICartDataProvider(Interface):
 
     def net(items):
         """Calculate net sum of cart items.
+
+        :param items: items in the cart
+        :param type: list of 3-tuples containing ``(uid, count, comment)``
         """
 
     def vat(items):
         """Calculate vat sum of cart items.
+
+        :param items: items in the cart
+        :param type: list of 3-tuples containing ``(uid, count, comment)``
         """
 
     def shipping(items):
         """Calculate shipping costs for cart items.
+
+        :param items: items in the cart
+        :param type: list of 3-tuples containing ``(uid, count, comment)``
         """
 
     def cart_items(items):
         """Return list of dicts with format returned by ``self.item``.
+
+        :param items: items in the cart
+        :param type: list of 3-tuples containing ``(uid, count, comment)``
         """
 
     def item(uid, title, count, price, url, comment='', description='',
