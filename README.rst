@@ -2,140 +2,44 @@
 bda.plone.cart
 ==============
 
-Shopping cart portlet for plone.
+Shopping cart for plone.
 
 .. contents::
 
 
-Installation
-============
+Base package Installation
+=========================
 
 Depend your instance to ``bda.plone.cart`` and install it as addon
 in plone control panel.
 
 
-Provide data
-============
+Provide contracts
+=================
 
-This package provides components needed to render shopping cart. It does
-not expect any contracts but ``bda.plone.cart.ICartDataProvider``.
+This package provides components needed to render a shopping cart. It expects
+several contracts defined in:
 
-Implement data provider inheriting from
-``bda.plone.cart.CartDataProviderBase``,
+- ``bda.plone.cart.interfaces.ICartDataProvider``
+- ``bda.plone.cart.interfaces.ICartItemDataProvider``
+- ``bda.plone.cart.interfaces.ICartItemStock``
+- ``bda.plone.cart.interfaces.ICartItemPreviewImage``
+- ``bda.plone.cart.interfaces.ICartItemAvailability``
+- ``bda.plone.cart.interfaces.ICartItemState``
 
-::
-
-    >>> from bda.plone.cart import CartDataProviderBase
-    >>> class AppCartDataProvider(CartDataProviderBase):
-    ...     """Also look at ``bda.plone.cart.example`` source code.
-    ...     """
-    ...
-    ...     def net(self, items):
-    ...         """Return net price for items as float.
-    ...         """
-    ...
-    ...     def vat(self, items):
-    ...         """Return VAT for items as float.
-    ...         """
-    ...
-    ...     def cart_items(self, items):
-    ...         """Return list of dicts with format returned by ``self.item``.
-    ...         """
-    ...
-    ...     def validate_set(self, uid):
-    ...         """Validate if setting item with UID is allowed.
-    ...         """
-    ...         return {
-    ...             'success': True,
-    ...             'error': '',
-    ...         }
-    ...
-    ...     def validate_count(self, uid, count):
-    ...         """Validate if setting n items with UID is allowed.
-    ...         """
-    ...         return {
-    ...             'success': True,
-    ...             'error': '',
-    ...         }
-    ...
-    ...     @property
-    ...     def currency(self):
-    ...         return 'EUR'
-    ...
-    ...     @property
-    ...     def disable_max_article(self):
-    ...         """Flag whether to disable max article limit.
-    ...         """
-    ...         return True
-    ...
-    ...     @property
-    ...     def summary_total_only(self):
-    ...         """Flag whether to show total sum only in summary.
-    ...         """
-    ...         return False
-    ...
-    ...     @property
-    ...     def include_shipping_costs(self):
-    ...         return True
-    ...
-    ...     @property
-    ...     def shipping_method(self):
-    ...         return 'flat_rate'
-    ...
-    ...     @property
-    ...     def checkout_url(self):
-    ...         """URL to checkout view.
-    ...         """
-    ...         return '%s/@@checkout' % self.context.absolute_url()
-    ...
-    ...     @property
-    ...     def cart_url(self):
-    ...         """URL to cart view.
-    ...         """
-    ...         return '%s/@@cart' % self.context.absolute_url()
-
-and register it as adapter with ZCML. The adapter is looked up for context
-and request, these attributes are available on ``context`` respective
-``request`` on data provider::
-
-    <adapter
-        for="some.package.IContext
-             zope.publisher.interfaces.browser.IBrowserRequest"
-        factory="some.package.AppCartDataProvider" />
+Please take a look at the corresponding interfaces for contract details.
+Further some abstract base implementations are available in
+``bda.plone.cart.__init__`` which can be used as base class for concrete
+implementations.
 
 
-Cart Item Preview Image
-=======================
+A ready-to-use implementation
+=============================
 
-The Cart renders a preview image for the cart items for two cases
+Concrete implementations of the expected contracts already exists in
+``bda.plone.shop`` for Archetypes and Dexterity. Please refer to
+``https://github.com/bluedynamics/bda.plone.shop`` for more details.
 
-    1. the context has a field named "image"
-    2. collective.contentleadimage is installed
-
-You can easily change the preview image rendering by adapt your buyable items.
-if you only want to change the scale of the image you can::
-
-    from bda.plone.shop.cartdata import CartItemPreviewImage
-
-    class MyCartItemPreviewImage(CartItemPreviewImage):
-        preview_scale = "my_scale"
-
-to do more complex preview image rendering you can override the *url*
-property::
-
-    from bda.plone.shop.cartdata import CartItemPreviewImage
-
-    class MyCartItemPreviewImage(CartItemPreviewImage):
-
-        @property
-        def url(self):
-            # do sophisticated stuff to get your preview image
-            return preview_url
-
-in both cases don't forget to define in configure.zcml::
-
-    <adapter for="some.package.IContent"
-        factory=".youradater.MyCartItemPreviewImage" />
 
 Markup
 ======
@@ -210,7 +114,6 @@ Create translations
 ===================
 
 ::
-
     $ cd src/bda/plone/cart/
     $ ./i18n.sh
 
@@ -218,14 +121,12 @@ Create translations
 Contributors
 ============
 
-- Robert Niederreiter
-
-- Peter Holzer
-
+- Robert Niederreiter (Autor)
 - Sven Plage
-
-- Harald Friessnegger, Webmeisterei GmbH
-
-- Peter Mathis, Kombinat Media Gestalter GmbH
-
+- Peter Holzer
+- Harald Friessnegger
+- Peter Mathis
+- Espen Moe-Nilssen
+- Johannes Raggam
+- Jure Cerjak
 - Icons by famfamfam

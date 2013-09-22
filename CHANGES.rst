@@ -5,6 +5,15 @@ Changelog
 0.2dev
 ------
 
+- Introduce ``bda.plone.cart.interfaces.ICartItemState``.
+  [rnix]
+
+- Introduce ``bda.plone.cart.interfaces.ICartItemAvailability``.
+  [rnix]
+
+- Introduce ``bda.plone.cart.interfaces.ICartItemStock``.
+  [rnix]
+
 - Allow the cart portlet in the left column too.
   [fRiSi]
 
@@ -16,3 +25,4 @@ Changelog
 ---
 
 - initial work
+  [rnix]
