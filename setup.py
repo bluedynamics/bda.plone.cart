@@ -42,6 +42,7 @@ setup(name='bda.plone.cart',
           'test': [
               'plone.app.testing',
               'bda.plone.cart',
+              'mock',
           ]
       },
       entry_points="""
