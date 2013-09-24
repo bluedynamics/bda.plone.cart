@@ -48,6 +48,9 @@ a.remove_from_cart_action {
     cursor:pointer;
     background:url('++resource++bda.plone.cart.images/delete.png') 50% 50% no-repeat;
 }
+.portletCart #cart .cart_item {
+    min-height:90px;
+}
 /* cart summary styles */
 .summary_item {
     padding-top:1.2em;
@@ -112,10 +115,9 @@ a.remove_from_cart_action {
     color:#75ad0a !important;
 }
 .portletCart .lastItem {
-  text-align: center;
+    text-align:center;
 }
-
 img.cart_item_preview_image {
-  float: right;
-  margin-top: 0.25em;
+    float:right;
+    margin-left:0.5em;
 }
