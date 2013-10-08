@@ -2,8 +2,8 @@
 Changelog
 =========
 
-0.2dev
-------
+0.2
+---
 
 - Introduce ``bda.plone.cart.interfaces.ICartItemState``.
   [rnix]
