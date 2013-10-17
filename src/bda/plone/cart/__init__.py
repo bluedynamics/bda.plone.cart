@@ -12,6 +12,7 @@ from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
 from zope.publisher.interfaces.browser import IBrowserRequest
 from Products.CMFCore.utils import getToolByName
+from bda.plone.shipping.interfaces import IItemDelivery
 from bda.plone.shipping import Shippings
 from .interfaces import (
     ICartItem,
@@ -406,6 +407,12 @@ def get_item_availability(context, request=None):
     if request is None:
         request = context.REQUEST
     return getMultiAdapter((context, request), ICartItemAvailability)
+
+
+def get_item_delivery(context):
+    """Return IItemDelivery implementation.
+    """
+    return IItemDelivery(context)
 
 
 def get_item_state(context, request=None):

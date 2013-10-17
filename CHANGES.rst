@@ -5,7 +5,9 @@ Changelog
 0.3dev
 ------
 
-- no changes yet
+- Add ``get_item_delivery`` helper function for looking up ``IItemDelivery``
+  adapter.
+  [rnix]
 
 
 0.2
