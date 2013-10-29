@@ -2,8 +2,8 @@
 Changelog
 =========
 
-0.3dev
-------
+0.3
+---
 
 - Add ``get_item_delivery`` helper function for looking up ``IItemDelivery``
   adapter.
