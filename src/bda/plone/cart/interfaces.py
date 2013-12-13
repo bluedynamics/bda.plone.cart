@@ -2,9 +2,10 @@ from zope.interface import (
     Interface,
     Attribute,
 )
+from bda.plone.shipping.interfaces import IShippingExtensionLayer
 
 
-class ICartExtensionLayer(Interface):
+class ICartExtensionLayer(IShippingExtensionLayer):
     """Browser layer for bda.plone.cart
     """
 
