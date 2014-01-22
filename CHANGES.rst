@@ -5,6 +5,9 @@ Changelog
 0.3
 ---
 
+- Fix BrowserLayer order precedence.
+  [thet]
+
 - Add ``get_item_delivery`` helper function for looking up ``IItemDelivery``
   adapter.
   [rnix]
