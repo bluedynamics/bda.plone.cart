@@ -8,10 +8,8 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.memoize import instance
-from .. import (
-    readcookie,
-    get_data_provider,
-)
+from .. import readcookie
+from .. import get_data_provider
 
 
 _ = MessageFactory('bda.plone.cart')

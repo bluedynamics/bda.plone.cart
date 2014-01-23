@@ -1,30 +1,20 @@
 import mock
 import unittest2 as unittest
-from bda.plone.cart.tests import (
-    Cart_INTEGRATION_TESTING,
-    set_browserlayer,
-)
-from bda.plone.cart import (
-    CartDataProviderBase,
-    CartItemStateBase,
-)
-from bda.plone.cart.interfaces import (
-    ICartDataProvider,
-    ICartItem,
-    ICartItemState,
-)
+from bda.plone.cart.tests import Cart_INTEGRATION_TESTING
+from bda.plone.cart.tests import set_browserlayer
+from bda.plone.cart import CartDataProviderBase
+from bda.plone.cart import CartItemStateBase
+from bda.plone.cart.interfaces import ICartDataProvider
+from bda.plone.cart.interfaces import ICartItem
+from bda.plone.cart.interfaces import ICartItemState
 from bda.plone.shipping.tests.test_shipping import MockShipping
-from plone.app.testing import (
-    login,
-    setRoles,
-    TEST_USER_ID,
-    TEST_USER_NAME,
-)
+from plone.app.testing import login
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
 from plone.uuid.interfaces import IUUID
-from zope.component import (
-    provideAdapter,
-    getMultiAdapter,
-)
+from zope.component import provideAdapter
+from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 
 

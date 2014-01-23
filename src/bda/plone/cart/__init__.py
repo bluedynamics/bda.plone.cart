@@ -1,28 +1,22 @@
 import urllib2
 from decimal import Decimal
-from zope.interface import (
-    implementer,
-    Interface,
-)
-from zope.component import (
-    adapter,
-    getMultiAdapter,
-)
+from zope.interface import implementer
+from zope.interface import Interface
+from zope.component import adapter
+from zope.component import getMultiAdapter
 from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
 from zope.publisher.interfaces.browser import IBrowserRequest
 from Products.CMFCore.utils import getToolByName
 from bda.plone.shipping.interfaces import IItemDelivery
 from bda.plone.shipping import Shippings
-from .interfaces import (
-    ICartItem,
-    ICartDataProvider,
-    ICartItemDataProvider,
-    ICartItemAvailability,
-    ICartItemPreviewImage,
-    ICartItemStock,
-    ICartItemState,
-)
+from .interfaces import ICartItem
+from .interfaces import ICartDataProvider
+from .interfaces import ICartItemDataProvider
+from .interfaces import ICartItemAvailability
+from .interfaces import ICartItemPreviewImage
+from .interfaces import ICartItemStock
+from .interfaces import ICartItemState
 
 
 _ = MessageFactory('bda.plone.cart')
