@@ -115,7 +115,7 @@ class ICartItemDataProvider(Interface):
     """
     net = Attribute(u"Item net price as float")
 
-    vat = Attribute(u"Item vat as float")
+    vat = Attribute(u"Item VAT in % as float value")
 
     display_gross = Attribute(u"Flag whether whether to display gross "
                               u"instead of net")
@@ -182,3 +182,28 @@ class ICartItemState(Interface):
     def alert(count):
         """Cart item alert message based on desired count.
         """
+
+
+class IDiscount(Interface):
+    """Interface for calculating discount.
+    """
+
+    net = Attribute(u"Net value after discount calculation")
+
+    vat = Attribute(u"VAT value after discount calculation")
+
+    gross = Attribute(u"Gross value after discount calculation")
+
+
+class ICartDiscount(IDiscount):
+    """Interface for calculating overall cart discount.
+
+    Supposed to be an adapter for ``ICartDataProvider`` implementations.
+    """
+
+
+class ICartItemDiscount(IDiscount):
+    """Interface for calculating discount for an item contained in cart.
+
+    Supposed to be an adapter for ``ICartItem`` implementations.
+    """

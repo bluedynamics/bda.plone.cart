@@ -5,6 +5,15 @@ Changelog
 0.3
 ---
 
+- Introduce ``bda.plone.cart.interfaces.IDiscount``.
+  [rnix]
+
+- Introduce ``bda.plone.cart.interfaces.ICartDiscount``.
+  [rnix]
+
+- Introduce ``bda.plone.cart.interfaces.ICartItemDiscount``.
+  [rnix]
+
 - Fix BrowserLayer order precedence.
   [thet]
 
