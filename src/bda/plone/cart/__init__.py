@@ -3,6 +3,7 @@ from decimal import Decimal
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.component import adapter
+from zope.component import queryAdapter
 from zope.component import getMultiAdapter
 from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
@@ -10,13 +11,14 @@ from zope.publisher.interfaces.browser import IBrowserRequest
 from Products.CMFCore.utils import getToolByName
 from bda.plone.shipping.interfaces import IItemDelivery
 from bda.plone.shipping import Shippings
-from .interfaces import ICartItem
-from .interfaces import ICartDataProvider
-from .interfaces import ICartItemDataProvider
-from .interfaces import ICartItemAvailability
-from .interfaces import ICartItemPreviewImage
-from .interfaces import ICartItemStock
-from .interfaces import ICartItemState
+from bda.plone.cart.interfaces import ICartItem
+from bda.plone.cart.interfaces import ICartDataProvider
+from bda.plone.cart.interfaces import ICartItemDataProvider
+from bda.plone.cart.interfaces import ICartItemDiscount
+from bda.plone.cart.interfaces import ICartItemAvailability
+from bda.plone.cart.interfaces import ICartItemPreviewImage
+from bda.plone.cart.interfaces import ICartItemStock
+from bda.plone.cart.interfaces import ICartItemState
 
 
 _ = MessageFactory('bda.plone.cart')
@@ -211,6 +213,24 @@ class CartDataProviderBase(object):
                 ret['cart_summary']['cart_total'] = ascur(net + vat)
             ret['cart_summary']['cart_total_raw'] = net + vat
         return ret
+
+
+@implementer(ICartItemDataProvider)
+class CartItemDataProviderBase(object):
+
+    def __init__(self, context):
+        self.context = context
+
+    @property
+    def discount_enabled(self):
+        # XXX: flag on cart item
+        return True
+
+    @property
+    def discount_net(self):
+        if self.discount_enabled:
+            discount = queryAdapter(self.context, ICartItemDiscount)
+            return discount and discount.reduced_net(self.net, self.vat)
 
 
 AVAILABILITY_CRITICAL_LIMIT = 5.0

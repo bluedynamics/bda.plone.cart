@@ -113,9 +113,15 @@ class ICartDataProvider(Interface):
 class ICartItemDataProvider(Interface):
     """Provide information relevant for being cart item.
     """
-    net = Attribute(u"Item net price as float")
+    net = Attribute(u"Item base net price as float")
 
     vat = Attribute(u"Item VAT in % as float value")
+
+    discount_enabled = Attribute(u"Flag whether discount is enabled for this "
+                                 u"cart item")
+
+    discount_net = Attribute(u"Item net price as float after discount has "
+                             u"been decremented")
 
     display_gross = Attribute(u"Flag whether whether to display gross "
                               u"instead of net")
@@ -188,22 +194,18 @@ class IDiscount(Interface):
     """Interface for calculating discount.
     """
 
-    net = Attribute(u"Net value after discount calculation")
+    def reduced_net(net, vat):
+        """Calculate reduced net price.
 
-    vat = Attribute(u"VAT value after discount calculation")
-
-    gross = Attribute(u"Gross value after discount calculation")
+        Vat is given because discount might be calculated from gross.
+        """
 
 
 class ICartDiscount(IDiscount):
     """Interface for calculating overall cart discount.
-
-    Supposed to be an adapter for ``ICartDataProvider`` implementations.
     """
 
 
 class ICartItemDiscount(IDiscount):
     """Interface for calculating discount for an item contained in cart.
-
-    Supposed to be an adapter for ``ICartItem`` implementations.
     """

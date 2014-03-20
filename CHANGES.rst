@@ -2,8 +2,15 @@
 Changelog
 =========
 
-0.3
----
+0.4dev
+------
+
+- Add ``bda.plone.cart.CartItemDataProviderBase`` class.
+  [rnix]
+
+- Extend ``bda.plone.cart.interfaces.ICartItemDataProvider`` by
+  ``discount_enabled`` and ``discount_net`` properties.
+  [rnix]
 
 - Introduce ``bda.plone.cart.interfaces.IDiscount``.
   [rnix]
@@ -16,6 +23,10 @@ Changelog
 
 - Fix BrowserLayer order precedence.
   [thet]
+
+
+0.3
+---
 
 - Add ``get_item_delivery`` helper function for looking up ``IItemDelivery``
   adapter.
