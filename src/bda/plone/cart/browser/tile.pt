@@ -71,6 +71,25 @@
           <td tal:content="currency" tal:condition="currency">EUR</td>
         </tr>
       </tal:details>
+      <tal:discount_details condition="not:view/summary_total_only">
+        <tr class="discount_details">
+          <td i18n:translate="discount_net">Discount Net:</td>
+          <td class="discount_net">0.00</td>
+          <td tal:content="currency" tal:condition="currency">EUR</td>
+        </tr>
+        <tr class="discount_details">
+          <td i18n:translate="discount_vat">Discount VAT.:</td>
+          <td class="discount_vat">0.00</td>
+          <td tal:content="currency" tal:condition="currency">EUR</td>
+        </tr>
+      </tal:discount_details>
+      <tr class="summary_discount">
+        <td><strong i18n:translate="discount_total">Discount Total:</strong></td>
+        <td><strong class="discount_total">Total</strong></td>
+        <td tal:condition="currency">
+          <strong tal:content="currency">EUR</strong>
+        </td>
+      </tr>
       <tal:shipping condition="view/include_shipping_costs">
         <tr>
           <td i18n:translate="summary_shipping">Shipping:</td>

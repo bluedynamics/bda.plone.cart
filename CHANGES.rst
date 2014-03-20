@@ -12,9 +12,6 @@ Changelog
   ``discount_enabled`` and ``discount_net`` properties.
   [rnix]
 
-- Introduce ``bda.plone.cart.interfaces.IDiscount``.
-  [rnix]
-
 - Introduce ``bda.plone.cart.interfaces.ICartDiscount``.
   [rnix]
 

@@ -81,6 +81,14 @@ class ICartDataProvider(Interface):
         :param type: list of 3-tuples containing ``(uid, count, comment)``
         """
 
+    def discount(items):
+        """Return discount for cart as dict containing keys ``net``
+        and ``vat``.
+
+        :param items: items in the cart
+        :param type: list of 3-tuples containing ``(uid, count, comment)``
+        """
+
     def cart_items(items):
         """Return list of dicts with format returned by ``self.item``.
 
@@ -190,22 +198,34 @@ class ICartItemState(Interface):
         """
 
 
-class IDiscount(Interface):
-    """Interface for calculating discount.
-    """
-
-    def reduced_net(net, vat):
-        """Calculate reduced net price.
-
-        Vat is given because discount might be calculated from gross.
-        """
-
-
-class ICartDiscount(IDiscount):
+class ICartDiscount(Interface):
     """Interface for calculating overall cart discount.
     """
 
+    def net(items):
+        """Cart discount net.
 
-class ICartItemDiscount(IDiscount):
+        :param items: items in the cart
+        :param type: list of 3-tuples containing ``(uid, count, comment)``
+        """
+
+    def vat(items):
+        """Cart discount vat.
+
+        :param items: items in the cart
+        :param type: list of 3-tuples containing ``(uid, count, comment)``
+        """
+
+
+class ICartItemDiscount(Interface):
     """Interface for calculating discount for an item contained in cart.
     """
+
+    def net(net, vat):
+        """Item discount net.
+
+        :param net: net price to calculate discount from
+        :param type: float
+        :param vat: vat percent
+        :param type: float
+        """

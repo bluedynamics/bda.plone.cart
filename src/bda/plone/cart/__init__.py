@@ -14,11 +14,12 @@ from bda.plone.shipping import Shippings
 from bda.plone.cart.interfaces import ICartItem
 from bda.plone.cart.interfaces import ICartDataProvider
 from bda.plone.cart.interfaces import ICartItemDataProvider
-from bda.plone.cart.interfaces import ICartItemDiscount
 from bda.plone.cart.interfaces import ICartItemAvailability
 from bda.plone.cart.interfaces import ICartItemPreviewImage
 from bda.plone.cart.interfaces import ICartItemStock
 from bda.plone.cart.interfaces import ICartItemState
+from bda.plone.cart.interfaces import ICartDiscount
+from bda.plone.cart.interfaces import ICartItemDiscount
 
 
 _ = MessageFactory('bda.plone.cart')
@@ -169,6 +170,17 @@ class CartDataProviderBase(object):
         shipping = shippings.get(self.shipping_method)
         return shipping.calculate(items)
 
+    def discount(self, items):
+        net = vat = 0
+        discount = queryAdapter(self.context, ICartDiscount)
+        if discount:
+            net = Decimal(discount.net(items))
+            vat = Decimal(discount.vat(items))
+        return {
+            'net': Decimal(net),
+            'vat': Decimal(vat),
+        }
+
     def item(self, uid, title, count, price, url, comment='', description='',
              comment_required=False, quantity_unit_float=False,
              quantity_unit='', preview_image_url='',
@@ -193,25 +205,31 @@ class CartDataProviderBase(object):
 
     @property
     def data(self):
-        ret = {
-            'cart_items': list(),
-            'cart_summary': dict(),
-        }
+        ret = dict()
+        ret['cart_items'] = list()
+        ret['cart_summary'] = dict()
         items = extractitems(self.request.form.get('items'))
         if items:
             net = self.net(items)
             vat = self.vat(items)
-            cart_items = self.cart_items(items)
-            ret['cart_items'] = cart_items
+            ret['cart_items'] = self.cart_items(items)
             ret['cart_summary']['cart_net'] = ascur(net)
             ret['cart_summary']['cart_vat'] = ascur(vat)
+            cart_discount = self.discount(items)
+            discount_net = cart_discount['net']
+            discount_vat = cart_discount['vat']
+            discount_total = discount_net + discount_vat
+            ret['cart_summary']['discount_net'] = '-' + ascur(discount_net)
+            ret['cart_summary']['discount_vat'] = '-' + ascur(discount_vat)
+            ret['cart_summary']['discount_total'] = '-' + ascur(discount_total)
+            ret['cart_summary']['discount_total_raw'] = discount_total
+            total = net + vat - discount_total
             if self.include_shipping_costs:
                 shipping = self.shipping(items)
+                total += shipping
                 ret['cart_summary']['cart_shipping'] = ascur(shipping)
-                ret['cart_summary']['cart_total'] = ascur(net + vat + shipping)
-            else:
-                ret['cart_summary']['cart_total'] = ascur(net + vat)
-            ret['cart_summary']['cart_total_raw'] = net + vat
+            ret['cart_summary']['cart_total'] = ascur(total)
+            ret['cart_summary']['cart_total_raw'] = total
         return ret
 
 
@@ -230,7 +248,9 @@ class CartItemDataProviderBase(object):
     def discount_net(self):
         if self.discount_enabled:
             discount = queryAdapter(self.context, ICartItemDiscount)
-            return discount and discount.reduced_net(self.net, self.vat)
+            if discount:
+                return discount.net(self.net, self.vat)
+        return 0.0
 
 
 AVAILABILITY_CRITICAL_LIMIT = 5.0
