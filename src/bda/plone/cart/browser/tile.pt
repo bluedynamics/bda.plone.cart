@@ -71,7 +71,7 @@
           <td tal:content="currency" tal:condition="currency">EUR</td>
         </tr>
       </tal:details>
-      <tal:discount_details condition="not:view/summary_total_only">
+      <tal:discount_details condition="nothing">
         <tr class="discount_details">
           <td i18n:translate="discount_net">Discount Net:</td>
           <td class="discount_net">0.00</td>
@@ -83,7 +83,7 @@
           <td tal:content="currency" tal:condition="currency">EUR</td>
         </tr>
       </tal:discount_details>
-      <tr class="summary_discount">
+      <tr class="summary_discount" tal:condition="nothing">
         <td><strong i18n:translate="discount_total">Discount Total:</strong></td>
         <td><strong class="discount_total">Total</strong></td>
         <td tal:condition="currency">

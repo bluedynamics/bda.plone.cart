@@ -246,6 +246,7 @@ class CartItemDataProviderBase(object):
 
     @property
     def discount_net(self):
+        # XXX: make function ant take item count as argument
         if self.discount_enabled:
             discount = queryAdapter(self.context, ICartItemDiscount)
             if discount:
