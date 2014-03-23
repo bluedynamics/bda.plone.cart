@@ -9,7 +9,7 @@ Changelog
   [rnix]
 
 - Extend ``bda.plone.cart.interfaces.ICartItemDataProvider`` by
-  ``discount_enabled`` and ``discount_net`` properties.
+  ``discount_enabled`` and ``discount_net``.
   [rnix]
 
 - Introduce ``bda.plone.cart.interfaces.ICartDiscount``.

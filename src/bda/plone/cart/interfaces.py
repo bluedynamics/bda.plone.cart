@@ -125,12 +125,6 @@ class ICartItemDataProvider(Interface):
 
     vat = Attribute(u"Item VAT in % as float value")
 
-    discount_enabled = Attribute(u"Flag whether discount is enabled for this "
-                                 u"cart item")
-
-    discount_net = Attribute(u"Item net price as float after discount has "
-                             u"been decremented")
-
     display_gross = Attribute(u"Flag whether whether to display gross "
                               u"instead of net")
 
@@ -144,6 +138,16 @@ class ICartItemDataProvider(Interface):
                                     u"allowed as float")
 
     quantity_unit = Attribute(u"Quantity unit")
+
+    discount_enabled = Attribute(u"Flag whether discount is enabled for this "
+                                 u"cart item")
+
+    def discount_net(count):
+        """Item discount. Returns calculated discount as Decimal.
+
+        :param count: cart item count
+        :param type: Decimal
+        """
 
 
 class ICartItemStock(Interface):
@@ -203,14 +207,14 @@ class ICartDiscount(Interface):
     """
 
     def net(items):
-        """Cart discount net.
+        """Cart discount net as Decimal.
 
         :param items: items in the cart
         :param type: list of 3-tuples containing ``(uid, count, comment)``
         """
 
     def vat(items):
-        """Cart discount vat.
+        """Cart discount vat as Decimal.
 
         :param items: items in the cart
         :param type: list of 3-tuples containing ``(uid, count, comment)``
@@ -221,11 +225,13 @@ class ICartItemDiscount(Interface):
     """Interface for calculating discount for an item contained in cart.
     """
 
-    def net(net, vat):
-        """Item discount net.
+    def net(net, vat, count):
+        """Item discount net as Decimal.
 
         :param net: net price to calculate discount from
         :param type: float
         :param vat: vat percent
         :param type: float
+        :param count: cart item count
+        :param type: Decimal
         """

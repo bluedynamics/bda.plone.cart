@@ -171,14 +171,14 @@ class CartDataProviderBase(object):
         return shipping.calculate(items)
 
     def discount(self, items):
-        net = vat = 0
+        net = vat = Decimal(0)
         discount = queryAdapter(self.context, ICartDiscount)
         if discount:
-            net = Decimal(discount.net(items))
-            vat = Decimal(discount.vat(items))
+            net = discount.net(items)
+            vat = discount.vat(items)
         return {
-            'net': Decimal(net),
-            'vat': Decimal(vat),
+            'net': net,
+            'vat': vat,
         }
 
     def item(self, uid, title, count, price, url, comment='', description='',
@@ -244,14 +244,12 @@ class CartItemDataProviderBase(object):
         # XXX: flag on cart item
         return True
 
-    @property
-    def discount_net(self):
-        # XXX: make function ant take item count as argument
+    def discount_net(self, count):
         if self.discount_enabled:
             discount = queryAdapter(self.context, ICartItemDiscount)
             if discount:
-                return discount.net(self.net, self.vat)
-        return 0.0
+                return discount.net(self.net, self.vat, count)
+        return Decimal(0)
 
 
 AVAILABILITY_CRITICAL_LIMIT = 5.0
