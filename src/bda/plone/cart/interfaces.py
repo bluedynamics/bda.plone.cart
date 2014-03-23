@@ -143,7 +143,7 @@ class ICartItemDataProvider(Interface):
                                  u"cart item")
 
     def discount_net(count):
-        """Item discount. Returns calculated discount as Decimal.
+        """Item discount. Returns calculated discount for one item as Decimal.
 
         :param count: cart item count
         :param type: Decimal
@@ -226,7 +226,7 @@ class ICartItemDiscount(Interface):
     """
 
     def net(net, vat, count):
-        """Item discount net as Decimal.
+        """Item discount net for one item as Decimal.
 
         :param net: net price to calculate discount from
         :param type: float
