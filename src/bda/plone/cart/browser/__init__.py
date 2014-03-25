@@ -27,6 +27,7 @@ CURRENCY_LITERALS = {
     'SEK': u"Kr.",
     'DKK': u"K.",
     'YEN': u"¥",
+    'NZD': u"$",
 }
 
 
