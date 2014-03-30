@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bda cart no translation\n"
-"POT-Creation-Date: 2014-03-30 11:54+0000\n"
+"POT-Creation-Date: 2014-03-30 12:35+0000\n"
 "PO-Revision-Date: 2013-06-10 11:25+0100\n"
 "Last-Translator: Espen Moe-Nilssen <espen@medialog.no>\n"
 "Language-Team: LANGUAGE <espen@medialog.no>\n"
