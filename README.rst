@@ -26,6 +26,8 @@ several contracts defined in:
 - ``bda.plone.cart.interfaces.ICartItemPreviewImage``
 - ``bda.plone.cart.interfaces.ICartItemAvailability``
 - ``bda.plone.cart.interfaces.ICartItemState``
+- ``bda.plone.cart.interfaces.ICartDiscount``
+- ``bda.plone.cart.interfaces.ICartItemDiscount``
 
 Please take a look at the corresponding interfaces for contract details.
 Further some abstract base implementations are available in

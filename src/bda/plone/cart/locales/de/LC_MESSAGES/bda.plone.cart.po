@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bda.plone.cart\n"
-"POT-Creation-Date: 2013-07-22 15:10+0000\n"
+"POT-Creation-Date: 2014-03-30 11:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Peter Holzer <hpeter@agitator.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,20 +15,20 @@ msgstr ""
 "Domain: bda.plone.cart\n"
 "X-Is-Fallback-For: de-at de-li de-lu de-ch de-de\n"
 
-#: ./browser/__init__.py:139
+#: ./browser/__init__.py:138
 msgid "Add Cart Portlet"
 msgstr "Warenkorb Portlet hinzufügen"
 
-#: ./browser/__init__.py:140
+#: ./browser/__init__.py:139
 msgid "This portlet displays the shopping cart."
 msgstr "Dieses Portlet zeigt den Warenkorb"
 
-#: ./browser/summary.pt:95
+#: ./browser/summary.pt:112
 msgid "back"
 msgstr "zurück"
 
 #. Default: "Cart"
-#: ./browser/__init__.py:100
+#: ./browser/__init__.py:99
 #: ./browser/portlet.pt:8
 #: ./browser/view.pt:18
 msgid "cart"
@@ -40,59 +40,77 @@ msgid "cart_summary"
 msgstr "Warenkorb"
 
 #: ./browser/portlet.pt:20
-#: ./browser/summary.pt:97
+#: ./browser/summary.pt:114
 msgid "checkout"
 msgstr "zur Kasse"
 
 #. Default: "Comment"
-#: ./browser/tile.pt:43
+#: ./browser/tile.pt:42
 msgid "comment"
 msgstr "Zusatz"
 
+#. Default: "Discount Net:"
+#: ./browser/summary.pt:76
+#: ./browser/tile.pt:74
+msgid "discount_net"
+msgstr "Rabatt Netto:"
+
+#. Default: "Discount Total:"
+#: ./browser/summary.pt:87
+#: ./browser/tile.pt:85
+msgid "discount_total"
+msgstr "Rabatt Gesamt:"
+
+#. Default: "Discount VAT.:"
+#: ./browser/summary.pt:81
+#: ./browser/tile.pt:79
+msgid "discount_vat"
+msgstr "Rabatt USt."
+
 #. Default: "Cart is empty"
 #: ./browser/summary.pt:58
-#: ./browser/tile.pt:56
+#: ./browser/tile.pt:55
 msgid "empty_cart"
 msgstr "Warenkorb ist leer"
 
 #. Default: "Price"
 #: ./browser/summary.pt:46
-#: ./browser/tile.pt:47
+#: ./browser/tile.pt:46
 msgid "price"
 msgstr "Preis:"
 
 #. Default: "Remove from cart"
 #: ./browser/summary.pt:39
-#: ./browser/tile.pt:36
+#: ./browser/tile.pt:35
 msgid "remove_from_cart"
 msgstr "aus Warenkorb entfernen"
 
 #. Default: "Net:"
 #: ./browser/summary.pt:66
-#: ./browser/tile.pt:65
+#: ./browser/tile.pt:64
 msgid "summary_net"
 msgstr "Netto:"
 
 #. Default: "Shipping:"
-#: ./browser/summary.pt:78
-#: ./browser/tile.pt:77
+#: ./browser/summary.pt:95
+#: ./browser/tile.pt:93
 msgid "summary_shipping"
 msgstr "Versandkosten:"
 
 #. Default: "Total:"
-#: ./browser/summary.pt:84
-#: ./browser/tile.pt:83
+#: ./browser/summary.pt:101
+#: ./browser/tile.pt:99
 msgid "summary_total"
 msgstr "Gesamt:"
 
 #. Default: "VAT.:"
 #: ./browser/summary.pt:71
-#: ./browser/tile.pt:70
+#: ./browser/tile.pt:69
 msgid "summary_vat"
 msgstr "USt.:"
 
 #. Default: "Not enough items available, abort."
-#: ./__init__.py:165
+#: ./__init__.py:163
 msgid "trying_to_add_more_items_than_available"
 msgstr "Verfügbarkeit zu gering, abbruch"
 
