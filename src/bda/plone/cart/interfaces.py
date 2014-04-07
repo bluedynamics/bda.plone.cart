@@ -154,6 +154,8 @@ class ICartItemStock(Interface):
     """Access and modify stock information for buyable items.
     """
 
+    display = Attribute(u"Flag whether whether to display availability")
+
     available = Attribute(u"Number of item available in stock. ``None`` "
                           u"means unlimited")
 

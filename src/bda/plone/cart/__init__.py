@@ -270,6 +270,10 @@ class CartItemAvailabilityBase(object):
         return get_item_stock(self.context)
 
     @property
+    def display(self):
+        return self.stock.display
+
+    @property
     def available(self):
         available = self.stock.available
         # reduce available count if item already in cart

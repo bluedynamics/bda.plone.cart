@@ -5,6 +5,10 @@ Changelog
 0.4dev
 ------
 
+- Add ``display`` property to ``bda.plone.cart.interfaces.ICartItemStock`` and
+  and expose it via ``bda.plone.cart.CartItemAvailabilityBase``
+  [rnix]
+
 - Add ``bda.plone.cart.CartItemDataProviderBase`` class.
   [rnix]
 
