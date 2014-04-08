@@ -5,6 +5,11 @@ Changelog
 0.4dev
 ------
 
+- Add ``hide_cart_if_empty`` property to
+  ``bda.plone.cart.interfaces.ICartDataProvider``, integrate in
+  ``bda.plone.cart.CartDataProviderBase`` and consider in Cart JS.
+  [rnix]
+
 - Add ``display`` property to ``bda.plone.cart.interfaces.ICartItemStock`` and
   and expose it via ``bda.plone.cart.CartItemAvailabilityBase``
   [rnix]

@@ -94,6 +94,11 @@ class CartDataProviderBase(object):
         self.request = request
 
     @property
+    def hide_cart_if_empty(self):
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``hide_cart_if_empty``.")
+
+    @property
     def disable_max_article(self):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``disable_max_article``.")
@@ -206,6 +211,10 @@ class CartDataProviderBase(object):
     @property
     def data(self):
         ret = dict()
+        ret['cart_settings'] = dict()
+        ret['cart_settings']['hide_cart_if_empty'] = self.hide_cart_if_empty
+        # XXX
+        #ret['cart_settings']['overall_cart_article_count'] = 5
         ret['cart_items'] = list()
         ret['cart_summary'] = dict()
         items = extractitems(self.request.form.get('items'))

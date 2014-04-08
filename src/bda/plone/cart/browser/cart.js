@@ -26,7 +26,6 @@
     });
 
     CART_EXECUTION_CONTEXT = null;
-    CART_HIDE_PORTLET_IF_EMPTY = false;
     CART_PORTLET_IDENTIFYER = '#portlet-cart';
     CART_MAX_ARTICLE_COUNT = 5;
 
@@ -126,7 +125,7 @@
 
     Cart.prototype.render = function(data) {
         if (data['cart_items'].length == 0) {
-            if (!CART_HIDE_PORTLET_IF_EMPTY) {
+            if (!data['cart_settings']['hide_cart_if_empty']) {
                 $(CART_PORTLET_IDENTIFYER).css('display', 'block');
             } else {
                 $(CART_PORTLET_IDENTIFYER).css('display', 'none');

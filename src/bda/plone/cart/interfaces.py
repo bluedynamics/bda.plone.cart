@@ -19,6 +19,8 @@ class ICartDataProvider(Interface):
 
     currency = Attribute(u"Currency")
 
+    hide_cart_if_empty = Attribute(u"Flag whether to hide cart if empty.")
+
     disable_max_article = Attribute(u"Flag whether to disable max article "
                                     u"limit.")
 
