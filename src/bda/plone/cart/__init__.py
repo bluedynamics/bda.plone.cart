@@ -167,6 +167,13 @@ class CartDataProviderBase(object):
         return {'success': True, 'error': ''}
 
     def validate_count(self, uid, count):
+        """Validate setting cart item count for uid.
+
+        uid - Is the cart item UID.
+        count - If count is 0, it means that a cart item is going to be
+        deleted, which is always allowed. If count is > 0, it's the aggregated
+        item count in cart.
+        """
         cart_item = get_object_by_uid(self.context, uid)
         item_data = get_item_data_provider(cart_item)
         cart_count_limit = item_data.cart_count_limit

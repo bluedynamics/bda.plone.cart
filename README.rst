@@ -91,15 +91,11 @@ add or update a cart item::
 Javascript
 ==========
 
-The cart can be customizes on client side.
+The cart can be customized on client side.
 
 Flag whether to hide cart container if cart is empty::
 
     CART_HIDE_CONTAINER_IF_EMPTY = [true|false];
-
-Maximum number of allowed articles in order::
-
-    CART_MAX_ARTICLE_COUNT = 20;
 
 Client side dialog messages::
 
