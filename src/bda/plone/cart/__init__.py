@@ -161,16 +161,16 @@ class CartDataProviderBase(object):
 
     def validate_set(self, uid):
         """By default, all items generally may be set.
+
+        XXX: check buy item permission
         """
         return {'success': True, 'error': ''}
 
     def validate_count(self, uid, count):
         cart_item = get_object_by_uid(self.context, uid)
         item_data = get_item_data_provider(cart_item)
-        items = extractitems(readcookie(self.request))
-        cart_count = float(aggregate_cart_item_count(uid, items))
-        if item_data.cart_count_limit \
-                and cart_count > item_data.cart_count_limit:
+        cart_count_limit = item_data.cart_count_limit
+        if cart_count_limit and float(count) > cart_count_limit:
             message = translate(
                 _('article_limit_reached',
                   default="Article limit reached"),
