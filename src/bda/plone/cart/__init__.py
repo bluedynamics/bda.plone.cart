@@ -85,6 +85,10 @@ def aggregate_cart_item_count(target_uid, items):
     return aggregated_count
 
 
+# XXX: from config
+CART_MAX_ARTICLE_COUNT = 5
+
+
 @implementer(ICartDataProvider)
 @adapter(Interface, IBrowserRequest)
 class CartDataProviderBase(object):
@@ -213,8 +217,11 @@ class CartDataProviderBase(object):
         ret = dict()
         ret['cart_settings'] = dict()
         ret['cart_settings']['hide_cart_if_empty'] = self.hide_cart_if_empty
-        # XXX
-        #ret['cart_settings']['overall_cart_article_count'] = 5
+        if self.disable_max_article:
+            ret['cart_settings']['cart_max_article_count'] = 10000
+        else:
+            ret['cart_settings']['cart_max_article_count'] = \
+                CART_MAX_ARTICLE_COUNT
         ret['cart_items'] = list()
         ret['cart_summary'] = dict()
         items = extractitems(self.request.form.get('items'))

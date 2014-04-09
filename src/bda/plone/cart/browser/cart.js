@@ -3,9 +3,6 @@
 (function($) {
 
     $(document).ready(function() {
-        if ($('.disable_max_article').length) {
-            CART_MAX_ARTICLE_COUNT = 100000;
-        }
         var execution_context = $('.cart_execution_context');
         if (execution_context.length) {
             CART_EXECUTION_CONTEXT = execution_context.text();
@@ -27,11 +24,12 @@
 
     CART_EXECUTION_CONTEXT = null;
     CART_PORTLET_IDENTIFYER = '#portlet-cart';
-    CART_MAX_ARTICLE_COUNT = 5;
 
     function Cart() {
         // flag whether cart contains items which are no longer available
         this.no_longer_available = false;
+        // initially nothing addable, real value gets delivered via cart data
+        this.cart_max_article_count = 0;
     }
 
     Cart.prototype.messages = {
@@ -124,6 +122,8 @@
     }
 
     Cart.prototype.render = function(data) {
+        this.cart_max_article_count =
+            data['cart_settings']['cart_max_article_count'];
         if (data['cart_items'].length == 0) {
             if (!data['cart_settings']['hide_cart_if_empty']) {
                 $(CART_PORTLET_IDENTIFYER).css('display', 'block');
@@ -437,7 +437,7 @@
             count += items[item];
         }
         count += new Number(addcount);
-        if (count > CART_MAX_ARTICLE_COUNT) {
+        if (count > this.cart_max_article_count + 1) {
             var msg;
             msg = cart.messages['total_limit_reached'];
             bdajax.info(unescape(msg));
@@ -460,7 +460,7 @@
             count += items[item];
         }
         count += new Number(setcount);
-        if (count > CART_MAX_ARTICLE_COUNT) {
+        if (count > this.cart_max_article_count + 1) {
             var msg;
             msg = cart.messages['total_limit_reached'];
             bdajax.info(unescape(msg));

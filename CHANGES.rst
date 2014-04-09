@@ -5,6 +5,9 @@ Changelog
 0.4dev
 ------
 
+- Fix and refactor max article count for cart.
+  [rnix]
+
 - Add ``hide_cart_if_empty`` property to
   ``bda.plone.cart.interfaces.ICartDataProvider``, integrate in
   ``bda.plone.cart.CartDataProviderBase`` and consider in Cart JS.
