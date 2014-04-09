@@ -33,13 +33,11 @@
     }
 
     Cart.prototype.messages = {
-        article_limit_reached: "Die gewünschte Bestellmenge übersteigt die " +
-            "maximale Bestellmenge für diesen Artikel.",
         total_limit_reached: "Die gewünschte Bestellmenge übersteigt die " +
             "maximale Gesamtbestellmenge.",
         not_a_number: "Die Eingabe ist keine Zahl",
         max_unique_articles_reached: "Die maximale Anzahl von verschiedenen " +
-            "Artikeln wurde erreicht. Es ist nicht möglicg, weiter Artikel " +
+            "Artikeln wurde erreicht. Es ist nicht möglich, weiter Artikel " +
             "in den Warenkorb zu legen. Bitte schließen Sie die aktuelle " +
             "Bestellung ab.",
         invalid_comment_character: "Ungültiges Zeichen in Kommentar",
@@ -276,13 +274,7 @@
                     type: 'json',
                     success: function(data) {
                         if (data.success == false) {
-                            var msg;
-                            if (data.error) {
-                                msg = data.error;
-                            } else {
-                                msg = cart.messages['article_limit_reached'];
-                            }
-                            bdajax.info(unescape(msg));
+                            bdajax.info(unescape(data.error));
                         } else {
                             cart.add(defs[0], defs[1], defs[2]);
                             var evt = $.Event('cart_modified');
@@ -335,13 +327,7 @@
                     type: 'json',
                     success: function(data) {
                         if (data.success == false) {
-                            var msg;
-                            if (data.error) {
-                                msg = data.error;
-                            } else {
-                                msg = cart.messages['article_limit_reached'];
-                            }
-                            bdajax.info(unescape(msg));
+                            bdajax.info(unescape(data.error));
                         } else {
                             cart.set(defs[0], defs[1], defs[2]);
                             var evt = $.Event('cart_modified');

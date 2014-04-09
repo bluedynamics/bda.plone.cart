@@ -127,6 +127,8 @@ class ICartItemDataProvider(Interface):
 
     vat = Attribute(u"Item VAT in % as float value")
 
+    cart_count_limit = Attribute(u"Max count of this item in cart")
+
     display_gross = Attribute(u"Flag whether whether to display gross "
                               u"instead of net")
 

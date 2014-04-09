@@ -166,6 +166,16 @@ class CartDataProviderBase(object):
 
     def validate_count(self, uid, count):
         cart_item = get_object_by_uid(self.context, uid)
+        item_data = get_item_data_provider(cart_item)
+        items = extractitems(readcookie(self.request))
+        cart_count = float(aggregate_cart_item_count(uid, items))
+        if item_data.cart_count_limit \
+                and cart_count > item_data.cart_count_limit:
+            message = translate(
+                _('article_limit_reached',
+                  default="Article limit reached"),
+                context=self.request)
+            return {'success': False, 'error': message}
         item_state = get_item_state(cart_item, self.request)
         if item_state.validate_count(count):
             return {'success': True, 'error': ''}
@@ -254,6 +264,46 @@ class CartItemDataProviderBase(object):
 
     def __init__(self, context):
         self.context = context
+
+    @property
+    def net(self):
+        raise NotImplementedError(u"CartItemDataProviderBase does not "
+                                  u"implement ``net``.")
+
+    @property
+    def vat(self):
+        raise NotImplementedError(u"CartItemDataProviderBase does not "
+                                  u"implement ``vat``.")
+
+    @property
+    def cart_count_limit(self):
+        raise NotImplementedError(u"CartItemDataProviderBase does not "
+                                  u"implement ``cart_count_limit``.")
+
+    @property
+    def display_gross(self):
+        raise NotImplementedError(u"CartItemDataProviderBase does not "
+                                  u"implement ``display_gross``.")
+
+    @property
+    def comment_enabled(self):
+        raise NotImplementedError(u"CartItemDataProviderBase does not "
+                                  u"implement ``comment_enabled``.")
+
+    @property
+    def comment_required(self):
+        raise NotImplementedError(u"CartItemDataProviderBase does not "
+                                  u"implement ``comment_required``.")
+
+    @property
+    def quantity_unit_float(self):
+        raise NotImplementedError(u"CartItemDataProviderBase does not "
+                                  u"implement ``quantity_unit_float``.")
+
+    @property
+    def quantity_unit(self):
+        raise NotImplementedError(u"CartItemDataProviderBase does not "
+                                  u"implement ``quantity_unit``.")
 
     @property
     def discount_enabled(self):

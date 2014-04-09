@@ -5,6 +5,13 @@ Changelog
 0.4dev
 ------
 
+- Hanlde ``article_limit_reached`` message on server side.
+  [rnix]
+
+- Extend ``bda.plone.cart.interfaces.ICartItemDataProvider`` by
+  ``cart_count_limit``.
+  [rnix]
+
 - Fix and refactor max article count for cart.
   [rnix]
 

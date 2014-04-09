@@ -103,7 +103,6 @@ Maximum number of allowed articles in order::
 
 Client side dialog messages::
 
-    cart.messages['article_limit_reached'] = "Article limit reached";
     cart.messages['total_limit_reached'] = "Total limit reached";
     cart.messages['not_a_number'] = "Input not a number";
     cart.messages['max_unique_articles_reached'] = "Unique article limit reached";

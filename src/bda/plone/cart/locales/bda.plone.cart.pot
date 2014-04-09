@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-03-30 12:35+0000\n"
+"POT-Creation-Date: 2014-04-09 18:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,12 @@ msgstr ""
 msgid "This portlet displays the shopping cart."
 msgstr ""
 
-#: ./browser/summary.pt:112
+#. Default: "Article limit reached"
+#: ./__init__.py:175
+msgid "article_limit_reached"
+msgstr ""
+
+#: ./browser/summary.pt:108
 msgid "back"
 msgstr ""
 
@@ -39,83 +44,83 @@ msgid "cart_summary"
 msgstr ""
 
 #: ./browser/portlet.pt:20
-#: ./browser/summary.pt:114
+#: ./browser/summary.pt:110
 msgid "checkout"
 msgstr ""
 
 #. Default: "Comment"
-#: ./browser/tile.pt:42
+#: ./browser/tile.pt:38
 msgid "comment"
 msgstr ""
 
 #. Default: "Discount Net:"
-#: ./browser/summary.pt:76
-#: ./browser/tile.pt:74
+#: ./browser/summary.pt:72
+#: ./browser/tile.pt:70
 msgid "discount_net"
 msgstr ""
 
 #. Default: "Discount Total:"
-#: ./browser/summary.pt:87
-#: ./browser/tile.pt:85
+#: ./browser/summary.pt:83
+#: ./browser/tile.pt:81
 msgid "discount_total"
 msgstr ""
 
 #. Default: "Discount VAT.:"
-#: ./browser/summary.pt:81
-#: ./browser/tile.pt:79
+#: ./browser/summary.pt:77
+#: ./browser/tile.pt:75
 msgid "discount_vat"
 msgstr ""
 
 #. Default: "Cart is empty"
-#: ./browser/summary.pt:58
-#: ./browser/tile.pt:55
+#: ./browser/summary.pt:54
+#: ./browser/tile.pt:51
 msgid "empty_cart"
 msgstr ""
 
 #. Default: "Price"
-#: ./browser/summary.pt:46
-#: ./browser/tile.pt:46
+#: ./browser/summary.pt:42
+#: ./browser/tile.pt:42
 msgid "price"
 msgstr ""
 
 #. Default: "Remove from cart"
-#: ./browser/summary.pt:39
-#: ./browser/tile.pt:35
+#: ./browser/summary.pt:35
+#: ./browser/tile.pt:31
 msgid "remove_from_cart"
 msgstr ""
 
 #. Default: "Net:"
-#: ./browser/summary.pt:66
-#: ./browser/tile.pt:64
+#: ./browser/summary.pt:62
+#: ./browser/tile.pt:60
 msgid "summary_net"
 msgstr ""
 
 #. Default: "Shipping:"
-#: ./browser/summary.pt:95
-#: ./browser/tile.pt:93
+#: ./browser/summary.pt:91
+#: ./browser/tile.pt:89
 msgid "summary_shipping"
 msgstr ""
 
 #. Default: "Total:"
-#: ./browser/summary.pt:101
-#: ./browser/tile.pt:99
+#: ./browser/summary.pt:97
+#: ./browser/tile.pt:95
 msgid "summary_total"
 msgstr ""
 
 #. Default: "VAT.:"
-#: ./browser/summary.pt:71
-#: ./browser/tile.pt:69
+#: ./browser/summary.pt:67
+#: ./browser/tile.pt:65
 msgid "summary_vat"
 msgstr ""
 
 #. Default: "Not enough items available, abort."
-#: ./__init__.py:163
+#: ./__init__.py:182
 msgid "trying_to_add_more_items_than_available"
 msgstr ""
 
 #. Default: "Update cart"
-#: ./browser/summary.pt:30
-#: ./browser/tile.pt:26
+#: ./browser/summary.pt:26
+#: ./browser/tile.pt:22
 msgid "update_cart"
 msgstr ""
 
