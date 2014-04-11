@@ -5,6 +5,9 @@ Changelog
 0.4dev
 ------
 
+- Introduce ``remove_item_from_cart`` utility function.
+  [rnix]
+
 - ``validate_set`` of ``CartDataProviderBase`` raises ``NotImplementedError``.
   [rnix]
 

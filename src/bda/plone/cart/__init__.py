@@ -51,7 +51,7 @@ def deletecookie(request):
 
 def extractitems(items):
     """Cart items are stored in a cookie. The format is
-    ``uid:count,uid:count,...``.
+    ``uid;comment:count,uid;comment:count,...``.
 
     Return a list of 3-tuples containing ``(uid, count, comment)``.
     """
@@ -83,6 +83,21 @@ def aggregate_cart_item_count(target_uid, items):
         if target_uid == uid:
             aggregated_count += count
     return aggregated_count
+
+
+def remove_item_from_cart(request, uid):
+    """remove single item from cart by uid.
+    """
+    # XXX: wip -> buggy
+    
+    items = extractitems(readcookie(request))
+    cookie = list()
+    for item_uid, count, comment in items:
+        if uid == item_uid:
+            continue
+        cookie.append(item_uid + ';' + comment + ':' + str(count))
+    request.response.setCookie(
+        'cart', ','.join(cookie), path='/')
 
 
 # XXX: from config
