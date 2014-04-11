@@ -5,6 +5,9 @@ Changelog
 0.4dev
 ------
 
+- ``validate_set`` of ``CartDataProviderBase`` raises ``NotImplementedError``.
+  [rnix]
+
 - Hanlde ``article_limit_reached`` message on server side.
   [rnix]
 

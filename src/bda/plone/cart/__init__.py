@@ -129,6 +129,10 @@ class CartDataProviderBase(object):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``cart_items``.")
 
+    def validate_set(self, uid):
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``validate_set``.")
+
     @property
     def include_shipping_costs(self):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
@@ -158,13 +162,6 @@ class CartDataProviderBase(object):
     @property
     def show_currency(self):
         return True
-
-    def validate_set(self, uid):
-        """By default, all items generally may be set.
-
-        XXX: check buy item permission
-        """
-        return {'success': True, 'error': ''}
 
     def validate_count(self, uid, count):
         """Validate setting cart item count for uid.
