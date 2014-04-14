@@ -185,8 +185,7 @@ class CartDataProviderBase(object):
         cart_count_limit = item_data.cart_count_limit
         if cart_count_limit and float(count) > cart_count_limit:
             message = translate(
-                _('article_limit_reached',
-                  default="Article limit reached"),
+                _('article_limit_reached', default="Article limit reached"),
                 context=self.request)
             return {
                 'success': False,
@@ -199,9 +198,10 @@ class CartDataProviderBase(object):
                 'success': True,
                 'error': '',
             }
-        message = translate(_('trying_to_add_more_items_than_available',
-                              default="Not enough items available, abort."),
-                            context=self.request)
+        message = translate(
+            _('trying_to_add_more_items_than_available',
+              default="Not enough items available, abort."),
+            context=self.request)
         return {
             'success': False,
             'error': message,
