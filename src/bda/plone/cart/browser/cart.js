@@ -275,6 +275,9 @@
                     success: function(data) {
                         if (data.success == false) {
                             bdajax.info(unescape(data.error));
+                            if (data.update) {
+                                cart.query();
+                            }
                         } else {
                             cart.add(defs[0], defs[1], defs[2]);
                             var evt = $.Event('cart_modified');
@@ -328,6 +331,9 @@
                     success: function(data) {
                         if (data.success == false) {
                             bdajax.info(unescape(data.error));
+                            if (data.update) {
+                                cart.query();
+                            }
                         } else {
                             cart.set(defs[0], defs[1], defs[2]);
                             var evt = $.Event('cart_modified');

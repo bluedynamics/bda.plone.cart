@@ -66,12 +66,7 @@ def extractitems(items):
         uid = item[0].split(';')[0]
         count = item[1]
         comment = item[0][len(uid) + 1:]
-        try:
-            ret.append((uid, Decimal(count), comment))
-        except ValueError, e:
-            # item[1] may be a 'NaN' -> Should be ok with Decimal now.
-            print e
-            pass
+        ret.append((uid, Decimal(count), comment))
     return ret
 
 
@@ -86,18 +81,17 @@ def aggregate_cart_item_count(target_uid, items):
 
 
 def remove_item_from_cart(request, uid):
-    """remove single item from cart by uid.
+    """Remove single item from cart by uid.
     """
-    # XXX: wip -> buggy
-    
     items = extractitems(readcookie(request))
-    cookie = list()
+    cookie_items = list()
     for item_uid, count, comment in items:
         if uid == item_uid:
             continue
-        cookie.append(item_uid + ';' + comment + ':' + str(count))
-    request.response.setCookie(
-        'cart', ','.join(cookie), path='/')
+        cookie_items.append(
+            item_uid + ';' + comment + ':' + str(count))
+    cookie = ','.join(cookie_items)
+    request.response.setCookie('cart', cookie, quoted=False, path='/')
 
 
 # XXX: from config
@@ -194,14 +188,25 @@ class CartDataProviderBase(object):
                 _('article_limit_reached',
                   default="Article limit reached"),
                 context=self.request)
-            return {'success': False, 'error': message}
+            return {
+                'success': False,
+                'error': message,
+                'update': False,
+            }
         item_state = get_item_state(cart_item, self.request)
         if item_state.validate_count(count):
-            return {'success': True, 'error': ''}
+            return {
+                'success': True,
+                'error': '',
+            }
         message = translate(_('trying_to_add_more_items_than_available',
                               default="Not enough items available, abort."),
                             context=self.request)
-        return {'success': False, 'error': message}
+        return {
+            'success': False,
+            'error': message,
+            'update': False,
+        }
 
     def shipping(self, items):
         shippings = Shippings(self.context)

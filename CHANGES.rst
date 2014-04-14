@@ -5,6 +5,9 @@ Changelog
 0.4dev
 ------
 
+- Cart validation considers ``update`` flag on error.
+  [rnix]
+
 - Introduce ``remove_item_from_cart`` utility function.
   [rnix]
 
