@@ -3,6 +3,7 @@ import unittest2 as unittest
 from bda.plone.cart.tests import Cart_INTEGRATION_TESTING
 from bda.plone.cart.tests import set_browserlayer
 from bda.plone.cart import CartDataProviderBase
+from bda.plone.cart import CartItemDataProviderBase
 from bda.plone.cart import CartItemStateBase
 from bda.plone.cart.interfaces import ICartDataProvider
 from bda.plone.cart.interfaces import ICartItem
@@ -13,13 +14,15 @@ from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.uuid.interfaces import IUUID
+from zope.component import adapter
 from zope.component import provideAdapter
 from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 
 
 class MockCartItemState(CartItemStateBase):
-    """Mock implementation of ICartItemState."""
+    """Mock implementation of ICartItemState.
+    """
 
     def alert(self, count):
         return "You have too many items in the cart: {0}".format(count)
@@ -31,7 +34,8 @@ class MockCartItemState(CartItemStateBase):
 
 
 class MockCartDataProvider(CartDataProviderBase):
-    """Mock implementation of ICartDataProvider."""
+    """Mock implementation of ICartDataProvider.
+    """
 
     @property
     def disable_max_article(self):
@@ -59,6 +63,9 @@ class MockCartDataProvider(CartDataProviderBase):
     def vat(self, items):
         return 50
 
+    def validate_set(self, uid):
+        return {'success': True, 'error': ''}
+
     def cart_items(self, items):
         cart_items = []
 
@@ -74,6 +81,16 @@ class MockCartDataProvider(CartDataProviderBase):
         return items
 
 
+@adapter(ICartItem)
+class MockCartItemDataProvider(CartItemDataProviderBase):
+    """Mock implementation of ICartItemDataProvider.
+    """
+
+    @property
+    def cart_count_limit(self):
+        return 10
+
+
 class TestCartDataProvider(unittest.TestCase):
     layer = Cart_INTEGRATION_TESTING
 
@@ -86,6 +103,7 @@ class TestCartDataProvider(unittest.TestCase):
         alsoProvides(self.portal, ICartItem)
         provideAdapter(MockShipping, name='mock_shipping')
         provideAdapter(MockCartDataProvider)
+        provideAdapter(MockCartItemDataProvider)
         provideAdapter(MockCartItemState)
         self.cart_data_provider = getMultiAdapter(
             (self.portal, self.request), interface=ICartDataProvider)
@@ -108,8 +126,9 @@ class TestCartDataProvider(unittest.TestCase):
         self.assertEquals(
             self.cart_data_provider.validate_count('foo_id', 10),
             {
+                'update': False,
                 'success': False,
-                'error': 'Not enough items available, abort.'
+                'error': u'Not enough items available, abort.'
             }
         )
 
