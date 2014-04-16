@@ -123,6 +123,8 @@ class ICartDataProvider(Interface):
 class ICartItemDataProvider(Interface):
     """Provide information relevant for being cart item.
     """
+    title = Attribute(u"Title of the cart item")  # For custom/computed titles
+
     net = Attribute(u"Item base net price as float")
 
     vat = Attribute(u"Item VAT in % as float value")
