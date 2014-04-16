@@ -290,6 +290,10 @@ class CartItemDataProviderBase(object):
         self.context = context
 
     @property
+    def title(self):
+        return getattr(self.context, 'title', '')
+
+    @property
     def net(self):
         raise NotImplementedError(u"CartItemDataProviderBase does not "
                                   u"implement ``net``.")

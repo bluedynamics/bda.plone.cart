@@ -5,6 +5,11 @@ Changelog
 0.4
 ---
 
+- Add a title property to the ICartItemDataProvider accessor interface to allow
+  customizations of the cart item title. This can be used to give more context
+  on the cart item, e.g. for a buyable within another content item.
+  [thet]
+
 - Cart validation considers ``update`` flag on error.
   [rnix]
 

@@ -1,23 +1,26 @@
-import mock
-import unittest2 as unittest
-from bda.plone.cart.tests import Cart_INTEGRATION_TESTING
-from bda.plone.cart.tests import set_browserlayer
 from bda.plone.cart import CartDataProviderBase
 from bda.plone.cart import CartItemDataProviderBase
 from bda.plone.cart import CartItemStateBase
 from bda.plone.cart.interfaces import ICartDataProvider
 from bda.plone.cart.interfaces import ICartItem
+from bda.plone.cart.interfaces import ICartItemDataProvider
 from bda.plone.cart.interfaces import ICartItemState
+from bda.plone.cart.tests import Cart_INTEGRATION_TESTING
+from bda.plone.cart.tests import set_browserlayer
 from bda.plone.shipping.tests.test_shipping import MockShipping
-from plone.app.testing import login
-from plone.app.testing import setRoles
+from decimal import Decimal
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
+from plone.app.testing import login
+from plone.app.testing import setRoles
 from plone.uuid.interfaces import IUUID
 from zope.component import adapter
-from zope.component import provideAdapter
 from zope.component import getMultiAdapter
+from zope.component import provideAdapter
 from zope.interface import alsoProvides
+
+import mock
+import unittest2 as unittest
 
 
 class MockCartItemState(CartItemStateBase):
@@ -87,8 +90,17 @@ class MockCartItemDataProvider(CartItemDataProviderBase):
     """
 
     @property
+    def title(self):
+        title = super(MockCartItemDataProvider, self).title
+        return "Most awesome {}".format(title)
+
+    @property
     def cart_count_limit(self):
         return 10
+
+    @property
+    def discount_enabled(self):
+        return False
 
 
 class TestCartDataProvider(unittest.TestCase):
@@ -156,6 +168,48 @@ class TestCartDataProvider(unittest.TestCase):
                 'no_longer_available': False,
             }
         )
+
+
+class TestCartItemDataProvider(unittest.TestCase):
+    layer = Cart_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        set_browserlayer(self.request)
+
+        # setup mocks
+        alsoProvides(self.portal, ICartItem)
+        provideAdapter(MockCartItemDataProvider)
+
+    def test_cartitemdataprovider__properties(self):
+        accessor = ICartItemDataProvider(self.portal)
+
+        # Test custom
+        self.assertEquals(accessor.title, 'Most awesome Plone site')
+        self.assertEquals(accessor.cart_count_limit, 10)
+        self.assertEquals(accessor.discount_enabled, False)
+
+        # Test defaults
+        self.assertEquals(accessor.discount_enabled, Decimal(0))
+
+        # the rest of the props are not implemented by ICartItemDataProvider
+        # execution breaks out of with statement after each raise, so we have
+        # to use a with for each property access
+        with self.assertRaises(NotImplementedError):
+            accessor.net
+        with self.assertRaises(NotImplementedError):
+            accessor.vat
+        with self.assertRaises(NotImplementedError):
+            accessor.display_gross
+        with self.assertRaises(NotImplementedError):
+            accessor.comment_enabled
+        with self.assertRaises(NotImplementedError):
+            accessor.comment_required
+        with self.assertRaises(NotImplementedError):
+            accessor.quantity_unit_float
+        with self.assertRaises(NotImplementedError):
+            accessor.quantity_unit
 
 
 class TestHelpers(unittest.TestCase):
