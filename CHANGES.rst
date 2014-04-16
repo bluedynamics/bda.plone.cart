@@ -2,8 +2,8 @@
 Changelog
 =========
 
-0.4dev
-------
+0.4
+---
 
 - Cart validation considers ``update`` flag on error.
   [rnix]
