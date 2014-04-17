@@ -2,8 +2,8 @@
 Changelog
 =========
 
-0.5dev
-------
+0.5
+---
 
 - Add a title property to the ICartItemDataProvider accessor interface to allow
   customizations of the cart item title. This can be used to give more context
