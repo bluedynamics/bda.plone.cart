@@ -1,7 +1,7 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:browser="http://namespaces.zope.org/browser"
            xmlns:plone="http://namespaces.plone.org/plone"> 
-  
+
   <plone:portlet
     name="portlets.Cart"
     interface=".ICartPortlet"
@@ -10,20 +10,27 @@
     addview=".CartAddForm" />
 
   <browser:resource
-    name="bda.plone.cart.js"
-    file="cart.js"
-    layer="..interfaces.ICartExtensionLayer" />
-
-  <browser:resource
     name="bda.plone.cart.css"
     file="cart.css"
     layer="..interfaces.ICartExtensionLayer" />
-  
+
   <browser:resourceDirectory
     name="bda.plone.cart.images"
     directory="images"
     layer="..interfaces.ICartExtensionLayer" />
-  
+
+  <browser:resource
+    name="bda.plone.cart.js"
+    file="cart.js"
+    layer="..interfaces.ICartExtensionLayer" />
+
+  <browser:page
+    for="*"
+    name="bda.plone.cart.translations.js"
+    class=".CartJSTranslations"
+    permission="zope2.View"
+    layer="..interfaces.ICartExtensionLayer" />
+
   <browser:page
     for="*"
     name="cartData"
@@ -31,7 +38,7 @@
     attribute="cartData"
     permission="zope2.View"
     layer="..interfaces.ICartExtensionLayer" />
-  
+
   <browser:page
     for="*"
     name="validate_cart_item"
@@ -39,7 +46,7 @@
     attribute="validate_cart_item"
     permission="zope2.View"
     layer="..interfaces.ICartExtensionLayer" />
-  
+
   <browser:page
     for="*"
     name="cart_tile"
@@ -47,7 +54,7 @@
     template="tile.pt"
     permission="zope2.View"
     layer="..interfaces.ICartExtensionLayer" />
-  
+
   <browser:page
     for="*"
     name="cart_summary"
@@ -55,7 +62,7 @@
     template="summary.pt"
     permission="zope2.View"
     layer="..interfaces.ICartExtensionLayer" />
-  
+
   <browser:page
     for="*"
     name="cart"

@@ -88,25 +88,6 @@ add or update a cart item::
     <input type="text" size="20" value="" class="cart_item_comment required" />
 
 
-Javascript
-==========
-
-The cart can be customized on client side.
-
-Flag whether to hide cart container if cart is empty::
-
-    CART_HIDE_CONTAINER_IF_EMPTY = [true|false];
-
-Client side dialog messages::
-
-    cart.messages['total_limit_reached'] = "Total limit reached";
-    cart.messages['not_a_number'] = "Input not a number";
-    cart.messages['max_unique_articles_reached'] = "Unique article limit reached";
-    cart.messages['invalid_comment_character'] = "Invalid comment characters";
-    cart.messages['comment_required'] = "Comment is required";
-    cart.messages['integer_required'] = "Input not an integer";
-
-
 Create translations
 ===================
 

@@ -2,12 +2,23 @@
 Changelog
 =========
 
+0.6dev
+------
+
+- Add browser view rendering a JS snipper for Cart JS translations. Cart
+  translations are now handled via message catalogs.
+  [rnix]
+
+- Fix validation of comment characters in cart JS.
+  [rnix]
+
+
 0.5
 ---
 
-- Add a title property to the ICartItemDataProvider accessor interface to allow
-  customizations of the cart item title. This can be used to give more context
-  on the cart item, e.g. for a buyable within another content item.
+- Add a title property to the ``ICartItemDataProvider`` accessor interface to
+  allow customizations of the cart item title. This can be used to give more
+  context on the cart item, e.g. for a buyable within another content item.
   [thet]
 
 

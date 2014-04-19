@@ -30,23 +30,18 @@
         this.no_longer_available = false;
         // initially nothing addable, real value gets delivered via cart data
         this.cart_max_article_count = 0;
-    }
-
-    Cart.prototype.messages = {
-        total_limit_reached: "Die gewünschte Bestellmenge übersteigt die " +
-            "maximale Gesamtbestellmenge.",
-        not_a_number: "Die Eingabe ist keine Zahl",
-        max_unique_articles_reached: "Die maximale Anzahl von verschiedenen " +
-            "Artikeln wurde erreicht. Es ist nicht möglich, weiter Artikel " +
-            "in den Warenkorb zu legen. Bitte schließen Sie die aktuelle " +
-            "Bestellung ab.",
-        invalid_comment_character: "Ungültiges Zeichen in Kommentar",
-        comment_required: "Zusatzangabe ist erforderlich",
-        integer_required: "Eingabe muss eine Ganzzahl sein",
-        no_longer_available: "Ein oder mehrere Artikel im Warenkorb sind in " +
-            "der gewünschten Anzahl nicht oder nur mehr teilweise " +
-            "verfügbar. Bitte aktualisieren oder entfernen Sie die " +
-            "ensprechenden Artikel vor dem Abschluss Ihres Einkaufs."
+        // default translation messages
+        this.messages = {
+            'total_limit_reached': "Total limit reached",
+            'not_a_number': "Input not a number",
+            'max_unique_articles_reached': "Unique article limit reached",
+            'invalid_comment_character': "Invalid comment characters",
+            'comment_required': "Comment is required",
+            'integer_required': "Input not an integer",
+            'no_longer_available': "One or more items in cart are only " +
+                                   "partly or no longer available. Please " +
+                                   "update or remove related items"
+        };
     }
 
     Cart.prototype.init = function() {
@@ -77,7 +72,9 @@
     Cart.prototype.writecookie = function(uid, count, comment, add) {
         // XXX: support cookie size > 4096 by splitting up cookie
         count = new Number(count);
-        if (comment.indexOf(':') > -1) {
+        if (comment.indexOf(':') > -1
+                || comment.indexOf(';') > -1
+                || comment.indexOf(',') > -1) {
             bdajax.error(cart.messages['invalid_comment_character']);
             return;
         }
@@ -494,5 +491,6 @@
     }
 
     var cart = new Cart();
+    bda_plone_cart = cart;
 
 })(jQuery);

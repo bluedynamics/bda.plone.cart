@@ -2,6 +2,7 @@
 import simplejson as json
 from decimal import Decimal
 from zope.interface import implementer
+from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -29,6 +30,67 @@ CURRENCY_LITERALS = {
     'YEN': u"¥",
     'NZD': u"$",
 }
+
+
+CART_TRANSLATIONS_JS = u"""
+(function($) {
+    $(document).ready(function() {
+        var messages = bda_plone_cart.messages;
+        messages.total_limit_reached = "%(total_limit_reached)s";
+        messages.not_a_number = "%(not_a_number)s";
+        messages.max_unique_articles_reached = "%(max_unique_articles_reached)s";
+        messages.invalid_comment_character = "%(invalid_comment_character)s";
+        messages.comment_required = "%(comment_required)s";
+        messages.integer_required = "%(integer_required)s";
+        messages.no_longer_available = "%(no_longer_available)s";
+    });
+})(jQuery);
+"""
+
+
+msg_total_limit_reached = _(
+    'cart_total_limit_reached',
+    default=u'Total limit reached')
+msg_not_a_number = _(
+    'cart_not_a_number',
+    default=u'Input not a number')
+msg_max_unique_articles_reached = _(
+    'cart_max_unique_articles_reached',
+    default=u'Unique article limit reached')
+msg_invalid_comment_character = _(
+    'cart_invalid_comment_character',
+    default=u'Invalid comment characters')
+msg_comment_required = _(
+    'cart_comment_required',
+    default=u'Comment is required')
+msg_integer_required = _(
+    'cart_integer_required',
+    default=u'Input not an integer')
+msg_no_longer_available = _(
+    'cart_no_longer_available',
+    default=u'One or more items in cart are only partly or no longer '
+            u'available. Please update or remove related items')
+
+
+class CartJSTranslations(BrowserView):
+
+    def __call__(self):
+        return CART_TRANSLATIONS_JS % {
+            'total_limit_reached': translate(
+                msg_total_limit_reached, context=self.request),
+            'not_a_number': translate(
+                msg_not_a_number, context=self.request),
+            'max_unique_articles_reached': translate(
+                msg_max_unique_articles_reached, context=self.request),
+            'invalid_comment_character': translate(
+                msg_invalid_comment_character, context=self.request),
+            'comment_required': translate(
+                msg_comment_required, context=self.request),
+            'integer_required': translate(
+                msg_integer_required, context=self.request),
+            'no_longer_available': translate(
+                msg_no_longer_available, context=self.request),
+        }
 
 
 class DataProviderMixin(object):

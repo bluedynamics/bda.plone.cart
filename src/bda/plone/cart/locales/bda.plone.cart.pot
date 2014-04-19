@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-04-09 18:13+0000\n"
+"POT-Creation-Date: 2014-04-19 21:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,16 +14,16 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./browser/__init__.py:138
+#: ./browser/__init__.py:201
 msgid "Add Cart Portlet"
 msgstr ""
 
-#: ./browser/__init__.py:139
+#: ./browser/__init__.py:202
 msgid "This portlet displays the shopping cart."
 msgstr ""
 
 #. Default: "Article limit reached"
-#: ./__init__.py:175
+#: ./__init__.py:188
 msgid "article_limit_reached"
 msgstr ""
 
@@ -32,15 +32,50 @@ msgid "back"
 msgstr ""
 
 #. Default: "Cart"
-#: ./browser/__init__.py:99
+#: ./browser/__init__.py:162
 #: ./browser/portlet.pt:8
 #: ./browser/view.pt:18
 msgid "cart"
 msgstr ""
 
+#. Default: "Comment is required"
+#: ./browser/__init__.py:64
+msgid "cart_comment_required"
+msgstr ""
+
+#. Default: "Input not an integer"
+#: ./browser/__init__.py:67
+msgid "cart_integer_required"
+msgstr ""
+
+#. Default: "Invalid comment characters"
+#: ./browser/__init__.py:61
+msgid "cart_invalid_comment_character"
+msgstr ""
+
+#. Default: "Unique article limit reached"
+#: ./browser/__init__.py:58
+msgid "cart_max_unique_articles_reached"
+msgstr ""
+
+#. Default: "One or more items in cart are only partly or no longer available. Please update or remove related items"
+#: ./browser/__init__.py:70
+msgid "cart_no_longer_available"
+msgstr ""
+
+#. Default: "Input not a number"
+#: ./browser/__init__.py:55
+msgid "cart_not_a_number"
+msgstr ""
+
 #. Default: "Cart"
 #: ./browser/portlet.pt:8
 msgid "cart_summary"
+msgstr ""
+
+#. Default: "Total limit reached"
+#: ./browser/__init__.py:52
+msgid "cart_total_limit_reached"
 msgstr ""
 
 #: ./browser/portlet.pt:20
@@ -114,7 +149,7 @@ msgid "summary_vat"
 msgstr ""
 
 #. Default: "Not enough items available, abort."
-#: ./__init__.py:182
+#: ./__init__.py:202
 msgid "trying_to_add_more_items_than_available"
 msgstr ""
 
