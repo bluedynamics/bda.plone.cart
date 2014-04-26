@@ -107,6 +107,47 @@ class CartDataProviderBase(object):
         self.request = request
 
     @property
+    def data(self):
+        ret = dict()
+        ret['cart_settings'] = dict()
+        ret['cart_settings']['hide_cart_if_empty'] = self.hide_cart_if_empty
+        if self.disable_max_article:
+            ret['cart_settings']['cart_max_article_count'] = 10000
+        else:
+            ret['cart_settings']['cart_max_article_count'] = \
+                CART_MAX_ARTICLE_COUNT
+        ret['cart_items'] = list()
+        ret['cart_summary'] = dict()
+        items = extractitems(self.request.form.get('items'))
+        if items:
+            net = self.net(items)
+            vat = self.vat(items)
+            ret['cart_items'] = self.cart_items(items)
+            ret['cart_summary']['cart_net'] = ascur(net)
+            ret['cart_summary']['cart_vat'] = ascur(vat)
+            cart_discount = self.discount(items)
+            discount_net = cart_discount['net']
+            discount_vat = cart_discount['vat']
+            discount_total = discount_net + discount_vat
+            ret['cart_summary']['discount_net'] = '-' + ascur(discount_net)
+            ret['cart_summary']['discount_vat'] = '-' + ascur(discount_vat)
+            ret['cart_summary']['discount_total'] = '-' + ascur(discount_total)
+            ret['cart_summary']['discount_total_raw'] = discount_total
+            total = net + vat - discount_total
+            if self.include_shipping_costs:
+                shipping = self.shipping(items)
+                total += shipping
+                ret['cart_summary']['cart_shipping'] = ascur(shipping)
+            ret['cart_summary']['cart_total'] = ascur(total)
+            ret['cart_summary']['cart_total_raw'] = total
+        return ret
+
+    @property
+    def currency(self):
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``currency``.")
+
+    @property
     def hide_cart_if_empty(self):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``hide_cart_if_empty``.")
@@ -122,27 +163,6 @@ class CartDataProviderBase(object):
                                   u"``summary_total_only``.")
 
     @property
-    def checkout_url(self):
-        raise NotImplementedError(u"CartDataProviderBase does not implement "
-                                  u"``checkout_url``.")
-
-    def net(self, items):
-        raise NotImplementedError(u"CartDataProviderBase does not implement "
-                                  u"``net``.")
-
-    def vat(self, items):
-        raise NotImplementedError(u"CartDataProviderBase does not implement "
-                                  u"``vat``.")
-
-    def cart_items(self, items):
-        raise NotImplementedError(u"CartDataProviderBase does not implement "
-                                  u"``cart_items``.")
-
-    def validate_set(self, uid):
-        raise NotImplementedError(u"CartDataProviderBase does not implement "
-                                  u"``validate_set``.")
-
-    @property
     def include_shipping_costs(self):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``include_shipping_costs``.")
@@ -153,24 +173,33 @@ class CartDataProviderBase(object):
                                   u"``shipping_method``.")
 
     @property
-    def currency(self):
-        return 'EUR'
+    def checkout_url(self):
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``checkout_url``.")
 
     @property
     def cart_url(self):
-        return '%s/@@cart' % self.context.absolute_url()
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``cart_url``.")
 
     @property
     def show_to_cart(self):
-        return True
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``show_to_cart``.")
 
     @property
     def show_checkout(self):
-        return False
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``show_checkout``.")
 
     @property
     def show_currency(self):
-        return True
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``show_currency``.")
+
+    def validate_set(self, uid):
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``validate_set``.")
 
     def validate_count(self, uid, count):
         """Validate setting cart item count for uid.
@@ -208,7 +237,16 @@ class CartDataProviderBase(object):
             'update': False,
         }
 
+    def net(self, items):
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``net``.")
+
+    def vat(self, items):
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``vat``.")
+
     def shipping(self, items):
+        # XXX: see interfaces
         shippings = Shippings(self.context)
         shipping = shippings.get(self.shipping_method)
         return shipping.calculate(items)
@@ -223,6 +261,10 @@ class CartDataProviderBase(object):
             'net': net,
             'vat': vat,
         }
+
+    def cart_items(self, items):
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``cart_items``.")
 
     def item(self, uid, title, count, price, url, comment='', description='',
              comment_required=False, quantity_unit_float=False,
@@ -245,42 +287,6 @@ class CartDataProviderBase(object):
             'quantity_unit_float': quantity_unit_float,
             'no_longer_available': no_longer_available,
         }
-
-    @property
-    def data(self):
-        ret = dict()
-        ret['cart_settings'] = dict()
-        ret['cart_settings']['hide_cart_if_empty'] = self.hide_cart_if_empty
-        if self.disable_max_article:
-            ret['cart_settings']['cart_max_article_count'] = 10000
-        else:
-            ret['cart_settings']['cart_max_article_count'] = \
-                CART_MAX_ARTICLE_COUNT
-        ret['cart_items'] = list()
-        ret['cart_summary'] = dict()
-        items = extractitems(self.request.form.get('items'))
-        if items:
-            net = self.net(items)
-            vat = self.vat(items)
-            ret['cart_items'] = self.cart_items(items)
-            ret['cart_summary']['cart_net'] = ascur(net)
-            ret['cart_summary']['cart_vat'] = ascur(vat)
-            cart_discount = self.discount(items)
-            discount_net = cart_discount['net']
-            discount_vat = cart_discount['vat']
-            discount_total = discount_net + discount_vat
-            ret['cart_summary']['discount_net'] = '-' + ascur(discount_net)
-            ret['cart_summary']['discount_vat'] = '-' + ascur(discount_vat)
-            ret['cart_summary']['discount_total'] = '-' + ascur(discount_total)
-            ret['cart_summary']['discount_total_raw'] = discount_total
-            total = net + vat - discount_total
-            if self.include_shipping_costs:
-                shipping = self.shipping(items)
-                total += shipping
-                ret['cart_summary']['cart_shipping'] = ascur(shipping)
-            ret['cart_summary']['cart_total'] = ascur(total)
-            ret['cart_summary']['cart_total_raw'] = total
-        return ret
 
 
 @implementer(ICartItemDataProvider)

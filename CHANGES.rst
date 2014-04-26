@@ -5,6 +5,10 @@ Changelog
 0.6dev
 ------
 
+- ``CartDataProviderBase`` no longer provides default values for ``currency``,
+  ``cart_url``, ``show_to_cart``, ``show_checkout`` and ``show_currency``.
+  [rnix]
+
 - Add browser view rendering a JS snipper for Cart JS translations. Cart
   translations are now handled via message catalogs.
   [rnix]

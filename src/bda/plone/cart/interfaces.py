@@ -15,7 +15,7 @@ class ICartItem(Interface):
 
 class ICartDataProvider(Interface):
 
-    data = Attribute(u"Cart data as list of dicts.")
+    data = Attribute(u"Cart data as dict.")
 
     currency = Attribute(u"Currency")
 
@@ -63,14 +63,14 @@ class ICartDataProvider(Interface):
         """
 
     def net(items):
-        """Calculate net sum of cart items.
+        """Calculate net sum of cart items and return as Decimal.
 
         :param items: items in the cart
         :param type: list of 3-tuples containing ``(uid, count, comment)``
         """
 
     def vat(items):
-        """Calculate vat sum of cart items.
+        """Calculate vat sum of cart items and return as Decimal.
 
         :param items: items in the cart
         :param type: list of 3-tuples containing ``(uid, count, comment)``
@@ -79,20 +79,32 @@ class ICartDataProvider(Interface):
     def shipping(items):
         """Calculate shipping costs for cart items.
 
+        return {
+            'net': Decimal(0),
+            'vat': Decimal(0),
+            'label': 'Shipping label',
+            'description': 'Shipping description'
+        }
+
         :param items: items in the cart
         :param type: list of 3-tuples containing ``(uid, count, comment)``
         """
 
     def discount(items):
-        """Return discount for cart as dict containing keys ``net``
-        and ``vat``.
+        """Calculate discount for cart items.
+
+        return {
+            'net': Decimal(0),
+            'vat': Decimal(0),
+        }
 
         :param items: items in the cart
         :param type: list of 3-tuples containing ``(uid, count, comment)``
         """
 
     def cart_items(items):
-        """Return list of dicts with format returned by ``self.item``.
+        """Return list of dicts with format returned by
+        ``ICartDataProvider.item``.
 
         :param items: items in the cart
         :param type: list of 3-tuples containing ``(uid, count, comment)``
@@ -104,19 +116,19 @@ class ICartDataProvider(Interface):
              no_longer_available=False, alert=''):
         """Create cart item entry for JSON response.
 
-        @param uid: catalog uid
-        @param title: string
-        @param count: item count as int
-        @param price: item price as float
-        @param url: item URL
-        @param comment: item comment
-        @param description: item description
-        @param comment_required: Flag whether comment is required
-        @param quantity_unit_float: Flag whether item count can be float
-        @param quantity_unit: Quantity unit
-        @param preview_image_url: URL for item preview image
-        @param no_longer_available: Item is no longer available
-        @param alert: Optional alert message
+        :param uid: catalog uid
+        :param title: string
+        :param count: item count as int
+        :param price: item price as float
+        :param url: item URL
+        :param comment: item comment
+        :param description: item description
+        :param comment_required: Flag whether comment is required
+        :param quantity_unit_float: Flag whether item count can be float
+        :param quantity_unit: Quantity unit
+        :param preview_image_url: URL for item preview image
+        :param no_longer_available: Item is no longer available
+        :param alert: Optional alert message
         """
 
 
