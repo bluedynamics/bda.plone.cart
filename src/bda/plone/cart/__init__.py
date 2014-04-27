@@ -136,8 +136,24 @@ class CartDataProviderBase(object):
             total = net + vat - discount_total
             if self.include_shipping_costs:
                 shipping = self.shipping(items)
-                total += shipping
-                ret['cart_summary']['cart_shipping'] = ascur(shipping)
+                total += shipping['net'] + shipping['vat']
+                label = translate(shipping['label'], context=self.request)
+                ret['cart_summary']['shipping_label'] = label
+                if shipping['description']:
+                    desc = translate(shipping['description'],
+                                     context=self.request)
+                    ret['cart_summary']['shipping_description'] = '(%s)' % desc
+                else:
+                    ret['cart_summary']['shipping_description'] = ''
+                ret['cart_summary']['shipping_net'] = ascur(shipping['net'])
+                ret['cart_summary']['shipping_vat'] = ascur(shipping['vat'])
+                ret['cart_summary']['shipping_total'] = \
+                    ascur(shipping['net'] + shipping['vat'])
+                ret['cart_summary']['shipping_total_raw'] = \
+                    shipping['net'] + shipping['vat']
+                # B/C for bda.plone.cart < 0.6 custom templates
+                ret['cart_summary']['cart_shipping'] = \
+                    ascur(shipping['net'] + shipping['vat'])
             ret['cart_summary']['cart_total'] = ascur(total)
             ret['cart_summary']['cart_total_raw'] = total
         return ret
@@ -246,10 +262,23 @@ class CartDataProviderBase(object):
                                   u"``vat``.")
 
     def shipping(self, items):
-        # XXX: see interfaces
         shippings = Shippings(self.context)
         shipping = shippings.get(self.shipping_method)
-        return shipping.calculate(items)
+        try:
+            return {
+                'label': shipping.label,
+                'description': shipping.description,
+                'net': shipping.net(items),
+                'vat': shipping.vat(items),
+            }
+        # B/C for bda.plone.shipping < 0.4
+        except NotImplementedError:
+            return {
+                'label': shipping.label,
+                'description': shipping.description,
+                'net': shipping.calculate(items),
+                'vat': Decimal(0),
+            }
 
     def discount(self, items):
         net = vat = Decimal(0)
