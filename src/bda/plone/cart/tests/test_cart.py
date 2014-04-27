@@ -146,7 +146,11 @@ class TestCartDataProvider(unittest.TestCase):
 
     def test_shipping(self):
         items = []
-        self.assertEquals(self.cart_data_provider.shipping(items), 10)
+        res = self.cart_data_provider.shipping(items)
+        self.assertEquals(res['label'], 'Mock Shipping')
+        self.assertEquals(res['description'], 'Mock Shipping Description')
+        self.assertEquals(res['net'], Decimal('10'))
+        self.assertEquals(res['vat'], Decimal('2'))
 
     def test_item(self):
         self.assertEquals(
