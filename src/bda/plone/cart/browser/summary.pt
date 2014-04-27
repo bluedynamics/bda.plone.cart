@@ -116,7 +116,7 @@
        tal:define="checkout_url view/checkout_url"
        tal:condition="checkout_url"
        tal:attributes="href checkout_url"
-       i18n:translate="checkout">checkout</a>
+       i18n:translate="checkout">Checkout</a>
   </div>
 
 </div>
