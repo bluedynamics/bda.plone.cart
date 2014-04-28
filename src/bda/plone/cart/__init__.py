@@ -1,25 +1,26 @@
-import urllib2
+from Products.CMFCore.utils import getToolByName
+from bda.plone.cart.interfaces import ICartDataProvider
+from bda.plone.cart.interfaces import ICartDiscount
+from bda.plone.cart.interfaces import ICartItem
+from bda.plone.cart.interfaces import ICartItemAvailability
+from bda.plone.cart.interfaces import ICartItemDataProvider
+from bda.plone.cart.interfaces import ICartItemDiscount
+from bda.plone.cart.interfaces import ICartItemPreviewImage
+from bda.plone.cart.interfaces import ICartItemState
+from bda.plone.cart.interfaces import ICartItemStock
+from bda.plone.shipping import Shippings
+from bda.plone.shipping.interfaces import IItemDelivery
 from decimal import Decimal
-from zope.interface import implementer
-from zope.interface import Interface
+from plone.uuid.interfaces import IUUID
 from zope.component import adapter
-from zope.component import queryAdapter
 from zope.component import getMultiAdapter
+from zope.component import queryAdapter
 from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
+from zope.interface import Interface
+from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserRequest
-from Products.CMFCore.utils import getToolByName
-from bda.plone.shipping.interfaces import IItemDelivery
-from bda.plone.shipping import Shippings
-from bda.plone.cart.interfaces import ICartItem
-from bda.plone.cart.interfaces import ICartDataProvider
-from bda.plone.cart.interfaces import ICartItemDataProvider
-from bda.plone.cart.interfaces import ICartItemAvailability
-from bda.plone.cart.interfaces import ICartItemPreviewImage
-from bda.plone.cart.interfaces import ICartItemStock
-from bda.plone.cart.interfaces import ICartItemState
-from bda.plone.cart.interfaces import ICartDiscount
-from bda.plone.cart.interfaces import ICartItemDiscount
+import urllib2
 
 
 _ = MessageFactory('bda.plone.cart')
@@ -408,7 +409,7 @@ class CartItemAvailabilityBase(object):
         # reduce available count if item already in cart
         if available is not None:
             cart_items = extractitems(readcookie(self.request))
-            item_uid = self.context.UID()
+            item_uid = IUUID(self.context)
             for uid, count, comment in cart_items:
                 if uid == item_uid:
                     available -= float(count)
@@ -482,7 +483,7 @@ class CartItemStateBase(object):
     @property
     def aggregated_count(self):
         items = extractitems(readcookie(self.request))
-        return aggregate_cart_item_count(self.context.UID(), items)
+        return aggregate_cart_item_count(IUUID(self.context), items)
 
     @property
     def reserved(self):
