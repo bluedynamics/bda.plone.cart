@@ -119,7 +119,7 @@ class CartDataProviderBase(object):
                 CART_MAX_ARTICLE_COUNT
         ret['cart_items'] = list()
         ret['cart_summary'] = dict()
-        items = extractitems(self.request.form.get('items'))
+        items = extractitems(readcookie(self.request))
         if items:
             net = self.net(items)
             vat = self.vat(items)
@@ -158,6 +158,22 @@ class CartDataProviderBase(object):
             ret['cart_summary']['cart_total'] = ascur(total)
             ret['cart_summary']['cart_total_raw'] = total
         return ret
+
+    @property
+    def total(self):
+        total = Decimal(0)
+        items = extractitems(readcookie(self.request))
+        net = self.net(items)
+        vat = self.vat(items)
+        cart_discount = self.discount(items)
+        discount_net = cart_discount['net']
+        discount_vat = cart_discount['vat']
+        discount_total = discount_net + discount_vat
+        total = net + vat - discount_total
+        if self.include_shipping_costs:
+            shipping = self.shipping(items)
+            total += shipping['net'] + shipping['vat']
+        return total.quantize(Decimal('1.000'))
 
     @property
     def currency(self):

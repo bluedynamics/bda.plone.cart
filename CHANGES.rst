@@ -5,6 +5,18 @@ Changelog
 0.6dev
 ------
 
+- Add ``ICartDataProvider.total`` attribute and implement in
+  ``CartDataProviderBase``.
+  [rnix]
+
+- Use ``readcookie`` instead of expecting ``items`` request parameter in
+  ``CartDataProviderBase.data``.
+  [rnix]
+
+- Do not pass recent cart ``items`` parameter to ``@@cartData`` view, contained
+  value is included as ``cart`` cookie anyways.
+  [rnix]
+
 - Adopt shipping handling to ``bda.plone.shipping`` >= 0.4.
   [rnix]
 

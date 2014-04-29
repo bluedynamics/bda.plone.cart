@@ -17,6 +17,8 @@ class ICartDataProvider(Interface):
 
     data = Attribute(u"Cart data as dict.")
 
+    total = Attribute(u"Total price of cart items currently in cart.")
+
     currency = Attribute(u"Currency")
 
     hide_cart_if_empty = Attribute(u"Flag whether to hide cart if empty.")

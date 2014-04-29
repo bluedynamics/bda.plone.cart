@@ -475,7 +475,7 @@
         if (document.location.href.indexOf('/portal_factory/') != -1) {
             return;
         }
-        var params = { items: this.cookie() };
+        var params = {};
         if (CART_EXECUTION_CONTEXT) {
             params.execution_context = CART_EXECUTION_CONTEXT;
         }
