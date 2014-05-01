@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from bda.plone.cart.interfaces import ICartDataProvider
 from bda.plone.cart.interfaces import ICartDiscount
@@ -25,6 +26,22 @@ import urllib2
 
 
 _ = MessageFactory('bda.plone.cart')
+
+
+CURRENCY_LITERALS = {
+    'EUR': u"€",
+    'USD': u"$",
+    'INR': u"₹",
+    'CAD': u"$",
+    'CHF': u"CHF",
+    'GBP': u"£",
+    'AUD': u"$",
+    'NOK': u"kr.",
+    'SEK': u"Kr.",
+    'DKK': u"K.",
+    'YEN': u"¥",
+    'NZD': u"$",
+}
 
 
 def ascur(val, comma=False):

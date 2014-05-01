@@ -9,27 +9,12 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.memoize import instance
-from .. import readcookie
-from .. import get_data_provider
+from bda.plone.cart import CURRENCY_LITERALS
+from bda.plone.cart import readcookie
+from bda.plone.cart import get_data_provider
 
 
 _ = MessageFactory('bda.plone.cart')
-
-
-CURRENCY_LITERALS = {
-    'EUR': u"€",
-    'USD': u"$",
-    'INR': u"₹",
-    'CAD': u"$",
-    'CHF': u"CHF",
-    'GBP': u"£",
-    'AUD': u"$",
-    'NOK': u"kr.",
-    'SEK': u"Kr.",
-    'DKK': u"K.",
-    'YEN': u"¥",
-    'NZD': u"$",
-}
 
 
 CART_TRANSLATIONS_JS = u"""

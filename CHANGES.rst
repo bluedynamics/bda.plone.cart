@@ -5,6 +5,10 @@ Changelog
 0.6dev
 ------
 
+- Move ``bda.plone.cart.browser.CURRENCY_LITERALS`` to
+  ``bda.plone.cart.CURRENCY_LITERALS``.
+  [rnix]
+
 - Add ``ICartDataProvider.max_artice_count`` attribute and implement in
   ``CartDataProviderBase``.
   [rnix]
