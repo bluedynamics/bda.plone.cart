@@ -5,6 +5,12 @@ Changelog
 0.6dev
 ------
 
+- Implement ``ICartDataProvider.include_shipping_costs`` on
+  ``CartDataProviderBase`` using
+  ``bda.plone.shipping.interfaces.IShippingItem.shipping`` flag for
+  calculation.
+  [rnix]
+
 - Add ``ICartDataProvider.total`` attribute and implement in
   ``CartDataProviderBase``.
   [rnix]

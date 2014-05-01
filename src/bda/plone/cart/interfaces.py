@@ -29,8 +29,8 @@ class ICartDataProvider(Interface):
     summary_total_only = Attribute(u"Flag whether to show total sum only in "
                                    u"summary.")
 
-    include_shipping_costs = Attribute(u"Flag whether to display shipping "
-                                       u"costs.")
+    include_shipping_costs = Attribute(u"Flag whether to include and display "
+                                       u"shipping costs.")
 
     shipping_method = Attribute(u"Current shipping method identifyer.")
 

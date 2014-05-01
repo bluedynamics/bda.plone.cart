@@ -10,6 +10,7 @@ from bda.plone.cart.interfaces import ICartItemState
 from bda.plone.cart.interfaces import ICartItemStock
 from bda.plone.shipping import Shippings
 from bda.plone.shipping.interfaces import IItemDelivery
+from bda.plone.shipping.interfaces import IShippingItem
 from decimal import Decimal
 from plone.uuid.interfaces import IUUID
 from zope.component import adapter
@@ -197,8 +198,14 @@ class CartDataProviderBase(object):
 
     @property
     def include_shipping_costs(self):
-        raise NotImplementedError(u"CartDataProviderBase does not implement "
-                                  u"``include_shipping_costs``.")
+        items = extractitems(readcookie())
+        for item in items:
+            obj = get_object_by_uid(self.context, item[0])
+            if not obj:
+                continue
+            if IShippingItem(obj).shippable:
+                return True
+        return False
 
     @property
     def shipping_method(self):
