@@ -140,6 +140,8 @@ class CartDataProviderBase(object):
         else:
             ret['cart_settings']['cart_max_article_count'] = \
                 self.max_artice_count
+        include_shipping_costs = self.include_shipping_costs
+        ret['cart_settings']['include_shipping_costs'] = include_shipping_costs
         ret['cart_items'] = list()
         ret['cart_summary'] = dict()
         items = extractitems(readcookie(self.request))
@@ -158,7 +160,7 @@ class CartDataProviderBase(object):
             ret['cart_summary']['discount_total'] = '-' + ascur(discount_total)
             ret['cart_summary']['discount_total_raw'] = discount_total
             total = net + vat - discount_total
-            if self.include_shipping_costs:
+            if include_shipping_costs:
                 shipping = self.shipping(items)
                 total += shipping['net'] + shipping['vat']
                 label = translate(shipping['label'], context=self.request)

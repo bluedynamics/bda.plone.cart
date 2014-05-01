@@ -73,7 +73,7 @@ class DataProviderMixin(object):
 
     @property
     def data_provider(self):
-        return get_data_provider(self.context)
+        return get_data_provider(self.context, self.request)
 
 
 class CartView(BrowserView, DataProviderMixin):
@@ -85,10 +85,6 @@ class CartView(BrowserView, DataProviderMixin):
     @property
     def summary_total_only(self):
         return self.data_provider.summary_total_only
-
-    @property
-    def include_shipping_costs(self):
-        return self.data_provider.include_shipping_costs
 
     @property
     def checkout_url(self):

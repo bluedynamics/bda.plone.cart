@@ -117,10 +117,9 @@
     }
 
     Cart.prototype.render = function(data) {
-        this.cart_max_article_count =
-            data['cart_settings']['cart_max_article_count'];
-        if (data['cart_items'].length == 0) {
-            if (!data['cart_settings']['hide_cart_if_empty']) {
+        this.cart_max_article_count = data.cart_settings.cart_max_article_count;
+        if (data.cart_items.length == 0) {
+            if (!data.cart_settings.hide_cart_if_empty) {
                 $(CART_PORTLET_IDENTIFYER).css('display', 'block');
             } else {
                 $(CART_PORTLET_IDENTIFYER).css('display', 'none');
@@ -134,9 +133,9 @@
             $('#cart_items', this.cart_node).empty();
             $('#cart_items', this.cart_node).css('display', 'block');
             var render_no_longer_available = false;
-            for (var i = 0; i < data['cart_items'].length; i++) {
+            for (var i = 0; i < data.cart_items.length; i++) {
                 var cart_item = $(this.item_template).clone();
-                var cart_item_data = data['cart_items'][i];
+                var cart_item_data = data.cart_items[i];
                 // item control flags
                 var quantity_unit_float = cart_item_data.quantity_unit_float;
                 var comment_required = cart_item_data.comment_required;
@@ -208,13 +207,20 @@
                 $('#cart_items', this.cart_node).append(cart_item);
             }
             var cart_summary = $('#cart_summary', this.cart_node).get(0);
-            for (var item in data['cart_summary']) {
+            for (var item in data.cart_summary) {
                 var css = '.' + item;
-                var value = data['cart_summary'][item];
+                var value = data.cart_summary[item];
                 $(css, cart_summary).html(value);
             }
-            if (data['cart_summary']['discount_total_raw'] > 0) {
+            if (data.cart_summary.discount_total_raw > 0) {
                 $('.discount', this.cart_node).css('display', 'table-row');
+            } else {
+                $('.discount', this.cart_node).css('display', 'none');
+            }
+            if (data.cart_settings.include_shipping_costs) {
+                $('.shipping', this.cart_node).css('display', 'table-row');
+            } else {
+                $('.shipping', this.cart_node).css('display', 'none');
             }
             $('#cart_summary', this.cart_node).css('display', 'block');
             if (render_no_longer_available) {

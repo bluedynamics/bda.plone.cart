@@ -5,6 +5,16 @@ Changelog
 0.6dev
 ------
 
+- Hide discount and shipping info in cart via JS if data changed respective.
+  [rnix]
+
+- Remove ``include_shipping_costs`` property from ``CartView``.
+  [rnix]
+
+- Always deliver shipping markup for cart, control with JS whether shipping
+  costs are displayed.
+  [rnix]
+
 - Move ``bda.plone.cart.browser.CURRENCY_LITERALS`` to
   ``bda.plone.cart.CURRENCY_LITERALS``.
   [rnix]
