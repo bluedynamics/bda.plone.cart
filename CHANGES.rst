@@ -5,6 +5,13 @@ Changelog
 0.6dev
 ------
 
+- Add ``ICartDataProvider.max_artice_count`` attribute and implement in
+  ``CartDataProviderBase``.
+  [rnix]
+
+- Add ``bda.plone.cart.cart_item_shippable`` utility.
+  [rnix]
+
 - Implement ``ICartDataProvider.include_shipping_costs`` on
   ``CartDataProviderBase`` using
   ``bda.plone.shipping.interfaces.IShippingItem.shipping`` flag for

@@ -96,8 +96,13 @@ def remove_item_from_cart(request, uid):
     request.response.setCookie('cart', cookie, quoted=False, path='/')
 
 
-# XXX: from config
-CART_MAX_ARTICLE_COUNT = 5
+def cart_item_shippable(context, item):
+    """Return boolean whether cart item is shippable.
+    """
+    obj = get_object_by_uid(context, item[0])
+    if not obj:
+        return False
+    return IShippingItem(obj).shippable
 
 
 @implementer(ICartDataProvider)
@@ -117,7 +122,7 @@ class CartDataProviderBase(object):
             ret['cart_settings']['cart_max_article_count'] = 10000
         else:
             ret['cart_settings']['cart_max_article_count'] = \
-                CART_MAX_ARTICLE_COUNT
+                self.max_artice_count
         ret['cart_items'] = list()
         ret['cart_summary'] = dict()
         items = extractitems(readcookie(self.request))
@@ -187,6 +192,11 @@ class CartDataProviderBase(object):
                                   u"``hide_cart_if_empty``.")
 
     @property
+    def max_artice_count(self):
+        raise NotImplementedError(u"CartDataProviderBase does not implement "
+                                  u"``max_artice_count``.")
+
+    @property
     def disable_max_article(self):
         raise NotImplementedError(u"CartDataProviderBase does not implement "
                                   u"``disable_max_article``.")
@@ -198,12 +208,9 @@ class CartDataProviderBase(object):
 
     @property
     def include_shipping_costs(self):
-        items = extractitems(readcookie())
+        items = extractitems(readcookie(self.request))
         for item in items:
-            obj = get_object_by_uid(self.context, item[0])
-            if not obj:
-                continue
-            if IShippingItem(obj).shippable:
+            if cart_item_shippable(self.context, item):
                 return True
         return False
 

@@ -23,6 +23,8 @@ class ICartDataProvider(Interface):
 
     hide_cart_if_empty = Attribute(u"Flag whether to hide cart if empty.")
 
+    max_artice_count = Attribute(u"Max article limit in cart.")
+
     disable_max_article = Attribute(u"Flag whether to disable max article "
                                     u"limit.")
 
