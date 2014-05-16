@@ -2,8 +2,8 @@
 Changelog
 =========
 
-0.6dev
-------
+0.6
+---
 
 - Hide discount and shipping info in cart via JS if data changed respective.
   [rnix]
