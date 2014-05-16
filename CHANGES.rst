@@ -2,6 +2,13 @@
 Changelog
 =========
 
+0.7.dev0
+--------
+
+- No chnages yet.
+  [rnix]
+
+
 0.6
 ---
 
