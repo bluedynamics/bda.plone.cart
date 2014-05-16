@@ -136,6 +136,11 @@ class CartAssignment(base.Assignment):
 class CartRenderer(base.Renderer, DataProviderMixin):
     template = ViewPageTemplateFile('portlet.pt')
 
+    @property
+    def available(self):
+        # XXX: is customer somewhere in portal
+        return True
+
     def update(self):
         url = self.context.restrictedTraverse('@@plone').getCurrentUrl()
         if url.endswith('@@cart') \
