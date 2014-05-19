@@ -5,7 +5,7 @@ Changelog
 0.7.dev0
 --------
 
-- No chnages yet.
+- Add comment label in cart summary template.
   [rnix]
 
 

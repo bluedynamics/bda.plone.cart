@@ -15,7 +15,8 @@
       <img class="cart_item_preview_image" src="" />
       <p class="cart_item_description">Description</p>
       <div class="cart_item_comment_wrapper">
-        <p class="cart_item_comment">comment</p>
+        <strong i18n:translate="comment">Comment</strong>:
+        <span class="cart_item_comment">comment</span>
       </div>
       <ul class="cart_item_content">
         <li>
