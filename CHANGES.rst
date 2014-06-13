@@ -2,8 +2,8 @@
 Changelog
 =========
 
-0.7.dev1
---------
+0.7
+---
 
 - Add comment label in cart summary template.
   [rnix]
