@@ -5,7 +5,9 @@ Changelog
 0.8.dev0
 --------
 
-- no changes yet.
+- Encode umlaut characters in cart item comment.
+  [rnix]
+
 
 0.7
 ---
