@@ -395,6 +395,7 @@
             } else {
                 comment = $(comment_node).text();
             }
+            comment = unescape(encodeURIComponent(comment));
         }
         return [uid, count, comment];
     }
