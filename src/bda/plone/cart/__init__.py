@@ -22,8 +22,9 @@ from zope.i18nmessageid import MessageFactory
 from zope.interface import Interface
 from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserRequest
-import urllib2
 
+import urllib2
+import uuid
 
 _ = MessageFactory('bda.plone.cart')
 
@@ -647,6 +648,16 @@ def get_item_preview(context):
 
 def get_catalog_brain(context, uid):
     cat = getToolByName(context, 'portal_catalog')
+
+    if isinstance(uid, uuid.UUID):
+        uid = uid.hex
+    else:
+        # There is a chance that uids come in the form of str(uuid.UUID), like
+        # '8de81513-4317-52d5-f32c-680db93dda0c'. But we need
+        # '8de81513431752d5f32c680db93dda0c'. So convert to uuid and get the
+        # hex value of it to be sure
+        uid = uuid.UUID(uid).hex
+
     brains = cat(UID=uid)
     if brains:
         if len(brains) > 1:
