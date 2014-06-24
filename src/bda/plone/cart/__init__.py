@@ -648,7 +648,6 @@ def get_item_preview(context):
 
 def get_catalog_brain(context, uid):
     cat = getToolByName(context, 'portal_catalog')
-
     if isinstance(uid, uuid.UUID):
         uid = uid.hex
     else:
@@ -656,8 +655,10 @@ def get_catalog_brain(context, uid):
         # '8de81513-4317-52d5-f32c-680db93dda0c'. But we need
         # '8de81513431752d5f32c680db93dda0c'. So convert to uuid and get the
         # hex value of it to be sure
-        uid = uuid.UUID(uid).hex
-
+        try:
+            uid = uuid.UUID(uid).hex
+        except ValueError:
+            return None
     brains = cat(UID=uid)
     if brains:
         if len(brains) > 1:

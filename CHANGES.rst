@@ -5,6 +5,10 @@ Changelog
 0.8.dev0
 --------
 
+- Catch ``ValueError`` if given uid value is no valid ``uuid.UUID`` string in
+  ``get_catalog_brain``.
+  [rnix]
+
 - Let ``get_catalog_brain`` and thus ``get_object_by_uid`` handle ``uuid.UUID``
   objects, hex strings like '8de81513431752d5f32c680db93dda0c' and UUID object
   representation strings like '8de81513-4317-52d5-f32c-680db93dda0c'.
