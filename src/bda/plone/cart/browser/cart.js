@@ -277,7 +277,7 @@
                     type: 'json',
                     success: function(data) {
                         if (data.success == false) {
-                            bdajax.info(unescape(data.error));
+                            bdajax.info(decodeURIComponent(data.error));
                             if (data.update) {
                                 cart.query();
                             }
@@ -333,7 +333,7 @@
                     type: 'json',
                     success: function(data) {
                         if (data.success == false) {
-                            bdajax.info(unescape(data.error));
+                            bdajax.info(decodeURIComponent(data.error));
                             if (data.update) {
                                 cart.query();
                             }
@@ -395,7 +395,7 @@
             } else {
                 comment = $(comment_node).text();
             }
-            comment = unescape(encodeURIComponent(comment));
+            comment = decodeURIComponent(encodeURIComponent(comment));
         }
         return [uid, count, comment];
     }
@@ -436,7 +436,7 @@
         if (count > this.cart_max_article_count + 1) {
             var msg;
             msg = cart.messages['total_limit_reached'];
-            bdajax.info(unescape(msg));
+            bdajax.info(decodeURIComponent(msg));
             return false;
         }
         return true;
@@ -459,7 +459,7 @@
         if (count > this.cart_max_article_count + 1) {
             var msg;
             msg = cart.messages['total_limit_reached'];
-            bdajax.info(unescape(msg));
+            bdajax.info(decodeURIComponent(msg));
             return false;
         }
         return true;

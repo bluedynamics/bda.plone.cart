@@ -5,6 +5,9 @@ Changelog
 0.8.dev0
 --------
 
+- Use ``decodeURIComponent`` instead of deprectaed ``unescape`` in ``cart.js``.
+  [rnix]
+
 - Catch ``ValueError`` if given uid value is no valid ``uuid.UUID`` string in
   ``get_catalog_brain``.
   [rnix]
