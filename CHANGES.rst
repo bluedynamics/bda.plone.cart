@@ -2,8 +2,8 @@
 Changelog
 =========
 
-0.8.dev0
---------
+0.8
+---
 
 - Use ``decodeURIComponent`` instead of deprectaed ``unescape`` in ``cart.js``.
   [rnix]
