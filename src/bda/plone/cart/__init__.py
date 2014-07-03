@@ -537,6 +537,9 @@ class CartItemStateBase(object):
 
     @property
     def reserved(self):
+        """Return the number of reserved items in the cart from the buyable
+        context.
+        """
         aggregated_count = float(self.aggregated_count)
         stock = get_item_stock(self.context)
         available = stock.available
