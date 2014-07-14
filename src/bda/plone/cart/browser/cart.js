@@ -35,7 +35,6 @@
             'total_limit_reached': "Total limit reached",
             'not_a_number': "Input not a number",
             'max_unique_articles_reached': "Unique article limit reached",
-            'invalid_comment_character': "Invalid comment characters",
             'comment_required': "Comment is required",
             'integer_required': "Input not an integer",
             'no_longer_available': "One or more items in cart are only " +
@@ -72,12 +71,6 @@
     Cart.prototype.writecookie = function(uid, count, comment, add) {
         // XXX: support cookie size > 4096 by splitting up cookie
         count = new Number(count);
-        if (comment.indexOf(':') > -1
-                || comment.indexOf(';') > -1
-                || comment.indexOf(',') > -1) {
-            bdajax.error(cart.messages['invalid_comment_character']);
-            return;
-        }
         // item uid consists of ``object_uid;comment``
         uid = uid + ';' + comment;
         var items = this.items();

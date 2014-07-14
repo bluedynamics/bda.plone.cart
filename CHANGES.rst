@@ -5,7 +5,10 @@ Changelog
 0.9.dev0
 --------
 
-- no changes yet.
+- Quote/Unqote special characters in cart cookie only for cart item comment.
+  Thus we can have any characters in comment. "Invalid comment characters"
+  validation and error message no longer necessary.
+  [rnix]
 
 
 0.8

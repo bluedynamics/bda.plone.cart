@@ -60,7 +60,7 @@ def ascur(val, comma=False):
 def readcookie(request):
     """Read, unescape and return the cart cookie.
     """
-    return urllib2.unquote(request.cookies.get('cart', ''))
+    return request.cookies.get('cart', '')
 
 
 def deletecookie(request):
@@ -78,14 +78,14 @@ def extractitems(items):
     if not items:
         return []
     ret = list()
-    items = urllib2.unquote(items).split(',')
+    items = items.split(',')
     for item in items:
         if not item:
             continue
         item = item.split(':')
         uid = item[0].split(';')[0]
         count = item[1]
-        comment = item[0][len(uid) + 1:]
+        comment = urllib2.unquote(item[0][len(uid) + 1:])
         ret.append((uid, Decimal(count), comment))
     return ret
 
@@ -109,7 +109,7 @@ def remove_item_from_cart(request, uid):
         if uid == item_uid:
             continue
         cookie_items.append(
-            item_uid + ';' + comment + ':' + str(count))
+            item_uid + ';' + urllib2.quote(comment) + ':' + str(count))
     cookie = ','.join(cookie_items)
     request.response.setCookie('cart', cookie, quoted=False, path='/')
 

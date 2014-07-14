@@ -24,7 +24,6 @@ CART_TRANSLATIONS_JS = u"""
         messages.total_limit_reached = "%(total_limit_reached)s";
         messages.not_a_number = "%(not_a_number)s";
         messages.max_unique_articles_reached = "%(max_unique_articles_reached)s";
-        messages.invalid_comment_character = "%(invalid_comment_character)s";
         messages.comment_required = "%(comment_required)s";
         messages.integer_required = "%(integer_required)s";
         messages.no_longer_available = "%(no_longer_available)s";
@@ -48,10 +47,6 @@ class CartJSTranslations(BrowserView):
         msgs['max_unique_articles_reached'] = translate(_(
             'cart_max_unique_articles_reached',
             default=u'Unique article limit reached'),
-            context=self.request)
-        msgs['invalid_comment_character'] = translate(_(
-            'cart_invalid_comment_character',
-            default=u'Invalid comment characters'),
             context=self.request)
         msgs['comment_required'] = translate(_(
             'cart_comment_required',
