@@ -120,7 +120,10 @@ def cart_item_shippable(context, item):
     obj = get_object_by_uid(context, item[0])
     if not obj:
         return False
-    return IShippingItem(obj).shippable
+    shipping_info = queryAdapter(obj, IShippingItem)
+    if shipping_info:
+        return shipping_info.shippable
+    return False
 
 
 @implementer(ICartDataProvider)

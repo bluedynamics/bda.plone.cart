@@ -5,7 +5,9 @@ Changelog
 0.10.dev0
 ---------
 
-- no changes yet.
+- Do not expect IShippingItem to be implemented. See also 
+  https://github.com/bluedynamics/bda.plone.shop/issues/31
+  [jensens]
 
 
 0.9
