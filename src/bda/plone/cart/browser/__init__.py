@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
-import simplejson as json
-from decimal import Decimal
-from zope.interface import implementer
-from zope.i18n import translate
-from zope.i18nmessageid import MessageFactory
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from bda.plone.cart import CURRENCY_LITERALS
+from bda.plone.cart import get_data_provider
+from bda.plone.cart import readcookie
+from decimal import Decimal
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
-from plone.memoize import instance
-from bda.plone.cart import CURRENCY_LITERALS
-from bda.plone.cart import readcookie
-from bda.plone.cart import get_data_provider
+from zope.i18n import translate
+from zope.i18nmessageid import MessageFactory
+from zope.interface import implementer
+import simplejson as json
 
 
 _ = MessageFactory('bda.plone.cart')
@@ -139,9 +138,9 @@ class CartRenderer(base.Renderer, DataProviderMixin):
     def update(self):
         url = self.context.restrictedTraverse('@@plone').getCurrentUrl()
         if url.endswith('@@cart') \
-          or url.find('@@checkout') != -1 \
-          or url.find('@@confirm_order') != -1 \
-          or url.find('/portal_factory/') != -1:
+           or url.find('@@checkout') != -1 \
+           or url.find('@@confirm_order') != -1 \
+           or url.find('/portal_factory/') != -1:
             self.show = False
         else:
             self.show = True
