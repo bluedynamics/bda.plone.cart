@@ -86,6 +86,14 @@ and the "update cart" action::
 
     <a href="" class="update_cart_item">update cart</a>
 
+Optionally, If cart viewlet is used, a status message can be displayed when
+adding or updating cart items. This is useful if user should get
+clearly informed if cart data has changed. To display status messages,
+add CSS class ``show_status_message`` to "add to cart" and "update cart"
+actions::
+
+    <a href="" class="update_cart_item show_status_message">update cart</a>
+
 and optionally an element defining a comment or an input for entering a
 comment::
 

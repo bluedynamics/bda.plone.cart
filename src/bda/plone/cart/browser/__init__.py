@@ -32,6 +32,9 @@ CART_TRANSLATIONS_JS = u"""
         messages.comment_required = "%(comment_required)s";
         messages.integer_required = "%(integer_required)s";
         messages.no_longer_available = "%(no_longer_available)s";
+        messages.cart_item_added = "%(item_added)s";
+        messages.cart_item_updated = "%(item_updated)s";
+        messages.cart_item_removed = "%(item_removed)s";
     });
 })(jQuery);
 """
@@ -65,6 +68,18 @@ class CartJSTranslations(BrowserView):
             'cart_no_longer_available',
             default=u'One or more items in cart are only partly or no longer '
                     u'available. Please update or remove related items'),
+            context=self.request)
+        msgs['item_added'] = translate(_(
+            'cart_item_added',
+            default=u'Item has been added to cart'),
+            context=self.request)
+        msgs['item_updated'] = translate(_(
+            'cart_item_updated',
+            default=u'Item has been updated in cart'),
+            context=self.request)
+        msgs['item_removed'] = translate(_(
+            'cart_item_removed',
+            default=u'Item has been removed from cart'),
             context=self.request)
         return CART_TRANSLATIONS_JS % msgs
 

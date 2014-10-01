@@ -39,8 +39,12 @@
             'integer_required': "Input not an integer",
             'no_longer_available': "One or more items in cart are only " +
                                    "partly or no longer available. Please " +
-                                   "update or remove related items"
+                                   "update or remove related items",
+            'cart_item_added': "Item has been added to cart",
+            'cart_item_updated': "Item has been updated in cart",
+            'cart_item_removed': "Item has been removed from cart"
         };
+        this.status_message_timeout = null;
     }
 
     Cart.prototype.init = function() {
@@ -281,6 +285,7 @@
                 if (CART_EXECUTION_CONTEXT) {
                     params.execution_context = CART_EXECUTION_CONTEXT;
                 }
+                var status_message = $(this).hasClass('show_status_message');
                 bdajax.request({
                     url: 'validate_cart_item',
                     params: params,
@@ -297,6 +302,10 @@
                             evt.uid = defs[0];
                             evt.count = count;
                             $('*').trigger(evt);
+                            if (status_message) {
+                                cart.status_message(
+                                    cart.messages['cart_item_added']);
+                            }
                         }
                     }
                 });
@@ -337,6 +346,7 @@
                 if (CART_EXECUTION_CONTEXT) {
                     params.execution_context = CART_EXECUTION_CONTEXT;
                 }
+                var status_message = $(this).hasClass('show_status_message');
                 bdajax.request({
                     url: 'validate_cart_item',
                     params: params,
@@ -353,6 +363,13 @@
                             evt.uid = defs[0];
                             evt.count = count;
                             $('*').trigger(evt);
+                            if (status_message && defs[1] == 0) {
+                                cart.status_message(
+                                    cart.messages['cart_item_removed']);
+                            } else if (status_message && defs[1] != 0) {
+                                cart.status_message(
+                                    cart.messages['cart_item_updated']);
+                            }
                         }
                     }
                 });
@@ -473,6 +490,19 @@
             return false;
         }
         return true;
+    }
+
+    Cart.prototype.status_message = function(message) {
+        var status_message = $('#cart_status_message');
+        if (this.status_message_timeout) {
+            clearTimeout(this.status_message_timeout);
+        }
+        status_message.html(message);
+        status_message.fadeIn(500, function() {
+            cart.status_message_timeout = setTimeout(function() {
+                status_message.fadeOut(500);
+            }, 2000);
+        });
     }
 
     /*

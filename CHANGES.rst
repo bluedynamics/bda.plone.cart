@@ -5,6 +5,9 @@ Changelog
 0.10.dev0
 ---------
 
+- Cart can display status message if cart data gets modified.
+  [rnix]
+
 - Cart might be rendered as viewlet in portal header instead of as portlet.
   [rnix]
 

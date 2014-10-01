@@ -93,6 +93,20 @@ tr.discount {
     margin-top:1em;
     padding-top:1em;
 }
+/* cart status message */
+#cart_status_message {
+    display:none;
+    position:fixed;
+    top:3em;
+    left:3em;
+    min-width:200px;
+    border:#cccccc 3px solid;
+    border-radius:0.5em;
+    background-color:#f0a900;
+    color:#ffffff;
+    font-weight:bold;
+    padding:1em;
+}
 /* cart summary styles */
 .summary_item {
     padding-top:1.2em;

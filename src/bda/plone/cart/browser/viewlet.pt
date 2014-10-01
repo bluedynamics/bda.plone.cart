@@ -7,7 +7,7 @@
        i18n:attributes="title cart_summary">
       <span i18n:translate="cart">Cart</span>
       (<span class="cart_total_count"
-            tal:content="view/cart_total_count">0</span>)
+             tal:content="view/cart_total_count">0</span>)
     </a>
   </div>
 
@@ -32,3 +32,5 @@
   </div>
 
 </div>
+
+<div id="cart_status_message"></div>
