@@ -9,6 +9,14 @@
     renderer=".CartRenderer"
     addview=".CartAddForm" />
 
+  <browser:viewlet
+    name="bda.plone.cart"
+    class=".CartViewlet"
+    template="viewlet.pt"
+    manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+    permission="zope2.View"
+    layer="..interfaces.ICartExtensionLayer" />
+
   <browser:resource
     name="bda.plone.cart.css"
     file="cart.css"

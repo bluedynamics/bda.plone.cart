@@ -35,6 +35,16 @@ Further some abstract base implementations are available in
 implementations.
 
 
+Cart Visibility
+===============
+
+The cart can be rendered as a portlet or inside a viewlet in the portal
+header. It's not possible to render the cart twice in one page. Thus, the
+viewlet gets skipped automatically if a cart portlet assignment is found.
+Also, if cart summary, checkout, order confirmation or portal factory is
+rendered, regular cart rendering gets skipped.
+
+
 A ready-to-use implementation
 =============================
 

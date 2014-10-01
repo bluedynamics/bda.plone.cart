@@ -1,4 +1,4 @@
-// Dependencies: $, cookie_functions.js
+// Dependencies: jQuery, cookie_functions.js
 
 (function($) {
 
@@ -120,12 +120,14 @@
             $('#cart_items', this.cart_node).css('display', 'none');
             $('#cart_no_items', this.cart_node).css('display', 'block');
             $('#cart_summary', this.cart_node).css('display', 'none');
+            $('#cart_total_count').html(0);
         } else {
             $(CART_PORTLET_IDENTIFYER).css('display', 'block');
             $('#cart_no_items', this.cart_node).css('display', 'none');
             $('#cart_items', this.cart_node).empty();
             $('#cart_items', this.cart_node).css('display', 'block');
             var render_no_longer_available = false;
+            var cart_total_count = 0;
             for (var i = 0; i < data.cart_items.length; i++) {
                 var cart_item = $(this.item_template).clone();
                 var cart_item_data = data.cart_items[i];
@@ -159,6 +161,10 @@
                     if (item == 'cart_item_alert') {
                         $('.cart_item_alert', cart_item).show();
                     }
+                    var is_count = item == 'cart_item_count';
+                    if (is_count) {
+                        cart_total_count += value;
+                    }
                     var placeholder = $(css, cart_item);
                     $(placeholder).each(function(e) {
                         // case set attribute of element
@@ -172,7 +178,6 @@
                                 $(this).addClass('required');
                             }
                             // check if count and set quantity_unit_float class
-                            var is_count = item == 'cart_item_count';
                             if (is_count && quantity_unit_float) {
                                 $(this).addClass('quantity_unit_float');
                                 value = cart.round(value);
@@ -182,7 +187,6 @@
                         // case set element text
                         } else {
                             // not count element, set value
-                            var is_count = item == 'cart_item_count';
                             if (!is_count) {
                                 $(this).html(value);
                             // if count element has 'style' attribute 'display'
@@ -216,6 +220,7 @@
                 $('.shipping', this.cart_node).css('display', 'none');
             }
             $('#cart_summary', this.cart_node).css('display', 'block');
+            $('.cart_total_count').html(cart_total_count);
             if (render_no_longer_available) {
                 this.no_longer_available = true;
                 bdajax.warning(cart.messages['no_longer_available']);
@@ -226,6 +231,18 @@
     }
 
     Cart.prototype.bind = function(context) {
+        $('#cart_viewlet_summery a', context)
+            .unbind('click')
+            .bind('click', function(e) {
+                e.preventDefault();
+                var container = $(this).parents('#cart_viewlet');
+                var cart_wrapper = $('#cart_viewlet_details', container);
+                if (cart_wrapper.is(':visible')) {
+                    cart_wrapper.hide();
+                } else {
+                    cart_wrapper.show();
+                }
+            });
         $('.prevent_if_no_longer_available', context)
             .unbind('click')
             .bind('click', function(e) {

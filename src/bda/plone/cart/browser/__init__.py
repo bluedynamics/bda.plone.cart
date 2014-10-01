@@ -4,9 +4,15 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from bda.plone.cart import CURRENCY_LITERALS
 from bda.plone.cart import get_data_provider
 from bda.plone.cart import readcookie
+from bda.plone.cart import extractitems
 from decimal import Decimal
 from plone.app.portlets.portlets import base
+from plone.app.layout.viewlets.common import ViewletBase
 from plone.portlets.interfaces import IPortletDataProvider
+from plone.portlets.interfaces import IPortletManager
+from plone.portlets.interfaces import IPortletRetriever
+from zope.component import getMultiAdapter
+from zope.component import getUtilitiesFor
 from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
 from zope.interface import implementer
@@ -70,7 +76,27 @@ class DataProviderMixin(object):
         return get_data_provider(self.context, self.request)
 
 
+class CartMixin(DataProviderMixin):
+
+    @property
+    def cart_url(self):
+        return self.data_provider.cart_url
+
+    @property
+    def checkout_url(self):
+        return self.data_provider.checkout_url
+
+    @property
+    def show_to_cart(self):
+        return self.data_provider.show_to_cart
+
+    @property
+    def show_checkout(self):
+        return self.data_provider.show_checkout
+
+
 class CartView(BrowserView, DataProviderMixin):
+    # XXX: rename to CartSummary
 
     @property
     def disable_max_article(self):
@@ -127,7 +153,17 @@ class CartAssignment(base.Assignment):
         return _(u'cart', u'Cart')
 
 
-class CartRenderer(base.Renderer, DataProviderMixin):
+def render_cart(context):
+    url = context.restrictedTraverse('@@plone').getCurrentUrl()
+    if url.endswith('@@cart') \
+       or url.find('@@checkout') != -1 \
+       or url.find('@@confirm_order') != -1 \
+       or url.find('/portal_factory/') != -1:
+        return False
+    return True
+
+
+class CartRenderer(base.Renderer, CartMixin):
     template = ViewPageTemplateFile('portlet.pt')
 
     @property
@@ -136,35 +172,15 @@ class CartRenderer(base.Renderer, DataProviderMixin):
         return True
 
     def update(self):
-        url = self.context.restrictedTraverse('@@plone').getCurrentUrl()
-        if url.endswith('@@cart') \
-           or url.find('@@checkout') != -1 \
-           or url.find('@@confirm_order') != -1 \
-           or url.find('/portal_factory/') != -1:
-            self.show = False
-        else:
+        if render_cart(self.context):
             self.show = True
+        else:
+            self.show = False
 
     def render(self):
         if not self.show:
             return u''
         return self.template()
-
-    @property
-    def cart_url(self):
-        return self.data_provider.cart_url
-
-    @property
-    def checkout_url(self):
-        return self.data_provider.checkout_url
-
-    @property
-    def show_to_cart(self):
-        return self.data_provider.show_to_cart
-
-    @property
-    def show_checkout(self):
-        return self.data_provider.show_checkout
 
 
 class CartAddForm(base.NullAddForm):
@@ -173,3 +189,29 @@ class CartAddForm(base.NullAddForm):
 
     def create(self):
         return CartAssignment()
+
+
+class CartViewlet(ViewletBase, CartMixin):
+
+    def render(self):
+        context = self.context
+        if not render_cart(context):
+            return u''
+        # check whether cart portlet is rendered and skip viewlet if so
+        for name, manager in getUtilitiesFor(IPortletManager, context=context):
+            retriever = getMultiAdapter((context, manager), IPortletRetriever)
+            portlets = retriever.getPortlets()
+            for portlet in portlets:
+                if ICartPortlet.providedBy(portlet['assignment']):
+                    return u''
+        # XXX: is customer somewhere in portal
+        return super(CartViewlet, self).render()
+
+    @property
+    def cart_total_count(self):
+        # XXX: how to handle float?
+        # XXX: count total items in cart or total unique items in cart?
+        count = 0
+        for uid, count, comment in extractitems(readcookie(self.request)):
+            count += count
+        return count

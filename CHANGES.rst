@@ -5,8 +5,11 @@ Changelog
 0.10.dev0
 ---------
 
-- Do not expect IShippingItem to be implemented. See also 
-  https://github.com/bluedynamics/bda.plone.shop/issues/31
+- Cart might be rendered as viewlet in portal header instead of as portlet.
+  [rnix]
+
+- Do not expect ``IShippingItem`` to be implemented. See also
+  ``https://github.com/bluedynamics/bda.plone.shop/issues/31``
   [jensens]
 
 
