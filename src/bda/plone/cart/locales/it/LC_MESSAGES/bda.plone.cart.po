@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bda.plone.shipping\n"
-"POT-Creation-Date: 2014-07-14 13:26+0000\n"
+"POT-Creation-Date: 2014-10-01 14:42+0000\n"
 "PO-Revision-Date: 2013-06-12 14:38+0100\n"
 "Last-Translator: Peter Holzer <peter.holzer@agitator.com>\n"
 "Language-Team: \n"
@@ -15,16 +15,16 @@ msgstr ""
 "Domain: bda.plone.shipping\n"
 "X-Is-Fallback-For: it-ch it-it\n"
 
-#: ./browser/__init__.py:172
+#: ./browser/__init__.py:202
 msgid "Add Cart Portlet"
 msgstr "Aggiungere il portlet del carrello"
 
-#: ./browser/__init__.py:173
+#: ./browser/__init__.py:203
 msgid "This portlet displays the shopping cart."
 msgstr "Questo portlet mostra il carrello"
 
 #. Default: "Article limit reached"
-#: ./__init__.py:284
+#: ./__init__.py:287
 msgid "article_limit_reached"
 msgstr ""
 
@@ -33,50 +33,67 @@ msgid "back"
 msgstr "indietro"
 
 #. Default: "Cart"
-#: ./browser/__init__.py:128
+#: ./browser/__init__.py:168
 #: ./browser/portlet.pt:8
 #: ./browser/view.pt:18
 msgid "cart"
 msgstr "Carrello"
 
 #. Default: "Comment is required"
-#: ./browser/__init__.py:51
+#: ./browser/__init__.py:59
 msgid "cart_comment_required"
 msgstr ""
 
 #. Default: "Input not an integer"
-#: ./browser/__init__.py:55
+#: ./browser/__init__.py:63
 msgid "cart_integer_required"
 msgstr ""
 
+#. Default: "Item has been added to cart"
+#: ./browser/__init__.py:72
+msgid "cart_item_added"
+msgstr ""
+
+#. Default: "Item has been removed from cart"
+#: ./browser/__init__.py:80
+msgid "cart_item_removed"
+msgstr ""
+
+#. Default: "Item has been updated in cart"
+#: ./browser/__init__.py:76
+msgid "cart_item_updated"
+msgstr ""
+
 #. Default: "Unique article limit reached"
-#: ./browser/__init__.py:47
+#: ./browser/__init__.py:55
 msgid "cart_max_unique_articles_reached"
 msgstr ""
 
 #. Default: "One or more items in cart are only partly or no longer available. Please update or remove related items"
-#: ./browser/__init__.py:59
+#: ./browser/__init__.py:67
 msgid "cart_no_longer_available"
 msgstr ""
 
 #. Default: "Input not a number"
-#: ./browser/__init__.py:43
+#: ./browser/__init__.py:51
 msgid "cart_not_a_number"
 msgstr ""
 
 #. Default: "Cart"
 #: ./browser/portlet.pt:8
+#: ./browser/viewlet.pt:5
 msgid "cart_summary"
 msgstr "Carrello"
 
 #. Default: "Total limit reached"
-#: ./browser/__init__.py:39
+#: ./browser/__init__.py:47
 msgid "cart_total_limit_reached"
 msgstr ""
 
 #. Default: "Checkout"
 #: ./browser/portlet.pt:20
 #: ./browser/summary.pt:113
+#: ./browser/viewlet.pt:19
 msgid "checkout"
 msgstr "checkout"
 
@@ -147,7 +164,7 @@ msgid "summary_vat"
 msgstr "IVA:"
 
 #. Default: "Not enough items available, abort."
-#: ./__init__.py:298
+#: ./__init__.py:301
 msgid "trying_to_add_more_items_than_available"
 msgstr ""
 
