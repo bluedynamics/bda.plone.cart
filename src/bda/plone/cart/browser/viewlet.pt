@@ -1,7 +1,7 @@
-<div id="cart_viewlet"
+<dl id="cart_viewlet"
      i18n:domain="bda.plone.cart">
-
-  <div id="cart_viewlet_summery">
+  <p class="hiddenStructure">Cart</p>
+  <dt id="cart_viewlet_summery">
     <a href="#" 
        title="Cart"
        i18n:attributes="title cart_summary">
@@ -9,12 +9,11 @@
       (<span class="cart_total_count"
              tal:content="view/cart_total_count">0</span>)
     </a>
-  </div>
+  </dt>
 
-  <div id="cart_viewlet_details">
+  <dd id="cart_viewlet_details">
 
     <tal:cart replace="structure context/@@cart_tile" />
-
     <div class="cart_viewlet_actions">
       <a href="@@checkout"
          class="go_to_cart_action prevent_if_no_longer_available"
@@ -28,9 +27,8 @@
          tal:condition="view/show_to_cart"
          i18n:translate="cart">Cart</a>
     </div>
+  </dd>
 
-  </div>
-
-</div>
+</dl>
 
 <div id="cart_status_message"></div>
