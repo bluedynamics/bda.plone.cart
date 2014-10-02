@@ -76,12 +76,13 @@ tr.discount {
     border-bottom-left-radius: 0.5em;
 }
 #cart_viewlet_details {
+    font-size: 80%;
     display:none;
     position:absolute;
     right:0;
     background-color:#fff;
     padding:1em;
-    margin-top:1.5em;
+    margin-top: 2em;
     border:#ccc 3px solid;
     border-radius:0.5em;
     min-width:260px;
