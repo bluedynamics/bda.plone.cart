@@ -5,6 +5,9 @@ Changelog
 0.10.dev0
 ---------
 
+- Hide unset preview images for cart item.
+  [rnix]
+
 - Cart can display status message if cart data gets modified.
   [rnix]
 

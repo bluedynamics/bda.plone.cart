@@ -99,18 +99,17 @@ tr.discount {
     padding-top:1em;
 }
 /* cart status message */
-#cart_status_message {
+.cart_status_message {
     display:none;
-    position:fixed;
-    top:3em;
-    left:3em;
-    min-width:200px;
-    border:#cccccc 3px solid;
-    border-radius:0.5em;
-    background-color:#f0a900;
-    color:#ffffff;
+    position:absolute;
+    z-index:1000;
+    border:#cccccc 1px solid;
+    border-radius:3px;
+    background-color:#efefef;
+    color:#222222;
+    padding:5px;
+    font-size:80%;
     font-weight:bold;
-    padding:1em;
 }
 /* cart summary styles */
 .summary_item {

@@ -44,7 +44,6 @@
             'cart_item_updated': "Item has been updated in cart",
             'cart_item_removed': "Item has been removed from cart"
         };
-        this.status_message_timeout = null;
     }
 
     Cart.prototype.init = function() {
@@ -124,7 +123,7 @@
             $('#cart_items', this.cart_node).css('display', 'none');
             $('#cart_no_items', this.cart_node).css('display', 'block');
             $('#cart_summary', this.cart_node).css('display', 'none');
-            $('#cart_total_count').html(0);
+            $('.cart_total_count').html(0);
         } else {
             $(CART_PORTLET_IDENTIFYER).css('display', 'block');
             $('#cart_no_items', this.cart_node).css('display', 'none');
@@ -164,6 +163,9 @@
                     }
                     if (item == 'cart_item_alert') {
                         $('.cart_item_alert', cart_item).show();
+                    }
+                    if (css == '.cart_item_preview_image' && value == '') {
+                        $('.cart_item_preview_image', cart_item).hide();
                     }
                     var is_count = item == 'cart_item_count';
                     if (is_count) {
@@ -285,7 +287,8 @@
                 if (CART_EXECUTION_CONTEXT) {
                     params.execution_context = CART_EXECUTION_CONTEXT;
                 }
-                var status_message = $(this).hasClass('show_status_message');
+                var elem = $(this);
+                var status_message = elem.hasClass('show_status_message');
                 bdajax.request({
                     url: 'validate_cart_item',
                     params: params,
@@ -304,7 +307,7 @@
                             $('*').trigger(evt);
                             if (status_message) {
                                 cart.status_message(
-                                    cart.messages['cart_item_added']);
+                                    elem, cart.messages['cart_item_added']);
                             }
                         }
                     }
@@ -346,7 +349,8 @@
                 if (CART_EXECUTION_CONTEXT) {
                     params.execution_context = CART_EXECUTION_CONTEXT;
                 }
-                var status_message = $(this).hasClass('show_status_message');
+                var elem = $(this);
+                var status_message = elem.hasClass('show_status_message');
                 bdajax.request({
                     url: 'validate_cart_item',
                     params: params,
@@ -365,10 +369,10 @@
                             $('*').trigger(evt);
                             if (status_message && defs[1] == 0) {
                                 cart.status_message(
-                                    cart.messages['cart_item_removed']);
+                                    elem, cart.messages['cart_item_removed']);
                             } else if (status_message && defs[1] != 0) {
                                 cart.status_message(
-                                    cart.messages['cart_item_updated']);
+                                    elem, cart.messages['cart_item_updated']);
                             }
                         }
                     }
@@ -492,17 +496,28 @@
         return true;
     }
 
-    Cart.prototype.status_message = function(message) {
-        var status_message = $('#cart_status_message');
-        if (this.status_message_timeout) {
-            clearTimeout(this.status_message_timeout);
-        }
+    Cart.prototype.status_message = function(elem, message) {
+        var show_message = function(anchor_elem, status_message) {
+            var offset = anchor_elem.offset();
+            var width = anchor_elem.width();
+            var height = anchor_elem.height();
+            var body_width = $('body').width();
+            var top = offset.top + height + 3;
+            var right = body_width - offset.left - width - 8;
+            status_message.css('top', top);
+            status_message.css('right', right);
+            $('body').append(status_message);
+            status_message.fadeIn(500, function() {
+                setTimeout(function() {
+                    status_message.fadeOut(500, function() {
+                        status_message.remove();
+                    });
+                }, 2000);
+            });
+        };
+        var status_message = $('<div class="cart_status_message"></div>');
         status_message.html(message);
-        status_message.fadeIn(500, function() {
-            cart.status_message_timeout = setTimeout(function() {
-                status_message.fadeOut(500);
-            }, 2000);
-        });
+        show_message(elem, status_message);
     }
 
     /*

@@ -226,7 +226,7 @@ class CartViewlet(ViewletBase, CartMixin):
     def cart_total_count(self):
         # XXX: how to handle float?
         # XXX: count total items in cart or total unique items in cart?
-        count = 0
+        ret = Decimal('0')
         for uid, count, comment in extractitems(readcookie(self.request)):
-            count += count
-        return count
+           ret += count
+        return ret
