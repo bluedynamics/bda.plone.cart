@@ -5,6 +5,9 @@ Changelog
 0.10.dev0
 ---------
 
+- Consider ``hide cart if empty`` setting on cart viewlet.
+  [rnix]
+
 - Hide unset preview images for cart item.
   [rnix]
 

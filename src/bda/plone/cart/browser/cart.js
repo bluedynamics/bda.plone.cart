@@ -24,6 +24,7 @@
 
     CART_EXECUTION_CONTEXT = null;
     CART_PORTLET_IDENTIFYER = '#portlet-cart';
+    CART_VIEWLET_IDENTIFYER = '#cart_viewlet';
 
     function Cart() {
         // flag whether cart contains items which are no longer available
@@ -117,8 +118,10 @@
         if (data.cart_items.length == 0) {
             if (!data.cart_settings.hide_cart_if_empty) {
                 $(CART_PORTLET_IDENTIFYER).css('display', 'block');
+                $(CART_VIEWLET_IDENTIFYER).css('display', 'block');
             } else {
                 $(CART_PORTLET_IDENTIFYER).css('display', 'none');
+                $(CART_VIEWLET_IDENTIFYER).css('display', 'none');
             }
             $('#cart_items', this.cart_node).css('display', 'none');
             $('#cart_no_items', this.cart_node).css('display', 'block');
@@ -126,6 +129,7 @@
             $('.cart_total_count').html(0);
         } else {
             $(CART_PORTLET_IDENTIFYER).css('display', 'block');
+            $(CART_VIEWLET_IDENTIFYER).css('display', 'block');
             $('#cart_no_items', this.cart_node).css('display', 'none');
             $('#cart_items', this.cart_node).empty();
             $('#cart_items', this.cart_node).css('display', 'block');
