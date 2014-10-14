@@ -52,22 +52,22 @@ msgstr ""
 #. Default: "Item has been added to cart"
 #: ./browser/__init__.py:72
 msgid "cart_item_added"
-msgstr ""
+msgstr "Le document à été ajouté a votre panier"
 
 #. Default: "Item has been removed from cart"
 #: ./browser/__init__.py:80
 msgid "cart_item_removed"
-msgstr ""
+msgstr "L'article a été supprimée du panier"
 
 #. Default: "Item has been updated in cart"
 #: ./browser/__init__.py:76
 msgid "cart_item_updated"
-msgstr ""
+msgstr "L'article a été mis à jour dans le panier"
 
 #. Default: "Unique article limit reached"
 #: ./browser/__init__.py:55
 msgid "cart_max_unique_articles_reached"
-msgstr ""
+msgstr "Article unique limite atteint"
 
 #. Default: "One or more items in cart are only partly or no longer available. Please update or remove related items"
 #: ./browser/__init__.py:67
