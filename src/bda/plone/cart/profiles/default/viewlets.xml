@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <object>
-  <order manager="plone.portalheader" skinname="*">
+  <order manager="plone.portalheader" skinname="*" purge="false">
     <viewlet name="bda.plone.cart" insert-before="plone.searchbox" />
   </order>
 </object>

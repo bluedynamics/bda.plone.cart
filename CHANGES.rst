@@ -5,6 +5,10 @@ Changelog
 0.10.dev0
 ---------
 
+- By default, cart viewlet is hidden and gets displayed as soon as cart items
+  are fetched.
+  [rnix]
+
 - Consider ``hide cart if empty`` setting on cart viewlet.
   [rnix]
 

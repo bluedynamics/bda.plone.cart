@@ -1,6 +1,9 @@
 <dl id="cart_viewlet"
-     i18n:domain="bda.plone.cart">
+    style="display:none;"
+    i18n:domain="bda.plone.cart">
+
   <p class="hiddenStructure">Cart</p>
+
   <dt id="cart_viewlet_summery">
     <a href="#" 
        title="Cart"
