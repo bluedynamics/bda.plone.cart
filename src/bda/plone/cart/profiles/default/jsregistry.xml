@@ -11,9 +11,9 @@
     inline="False" />
 
   <javascript
-    cacheable="True"
+    cacheable="False"
     compression="safe"
-    cookable="True"
+    cookable="False"
     enabled="True"
     expression=""
     id="@@bda.plone.cart.translations.js"
