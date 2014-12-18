@@ -26,7 +26,7 @@ msgstr "Questo portlet mostra il carrello"
 #. Default: "Article limit reached"
 #: ./__init__.py:287
 msgid "article_limit_reached"
-msgstr ""
+msgstr "La quantità desiderata supera la quantità di ordine massimo per questo prodotto."
 
 #: ./browser/summary.pt:111
 msgid "back"

@@ -26,7 +26,7 @@ msgstr "Fonction montrer panier"
 #. Default: "Article limit reached"
 #: ./__init__.py:287
 msgid "article_limit_reached"
-msgstr ""
+msgstr "La quantité souhaitée dépasse la quantité maximale de commande pour ce produit."
 
 #: ./browser/summary.pt:111
 msgid "back"
