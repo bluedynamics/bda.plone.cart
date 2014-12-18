@@ -2,7 +2,7 @@
 Changelog
 =========
 
-0.10.dev0
+0.10.dev2
 ---------
 
 - By default, cart viewlet is hidden and gets displayed as soon as cart items
@@ -24,6 +24,10 @@ Changelog
 - Do not expect ``IShippingItem`` to be implemented. See also
   ``https://github.com/bluedynamics/bda.plone.shop/issues/31``
   [jensens]
+
+- No caching/merging of cart.translations.js
+  [agitator]
+
 
 
 0.9
