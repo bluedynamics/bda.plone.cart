@@ -95,7 +95,7 @@ msgstr ""
 #: ./browser/summary.pt:113
 #: ./browser/viewlet.pt:19
 msgid "checkout"
-msgstr "checkout"
+msgstr "Cassa"
 
 #. Default: "Comment"
 #: ./browser/summary.pt:18
