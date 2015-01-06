@@ -3,7 +3,7 @@ from setuptools import setup
 from setuptools import find_packages
 
 
-version = '0.10.dev4.sfama'
+version = '0.10.dev5'
 shortdesc = "Shopping Cart"
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'CHANGES.rst')).read()
