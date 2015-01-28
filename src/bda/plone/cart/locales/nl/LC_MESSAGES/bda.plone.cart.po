@@ -1,176 +1,159 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bda.plone.cart\n"
-"POT-Creation-Date: 2015-01-27 16:30+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"POT-Creation-Date: 2015-01-28 14:42+0000\n"
+"PO-Revision-Date: 2015-01-28 15:13+0100\n"
 "Last-Translator: INTK <info@intk.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Language-Code: nl\n"
 "Language-Name: Nederlands\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: bda.plone.cart\n"
 "X-Is-Fallback-For: nl-be nl-nl\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.7.4\n"
 
-#: ./browser/__init__.py:202
+#: browser/__init__.py:202
 msgid "Add Cart Portlet"
-msgstr "Warenkorb Portlet hinzufügen"
+msgstr "Toevoegen aan winkelwagen Portlet"
 
-#: ./browser/__init__.py:203
+#: browser/__init__.py:203
 msgid "This portlet displays the shopping cart."
-msgstr "Dieses Portlet zeigt den Warenkorb"
+msgstr "Dit Portlet geeft de winkelwagen weer"
 
 #. Default: "Article limit reached"
-#: ./__init__.py:287
+#: __init__.py:287
 msgid "article_limit_reached"
-msgstr "Die gewünschte Bestellmenge übersteigt die maximale Bestellmenge für diesen Artikel."
+msgstr "Het artikel limit is bereikt"
 
-#: ./browser/summary.pt:111
+#: browser/summary.pt:111
 msgid "back"
-msgstr "zurück"
+msgstr "Terug"
 
 #. Default: "Cart"
-#: ./browser/__init__.py:168
-#: ./browser/portlet.pt:8
-#: ./browser/view.pt:18
+#: browser/__init__.py:168 browser/portlet.pt:8 browser/view.pt:18
 msgid "cart"
-msgstr "Warenkorb"
+msgstr "Winkelwagen"
 
 #. Default: "Comment is required"
-#: ./browser/__init__.py:59
+#: browser/__init__.py:59
 msgid "cart_comment_required"
-msgstr "Zusatzangabe ist erforderlich"
+msgstr "Opmerking is vereist"
 
 #. Default: "Input not an integer"
-#: ./browser/__init__.py:63
+#: browser/__init__.py:63
 msgid "cart_integer_required"
-msgstr "Eingabe muss eine Ganzzahl sein"
+msgstr "Invoer moet een geheel getal zijn"
 
 #. Default: "Item has been added to cart"
-#: ./browser/__init__.py:72
+#: browser/__init__.py:72
 msgid "cart_item_added"
-msgstr "Artikel wurde in den Warenkorb gelegt"
+msgstr "Het artikel is toegevoegd aan uw winkelwagen"
 
 #. Default: "Item has been removed from cart"
-#: ./browser/__init__.py:80
+#: browser/__init__.py:80
 msgid "cart_item_removed"
-msgstr "Artikel wurde aus dem Warenkorb entfernt"
+msgstr "Het artikel is verwijderd uit uw winkelwagen"
 
 #. Default: "Item has been updated in cart"
-#: ./browser/__init__.py:76
+#: browser/__init__.py:76
 msgid "cart_item_updated"
-msgstr "Artikel wurde im Warenkorb aktualisiert"
+msgstr "Het artikel is bijgewerkt in uw winkelwagen"
 
 #. Default: "Unique article limit reached"
-#: ./browser/__init__.py:55
+#: browser/__init__.py:55
 msgid "cart_max_unique_articles_reached"
-msgstr "Die maximale Anzahl von verschiedenen Artikeln wurde erreicht. Es ist nicht möglich, weiter Artikel in den Warenkorb zu legen. Bitte schließen Sie die aktuelle Bestellung ab."
+msgstr "Het maximum aantal verschillende artikelen is bereikt"
 
 #. Default: "One or more items in cart are only partly or no longer available. Please update or remove related items"
-#: ./browser/__init__.py:67
+#: browser/__init__.py:67
 msgid "cart_no_longer_available"
-msgstr "Ein oder mehrere Artikel im Warenkorb sind in der gewünschten Anzahl nicht oder nur mehr teilweise verfügbar. Bitte aktualisieren oder entfernen Sie die ensprechenden Artikel vor dem Abschluss Ihres Einkaufs."
+msgstr "Één of meedere items in uw winkelwagen zijn niet meer beschikbaar"
 
 #. Default: "Input not a number"
-#: ./browser/__init__.py:51
+#: browser/__init__.py:51
 msgid "cart_not_a_number"
-msgstr "Die Eingabe ist keine Zahl"
+msgstr "Invoer in geen nummer"
 
 #. Default: "Cart"
-#: ./browser/portlet.pt:8
-#: ./browser/viewlet.pt:5
+#: browser/portlet.pt:8 browser/viewlet.pt:5
 msgid "cart_summary"
-msgstr "Warenkorb"
+msgstr "Winkelwagen"
 
 #. Default: "Total limit reached"
-#: ./browser/__init__.py:47
+#: browser/__init__.py:47
 msgid "cart_total_limit_reached"
-msgstr "Die gewünschte Bestellmenge übersteigt die maximale Gesamtbestellmenge."
+msgstr "Het maximale limiet is bereikt"
 
 #. Default: "Checkout"
-#: ./browser/portlet.pt:20
-#: ./browser/summary.pt:113
-#: ./browser/viewlet.pt:19
+#: browser/portlet.pt:20 browser/summary.pt:113 browser/viewlet.pt:19
 msgid "checkout"
-msgstr "zur Kasse"
+msgstr "Afrekenen"
 
 #. Default: "Comment"
-#: ./browser/summary.pt:18
-#: ./browser/tile.pt:38
+#: browser/summary.pt:18 browser/tile.pt:38
 msgid "comment"
-msgstr "Zusatz"
+msgstr "Opmerking"
 
 #. Default: "Discount Net:"
-#: ./browser/summary.pt:73
-#: ./browser/tile.pt:70
+#: browser/summary.pt:73 browser/tile.pt:70
 msgid "discount_net"
-msgstr "Rabatt Netto:"
+msgstr "Korting netto"
 
 #. Default: "Discount Total:"
-#: ./browser/summary.pt:84
-#: ./browser/tile.pt:81
+#: browser/summary.pt:84 browser/tile.pt:81
 msgid "discount_total"
-msgstr "Rabatt Gesamt:"
+msgstr "Korting totaal"
 
 #. Default: "Discount VAT.:"
-#: ./browser/summary.pt:78
-#: ./browser/tile.pt:75
+#: browser/summary.pt:78 browser/tile.pt:75
 msgid "discount_vat"
-msgstr "Rabatt BTW."
+msgstr "Korting BTW"
 
 #. Default: "Cart is empty"
-#: ./browser/summary.pt:55
-#: ./browser/tile.pt:51
+#: browser/summary.pt:55 browser/tile.pt:51
 msgid "empty_cart"
-msgstr "Warenkorb ist leer"
+msgstr "Winkelwagen is leeg"
 
 #. Default: "Price"
-#: ./browser/summary.pt:43
-#: ./browser/tile.pt:42
+#: browser/summary.pt:43 browser/tile.pt:42
 msgid "price"
-msgstr "Preis:"
+msgstr "Prijs"
 
 #. Default: "Remove from cart"
-#: ./browser/summary.pt:36
-#: ./browser/tile.pt:31
+#: browser/summary.pt:36 browser/tile.pt:31
 msgid "remove_from_cart"
-msgstr "aus Warenkorb entfernen"
+msgstr "Verwijder uit winkelwagen"
 
 #. Default: "Net:"
-#: ./browser/summary.pt:63
-#: ./browser/tile.pt:60
+#: browser/summary.pt:63 browser/tile.pt:60
 msgid "summary_net"
-msgstr "Netto:"
+msgstr "Netto"
 
 #. Default: "Shipping"
-#: ./browser/summary.pt:92
-#: ./browser/tile.pt:89
+#: browser/summary.pt:92 browser/tile.pt:89
 msgid "summary_shipping"
-msgstr "Versandkosten"
+msgstr "Verzendkosten"
 
 #. Default: "Total:"
-#: ./browser/summary.pt:100
-#: ./browser/tile.pt:95
+#: browser/summary.pt:100 browser/tile.pt:95
 msgid "summary_total"
-msgstr "Gesamt:"
+msgstr "Totaal"
 
 #. Default: "VAT.:"
-#: ./browser/summary.pt:68
-#: ./browser/tile.pt:65
+#: browser/summary.pt:68 browser/tile.pt:65
 msgid "summary_vat"
-msgstr "BTW:"
+msgstr "BTW"
 
 #. Default: "Not enough items available, abort."
-#: ./__init__.py:301
+#: __init__.py:301
 msgid "trying_to_add_more_items_than_available"
-msgstr "Verfügbarkeit zu gering, abbruch"
+msgstr "Het gewenste aantal is niet beschikbaar"
 
 #. Default: "Update cart"
-#: ./browser/summary.pt:27
-#: ./browser/tile.pt:22
+#: browser/summary.pt:27 browser/tile.pt:22
 msgid "update_cart"
-msgstr "Warenkorb aktualisieren"
-
+msgstr "Winkelwagen bijwerken"
