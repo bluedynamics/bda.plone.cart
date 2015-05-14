@@ -5,6 +5,9 @@ Changelog
 0.10.dev2
 ---------
 
+- jshint Javascript.
+  [thet]
+
 - By default, cart viewlet is hidden and gets displayed as soon as cart items
   are fetched.
   [rnix]
