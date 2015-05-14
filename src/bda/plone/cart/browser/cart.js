@@ -1,8 +1,8 @@
 /* jslint browser: true */
-/* global jQuery, bdajax, Faceted, createCookie, readCookie */
+/* global jQuery, bdajax, createCookie, readCookie */
 // Dependencies: jQuery, cookie_functions.js
 
-(function($, bdajax, Faceted, createCookie, readCookie) {
+(function($, bdajax, createCookie, readCookie) {
     "use strict";
 
     var CART_EXECUTION_CONTEXT,
@@ -17,7 +17,7 @@
         cart.init();
         cart.query();
         if (typeof(window.Faceted) !== "undefined") {
-            $(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS,
+            $(window.Faceted.Events).bind(window.Faceted.Events.AJAX_QUERY_SUCCESS,
                 function(e) {
                     cart.bind();
                 });
@@ -575,4 +575,4 @@
     var cart = new Cart();
     window.bda_plone_cart = cart;
 
-}(jQuery, bdajax, Faceted, createCookie, readCookie));
+}(jQuery, bdajax, createCookie, readCookie));
