@@ -5,6 +5,10 @@ Changelog
 0.10.dev2
 ---------
 
+- Remove portlet's cartWrapper div node. It's not used at all and only
+  introduces non-standard portlet HTML markup.
+  [thet]
+
 - jshint Javascript.
   [thet]
 
