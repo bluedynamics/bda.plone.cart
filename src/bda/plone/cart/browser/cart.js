@@ -256,7 +256,7 @@
             .unbind('click')
             .bind('click', function(e) {
                 e.preventDefault();
-                var container = $(this).parents('#cart_viewlet');
+                var container = $(this).closest('#cart_viewlet');
                 var cart_wrapper = $('#cart_viewlet_details',
                     container);
                 if (cart_wrapper.is(':visible')) {
@@ -409,9 +409,9 @@
 
     Cart.prototype.extract = function(node) {
         node = $(node);
-        var parents = node.parents();
-        var uid = $('.cart_item_uid', parents).first().text();
-        var count_node = $('.cart_item_count', parents).get(0);
+        var parent = node.parent(); // get the immediate parent of the action
+        var uid = $('.cart_item_uid', parent).first().text();
+        var count_node = $('.cart_item_count', parent).get(0);
         var count;
         if (count_node.tagName.toUpperCase() === 'INPUT') {
             count = $(count_node).val();
@@ -432,7 +432,7 @@
                 message: cart.messages.integer_required
             };
         }
-        var comment_node = $('.cart_item_comment', parents).get(0);
+        var comment_node = $('.cart_item_comment', parent).get(0);
         var comment = '';
         if (comment_node) {
             if (comment_node.tagName.toUpperCase() === 'INPUT') {
