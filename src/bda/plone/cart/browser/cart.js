@@ -407,9 +407,20 @@
         return ret.substring(0, ret.indexOf('.') + 3);
     };
 
+    Cart.prototype.find_extraction_parent = function($node) {
+        // Find the first parent node, which has a childelement with class
+        // cart_item_uid
+        var parent = $node.parent();
+        if ($('.cart_item_uid', parent).length === 0) {
+            return this.find_extraction_parent(parent);
+        }
+        return parent;
+    };
+
     Cart.prototype.extract = function(node) {
         node = $(node);
-        var parent = node.parent(); // get the immediate parent of the action
+
+        var parent = this.find_extraction_parent(node);
         var uid = $('.cart_item_uid', parent).first().text();
         var count_node = $('.cart_item_count', parent).get(0);
         var count;
