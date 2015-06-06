@@ -25,7 +25,7 @@ _ = MessageFactory('bda.plone.cart')
 CART_TRANSLATIONS_JS = u"""
 (function($) {
     $(document).ready(function() {
-        var messages = bda_plone_cart.messages;
+        var messages = window.bda_plone_cart.messages;
         messages.total_limit_reached = "%(total_limit_reached)s";
         messages.not_a_number = "%(not_a_number)s";
         messages.max_unique_articles_reached = "%(max_unique_articles_reached)s";

@@ -5,6 +5,16 @@ Changelog
 0.10.dev2
 ---------
 
+- Fix cart item not removable, if comment is required. Fixes #17, fixes #12.
+  [thet]
+
+- Remove portlet's cartWrapper div node. It's not used at all and only
+  introduces non-standard portlet HTML markup.
+  [thet]
+
+- jshint Javascript.
+  [thet]
+
 - By default, cart viewlet is hidden and gets displayed as soon as cart items
   are fetched.
   [rnix]
