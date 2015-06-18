@@ -12,9 +12,6 @@ Changelog
   introduces non-standard portlet HTML markup.
   [thet]
 
-- jshint Javascript.
-  [thet]
-
 - By default, cart viewlet is hidden and gets displayed as soon as cart items
   are fetched.
   [rnix]
