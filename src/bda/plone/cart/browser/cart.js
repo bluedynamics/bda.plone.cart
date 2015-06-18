@@ -2,7 +2,7 @@
 /* global jQuery, bdajax, createCookie, readCookie */
 // Dependencies: jQuery, cookie_functions.js
 
-(function($) {
+(function($, bdajax) {
     "use strict";
 
     var CART_EXECUTION_CONTEXT = null,
@@ -16,12 +16,12 @@
         }
         cart.init();
         cart.query();
-        if (window.Faceted !== "undefined") {
+        if (window.Faceted !== undefined) {
             $(window.Faceted.Events).bind(window.Faceted.Events.AJAX_QUERY_SUCCESS, function(e){
                 cart.bind();
             });
         }
-        if (window.bdajax !== undefined) {
+        if (bdajax !== undefined) {
             $.extend(bdajax.binders, {
                 cart_binder: cart.bind
             });
@@ -574,4 +574,4 @@
     var cart = new Cart();
     window.bda_plone_cart = cart;
 
-})(jQuery);
+})(jQuery, bdajax);
