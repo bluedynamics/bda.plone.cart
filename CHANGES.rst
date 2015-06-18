@@ -5,6 +5,9 @@ Changelog
 0.10.dev2
 ---------
 
+- Resolve JSHint errors and warnings.
+  [thet]
+
 - Fix cart item not removable, if comment is required. Fixes #17, fixes #12.
   [thet]
 
