@@ -2,7 +2,7 @@
 /* global jQuery, bdajax, createCookie, readCookie */
 // Dependencies: jQuery, cookie_functions.js
 
-(function($, bdajax) {
+(function($) {
     "use strict";
 
     var CART_EXECUTION_CONTEXT = null,
@@ -79,9 +79,9 @@
         count = Number(count);
         // item uid consists of ``object_uid;comment``
         uid = uid + ';' + comment;
-        var items = this.items(),
-            existent = false,
-            itemuid;
+        var items = this.items();
+        var existent = false;
+        var itemuid;
 
         for (itemuid in items) {
             if (!itemuid) {
@@ -574,4 +574,4 @@
     var cart = new Cart();
     window.bda_plone_cart = cart;
 
-})(jQuery, bdajax);
+})(jQuery);
