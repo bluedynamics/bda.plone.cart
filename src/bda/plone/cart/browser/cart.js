@@ -2,12 +2,12 @@
 /* global jQuery, bdajax, createCookie, readCookie */
 // Dependencies: jQuery, cookie_functions.js
 
-(function($, bdajax, createCookie, readCookie) {
+(function($) {
     "use strict";
 
-    var CART_EXECUTION_CONTEXT,
-        CART_PORTLET_IDENTIFYER,
-        CART_VIEWLET_IDENTIFYER;
+    var CART_EXECUTION_CONTEXT = null,
+        CART_PORTLET_IDENTIFYER = '#portlet-cart',
+        CART_VIEWLET_IDENTIFYER = '#cart_viewlet';
 
     $(document).ready(function() {
         var execution_context = $('.cart_execution_context');
@@ -16,22 +16,17 @@
         }
         cart.init();
         cart.query();
-        if (typeof(window.Faceted) !== "undefined") {
-            $(window.Faceted.Events).bind(window.Faceted.Events.AJAX_QUERY_SUCCESS,
-                function(e) {
-                    cart.bind();
-                });
+        if (window.Faceted !== undefined) {
+            $(window.Faceted.Events).bind(window.Faceted.Events.AJAX_QUERY_SUCCESS, function(e){
+                cart.bind();
+            });
         }
-        if (typeof(window.bdajax) !== "undefined") {
+        if (bdajax !== undefined) {
             $.extend(bdajax.binders, {
                 cart_binder: cart.bind
             });
         }
     });
-
-    CART_EXECUTION_CONTEXT = null;
-    CART_PORTLET_IDENTIFYER = '#portlet-cart';
-    CART_VIEWLET_IDENTIFYER = '#cart_viewlet';
 
     function Cart() {
         // flag whether cart contains items which are no longer available
@@ -46,8 +41,8 @@
             'comment_required': "Comment is required",
             'integer_required': "Input not an integer",
             'no_longer_available': "One or more items in cart are only " +
-                "partly or no longer available. Please " +
-                "update or remove related items",
+                                   "partly or no longer available. Please " +
+                                   "update or remove related items",
             'cart_item_added': "Item has been added to cart",
             'cart_item_updated': "Item has been updated in cart",
             'cart_item_removed': "Item has been removed from cart"
@@ -87,6 +82,7 @@
         var items = this.items();
         var existent = false;
         var itemuid;
+
         for (itemuid in items) {
             if (!itemuid) {
                 continue;
@@ -109,8 +105,7 @@
             if (!itemuid || items[itemuid] === 0) {
                 continue;
             }
-            cookie = cookie + itemuid + ':' + String(items[itemuid]) +
-                ',';
+            cookie = cookie + itemuid + ':' + String(items[itemuid]) + ',';
         }
         if (cookie) {
             cookie = cookie.substring(0, cookie.length - 1);
@@ -167,7 +162,7 @@
                     var css = '.' + item;
                     if (item.indexOf(':') !== -1) {
                         attribute = item.substring(item.indexOf(':') + 1,
-                            item.length);
+                                                   item.length);
                         css = css.substring(0, item.indexOf(':') + 1);
                     }
                     var value = cart_item_data[item];
@@ -189,12 +184,10 @@
                         // case set attribute of element
                         if (attribute !== '') {
                             $(this).attr(attribute, value);
-                            // case element is input
-                        } else if (this.tagName.toUpperCase() ===
-                            'INPUT') {
+                        // case element is input
+                        } else if (this.tagName.toUpperCase() === 'INPUT') {
                             // check if comment and set required class
-                            var is_comment = item ===
-                                'cart_item_comment';
+                            var is_comment = item === 'cart_item_comment';
                             if (is_comment && comment_required) {
                                 $(this).addClass('required');
                             }
@@ -205,14 +198,14 @@
                             }
                             $(this).attr('value', value);
                             $(this).val(value);
-                            // case set element text
+                        // case set element text
                         } else {
                             // not count element, set value
                             if (!is_count) {
                                 $(this).html(value);
-                                // if count element has 'style' attribute 'display'
-                                // set to 'none', do not change it's value. This is
-                                // necessary for cart item removal.
+                            // if count element has 'style' attribute 'display'
+                            // set to 'none', do not change it's value. This is
+                            // necessary for cart item removal.
                             } else {
                                 var mode = $(this).css('display');
                                 if (mode.toLowerCase() !== 'none') {
@@ -257,8 +250,7 @@
             .bind('click', function(e) {
                 e.preventDefault();
                 var container = $(this).closest('#cart_viewlet');
-                var cart_wrapper = $('#cart_viewlet_details',
-                    container);
+                var cart_wrapper = $('#cart_viewlet_details', container);
                 if (cart_wrapper.is(':visible')) {
                     cart_wrapper.hide();
                 } else {
@@ -301,20 +293,17 @@
                     count: count + ''
                 };
                 if (CART_EXECUTION_CONTEXT) {
-                    params.execution_context =
-                        CART_EXECUTION_CONTEXT;
+                    params.execution_context = CART_EXECUTION_CONTEXT;
                 }
                 var elem = $(this);
-                var status_message = elem.hasClass(
-                    'show_status_message');
+                var status_message = elem.hasClass('show_status_message');
                 bdajax.request({
                     url: 'validate_cart_item',
                     params: params,
                     type: 'json',
                     success: function(data) {
                         if (data.success === false) {
-                            bdajax.info(decodeURIComponent(
-                                data.error));
+                            bdajax.info(decodeURIComponent(data.error));
                             if (data.update) {
                                 cart.query();
                             }
@@ -325,7 +314,8 @@
                             evt.count = count;
                             $('*').trigger(evt);
                             if (status_message) {
-                                cart.status_message(elem, cart.messages.cart_item_added);
+                                cart.status_message(
+                                    elem, cart.messages.cart_item_added);
                             }
                         }
                     }
@@ -365,20 +355,17 @@
                     count: count + ''
                 };
                 if (CART_EXECUTION_CONTEXT) {
-                    params.execution_context =
-                        CART_EXECUTION_CONTEXT;
+                    params.execution_context = CART_EXECUTION_CONTEXT;
                 }
                 var elem = $(this);
-                var status_message = elem.hasClass(
-                    'show_status_message');
+                var status_message = elem.hasClass('show_status_message');
                 bdajax.request({
                     url: 'validate_cart_item',
                     params: params,
                     type: 'json',
                     success: function(data) {
                         if (data.success === false) {
-                            bdajax.info(decodeURIComponent(
-                                data.error));
+                            bdajax.info(decodeURIComponent(data.error));
                             if (data.update) {
                                 cart.query();
                             }
@@ -389,10 +376,11 @@
                             evt.count = count;
                             $('*').trigger(evt);
                             if (status_message && defs[1] === 0) {
-                                cart.status_message(elem, cart.messages.cart_item_removed);
-                            } else if (status_message && defs[
-                                1] !== 0) {
-                                cart.status_message(elem, cart.messages.cart_item_updated);
+                                cart.status_message(
+                                    elem, cart.messages.cart_item_removed);
+                            } else if (status_message && defs[1] !== 0) {
+                                cart.status_message(
+                                    elem, cart.messages.cart_item_updated);
                             }
                         }
                     }
@@ -586,4 +574,4 @@
     var cart = new Cart();
     window.bda_plone_cart = cart;
 
-}(jQuery, bdajax, createCookie, readCookie));
+})(jQuery);
