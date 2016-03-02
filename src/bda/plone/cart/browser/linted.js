@@ -2,18 +2,8 @@
 /* global jQuery, bdajax, createCookie, readCookie */
 // Dependencies: jQuery, cookie_functions.js
 
-if(require === undefined){
-  require = function(reqs, torun){
-    'use strict';
-    return torun(window.jQuery);
-  }
-}
-
-require([
-    'jquery'
-], function($){
-    'use strict';
-
+(function($) {
+    "use strict";
 
     var CART_EXECUTION_CONTEXT = null,
         CART_PORTLET_IDENTIFYER = '#portlet-cart',
@@ -45,17 +35,17 @@ require([
         this.cart_max_article_count = 0;
         // default translation messages
         this.messages = {
-            'total_limit_reached': "Total limit reached",
-            'not_a_number': "Input not a number",
-            'max_unique_articles_reached': "Unique article limit reached",
-            'comment_required': "Comment is required",
-            'integer_required': "Input not an integer",
-            'no_longer_available': "One or more items in cart are only " +
+            total_limit_reached: "Total limit reached",
+            not_a_number: "Input not a number",
+            max_unique_articles_reached: "Unique article limit reached",
+            comment_required: "Comment is required",
+            integer_required: "Input not an integer",
+            no_longer_available: "One or more items in cart are only " +
                                    "partly or no longer available. Please " +
                                    "update or remove related items",
-            'cart_item_added': "Item has been added to cart",
-            'cart_item_updated': "Item has been updated in cart",
-            'cart_item_removed': "Item has been removed from cart"
+            cart_item_added: "Item has been added to cart",
+            cart_item_updated: "Item has been updated in cart",
+            cart_item_removed: "Item has been removed from cart"
         };
     }
 
@@ -584,6 +574,4 @@ require([
     var cart = new Cart();
     window.bda_plone_cart = cart;
 
-    return cart
-
-});
+})(jQuery);

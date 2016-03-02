@@ -1,6 +1,6 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:browser="http://namespaces.zope.org/browser"
-           xmlns:plone="http://namespaces.plone.org/plone"> 
+           xmlns:plone="http://namespaces.plone.org/plone">
 
   <plone:portlet
     name="portlets.Cart"
@@ -20,6 +20,11 @@
   <browser:resource
     name="bda.plone.cart.css"
     file="cart.css"
+    layer="..interfaces.ICartExtensionLayer" />
+
+  <browser:resource
+    name="bda.plone.cart.less"
+    file="cart.less"
     layer="..interfaces.ICartExtensionLayer" />
 
   <browser:resourceDirectory
