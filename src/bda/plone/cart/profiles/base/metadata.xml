@@ -4,5 +4,5 @@
   <dependencies>
     <dependency>profile-bda.plone.ajax:default</dependency>
     <dependency>profile-bda.plone.shipping:default</dependency>
-  </dependencies> 
+  </dependencies>
 </metadata>

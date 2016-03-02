@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="bda.plone.cart">
+
+<!-- Bundle resource. This is a file that will define a
+     require method(requirejs) and be built -->
+  <records prefix="plone.resources/bda-plone-cart"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+     <value key="css">
+        <element>++resource++bda.plone.cart.less</element>
+     </value>
+     <value key="js">++resource++bda.plone.cart.js</value>
+  </records>
+
+  <records prefix="plone.bundles/bda-plone-cart-bundle"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources">
+      <element>bda-plone-cart</element>
+    </value>
+    <value key="enabled">True</value>
+    <value key="compile">True</value>
+    <value key="jscompilation">++resource++bda.plone.cart.js</value>
+    <value key="csscompilation">++resource++bda.plone.cart.css</value>
+    <value key="last_compilation">2016-02-22 16:30:00</value>
+   </records>
+
+</registry>
