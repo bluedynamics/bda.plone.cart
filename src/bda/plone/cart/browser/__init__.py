@@ -1,22 +1,25 @@
 # -*- coding: utf-8 -*-
 from Products.Five import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from bda.plone.cart import CURRENCY_LITERALS
 from bda.plone.cart import get_data_provider
 from bda.plone.cart import readcookie
-from bda.plone.cart import extractitems
 from decimal import Decimal
-from plone.app.portlets.portlets import base
-from plone.app.layout.viewlets.common import ViewletBase
-from plone.portlets.interfaces import IPortletDataProvider
-from plone.portlets.interfaces import IPortletManager
-from plone.portlets.interfaces import IPortletRetriever
-from zope.component import getMultiAdapter
-from zope.component import getUtilitiesFor
 from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
-from zope.interface import implementer
 import simplejson as json
+import zope.deferredimport
+
+
+zope.deferredimport.deprecated(
+    "Import from new.baz.baaz instead",
+    ICartPortlet='bda.plone.cart.browser.portlet:ICartPortlet',
+    CartAssignment='bda.plone.cart.browser.portlet:CartAssignment',
+    render_cart='bda.plone.cart.browser.portlet:render_cart',
+    DummyCartRenderer='bda.plone.cart.browser.portlet:DummyCartRenderer',
+    CartRenderer='bda.plone.cart.browser.portlet:CartRenderer',
+    CartAddForm='bda.plone.cart.browser.portlet:CartAddForm',
+    CartViewlet='bda.plone.cart.browser.portlet:CartViewlet',
+)
 
 
 _ = MessageFactory('bda.plone.cart')
@@ -154,79 +157,3 @@ class CartDataView(BrowserView, DataProviderMixin):
 
     def cartData(self):
         return json.dumps(self.data_provider.data)
-
-
-class ICartPortlet(IPortletDataProvider):
-    pass
-
-
-@implementer(ICartPortlet)
-class CartAssignment(base.Assignment):
-
-    @property
-    def title(self):
-        return _(u'cart', u'Cart')
-
-
-def render_cart(context):
-    url = context.restrictedTraverse('@@plone').getCurrentUrl()
-    if url.endswith('@@cart') \
-       or url.find('@@checkout') != -1 \
-       or url.find('@@confirm_order') != -1 \
-       or url.find('/portal_factory/') != -1:
-        return False
-    return True
-
-
-class CartRenderer(base.Renderer, CartMixin):
-    template = ViewPageTemplateFile('portlet.pt')
-
-    @property
-    def available(self):
-        # XXX: is customer somewhere in portal
-        return True
-
-    def update(self):
-        if render_cart(self.context):
-            self.show = True
-        else:
-            self.show = False
-
-    def render(self):
-        if not self.show:
-            return u''
-        return self.template()
-
-
-class CartAddForm(base.NullAddForm):
-    label = _(u"Add Cart Portlet")
-    description = _(u"This portlet displays the shopping cart.")
-
-    def create(self):
-        return CartAssignment()
-
-
-class CartViewlet(ViewletBase, CartMixin):
-
-    def render(self):
-        context = self.context
-        if not render_cart(context):
-            return u''
-        # check whether cart portlet is rendered and skip viewlet if so
-        for name, manager in getUtilitiesFor(IPortletManager, context=context):
-            retriever = getMultiAdapter((context, manager), IPortletRetriever)
-            portlets = retriever.getPortlets()
-            for portlet in portlets:
-                if ICartPortlet.providedBy(portlet['assignment']):
-                    return u''
-        # XXX: is customer somewhere in portal
-        return super(CartViewlet, self).render()
-
-    @property
-    def cart_total_count(self):
-        # XXX: how to handle float?
-        # XXX: count total items in cart or total unique items in cart?
-        ret = Decimal('0')
-        for uid, count, comment in extractitems(readcookie(self.request)):
-           ret += count
-        return ret

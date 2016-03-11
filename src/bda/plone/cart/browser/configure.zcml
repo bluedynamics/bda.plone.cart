@@ -4,10 +4,10 @@
 
   <plone:portlet
     name="portlets.Cart"
-    interface=".ICartPortlet"
-    assignment=".CartAssignment"
-    renderer=".CartRenderer"
-    addview=".CartAddForm" />
+    interface=".portlet.ICartPortlet"
+    assignment=".portlet.CartAssignment"
+    renderer=".portlet.CartRenderer"
+    addview=".portlet.CartAddForm" />
 
   <browser:viewlet
     name="bda.plone.cart"
