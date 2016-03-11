@@ -2,18 +2,8 @@
 /* global jQuery, bdajax, createCookie, readCookie */
 // Dependencies: jQuery, cookie_functions.js
 
-if(require === undefined){
-  require = function(reqs, torun){
-    'use strict';
-    return torun(window.jQuery);
-  }
-}
-
-require([
-    'jquery'
-], function($){
-    'use strict';
-
+(function($) {
+    "use strict";
 
     var CART_EXECUTION_CONTEXT = null,
         CART_PORTLET_IDENTIFYER = '#portlet-cart',
@@ -584,6 +574,4 @@ require([
     var cart = new Cart();
     window.bda_plone_cart = cart;
 
-    return cart
-
-});
+})(jQuery);

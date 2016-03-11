@@ -23,6 +23,11 @@
     layer="..interfaces.ICartExtensionLayer" />
 
   <browser:resource
+    name="bda.plone.cart-compiled.css"
+    file="cart-compiled.css"
+    layer="..interfaces.ICartExtensionLayer" />
+
+  <browser:resource
     name="bda.plone.cart.less"
     file="cart.less"
     layer="..interfaces.ICartExtensionLayer" />

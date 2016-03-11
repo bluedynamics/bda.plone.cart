@@ -1,0 +1,12 @@
+a.update_cart_action {
+  margin-left: 0.6em;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  text-decoration: none;
+  border-bottom: none!important;
+  float: right;
+  cursor: pointer;
+  background: url('++resource++bda.plone.cart.images/arrow_refresh.png') 50% 50% no-repeat;
+}
+/*# sourceMappingURL=++resource++bda.plone.cart-compiled.css.map */

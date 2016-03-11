@@ -1,1 +1,21 @@
-@import (inline) "++resource++bda.plone.cart.css";
+// Plone 5 Styles
+
+// get Plone variables
+@import url("https://raw.githubusercontent.com/plone/Products.CMFPlone/master/Products/CMFPlone/static/patterns/toolbar/src/css/variables.less");
+@import url("https://raw.githubusercontent.com/plone/plonetheme.barceloneta/master/plonetheme/barceloneta/theme/less/variables.plone.less");
+
+
+
+
+
+a.update_cart_action {
+    margin-left: 0.6em;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    text-decoration:none;
+    border-bottom: none!important;
+    float:right;
+    cursor:pointer;
+    background:url('++resource++bda.plone.cart.images/arrow_refresh.png') 50% 50% no-repeat;
+}
