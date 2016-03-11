@@ -32,6 +32,11 @@
     directory="images"
     layer="..interfaces.ICartExtensionLayer" />
 
+  <browser:resourceDirectory
+    name="bda.plone.cart.font"
+    directory="font"
+    layer="..interfaces.ICartExtensionLayer" />
+
   <browser:resource
     name="bda.plone.cart.js"
     file="cart.js"
