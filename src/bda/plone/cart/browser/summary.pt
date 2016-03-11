@@ -56,7 +56,7 @@
   </div>
 
   <div id="cart_summary" style="display: none;" class="summary_wrapper">
-    <table class="cart_sum_content"
+    <table class="cart_sum_content invisible-grid"
            tal:define="currency view/currency">
       <tal:details condition="not:view/summary_total_only">
         <tr>
@@ -108,10 +108,10 @@
   </div>
 
   <div class="cart_summary_buttons">
-    <a href="javascript:history.back()" class="cart_back"
+    <a href="javascript:history.back()" class="context cart_back"
        i18n:translate="back">back</a>
     <a href="@@checkout"
-       class="cart_checkout_button prevent_if_no_longer_available"
+       class="context cart_checkout_button prevent_if_no_longer_available"
        tal:define="checkout_url view/checkout_url"
        tal:condition="checkout_url"
        tal:attributes="href checkout_url"
