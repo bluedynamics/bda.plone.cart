@@ -57,7 +57,7 @@
   text-decoration: none;
 }
 a.update_cart_action:before {
-  content: '\e800';
+  content: '\e801';
 }
 a.remove_from_cart_action {
   margin-left: 0;
