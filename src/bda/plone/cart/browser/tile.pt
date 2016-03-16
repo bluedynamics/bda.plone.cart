@@ -6,12 +6,14 @@
 
   <ul id="card_item_template" style="display: none;">
     <li class="cart_item">
-      <div>
-        <a href="#" class="cart_item_location">
-          <h3 class="cart_item_title">Title</h3>
+      <h3 class="clearfix">
+        <a href="#" class="cart_item_preview_wrapper">
           <img class="cart_item_preview_image" src="" />
         </a>
-      </div>
+        <a href="#" class="cart_item_location">
+          <span class="cart_item_title">Title</span>
+        </a>
+      </h3>
       <div class="cart_item_alert" style="display: none;">Alert</div>
       <div class="cart_item_content">
         <span>
@@ -20,7 +22,7 @@
           <input type="text" size="2" class="cart_item_count" />
           <span class="cart_item_quantity_unit">Quantity</span>
           <a href=""
-             class="update_cart_item update_cart_action"
+             class="cart-icon update_cart_item update_cart_action"
              title="Update cart"
              i18n:attributes="title update_cart">&nbsp;</a>
         </span>
@@ -29,7 +31,7 @@
           <span class="cart_item_comment" style="display: none;">comment</span>
           <span class="cart_item_count" style="display: none;">0</span>
           <a href=""
-             class="update_cart_item remove_from_cart_action"
+             class="cart-icon update_cart_item remove_from_cart_action"
              title="Remove from cart"
              i18n:attributes="title remove_from_cart">&nbsp;</a>
         </span>
@@ -51,9 +53,9 @@
     <p i18n:translate="empty_cart">Cart is empty</p>
   </div>
 
-  <div id="cart_summary"
+  <div id="cart_summary" class="clearfix"
        style="display: none;">
-    <table class="cart_sum_content"
+    <table class="cart_sum_content invisible-grid"
            tal:define="currency view/currency">
       <tal:details condition="not:view/summary_total_only">
         <tr>

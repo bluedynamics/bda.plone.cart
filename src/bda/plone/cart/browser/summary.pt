@@ -8,11 +8,11 @@
     <div class="cart_item summary_item">
       <h3>
         <a href="#" class="cart_item_location">
+          <img class="cart_item_preview_image" src="" />
           <span class="cart_item_title">Title</span>
         </a>
       </h3>
       <div class="cart_item_alert" style="display: none;">Alert</div>
-      <img class="cart_item_preview_image" src="" />
       <p class="cart_item_description">Description</p>
       <div class="cart_item_comment_wrapper">
         <strong i18n:translate="comment">Comment</strong>:
@@ -25,7 +25,7 @@
           <input type="text" size="2" class="cart_item_count" />
           <span class="cart_item_quantity_unit">Quantity</span>
           <a href=""
-             class="update_cart_item update_cart_action"
+             class="cart-icon update_cart_item update_cart_action"
              title="Update cart"
              i18n:attributes="title update_cart">&nbsp;</a>
         </li>
@@ -34,7 +34,7 @@
           <span class="cart_item_comment" style="display: none;">comment</span>
           <span class="cart_item_count" style="display: none;">0</span>
           <a href=""
-             class="update_cart_item remove_from_cart_action"
+             class="cart-icon update_cart_item remove_from_cart_action"
              title="Remove from cart"
              i18n:attributes="title remove_from_cart">&nbsp;</a>
         </li>
@@ -55,7 +55,7 @@
     <p i18n:translate="empty_cart">Cart is empty</p>
   </div>
 
-  <div id="cart_summary" style="display: none;" class="summary_wrapper">
+  <div id="cart_summary" style="display: none;" class="summary_wrapper clearfix">
     <table class="cart_sum_content invisible-grid"
            tal:define="currency view/currency">
       <tal:details condition="not:view/summary_total_only">
@@ -89,7 +89,7 @@
       </tr>
       <tr class="shipping" style="display: none;">
         <td>
-          <span i18n:translate="summary_shipping">Shipping</span>:
+          <span i18n:translate="summary_shipping" tal:omit-tag>Shipping</span>:
           <span class="shipping_label"></span>
           <span class="shipping_description"></span>:
         </td>
@@ -108,7 +108,7 @@
   </div>
 
   <div class="cart_summary_buttons">
-    <a href="javascript:history.back()" class="context cart_back"
+    <a href="javascript:history.back()" class="standalone cart_back"
        i18n:translate="back">back</a>
     <a href="@@checkout"
        class="context cart_checkout_button prevent_if_no_longer_available"
