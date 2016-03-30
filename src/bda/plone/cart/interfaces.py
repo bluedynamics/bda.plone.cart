@@ -184,6 +184,10 @@ class ICartItemStock(Interface):
     overbook = Attribute(u"Allowed overbooking count. ``None`` "
                          u"means unlimited")
 
+    minimum_stock = Attribute(u"Limit of minimum items in stock. ``None`` "
+                         u"means unlimited")
+
+
 
 class ICartItemPreviewImage(Interface):
     """Provides preview image url for cart item
