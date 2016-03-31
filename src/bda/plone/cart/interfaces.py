@@ -184,7 +184,7 @@ class ICartItemStock(Interface):
     overbook = Attribute(u"Allowed overbooking count. ``None`` "
                          u"means unlimited")
 
-    minimum_stock = Attribute(u"Limit of minimum items in stock. ``None`` "
+    stock_warning_threshold = Attribute(u"Item stock warning threshold. ``None`` "
                          u"means unlimited")
 
 
