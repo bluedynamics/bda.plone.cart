@@ -184,6 +184,10 @@ class ICartItemStock(Interface):
     overbook = Attribute(u"Allowed overbooking count. ``None`` "
                          u"means unlimited")
 
+    stock_warning_threshold = Attribute(u"Item stock warning threshold. ``None`` "
+                         u"means unlimited")
+
+
 
 class ICartItemPreviewImage(Interface):
     """Provides preview image url for cart item
