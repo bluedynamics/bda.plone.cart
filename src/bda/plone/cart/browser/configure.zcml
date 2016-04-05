@@ -1,7 +1,9 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:browser="http://namespaces.zope.org/browser"
-           xmlns:plone="http://namespaces.plone.org/plone">
+           xmlns:plone="http://namespaces.plone.org/plone"
+           xmlns:zcml="http://namespaces.zope.org/zcml">
 
+  <!-- cart portlet -->
   <plone:portlet
     name="portlets.Cart"
     interface=".portlet.ICartPortlet"
@@ -9,6 +11,7 @@
     renderer=".portlet.CartRenderer"
     addview=".portlet.CartAddForm" />
 
+  <!-- cart viewlet -->
   <browser:viewlet
     name="bda.plone.cart"
     class=".CartViewlet"
@@ -17,43 +20,7 @@
     permission="zope2.View"
     layer="..interfaces.ICartExtensionLayer" />
 
-  <browser:resource
-    name="bda.plone.cart.css"
-    file="cart.css"
-    layer="..interfaces.ICartExtensionLayer" />
-
-  <browser:resource
-    name="bda.plone.cart-compiled.css"
-    file="cart-compiled.css"
-    layer="..interfaces.ICartExtensionLayer" />
-
-  <browser:resource
-    name="bda.plone.cart.less"
-    file="cart.less"
-    layer="..interfaces.ICartExtensionLayer" />
-
-  <browser:resourceDirectory
-    name="bda.plone.cart.images"
-    directory="images"
-    layer="..interfaces.ICartExtensionLayer" />
-
-  <browser:resourceDirectory
-    name="bda.plone.cart.font"
-    directory="font"
-    layer="..interfaces.ICartExtensionLayer" />
-
-  <browser:resource
-    name="bda.plone.cart.js"
-    file="cart.js"
-    layer="..interfaces.ICartExtensionLayer" />
-
-  <browser:page
-    for="*"
-    name="bda.plone.cart.translations.js"
-    class=".CartJSTranslations"
-    permission="zope2.View"
-    layer="..interfaces.ICartExtensionLayer" />
-
+  <!-- cart views -->
   <browser:page
     for="*"
     name="cartData"
@@ -92,5 +59,50 @@
     template="view.pt"
     permission="zope2.View"
     layer="..interfaces.ICartExtensionLayer" />
+
+  <!-- generic resources -->
+  <browser:resource
+    name="bda.plone.cart.js"
+    file="cart.js"
+    layer="..interfaces.ICartExtensionLayer" />
+
+  <browser:page
+    for="*"
+    name="bda.plone.cart.translations.js"
+    class=".CartJSTranslations"
+    permission="zope2.View"
+    layer="..interfaces.ICartExtensionLayer" />
+
+  <!-- plone 4 resources -->
+  <browser:resource
+    zcml:condition="not-have plone-5"
+    name="bda.plone.cart.css"
+    file="cart_p4.css"
+    layer="..interfaces.ICartExtensionLayer" />
+
+  <browser:resourceDirectory
+    zcml:condition="not-have plone-5"
+    name="bda.plone.cart.images"
+    directory="images"
+    layer="..interfaces.ICartExtensionLayer" />
+
+  <!-- plone 5 resources -->
+  <browser:resource
+    zcml:condition="have plone-5"
+    name="bda.plone.cart.less"
+    file="cart_p5.less"
+    layer="..interfaces.ICartExtensionLayer" />
+
+  <browser:resourceDirectory
+    zcml:condition="have plone-5"
+    name="bda.plone.cart.font"
+    directory="font"
+    layer="..interfaces.ICartExtensionLayer" />
+
+  <plone:static
+    zcml:condition="have plone-5"
+    directory="compiled"
+    type="plone"
+    name="bda-plone-cart" />
 
 </configure>

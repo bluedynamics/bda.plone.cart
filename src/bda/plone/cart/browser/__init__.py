@@ -11,7 +11,7 @@ import zope.deferredimport
 
 
 zope.deferredimport.deprecated(
-    "Import from new.baz.baaz instead",
+    "Import from bda.plone.cart.browser.portlet instead",
     ICartPortlet='bda.plone.cart.browser.portlet:ICartPortlet',
     CartAssignment='bda.plone.cart.browser.portlet:CartAssignment',
     render_cart='bda.plone.cart.browser.portlet:render_cart',
