@@ -8,7 +8,8 @@ from zope.interface import implementer
 class HiddenProfiles(object):
 
     def getNonInstallableProfiles(self):
-        """Do not show on Plone's list of installable profiles."""
+        """Do not show on Plone's list of installable profiles.
+        """
         return ['bda.plone.cart:install-base']
 
 
@@ -16,5 +17,6 @@ class HiddenProfiles(object):
 class HiddenProducts(object):
 
     def getNonInstallableProducts(self):
-        """Do not show on QuickInstaller's list of installable products."""
+        """Do not show on QuickInstaller's list of installable products.
+        """
         return ['bda.plone.cart:install-base']
