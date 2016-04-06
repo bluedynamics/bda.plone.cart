@@ -93,16 +93,22 @@
     file="cart_p5.less"
     layer="..interfaces.ICartExtensionLayer" />
 
+  <browser:resource
+    zcml:condition="have plone-5"
+    name="bda.plone.cart.css"
+    file="cart_p5.css"
+    layer="..interfaces.ICartExtensionLayer" />
+
+  <browser:resource
+    zcml:condition="have plone-5"
+    name="bda.plone.cart.css.map"
+    file="cart_p5.css.map"
+    layer="..interfaces.ICartExtensionLayer" />
+
   <browser:resourceDirectory
     zcml:condition="have plone-5"
     name="bda.plone.cart.font"
     directory="font"
     layer="..interfaces.ICartExtensionLayer" />
-
-  <plone:static
-    zcml:condition="have plone-5"
-    directory="compiled"
-    type="plone"
-    name="bda.plone.cart" />
 
 </configure>
