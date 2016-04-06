@@ -10,15 +10,15 @@
     </value>
   </records>
 
-  <records prefix="plone.bundles/bda-plone-cart"
+  <records prefix="plone.bundles/bda-plone-cart-bundle"
            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
     <value key="resources">
       <element>bda-plone-cart</element>
     </value>
     <value key="enabled">True</value>
     <value key="compile">True</value>
-    <value key="jscompilation">++plone++bda-plone-cart/cart.js</value>
-    <value key="csscompilation">++plone++bda-plone-cart/cart.css</value>
+    <value key="jscompilation">++plone++bda.plone.cart.compiled/cart.js</value>
+    <value key="csscompilation">++plone++bda.plone.cart.compiled/cart.css</value>
     <value key="last_compilation">2016-03-11 18:00:00</value>
     <value key="depends">bdajax</value>
   </records>

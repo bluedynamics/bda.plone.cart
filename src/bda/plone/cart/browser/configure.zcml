@@ -103,6 +103,6 @@
     zcml:condition="have plone-5"
     directory="compiled"
     type="plone"
-    name="bda-plone-cart" />
+    name="bda.plone.cart.compiled" />
 
 </configure>
