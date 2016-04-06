@@ -20,10 +20,17 @@ module.exports = function (grunt) {
                 }
             }
         },
+        sed: {
+            sed0: {
+                path: 'src/bda/plone/cart/browser/cart_p5.css.map',
+                pattern: 'src/bda/plone/cart/browser/cart_p5.less',
+                replacement: '++resource++bda.plone.cart.less',
+            }
+        },
         watch: {
             scripts: {
                 files: ['src/bda/plone/cart/browser/cart_p5.less'],
-                tasks: ['less']
+                tasks: ['less', 'sed']
             }
         }
     });
@@ -32,4 +39,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-sed');
     grunt.registerTask('default', ['watch']);
+    grunt.registerTask('compile', ['less', 'sed']);
 };
