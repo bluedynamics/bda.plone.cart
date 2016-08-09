@@ -2,6 +2,16 @@
 Changelog
 =========
 
+0.10.dev8
+---------
+
+- added data-context-url for sane cartData and validate_cart_item calls on Plone 5
+  [agitator]
+
+- Plone 5 update
+  [agitator]
+
+
 0.10.dev2
 ---------
 

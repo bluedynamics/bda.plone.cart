@@ -97,13 +97,13 @@ actions::
 and optionally an element defining a comment or an input for entering a
 comment::
 
-    <input type="text" size="20" value="" class="cart_item_comment" />
+    <input type="text" size="16" value="" class="cart_item_comment" />
 
 If comment should be required, add CSS class ``required`` to comment input.
 If comment is empty, an error message gets shown to the user when trying to
 add or update a cart item::
 
-    <input type="text" size="20" value="" class="cart_item_comment required" />
+    <input type="text" size="16" value="" class="cart_item_comment required" />
 
 
 Create translations

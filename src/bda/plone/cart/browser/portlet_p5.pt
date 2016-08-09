@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      tal:omit-tag="">
+<aside class="portlet portletCart"
+    id="portlet-cart" style="display:none;"
+    i18n:domain="bda.plone.cart">
+
+  <header class="portletHeader">
+    <a href="@@cart"
+       class="tile"
+       title="Cart"
+       tal:attributes="href view/cart_url"
+       i18n:attributes="title cart_summary"
+       i18n:translate="cart">Cart</a>
+  </header>
+  <div class="portletContent">
+    <tal:cart replace="structure context/@@cart_tile" />
+  </div>
+  <footer class="portletFooter">
+    <a href="@@checkout"
+       class="context go_to_cart_action prevent_if_no_longer_available"
+       tal:attributes="href view/checkout_url"
+       tal:condition="view/show_checkout"
+       i18n:translate="checkout">Checkout</a>
+    <a href="@@cart"
+       class="context go_to_cart_action"
+       tal:attributes="href view/cart_url"
+       tal:condition="view/show_to_cart"
+       i18n:translate="cart">Cart</a>
+  </footer>
+</aside>
+</html>
