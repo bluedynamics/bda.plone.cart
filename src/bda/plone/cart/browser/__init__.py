@@ -117,6 +117,10 @@ class CartView(BrowserView, DataProviderMixin):
     # XXX: rename to CartSummary
 
     @property
+    def context_url(self):
+        return self.context.absolute_url()
+
+    @property
     def disable_max_article(self):
         return self.data_provider.disable_max_article
 
