@@ -137,13 +137,25 @@ a.remove_from_cart_action {
 //     text-align:right;
 // }
 #cart_summary .cart_sum_content.invisible-grid {
-  width: auto;
-  float: right;
+  width: 100%;
+  // float: right;
   text-align: right;
   margin-top: 1em;
   td {
     padding-left: 0.25em;
   }
+  td.summary_label {
+    width: 95%;
+  }
+  .shipping_info {
+    max-width: 400px;
+    display: inline-block;
+  }
+  td.summary_ammount {
+    padding-left: 1em;
+  }
+}
+#cart_summary .cart_sum_content {
 }
 .cart_summary_buttons {
   text-align: right;

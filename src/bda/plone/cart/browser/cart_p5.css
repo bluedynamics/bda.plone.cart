@@ -90,13 +90,22 @@ a.remove_from_cart_action:before {
   text-decoration: none;
 }
 #cart_summary .cart_sum_content.invisible-grid {
-  width: auto;
-  float: right;
+  width: 100%;
   text-align: right;
   margin-top: 1em;
 }
 #cart_summary .cart_sum_content.invisible-grid td {
   padding-left: 0.25em;
+}
+#cart_summary .cart_sum_content.invisible-grid td.summary_label {
+  width: 95%;
+}
+#cart_summary .cart_sum_content.invisible-grid .shipping_info {
+  max-width: 400px;
+  display: inline-block;
+}
+#cart_summary .cart_sum_content.invisible-grid td.summary_ammount {
+  padding-left: 1em;
 }
 .cart_summary_buttons {
   text-align: right;
