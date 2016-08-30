@@ -100,12 +100,12 @@ a.remove_from_cart_action:before {
 #cart_summary .cart_sum_content.invisible-grid td.summary_label {
   width: 95%;
 }
-#cart_summary .cart_sum_content.invisible-grid .shipping_info {
-  max-width: 400px;
-  display: inline-block;
-}
 #cart_summary .cart_sum_content.invisible-grid td.summary_ammount {
   padding-left: 1em;
+}
+.shipping_info {
+  max-width: 400px;
+  display: inline-block;
 }
 .cart_summary_buttons {
   text-align: right;
