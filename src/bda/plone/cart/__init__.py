@@ -454,11 +454,20 @@ class CartItemAvailabilityBase(object):
 
     @property
     def display(self):
-        return self.stock.display
+        stock = self.stock
+        # stock not applied
+        if stock is None:
+            return True
+        return stock.display
 
     @property
     def available(self):
-        available = self.stock.available
+        stock = self.stock
+        # stock not applied
+        if stock is None:
+            # unlimited
+            return None
+        available = stock.available
         # reduce available count if item already in cart
         if available is not None:
             cart_items = extractitems(readcookie(self.request))
@@ -470,7 +479,12 @@ class CartItemAvailabilityBase(object):
 
     @property
     def overbook(self):
-        return self.stock.overbook
+        stock = self.stock
+        # stock not applied
+        if stock is None:
+            # unlimited
+            return None
+        return stock.overbook
 
     @property
     def critical_limit(self):
@@ -578,6 +592,9 @@ class CartItemStateBase(object):
     def validate_count(self, count):
         count = float(count)
         stock = get_item_stock(self.context)
+        # stock not applied
+        if stock is None:
+            return True
         available = stock.available
         overbook = stock.overbook
         if available is None or overbook is None:
@@ -621,7 +638,7 @@ def get_item_data_provider(context):
 def get_item_stock(context):
     """Return ICartItemStock implementation.
     """
-    return ICartItemStock(context)
+    return queryAdapter(context, ICartItemStock)
 
 
 def get_item_availability(context, request=None):
