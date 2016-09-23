@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from bda.plone.cart.interfaces import ICartExtensionLayer
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE

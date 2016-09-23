@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from bda.plone.cart import CartDataProviderBase
 from bda.plone.cart import CartItemDataProviderBase
 from bda.plone.cart import CartItemStateBase

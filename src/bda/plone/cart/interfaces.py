@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from bda.plone.shipping.interfaces import IShippingExtensionLayer
 from zope.interface import Attribute
 from zope.interface import Interface
