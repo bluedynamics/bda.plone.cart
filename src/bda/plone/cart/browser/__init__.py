@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-from Products.Five import BrowserView
 from bda.plone.cart import CURRENCY_LITERALS
 from bda.plone.cart import get_data_provider
 from bda.plone.cart import readcookie
 from decimal import Decimal
+from Products.Five import BrowserView
 from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
+
 import simplejson as json
 import zope.deferredimport
 

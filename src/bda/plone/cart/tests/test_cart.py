@@ -9,10 +9,10 @@ from bda.plone.cart.tests import Cart_INTEGRATION_TESTING
 from bda.plone.cart.tests import set_browserlayer
 from bda.plone.shipping.tests.test_shipping import MockShipping
 from decimal import Decimal
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import login
 from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
 from plone.uuid.interfaces import IUUID
 from zope.component import adapter
 from zope.component import getMultiAdapter

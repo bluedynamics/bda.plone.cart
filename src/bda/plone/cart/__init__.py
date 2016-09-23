@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
 from bda.plone.cart.interfaces import ICartDataProvider
 from bda.plone.cart.interfaces import ICartDiscount
 from bda.plone.cart.interfaces import ICartItem
@@ -14,17 +13,19 @@ from bda.plone.shipping.interfaces import IItemDelivery
 from bda.plone.shipping.interfaces import IShippingItem
 from decimal import Decimal
 from plone.uuid.interfaces import IUUID
+from Products.CMFCore.utils import getToolByName
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import queryAdapter
 from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
-from zope.interface import Interface
 from zope.interface import implementer
+from zope.interface import Interface
 from zope.publisher.interfaces.browser import IBrowserRequest
 
 import urllib2
 import uuid
+
 
 _ = MessageFactory('bda.plone.cart')
 

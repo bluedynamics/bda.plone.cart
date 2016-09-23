@@ -1,6 +1,6 @@
-from zope.interface import Interface
-from zope.interface import Attribute
 from bda.plone.shipping.interfaces import IShippingExtensionLayer
+from zope.interface import Attribute
+from zope.interface import Interface
 
 
 class ICartExtensionLayer(IShippingExtensionLayer):
