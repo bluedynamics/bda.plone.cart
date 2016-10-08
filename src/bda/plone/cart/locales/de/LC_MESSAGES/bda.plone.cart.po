@@ -119,7 +119,7 @@ msgstr "Rabatt Gesamt:"
 #: ./browser/summary.pt:78
 #: ./browser/tile.pt:75
 msgid "discount_vat"
-msgstr "Rabatt USt."
+msgstr "Rabatt MwSt."
 
 #. Default: "Cart is empty"
 #: ./browser/summary.pt:55
@@ -161,7 +161,7 @@ msgstr "Gesamt:"
 #: ./browser/summary.pt:68
 #: ./browser/tile.pt:65
 msgid "summary_vat"
-msgstr "USt.:"
+msgstr "MwSt.:"
 
 #. Default: "Not enough items available, abort."
 #: ./__init__.py:301
