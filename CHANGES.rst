@@ -5,6 +5,9 @@ Changelog
 0.10.dev8
 ---------
 
+- use MwSt. instead of Ust. in german
+  [agitator]
+
 - added data-context-url for sane cartData and validate_cart_item calls on Plone 5
   [agitator]
 
