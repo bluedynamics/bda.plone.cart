@@ -5,6 +5,9 @@ Changelog
 0.10.dev8
 ---------
 
+- Pass comment in JS from add/update cart to server side validation.
+  [jensens]
+
 - use MwSt. instead of Ust. in german
   [agitator]
 

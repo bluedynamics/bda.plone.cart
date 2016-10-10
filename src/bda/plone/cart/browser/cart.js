@@ -293,7 +293,8 @@
                 }
                 var params = {
                     uid: defs[0],
-                    count: count + ''
+                    count: count + '',
+                    comment: defs[2]
                 };
                 if (CART_EXECUTION_CONTEXT) {
                     params.execution_context = CART_EXECUTION_CONTEXT;
@@ -355,7 +356,9 @@
                 }
                 var params = {
                     uid: defs[0],
-                    count: count + ''
+                    count: count + '',
+                    comment: defs[2]
+
                 };
                 if (CART_EXECUTION_CONTEXT) {
                     params.execution_context = CART_EXECUTION_CONTEXT;
