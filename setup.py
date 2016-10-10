@@ -19,7 +19,12 @@ setup(
         'Environment :: Web Environment',
         'License :: OSI Approved :: GNU General Public License (GPL)',
         'Operating System :: OS Independent',
+        'Framework :: Plone',
+        'Framework :: Plone :: 4.3',
+        'Framework :: Plone :: 5.0',
+        'Framework :: Plone :: 5.1',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2.7',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     author='BlueDynamics Alliance',
@@ -31,11 +36,12 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'setuptools',
-        'simplejson',
-        'Plone',
         'bda.plone.ajax',
         'bda.plone.shipping',
+        'Plone',
+        'plone.api',
+        'setuptools',
+        'simplejson',
     ],
     extras_require={
         'test': [
