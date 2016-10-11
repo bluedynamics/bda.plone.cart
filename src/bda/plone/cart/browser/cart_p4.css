@@ -58,12 +58,12 @@ tr.discount {
 #cart_viewlet {
     float:right;
 }
-#cart_viewlet_summery {
+#cart_viewlet_summary {
     /*padding-top:3px;*/
     padding: 0 0.5em;
     font-weight: normal;
 }
-#cart_viewlet_summery a {
+#cart_viewlet_summary a {
     float: right;
     background: #E3E3E3 url('++resource++bda.plone.cart.images/cart_go.png') 3px 2px no-repeat;
     position: relative;

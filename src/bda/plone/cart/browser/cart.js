@@ -248,7 +248,7 @@
     };
 
     Cart.prototype.bind = function(context) {
-        $('#cart_viewlet_summery a', context)
+        $('#cart_viewlet_summary a', context)
             .unbind('click')
             .bind('click', function(e) {
                 e.preventDefault();

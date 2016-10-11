@@ -4,7 +4,7 @@
 
   <p class="hiddenStructure">Cart</p>
 
-  <dt id="cart_viewlet_summery">
+  <dt id="cart_viewlet_summary">
     <a href="#"
        title="Cart"
        i18n:attributes="title cart_summary">
