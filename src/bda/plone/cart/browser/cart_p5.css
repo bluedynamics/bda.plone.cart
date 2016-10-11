@@ -221,7 +221,6 @@ ul#cart_items h3 {
   list-style-type: none !important;
   text-align: right;
   margin: 0!important;
-  float: right;
 }
 .summary_item ul.cart_item_content li {
   display: inline !important;
@@ -255,24 +254,6 @@ ul#cart_items h3 {
 .cart_summary_buttons {
   text-align: right;
   padding-top: 1.2em;
-}
-.cart_summary_buttons a:link,
-.cart_summary_buttons a:active,
-.cart_summary_buttons a:hover,
-.cart_summary_buttons a:visited {
-  background-color: #75ad0a;
-  border-radius: 0.3em 0.3em 0.3em 0.3em;
-  color: white !important;
-  font-weight: bold;
-  display: inline-block;
-  padding: 0.3em 0.75em;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-}
-.cart_summary_buttons a:hover {
-  background-color: #eeeeee;
-  color: #75ad0a !important;
 }
 .portletCart .lastItem {
   text-align: center;
