@@ -5,6 +5,9 @@ Changelog
 0.10.dev8
 ---------
 
+- fixed selector typo #cart_viewlet_summery with #cart_viewlet_summary
+  [agitator]
+
 - Pass comment in JS from add/update cart to server side validation.
   [jensens]
 

@@ -11,11 +11,22 @@
     renderer=".portlet.CartRenderer"
     addview=".portlet.CartAddForm" />
 
-  <!-- cart viewlet -->
+  <!-- cart viewlet plone 5-->
   <browser:viewlet
+    zcml:condition="have plone-5"
     name="bda.plone.cart"
     class=".CartViewlet"
-    template="viewlet.pt"
+    template="viewlet_p5.pt"
+    manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+    permission="zope2.View"
+    layer="..interfaces.ICartExtensionLayer" />
+
+  <!-- cart viewlet plone 4-->
+  <browser:viewlet
+    zcml:condition="not-have plone-5"
+    name="bda.plone.cart"
+    class=".CartViewlet"
+    template="viewlet_p4.pt"
     manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
     permission="zope2.View"
     layer="..interfaces.ICartExtensionLayer" />

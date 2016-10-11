@@ -4,8 +4,8 @@
 
   <p class="hiddenStructure">Cart</p>
 
-  <dt id="cart_viewlet_summery">
-    <a href="#" 
+  <dt id="cart_viewlet_summary">
+    <a href="#"
        title="Cart"
        i18n:attributes="title cart_summary">
       <span i18n:translate="cart">Cart</span>
@@ -19,13 +19,13 @@
     <tal:cart replace="structure context/@@cart_tile" />
     <div class="cart_viewlet_actions">
       <a href="@@checkout"
-         class="go_to_cart_action prevent_if_no_longer_available"
+         class="context go_to_cart_action prevent_if_no_longer_available"
          tal:attributes="href view/checkout_url"
          tal:condition="view/show_checkout"
          i18n:translate="checkout">Checkout</a>
 
       <a href="@@cart"
-         class="go_to_cart_action"
+         class="context go_to_cart_action"
          tal:attributes="href view/cart_url"
          tal:condition="view/show_to_cart"
          i18n:translate="cart">Cart</a>
