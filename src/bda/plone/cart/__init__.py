@@ -13,7 +13,6 @@ from bda.plone.shipping.interfaces import IItemDelivery
 from bda.plone.shipping.interfaces import IShippingItem
 from decimal import Decimal
 from plone.uuid.interfaces import IUUID
-from Products.CMFCore.utils import getToolByName
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import queryAdapter
@@ -22,6 +21,7 @@ from zope.i18nmessageid import MessageFactory
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.publisher.interfaces.browser import IBrowserRequest
+from plone import api
 
 import urllib2
 import uuid
@@ -670,30 +670,43 @@ def get_item_preview(context):
     return ICartItemPreviewImage(context)
 
 
-def get_catalog_brain(context, uid):
-    cat = getToolByName(context, 'portal_catalog')
+def safe_str_uuid(uid):
+    """string of an UID as expected by Plone (i.e. catalog)
+    """
     if isinstance(uid, uuid.UUID):
-        uid = uid.hex
-    else:
-        # There is a chance that uids come in the form of str(uuid.UUID), like
-        # '8de81513-4317-52d5-f32c-680db93dda0c'. But we need
-        # '8de81513431752d5f32c680db93dda0c'. So convert to uuid and get the
-        # hex value of it to be sure
-        try:
-            uid = uuid.UUID(uid).hex
-        except ValueError:
-            return None
-    brains = cat(UID=uid)
-    if brains:
-        if len(brains) > 1:
-            raise RuntimeError(
-                u"FATAL: duplicate objects with same UID found.")
-        return brains[0]
-    return None
+        return uid.hex
+    # There is a chance that uids come in the form of str(uuid.UUID), like
+    # '8de81513-4317-52d5-f32c-680db93dda0c'. But we need
+    # '8de81513431752d5f32c680db93dda0c'. So convert to uuid and get the
+    # hex value of it to be sure
+    try:
+        uid = uuid.UUID(uid).hex
+    except ValueError:
+        return None
+
+
+def get_catalog_brain(context, uid):
+    """get catalog brain by its UID or None if UID is invalid
+    """
+    query_uid = safe_str_uuid(uid)
+    if query_uid is None:
+        return None
+    brains = api.content.find(UID=uid)
+    if not brains:
+        return None
+    if len(brains) > 1:
+        raise RuntimeError(
+            u"FATAL: duplicate objects with same UID found.")
+    return brains[0]
 
 
 def get_object_by_uid(context, uid):
-    brain = get_catalog_brain(context, uid)
-    if brain:
-        return brain.getObject()
-    return None
+    """get object by its UID or None if UID is invalid
+    """
+    query_uid = safe_str_uuid(uid)
+    if query_uid is None:
+        return None
+    try:
+        return api.content.get(UID=uid)
+    except ValueError:
+        return None

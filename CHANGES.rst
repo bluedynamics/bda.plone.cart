@@ -5,6 +5,9 @@ Changelog
 0.10.dev8
 ---------
 
+- Use code for safe uid also for get_object_by_uid and use ``plone.api``.
+  [jensens]
+
 - fixed selector typo #cart_viewlet_summery with #cart_viewlet_summary
   [agitator]
 
