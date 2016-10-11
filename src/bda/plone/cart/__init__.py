@@ -680,7 +680,7 @@ def safe_str_uuid(uid):
     # '8de81513431752d5f32c680db93dda0c'. So convert to uuid and get the
     # hex value of it to be sure
     try:
-        uid = uuid.UUID(uid).hex
+        return uuid.UUID(uid).hex
     except ValueError:
         return None
 
