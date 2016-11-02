@@ -5,6 +5,10 @@ Changelog
 0.10.dev8
 ---------
 
+- More precise selectors for cart item template, cart summary discount and
+  cart summary shipping in ``cart.js``.
+  [rnix]
+
 - Use code for safe uid also for get_object_by_uid and use ``plone.api``.
   [jensens]
 
