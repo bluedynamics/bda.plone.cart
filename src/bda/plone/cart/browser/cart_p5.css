@@ -169,7 +169,6 @@ ul#cart_items h3 {
 #cart_viewlet #cart_viewlet_summary a {
   margin-top: 5px;
   float: right;
-  background: url('++resource++bda.plone.cart.images/cart_go.png') 3px 2px no-repeat;
   position: relative;
   z-index: 10;
   top: 0px;
@@ -282,7 +281,8 @@ img.cart_item_preview_image {
   content: '\e801';
   margin-right: 0.5em;
 }
-.context.go_to_cart_action:before {
+.context.go_to_cart_action:before,
+#cart_viewlet_summary a:before {
   font-family: 'cart';
   content: '\e815';
   margin-right: 0.5em;
