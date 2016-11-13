@@ -5,7 +5,7 @@
   <span style="display:none;"
         class="cart_execution_context">portlet</span>
 
-  <ul id="card_item_template" style="display: none;">
+  <ul id="cart_item_template" style="display: none;">
     <li class="cart_item">
       <h3 class="clearfix">
         <a href="#" class="cart_item_preview_wrapper">

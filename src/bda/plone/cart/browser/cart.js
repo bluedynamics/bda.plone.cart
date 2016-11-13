@@ -57,9 +57,9 @@
         if (!this.cart_node) {
             return;
         }
-        var template_sel = '#card_item_template .cart_item';
+        var template_sel = '#cart_item_template .cart_item';
         this.item_template = $($(template_sel).get(0)).clone();
-        $('#card_item_template').remove();
+        $('#cart_item_template').remove();
     };
 
     Cart.prototype.add = function(uid, count, comment) {

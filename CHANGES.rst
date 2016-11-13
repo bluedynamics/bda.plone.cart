@@ -5,6 +5,13 @@ Changelog
 0.10.dev8
 ---------
 
+- Fix typo. Rename remaining ``card_item_tempate`` to ``cart_item_tempate``.
+  This already has been changed for summary and overview
+  (in ``bda.plone.checkout``) but was missing in ``cart.js`` and ``tile.pt``
+  fixes ``#31``. Make sure to fix this in all your cart related custom
+  templates!
+  [rnix]
+
 - More precise selectors for cart item template, cart summary discount and
   cart summary shipping in ``cart.js``.
   [rnix]
