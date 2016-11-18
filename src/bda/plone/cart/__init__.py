@@ -121,9 +121,21 @@ def cart_item_shippable(context, item):
     obj = get_object_by_uid(context, item[0])
     if not obj:
         return False
-    shipping_info = queryAdapter(obj, IShippingItem)
-    if shipping_info:
-        return shipping_info.shippable
+    shipping = get_item_shipping(obj)
+    if shipping:
+        return shipping.shippable
+    return False
+
+
+def cart_item_free_shipping(context, item):
+    """Return boolean whether cart item shipping is free.
+    """
+    obj = get_object_by_uid(context, item[0])
+    if not obj:
+        return False
+    shipping = get_item_shipping(obj)
+    if shipping:
+        return shipping.free_shipping
     return False
 
 
@@ -640,6 +652,12 @@ def get_item_stock(context):
     """Return ICartItemStock implementation.
     """
     return queryAdapter(context, ICartItemStock)
+
+
+def get_item_shipping(context):
+    """Return IShippingItem implementation.
+    """
+    return queryAdapter(context, IShippingItem)
 
 
 def get_item_availability(context, request=None):

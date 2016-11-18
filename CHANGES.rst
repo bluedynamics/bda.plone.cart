@@ -5,6 +5,9 @@ Changelog
 0.10.dev8
 ---------
 
+- Add ``get_item_shipping`` and ``cart_item_free_shipping`` utilities.
+  [rnix]
+
 - Fix typo. Rename remaining ``card_item_tempate`` to ``cart_item_tempate``.
   This already has been changed for summary and overview
   (in ``bda.plone.checkout``) but was missing in ``cart.js`` and ``tile.pt``
