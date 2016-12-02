@@ -11,6 +11,7 @@ from bda.plone.cart.interfaces import ICartItemStock
 from bda.plone.shipping import Shippings
 from bda.plone.shipping.interfaces import IItemDelivery
 from bda.plone.shipping.interfaces import IShippingItem
+from collections import namedtuple
 from decimal import Decimal
 from plone.uuid.interfaces import IUUID
 from zope.component import adapter
@@ -70,6 +71,9 @@ def deletecookie(request):
     request.response.expireCookie('cart', path='/')
 
 
+RawCartItem = namedtuple('RawCartItem', ['uid', 'count', 'comment'])
+
+
 def extractitems(items):
     """Cart items are stored in a cookie. The format is
     ``uid;comment:count,uid;comment:count,...``.
@@ -87,7 +91,7 @@ def extractitems(items):
         uid = item[0].split(';')[0]
         count = item[1]
         comment = urllib2.unquote(item[0][len(uid) + 1:])
-        ret.append((uid, Decimal(count), comment))
+        ret.append(RawCartItem(uid, Decimal(count), comment))
     return ret
 
 
