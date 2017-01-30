@@ -37,6 +37,9 @@ Changelog
 - Plone 5 update
   [agitator]
 
+- ``extractitems`` now returns a namedtuple with attributes ``uid``, ``count`` and ``comment``
+  [jensens]
+
 
 0.10.dev2
 ---------
