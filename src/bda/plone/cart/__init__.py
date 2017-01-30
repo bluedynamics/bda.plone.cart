@@ -438,6 +438,7 @@ class CartItemDataProviderBase(object):
     @property
     def discount_enabled(self):
         # XXX: flag on cart item
+        # XXX: probably superfluous
         return True
 
     def discount_net(self, count):
