@@ -38,7 +38,7 @@
         </span>
       </div>
       <div class="cart_item_comment_wrapper">
-        <span i18n:translate="comment">Comment</span>
+        <span i18n:translate="comment">Comment</span>:
         <span class="cart_item_comment">comment</span>
       </div>
       <div class="cart_item_price_wrapper">
