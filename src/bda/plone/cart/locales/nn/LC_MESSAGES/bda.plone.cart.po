@@ -1,0 +1,159 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bda cart no translation\n"
+"POT-Creation-Date: 2014-10-01 14:42+0000\n"
+"PO-Revision-Date: 2017-02-06 15:39+0100\n"
+"Last-Translator: Espen Moe-Nilssen <espen@medialog.no>\n"
+"Language-Team: LANGUAGE <espen@medialog.no>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: no\n"
+"Language-Name: Norsk\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+"Language: nn_NO\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: browser/__init__.py:202
+msgid "Add Cart Portlet"
+msgstr "Legg til handlekorgboks"
+
+#: browser/__init__.py:203
+msgid "This portlet displays the shopping cart."
+msgstr "Denne boksen viser handlekurven"
+
+#. Default: "Article limit reached"
+#: __init__.py:287
+msgid "article_limit_reached"
+msgstr "total ordremengde nådd"
+
+#: browser/summary.pt:111
+msgid "back"
+msgstr "Tilbake"
+
+#. Default: "Cart"
+#: browser/__init__.py:168 browser/portlet.pt:8 browser/view.pt:18
+msgid "cart"
+msgstr "Handlekurv"
+
+#. Default: "Comment is required"
+#: browser/__init__.py:59
+msgid "cart_comment_required"
+msgstr "korg kommentar påkrevd"
+
+#. Default: "Input not an integer"
+#: browser/__init__.py:63
+msgid "cart_integer_required"
+msgstr ""
+
+#. Default: "Item has been added to cart"
+#: browser/__init__.py:72
+msgid "cart_item_added"
+msgstr "korg produkter lagt til"
+
+#. Default: "Item has been removed from cart"
+#: browser/__init__.py:80
+msgid "cart_item_removed"
+msgstr "korg produkter fjerna"
+
+#. Default: "Item has been updated in cart"
+#: browser/__init__.py:76
+msgid "cart_item_updated"
+msgstr "korg produkter oppdatert"
+
+#. Default: "Unique article limit reached"
+#: browser/__init__.py:55
+msgid "cart_max_unique_articles_reached"
+msgstr "korg maks antal produkter nådd"
+
+#. Default: "One or more items in cart are only partly or no longer available. Please update or remove related items"
+#: browser/__init__.py:67
+msgid "cart_no_longer_available"
+msgstr "korg ikkje lenger tilgjengeleg"
+
+#. Default: "Input not a number"
+#: browser/__init__.py:51
+msgid "cart_not_a_number"
+msgstr ""
+
+#. Default: "Cart"
+#: browser/portlet.pt:8 browser/viewlet.pt:5
+msgid "cart_summary"
+msgstr "Handlekorg"
+
+#. Default: "Total limit reached"
+#: browser/__init__.py:47
+msgid "cart_total_limit_reached"
+msgstr ""
+
+#. Default: "Checkout"
+#: browser/portlet.pt:20 browser/summary.pt:113 browser/viewlet.pt:19
+msgid "checkout"
+msgstr "Til kassen"
+
+#. Default: "Comment"
+#: browser/summary.pt:18 browser/tile.pt:38
+msgid "comment"
+msgstr "Kommentar"
+
+#. Default: "Discount Net:"
+#: browser/summary.pt:73 browser/tile.pt:70
+msgid "discount_net"
+msgstr "rabatt netto"
+
+#. Default: "Discount Total:"
+#: browser/summary.pt:84 browser/tile.pt:81
+msgid "discount_total"
+msgstr "rabatt totalt"
+
+#. Default: "Discount VAT.:"
+#: browser/summary.pt:78 browser/tile.pt:75
+msgid "discount_vat"
+msgstr "rabatt mva"
+
+#. Default: "Cart is empty"
+#: browser/summary.pt:55 browser/tile.pt:51
+msgid "empty_cart"
+msgstr "Handlekorga er tom"
+
+#. Default: "Price"
+#: browser/summary.pt:43 browser/tile.pt:42
+msgid "price"
+msgstr "Pris:"
+
+#. Default: "Remove from cart"
+#: browser/summary.pt:36 browser/tile.pt:31
+msgid "remove_from_cart"
+msgstr "Fjern frå handlekorga"
+
+#. Default: "Net:"
+#: browser/summary.pt:63 browser/tile.pt:60
+msgid "summary_net"
+msgstr "Nettopris:"
+
+#. Default: "Shipping"
+#: browser/summary.pt:92 browser/tile.pt:89
+msgid "summary_shipping"
+msgstr "Fraktkostnad"
+
+#. Default: "Total:"
+#: browser/summary.pt:100 browser/tile.pt:95
+msgid "summary_total"
+msgstr "Totalt:"
+
+#. Default: "VAT.:"
+#: browser/summary.pt:68 browser/tile.pt:65
+msgid "summary_vat"
+msgstr "moms: "
+
+#. Default: "Not enough items available, abort."
+#: __init__.py:301
+msgid "trying_to_add_more_items_than_available"
+msgstr ""
+
+#. Default: "Update cart"
+#: browser/summary.pt:27 browser/tile.pt:22
+msgid "update_cart"
+msgstr "Oppdater handlekurv"
