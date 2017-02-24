@@ -5,20 +5,7 @@
 (function($, bdajax) {
     "use strict";
 
-    var CART_EXECUTION_CONTEXT = null,
-        CART_EXECUTION_URL = null,
-        CART_PORTLET_IDENTIFYER = '#portlet-cart',
-        CART_VIEWLET_IDENTIFYER = '#cart_viewlet';
-
     $(document).ready(function() {
-        var execution_context = $('.cart_execution_context');
-        if (execution_context.length) {
-            CART_EXECUTION_CONTEXT = execution_context.text();
-        }
-        var execution_url = $('#cart');
-        if (execution_url.length) {
-            CART_EXECUTION_URL = execution_url.data('context-url');
-        }
         cart.init();
         cart.query();
         if (window.Faceted !== undefined) {
@@ -53,7 +40,16 @@
     }
 
     Cart.prototype.init = function() {
-        this.cart_node = $('#cart').get(0);
+        var $cart = $('#cart');
+
+        this.cart_execution_context = $('.cart_execution_context').text() || null;
+
+        var cart_execution_url = $cart.data('context-url');
+        this.cart_execution_url = cart_execution_url ? cart_execution_url + '/' : '';
+        this.cart_portlet_identifier = '#portlet-cart';
+        this.cart_viewlet_identifier = '#cart_viewlet';
+
+        this.cart_node = $cart.get(0);
         if (!this.cart_node) {
             return;
         }
@@ -125,19 +121,19 @@
         this.cart_max_article_count = data.cart_settings.cart_max_article_count;
         if (data.cart_items.length === 0) {
             if (!data.cart_settings.hide_cart_if_empty) {
-                $(CART_PORTLET_IDENTIFYER).css('display', 'block');
-                $(CART_VIEWLET_IDENTIFYER).css('display', 'block');
+                $(this.cart_portlet_identifier).css('display', 'block');
+                $(this.cart_viewlet_identifier).css('display', 'block');
             } else {
-                $(CART_PORTLET_IDENTIFYER).css('display', 'none');
-                $(CART_VIEWLET_IDENTIFYER).css('display', 'none');
+                $(this.cart_portlet_identifier).css('display', 'none');
+                $(this.cart_viewlet_identifier).css('display', 'none');
             }
             $('#cart_items', this.cart_node).css('display', 'none');
             $('#cart_no_items', this.cart_node).css('display', 'block');
             $('#cart_summary', this.cart_node).css('display', 'none');
             $('.cart_total_count').html(0);
         } else {
-            $(CART_PORTLET_IDENTIFYER).css('display', 'block');
-            $(CART_VIEWLET_IDENTIFYER).css('display', 'block');
+            $(this.cart_portlet_identifier).css('display', 'block');
+            $(this.cart_viewlet_identifier).css('display', 'block');
             $('#cart_no_items', this.cart_node).css('display', 'none');
             $('#cart_items', this.cart_node).empty();
             $('#cart_items', this.cart_node).css('display', 'block');
@@ -299,13 +295,13 @@
                     count: count + '',
                     comment: defs[2]
                 };
-                if (CART_EXECUTION_CONTEXT) {
-                    params.execution_context = CART_EXECUTION_CONTEXT;
+                if (this.cart_execution_context) {
+                    params.execution_context = this.cart_execution_context;
                 }
                 var elem = $(this);
                 var status_message = elem.hasClass('show_status_message');
                 bdajax.request({
-                    url: CART_EXECUTION_URL + '/validate_cart_item',
+                    url: this.cart_execution_url + 'validate_cart_item',
                     params: params,
                     type: 'json',
                     success: function(data) {
@@ -362,13 +358,13 @@
                     count: count + '',
                     comment: defs[2]
                 };
-                if (CART_EXECUTION_CONTEXT) {
-                    params.execution_context = CART_EXECUTION_CONTEXT;
+                if (this.cart_execution_context) {
+                    params.execution_context = this.cart_execution_context;
                 }
                 var elem = $(this);
                 var status_message = elem.hasClass('show_status_message');
                 bdajax.request({
-                    url: CART_EXECUTION_URL + '/validate_cart_item',
+                    url: this.cart_execution_url + 'validate_cart_item',
                     params: params,
                     type: 'json',
                     success: function(data) {
@@ -565,11 +561,11 @@
             return;
         }
         var params = {};
-        if (CART_EXECUTION_CONTEXT) {
-            params.execution_context = CART_EXECUTION_CONTEXT;
+        if (this.cart_execution_context) {
+            params.execution_context = this.cart_execution_context;
         }
         bdajax.request({
-            url: CART_EXECUTION_URL + '/cartData',
+            url: this.cart_execution_url + 'cartData',
             params: params,
             type: 'json',
             success: function(data) {
