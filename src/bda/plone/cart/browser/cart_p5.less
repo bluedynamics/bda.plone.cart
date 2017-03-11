@@ -53,8 +53,6 @@
 }
 
 /* cart styles */
-.cart_item_title {
-}
 .cart_item_content {
     margin-top: 0.3em;
     margin-bottom: 0.3em;
@@ -65,6 +63,12 @@
         width: unset;
         margin-right: 0.25em;
     }
+}
+.discount_net,
+.discount_vat,
+.discount_total,
+.cart_item_discount {
+    color: red;
 }
 // .icon-arrows-ccw:before { content: '\e800'; } /* '' */
 
@@ -202,6 +206,9 @@ ul#cart_items {
     }
   }
   .cart_item_price_wrapper {
+    text-align: right;
+  }
+  .cart_item_discount_wrapper {
     text-align: right;
   }
   .cart_viewlet_actions,

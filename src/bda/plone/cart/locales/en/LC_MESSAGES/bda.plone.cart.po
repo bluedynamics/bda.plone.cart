@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bda.plone.cart\n"
-"POT-Creation-Date: 2017-02-01 16:54+0000\n"
+"POT-Creation-Date: 2017-03-11 12:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Peter Holzer <hpeter@agitator.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgstr "This portlet displays the shopping cart."
 msgid "article_limit_reached"
 msgstr "The desired quantity exceeds the maximum order quantity for this product."
 
-#: ./browser/summary.pt:114
+#: ./browser/summary.pt:120
 msgid "back"
 msgstr "back"
 
@@ -105,7 +105,7 @@ msgstr "Total limit reached"
 #. Default: "Checkout"
 #: ./browser/portlet_p4.pt:18
 #: ./browser/portlet_p5.pt:21
-#: ./browser/summary.pt:116
+#: ./browser/summary.pt:122
 msgid "checkout"
 msgstr "checkout"
 
@@ -115,33 +115,39 @@ msgstr "checkout"
 msgid "comment"
 msgstr "Comment"
 
+#. Default: "Discount:"
+#: ./browser/summary.pt:44
+#: ./browser/tile.pt:45
+msgid "discount"
+msgstr "Discount:"
+
 #. Default: "Discount Net:"
-#: ./browser/summary.pt:74
-#: ./browser/tile.pt:73
+#: ./browser/summary.pt:80
+#: ./browser/tile.pt:77
 msgid "discount_net"
 msgstr "Discount Net:"
 
 #. Default: "Discount Total:"
-#: ./browser/summary.pt:85
-#: ./browser/tile.pt:84
+#: ./browser/summary.pt:91
+#: ./browser/tile.pt:88
 msgid "discount_total"
 msgstr "Discount Total:"
 
 #. Default: "Discount VAT.:"
-#: ./browser/summary.pt:79
-#: ./browser/tile.pt:78
+#: ./browser/summary.pt:85
+#: ./browser/tile.pt:82
 msgid "discount_vat"
 msgstr "Discount VAT.:"
 
 #. Default: "Cart is empty"
-#: ./browser/summary.pt:56
-#: ./browser/tile.pt:54
+#: ./browser/summary.pt:62
+#: ./browser/tile.pt:58
 msgid "empty_cart"
 msgstr "Cart is empty"
 
 #. Default: "Price"
-#: ./browser/summary.pt:44
-#: ./browser/tile.pt:45
+#: ./browser/summary.pt:50
+#: ./browser/tile.pt:49
 msgid "price"
 msgstr "Price"
 
@@ -152,26 +158,26 @@ msgid "remove_from_cart"
 msgstr "Remove from cart"
 
 #. Default: "Net:"
-#: ./browser/summary.pt:64
-#: ./browser/tile.pt:63
+#: ./browser/summary.pt:70
+#: ./browser/tile.pt:67
 msgid "summary_net"
 msgstr "Net:"
 
 #. Default: "Shipping"
-#: ./browser/summary.pt:94
-#: ./browser/tile.pt:92
+#: ./browser/summary.pt:100
+#: ./browser/tile.pt:96
 msgid "summary_shipping"
 msgstr "Shipping"
 
 #. Default: "Total:"
-#: ./browser/summary.pt:103
-#: ./browser/tile.pt:98
+#: ./browser/summary.pt:109
+#: ./browser/tile.pt:102
 msgid "summary_total"
 msgstr "Total:"
 
 #. Default: "VAT.:"
-#: ./browser/summary.pt:69
-#: ./browser/tile.pt:68
+#: ./browser/summary.pt:75
+#: ./browser/tile.pt:72
 msgid "summary_vat"
 msgstr "VAT.:"
 
