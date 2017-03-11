@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bda cart no translation\n"
-"POT-Creation-Date: 2017-02-01 16:54+0000\n"
+"POT-Creation-Date: 2017-03-11 12:48+0000\n"
 "PO-Revision-Date: 2013-06-10 11:25+0100\n"
 "Last-Translator: Espen Moe-Nilssen <espen@medialog.no>\n"
 "Language-Team: LANGUAGE <espen@medialog.no>\n"
@@ -33,7 +33,7 @@ msgstr "Denne boksen viser handlekurven"
 msgid "article_limit_reached"
 msgstr ""
 
-#: ./browser/summary.pt:114
+#: ./browser/summary.pt:120
 msgid "back"
 msgstr "Tilbake"
 
@@ -107,7 +107,7 @@ msgstr ""
 #. Default: "Checkout"
 #: ./browser/portlet_p4.pt:18
 #: ./browser/portlet_p5.pt:21
-#: ./browser/summary.pt:116
+#: ./browser/summary.pt:122
 msgid "checkout"
 msgstr "Til kassen"
 
@@ -117,33 +117,39 @@ msgstr "Til kassen"
 msgid "comment"
 msgstr ""
 
+#. Default: "Discount:"
+#: ./browser/summary.pt:44
+#: ./browser/tile.pt:45
+msgid "discount"
+msgstr ""
+
 #. Default: "Discount Net:"
-#: ./browser/summary.pt:74
-#: ./browser/tile.pt:73
+#: ./browser/summary.pt:80
+#: ./browser/tile.pt:77
 msgid "discount_net"
 msgstr ""
 
 #. Default: "Discount Total:"
-#: ./browser/summary.pt:85
-#: ./browser/tile.pt:84
+#: ./browser/summary.pt:91
+#: ./browser/tile.pt:88
 msgid "discount_total"
 msgstr ""
 
 #. Default: "Discount VAT.:"
-#: ./browser/summary.pt:79
-#: ./browser/tile.pt:78
+#: ./browser/summary.pt:85
+#: ./browser/tile.pt:82
 msgid "discount_vat"
 msgstr ""
 
 #. Default: "Cart is empty"
-#: ./browser/summary.pt:56
-#: ./browser/tile.pt:54
+#: ./browser/summary.pt:62
+#: ./browser/tile.pt:58
 msgid "empty_cart"
 msgstr "Handlekurven er tom"
 
 #. Default: "Price"
-#: ./browser/summary.pt:44
-#: ./browser/tile.pt:45
+#: ./browser/summary.pt:50
+#: ./browser/tile.pt:49
 msgid "price"
 msgstr "Pris:"
 
@@ -154,26 +160,26 @@ msgid "remove_from_cart"
 msgstr "Fjern fra handlekurven"
 
 #. Default: "Net:"
-#: ./browser/summary.pt:64
-#: ./browser/tile.pt:63
+#: ./browser/summary.pt:70
+#: ./browser/tile.pt:67
 msgid "summary_net"
 msgstr "Nettopris:"
 
 #. Default: "Shipping"
-#: ./browser/summary.pt:94
-#: ./browser/tile.pt:92
+#: ./browser/summary.pt:100
+#: ./browser/tile.pt:96
 msgid "summary_shipping"
 msgstr "Fraktkostnad"
 
 #. Default: "Total:"
-#: ./browser/summary.pt:103
-#: ./browser/tile.pt:98
+#: ./browser/summary.pt:109
+#: ./browser/tile.pt:102
 msgid "summary_total"
 msgstr "Totalt:"
 
 #. Default: "VAT.:"
-#: ./browser/summary.pt:69
-#: ./browser/tile.pt:68
+#: ./browser/summary.pt:75
+#: ./browser/tile.pt:72
 msgid "summary_vat"
 msgstr "moms: "
 

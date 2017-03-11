@@ -41,6 +41,9 @@
   padding: 0;
   text-align: right;
 }
+.cart_item_discount {
+  color: red;
+}
 .cart_item_content input[type="text"] {
   display: inline-block;
   width: unset;
