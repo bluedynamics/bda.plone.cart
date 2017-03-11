@@ -41,6 +41,9 @@
   padding: 0;
   text-align: right;
 }
+.discount_net,
+.discount_vat,
+.discount_total,
 .cart_item_discount {
   color: red;
 }

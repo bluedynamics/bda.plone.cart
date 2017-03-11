@@ -51,6 +51,9 @@ a.remove_from_cart_action {
 .portletCart #cart .cart_item {
     min-height:90px;
 }
+.discount_net,
+.discount_vat,
+.discount_total,
 .cart_item_discount,
 tr.discount {
     color:red;
