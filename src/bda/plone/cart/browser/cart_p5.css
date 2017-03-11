@@ -154,6 +154,10 @@ ul#cart_items h3 {
 #cart_viewlet .cart_item_price_wrapper {
   text-align: right;
 }
+#portlet-cart .cart_item_discount_wrapper,
+#cart_viewlet .cart_item_discount_wrapper {
+  text-align: right;
+}
 #portlet-cart .cart_viewlet_actions,
 #cart_viewlet .cart_viewlet_actions,
 #portlet-cart .portletFooter,

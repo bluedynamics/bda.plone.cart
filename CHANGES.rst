@@ -2,8 +2,11 @@
 Changelog
 =========
 
-0.10.dev8
----------
+1.0a1 (unreleased)
+------------------
+
+- Add support for displaying cart item discount in cart.
+  [rnix]
 
 - Add ``get_item_shipping`` and ``cart_item_free_shipping`` utilities.
   [rnix]

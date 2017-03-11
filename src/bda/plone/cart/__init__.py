@@ -369,7 +369,7 @@ class CartDataProviderBase(object):
     def item(self, uid, title, count, price, url, comment='', description='',
              comment_required=False, quantity_unit_float=False,
              quantity_unit='', preview_image_url='',
-             no_longer_available=False, alert=''):
+             no_longer_available=False, alert='', discount=0):
         return {
             # placeholders
             'cart_item_uid': uid,
@@ -382,6 +382,7 @@ class CartDataProviderBase(object):
             'cart_item_description': description,
             'cart_item_quantity_unit': quantity_unit,
             'cart_item_alert': alert,
+            'cart_item_discount': discount,
             # control flags
             'comment_required': comment_required,
             'quantity_unit_float': quantity_unit_float,

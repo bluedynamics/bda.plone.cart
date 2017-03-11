@@ -171,7 +171,12 @@
                     }
                     var value = cart_item_data[item];
                     if (item === 'cart_item_comment' && !value) {
-                        $('.cart_item_comment_wrapper', cart_item).hide();
+                        $('.cart_item_comment_wrapper', cart_item)
+                            .hide().find('*').hide();
+                    }
+                    if (item === 'cart_item_discount' && value === 0) {
+                        $('.cart_item_discount_wrapper', cart_item)
+                            .hide().find('*').hide();
                     }
                     if (item === 'cart_item_alert') {
                         $('.cart_item_alert', cart_item).show();
