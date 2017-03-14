@@ -5,6 +5,9 @@ Changelog
 1.0a1 (unreleased)
 ------------------
 
+- In ``cart.js``, allow also a select for count.
+  [jensens. agitator]
+
 - Add support for displaying cart item discount in cart.
   [rnix]
 

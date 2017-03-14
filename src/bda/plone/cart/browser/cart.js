@@ -425,7 +425,8 @@
         var uid = $('.cart_item_uid', parent).first().text();
         var count_node = $('.cart_item_count', parent).get(0);
         var count;
-        if (count_node.tagName.toUpperCase() === 'INPUT') {
+        var tagname = count_node.tagName.toUpperCase();
+        if (tagname === 'INPUT' || tagname === 'SELECT') {
             count = $(count_node).val();
         } else {
             count = $(count_node).text();
