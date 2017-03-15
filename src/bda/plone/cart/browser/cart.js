@@ -280,7 +280,7 @@
             $(this).unbind('click');
             $(this).bind('click', function(e) {
                 e.preventDefault();
-                cart.update_cart_item(this);
+                cart.add_cart_item(this);
             });
         });
         $('.update_cart_item', context).each(function() {
