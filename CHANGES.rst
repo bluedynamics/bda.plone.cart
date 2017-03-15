@@ -5,6 +5,11 @@ Changelog
 1.0a1 (unreleased)
 ------------------
 
+- In ``cart.js``, make code blocks dealing with add and update after click event available for third party code.
+  A move of the two anonymous functions in its own named functions,
+  named ``update_cart_item`` and ``add_cart_item`` taking the node as parameter there were called on.
+  [jensens]
+
 - In ``cart.js``, allow also a select for count.
   [jensens. agitator]
 
