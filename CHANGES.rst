@@ -5,6 +5,11 @@ Changelog
 1.0a1 (unreleased)
 ------------------
 
+- Introduce ``bda.plone.cart.browser.portlet.SKIP_RENDER_CART_PATTERNS`` which
+  can be used to define patterns which are checked against actual browser URL
+  defining whether to skip cart rendering.
+  [rnix]
+
 - In ``cart.js``, make code blocks dealing with add and update after click event available for third party code.
   A move of the two anonymous functions in its own named functions,
   named ``update_cart_item`` and ``add_cart_item`` taking the node as parameter there were called on.

@@ -38,13 +38,24 @@ class CartAssignment(base.Assignment):
         return _(u'cart', u'Cart')
 
 
+# Patterns to search for in actual browser URL whether to skip rendeing
+# cart. Append to this list from addons if you have specific browser URL's
+# where you want to skip rendering the cart.
+# XXX: use regular expressions
+SKIP_RENDER_CART_PATTERNS = [
+    '@@checkout',
+    '@@confirm_order',
+    '/portal_factory/'
+]
+
+
 def render_cart(context):
     url = context.restrictedTraverse('@@plone').getCurrentUrl()
-    if url.endswith('@@cart') \
-       or url.find('@@checkout') != -1 \
-       or url.find('@@confirm_order') != -1 \
-       or url.find('/portal_factory/') != -1:
+    if url.endswith('@@cart'):
         return False
+    for pattern in SKIP_RENDER_CART_PATTERNS:
+        if url.find(pattern) > -1:
+            return False
     return True
 
 
