@@ -21,7 +21,7 @@ from zope.component import provideAdapter
 from zope.interface import alsoProvides
 
 import mock
-import unittest2 as unittest
+import unittest
 
 
 class MockCartItemState(CartItemStateBase):

@@ -5,6 +5,9 @@ Changelog
 1.0a1 (unreleased)
 ------------------
 
+- Replace unittest2 with untittest
+  [llisa123]
+
 - Introduce ``bda.plone.cart.browser.portlet.SKIP_RENDER_CART_PATTERNS`` which
   can be used to define patterns which are checked against actual browser URL
   defining whether to skip cart rendering.
