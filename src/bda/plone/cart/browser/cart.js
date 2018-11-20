@@ -255,6 +255,18 @@
         }
     };
 
+    // delay function for keyup event
+    function delay(callback, ms) {
+      var timer = 0;
+      return function() {
+        var context = this, args = arguments;
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          callback.apply(context, args);
+        }, ms || 0);
+      };
+    }
+
     Cart.prototype.bind = function(context) {
         $('#cart_viewlet_summary a', context)
             .unbind('click')
@@ -289,6 +301,18 @@
                 e.preventDefault();
                 cart.update_cart_item(this);
             });
+        });
+        $('.cart_item_count', context).each(function() {
+            $(this).keyup(
+                delay(function (e) {
+                  // only execute update_cart_item on number or .
+                  if ((e.keyCode >= 48 && e.keyCode <= 57) ||
+                      (e.keyCode >= 96 && e.keyCode <= 105) ||
+                       e.keyCode == 190 || e.keyCode == 110) {
+                        cart.update_cart_item(this);
+                  };
+                }, 500)
+            );
         });
     };
 

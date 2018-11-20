@@ -5,6 +5,9 @@ Changelog
 1.0a1 (unreleased)
 ------------------
 
+- Update cart total on change.
+  [agitator]
+
 - Replace unittest2 with untittest
   [llisa123]
 
