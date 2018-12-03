@@ -277,17 +277,28 @@
                 }
             });
         $('.add_cart_item', context).each(function() {
-            $(this).unbind('click');
-            $(this).bind('click', function(e) {
+            $(this).unbind('click').bind('click', function(e) {
                 e.preventDefault();
                 cart.add_cart_item(this);
             });
         });
         $('.update_cart_item', context).each(function() {
-            $(this).unbind('click');
-            $(this).bind('click', function(e) {
+            $(this).unbind('click').bind('click', function(e) {
                 e.preventDefault();
                 cart.update_cart_item(this);
+            });
+        });
+        var defer_timer = null;
+        $('.cart_item_count', context).each(function() {
+            $(this).unbind('keyup').bind('keyup', function(e) {
+                if ((e.keyCode >= 48 && e.keyCode <= 57) ||
+                    (e.keyCode >= 96 && e.keyCode <= 105) ||
+                    e.keyCode == 190 || e.keyCode == 110) {
+                    clearTimeout(defer_timer);
+                    defer_timer = setTimeout(function () {
+                        cart.update_cart_item(this);
+                    }.bind(this), 500);
+                }
             });
         });
     };

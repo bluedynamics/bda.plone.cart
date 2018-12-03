@@ -5,7 +5,10 @@ Changelog
 1.0a1 (unreleased)
 ------------------
 
-- Replace unittest2 with untittest
+- Auto update cart if item count changes.
+  [rnix]
+
+- Replace unittest2 with untittest.
   [llisa123]
 
 - Introduce ``bda.plone.cart.browser.portlet.SKIP_RENDER_CART_PATTERNS`` which
