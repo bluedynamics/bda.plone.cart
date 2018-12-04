@@ -240,6 +240,8 @@
             }
             if (to_focus) {
                 to_focus.focus();
+                var focus_val = to_focus.val();
+                to_focus.val('').val(focus_val);
             }
             var cart_summary = $('#cart_summary', this.cart_node).get(0);
             for (var item in data.cart_summary) {
