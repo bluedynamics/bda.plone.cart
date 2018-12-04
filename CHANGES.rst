@@ -5,6 +5,9 @@ Changelog
 1.0a1 (unreleased)
 ------------------
 
+- Keep cart item cound focus after auto update.
+  [rnix]
+
 - Auto update cart if item count changes.
   [rnix]
 

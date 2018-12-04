@@ -50,7 +50,8 @@
             'cart_item_updated': "Item has been updated in cart",
             'cart_item_removed': "Item has been removed from cart"
         };
-    }
+        this.last_cart_item_count_focus = null;
+    };
 
     Cart.prototype.init = function() {
         this.cart_node = $('#cart').get(0);
@@ -143,6 +144,7 @@
             $('#cart_items', this.cart_node).css('display', 'block');
             var render_no_longer_available = false;
             var cart_total_count = 0;
+            var to_focus = null;
             for (var i = 0; i < data.cart_items.length; i++) {
                 var cart_item = $(this.item_template).clone();
                 var cart_item_data = data.cart_items[i];
@@ -200,10 +202,20 @@
                             if (is_comment && comment_required) {
                                 $(this).addClass('required');
                             }
-                            // check if count and set quantity_unit_float class
-                            if (is_count && quantity_unit_float) {
-                                $(this).addClass('quantity_unit_float');
-                                value = cart.round(value);
+                            // check if item count
+                            if (is_count) {
+                                // check if quantity unit float
+                                if (quantity_unit_float) {
+                                    $(this).addClass('quantity_unit_float');
+                                    value = cart.round(value);
+                                }
+                                // check if focus should be set
+                                var focus = cart.last_cart_item_count_focus;
+                                if (focus === cart_item_data.cart_item_uid) {
+                                    // need to remember element here and focus
+                                    // later, elem not in DOM tree yet.
+                                    to_focus = $(this);
+                                }
                             }
                             $(this).attr('value', value);
                             $(this).val(value);
@@ -225,6 +237,9 @@
                     });
                 }
                 $('#cart_items', this.cart_node).append(cart_item);
+            }
+            if (to_focus) {
+                to_focus.focus();
             }
             var cart_summary = $('#cart_summary', this.cart_node).get(0);
             for (var item in data.cart_summary) {
@@ -291,10 +306,14 @@
         var defer_timer = null;
         $('.cart_item_count', context).each(function() {
             $(this).unbind('keyup').bind('keyup', function(e) {
-                if ((e.keyCode >= 48 && e.keyCode <= 57) ||
-                    (e.keyCode >= 96 && e.keyCode <= 105) ||
-                    e.keyCode == 190 || e.keyCode == 110) {
+                var kc = e.keyCode;
+                if ((kc >= 48 && kc <= 57) ||
+                    (kc >= 96 && kc <= 105) ||
+                    kc == 190 || kc == 110 || kc == 8 || kc == 46) {
                     clearTimeout(defer_timer);
+                    var parent = cart.find_extraction_parent($(this));
+                    var uid = $('.cart_item_uid', parent).first().text();
+                    cart.last_cart_item_count_focus = uid;
                     defer_timer = setTimeout(function () {
                         cart.update_cart_item(this);
                     }.bind(this), 500);
@@ -440,7 +459,6 @@
 
     Cart.prototype.extract = function(node) {
         node = $(node);
-
         var parent = this.find_extraction_parent(node);
         var uid = $('.cart_item_uid', parent).first().text();
         var count_node = $('.cart_item_count', parent).get(0);
