@@ -60,10 +60,7 @@ def render_cart(context):
 
 
 class CartRenderer(base.Renderer, CartMixin):
-    if PLONE5:
-        template = ViewPageTemplateFile('portlet_p5.pt')
-    else:
-        template = ViewPageTemplateFile('portlet_p4.pt')
+    template = ViewPageTemplateFile('portlet.pt')
 
     @property
     def available(self):
