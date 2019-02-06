@@ -48,7 +48,7 @@ msgstr ""
 #. Default: "Cart"
 #: ./browser/portlet.py:38
 #: ./browser/portlet_p4.pt:6
-#: ./browser/portlet_p5.pt:10
+#: ./browser/portlet.pt:10
 msgid "cart"
 msgstr "Handlekurv"
 
@@ -94,7 +94,7 @@ msgstr ""
 
 #. Default: "Cart"
 #: ./browser/portlet_p4.pt:6
-#: ./browser/portlet_p5.pt:10
+#: ./browser/portlet.pt:10
 #: ./browser/viewlet_p4.pt:8
 msgid "cart_summary"
 msgstr "Handlekorg"
@@ -106,7 +106,7 @@ msgstr ""
 
 #. Default: "Checkout"
 #: ./browser/portlet_p4.pt:18
-#: ./browser/portlet_p5.pt:21
+#: ./browser/portlet.pt:21
 #: ./browser/summary.pt:122
 msgid "checkout"
 msgstr "Til kassen"
