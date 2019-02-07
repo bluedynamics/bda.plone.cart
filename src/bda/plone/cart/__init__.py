@@ -24,7 +24,7 @@ from zope.interface import Interface
 from zope.publisher.interfaces.browser import IBrowserRequest
 from plone import api
 
-import urllib2
+import six.moves.urllib.request, six.moves.urllib.error, six.moves.urllib.parse
 import uuid
 
 
@@ -90,7 +90,7 @@ def extractitems(items):
         item = item.split(':')
         uid = item[0].split(';')[0]
         count = item[1]
-        comment = urllib2.unquote(item[0][len(uid) + 1:])
+        comment = six.moves.urllib.parse.unquote(item[0][len(uid) + 1:])
         ret.append(RawCartItem(uid, Decimal(count), comment))
     return ret
 
@@ -114,7 +114,7 @@ def remove_item_from_cart(request, uid):
         if uid == item_uid:
             continue
         cookie_items.append(
-            item_uid + ';' + urllib2.quote(comment) + ':' + str(count))
+            item_uid + ';' + six.moves.urllib.parse.quote(comment) + ':' + str(count))
     cookie = ','.join(cookie_items)
     request.response.setCookie('cart', cookie, quoted=False, path='/')
 
