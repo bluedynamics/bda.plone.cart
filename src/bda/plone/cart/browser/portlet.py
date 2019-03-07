@@ -14,14 +14,6 @@ from zope.component import getUtilitiesFor
 from zope.i18nmessageid import MessageFactory
 from zope.interface import implementer
 
-import pkg_resources
-
-
-if pkg_resources.get_distribution("Products.CMFPlone").version > '4.99':
-    PLONE5 = 1
-else:
-    PLONE5 = 0
-
 
 _ = MessageFactory('bda.plone.cart')
 

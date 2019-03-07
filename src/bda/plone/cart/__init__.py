@@ -24,7 +24,7 @@ from zope.interface import Interface
 from zope.publisher.interfaces.browser import IBrowserRequest
 from plone import api
 
-import six.moves.urllib.request, six.moves.urllib.error, six.moves.urllib.parse
+import six.moves.urllib.parse
 import uuid
 
 
