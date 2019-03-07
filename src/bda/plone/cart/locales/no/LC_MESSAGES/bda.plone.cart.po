@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bda cart no translation\n"
-"POT-Creation-Date: 2017-03-11 12:48+0000\n"
+"POT-Creation-Date: 2019-02-10 13:38+0000\n"
 "PO-Revision-Date: 2013-06-10 11:25+0100\n"
 "Last-Translator: Espen Moe-Nilssen <espen@medialog.no>\n"
 "Language-Team: LANGUAGE <espen@medialog.no>\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Language: nb_NO\n"
 "X-Generator: Poedit 1.5.5\n"
 
-#: ./profiles.zcml:14
+#: ./profiles.zcml:13
 msgid "A generic cart"
 msgstr ""
 
-#: ./browser/portlet.py:75
+#: ./browser/portlet.py:83
 msgid "Add Cart Portlet"
 msgstr "Legg til handlekurvboks"
 
-#: ./browser/portlet.py:76
+#: ./browser/portlet.py:84
 msgid "This portlet displays the shopping cart."
 msgstr "Denne boksen viser handlekurven"
 
@@ -37,18 +37,14 @@ msgstr ""
 msgid "back"
 msgstr "Tilbake"
 
-#: ./profiles.zcml:14
+#: ./profiles.zcml:13
 msgid "bda.plone.cart"
 msgstr ""
 
-#: ./profiles.zcml:29
-msgid "bda.plone.cart base"
-msgstr ""
-
 #. Default: "Cart"
+#: ./browser/portlet.pt:10
 #: ./browser/portlet.py:38
-#: ./browser/portlet_p4.pt:6
-#: ./browser/portlet_p5.pt:10
+#: ./browser/view.pt:18
 msgid "cart"
 msgstr "Handlekurv"
 
@@ -93,9 +89,8 @@ msgid "cart_not_a_number"
 msgstr ""
 
 #. Default: "Cart"
-#: ./browser/portlet_p4.pt:6
-#: ./browser/portlet_p5.pt:10
-#: ./browser/viewlet_p4.pt:8
+#: ./browser/portlet.pt:10
+#: ./browser/viewlet.pt:8
 msgid "cart_summary"
 msgstr "Handlekurv"
 
@@ -105,9 +100,9 @@ msgid "cart_total_limit_reached"
 msgstr ""
 
 #. Default: "Checkout"
-#: ./browser/portlet_p4.pt:18
-#: ./browser/portlet_p5.pt:21
+#: ./browser/portlet.pt:21
 #: ./browser/summary.pt:122
+#: ./browser/viewlet.pt:21
 msgid "checkout"
 msgstr "Til kassen"
 

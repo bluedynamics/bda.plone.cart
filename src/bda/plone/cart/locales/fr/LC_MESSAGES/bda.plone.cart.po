@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bda.plone.cart\n"
-"POT-Creation-Date: 2017-03-11 12:48+0000\n"
+"POT-Creation-Date: 2019-02-10 13:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Peter Holzer <hpeter@agitator.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,15 +15,15 @@ msgstr ""
 "Domain: bda.plone.cart\n"
 "X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
 
-#: ./profiles.zcml:14
+#: ./profiles.zcml:13
 msgid "A generic cart"
 msgstr ""
 
-#: ./browser/portlet.py:75
+#: ./browser/portlet.py:83
 msgid "Add Cart Portlet"
 msgstr "Fonction  ajouter panier"
 
-#: ./browser/portlet.py:76
+#: ./browser/portlet.py:84
 msgid "This portlet displays the shopping cart."
 msgstr "Fonction montrer panier"
 
@@ -36,18 +36,14 @@ msgstr "La quantité souhaitée dépasse la quantité maximale de commande pour 
 msgid "back"
 msgstr "retour"
 
-#: ./profiles.zcml:14
+#: ./profiles.zcml:13
 msgid "bda.plone.cart"
 msgstr ""
 
-#: ./profiles.zcml:29
-msgid "bda.plone.cart base"
-msgstr ""
-
 #. Default: "Cart"
+#: ./browser/portlet.pt:10
 #: ./browser/portlet.py:38
-#: ./browser/portlet_p4.pt:6
-#: ./browser/portlet_p5.pt:10
+#: ./browser/view.pt:18
 msgid "cart"
 msgstr "Panier"
 
@@ -92,9 +88,8 @@ msgid "cart_not_a_number"
 msgstr ""
 
 #. Default: "Cart"
-#: ./browser/portlet_p4.pt:6
-#: ./browser/portlet_p5.pt:10
-#: ./browser/viewlet_p4.pt:8
+#: ./browser/portlet.pt:10
+#: ./browser/viewlet.pt:8
 msgid "cart_summary"
 msgstr "Panier"
 
@@ -104,9 +99,9 @@ msgid "cart_total_limit_reached"
 msgstr ""
 
 #. Default: "Checkout"
-#: ./browser/portlet_p4.pt:18
-#: ./browser/portlet_p5.pt:21
+#: ./browser/portlet.pt:21
 #: ./browser/summary.pt:122
+#: ./browser/viewlet.pt:21
 msgid "checkout"
 msgstr "Caisse"
 

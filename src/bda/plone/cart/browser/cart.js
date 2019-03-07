@@ -10,27 +10,6 @@
         CART_PORTLET_IDENTIFYER = '#portlet-cart',
         CART_VIEWLET_IDENTIFYER = '#cart_viewlet';
 
-    $(document).ready(function() {
-        var execution_context = $('.cart_execution_context');
-        if (execution_context.length) {
-            CART_EXECUTION_CONTEXT = execution_context.text();
-        }
-        var execution_url = $('#cart');
-        if (execution_url.length) {
-            CART_EXECUTION_URL = execution_url.data('context-url');
-        }
-        cart.init();
-        cart.query();
-        if (window.Faceted !== undefined) {
-            $(window.Faceted.Events).bind(window.Faceted.Events.AJAX_QUERY_SUCCESS, function(e){
-                cart.bind();
-            });
-        }
-        $.extend(bdajax.binders, {
-            cart_binder: cart.bind
-        });
-    });
-
     function Cart() {
         // flag whether cart contains items which are no longer available
         this.no_longer_available = false;
@@ -627,5 +606,26 @@
 
     var cart = new Cart();
     window.bda_plone_cart = cart;
+
+    $(document).ready(function() {
+        var execution_context = $('.cart_execution_context');
+        if (execution_context.length) {
+            CART_EXECUTION_CONTEXT = execution_context.text();
+        }
+        var execution_url = $('#cart');
+        if (execution_url.length) {
+            CART_EXECUTION_URL = execution_url.data('context-url');
+        }
+        cart.init();
+        cart.query();
+        if (window.Faceted !== undefined) {
+            $(window.Faceted.Events).bind(window.Faceted.Events.AJAX_QUERY_SUCCESS, function(e){
+                cart.bind();
+            });
+        }
+        $.extend(bdajax.binders, {
+            cart_binder: cart.bind
+        });
+    });
 
 })(jQuery, bdajax);

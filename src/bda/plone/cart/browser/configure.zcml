@@ -11,22 +11,11 @@
     renderer=".portlet.CartRenderer"
     addview=".portlet.CartAddForm" />
 
-  <!-- cart viewlet plone 5-->
+  <!-- cart viewlet -->
   <browser:viewlet
-    zcml:condition="have plone-5"
     name="bda.plone.cart"
     class=".CartViewlet"
-    template="viewlet_p5.pt"
-    manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-    permission="zope2.View"
-    layer="..interfaces.ICartExtensionLayer" />
-
-  <!-- cart viewlet plone 4-->
-  <browser:viewlet
-    zcml:condition="not-have plone-5"
-    name="bda.plone.cart"
-    class=".CartViewlet"
-    template="viewlet_p4.pt"
+    template="viewlet.pt"
     manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
     permission="zope2.View"
     layer="..interfaces.ICartExtensionLayer" />
@@ -84,46 +73,28 @@
     permission="zope2.View"
     layer="..interfaces.ICartExtensionLayer" />
 
-  <!-- plone 4 resources -->
+  <!-- resources -->
   <browser:resource
-    zcml:condition="not-have plone-5"
-    name="bda.plone.cart.css"
-    file="cart_p4.css"
-    layer="..interfaces.ICartExtensionLayer" />
-
-  <browser:resourceDirectory
-    zcml:condition="not-have plone-5"
-    name="bda.plone.cart.images"
-    directory="images"
-    layer="..interfaces.ICartExtensionLayer" />
-
-  <!-- plone 5 resources -->
-  <browser:resource
-    zcml:condition="have plone-5"
     name="cookie.functions.js"
     file="cookie_functions.js"
     layer="..interfaces.ICartExtensionLayer" />
 
   <browser:resource
-    zcml:condition="have plone-5"
     name="bda.plone.cart.less"
-    file="cart_p5.less"
+    file="cart.less"
     layer="..interfaces.ICartExtensionLayer" />
 
   <browser:resource
-    zcml:condition="have plone-5"
     name="bda.plone.cart.css"
-    file="cart_p5.css"
+    file="cart.css"
     layer="..interfaces.ICartExtensionLayer" />
 
   <browser:resource
-    zcml:condition="have plone-5"
     name="bda.plone.cart.css.map"
-    file="cart_p5.css.map"
+    file="cart.css.map"
     layer="..interfaces.ICartExtensionLayer" />
 
   <browser:resourceDirectory
-    zcml:condition="have plone-5"
     name="bda.plone.cart.font"
     directory="font"
     layer="..interfaces.ICartExtensionLayer" />
