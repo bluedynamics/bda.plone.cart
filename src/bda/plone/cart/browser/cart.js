@@ -306,7 +306,7 @@
     Cart.prototype.add_cart_item = function(node) {
         var defs;
         try {
-            defs = cart.extract(node);
+            defs = cart.extract(node, '.buyable');
         } catch (ex) {
             bdajax.error(ex.message);
             return;
@@ -362,7 +362,7 @@
     Cart.prototype.update_cart_item = function(node) {
         var defs;
         try {
-            defs = cart.extract(node);
+            defs = cart.extract(node, '.cart_item_content');
         } catch (ex) {
             bdajax.error(ex.message);
             return;
@@ -438,9 +438,9 @@
         return parent;
     };
 
-    Cart.prototype.extract = function(node) {
+    Cart.prototype.extract = function(node, parent_selector) {
         node = $(node);
-        var parent = this.find_extraction_parent(node);
+        var parent = node.closest(parent_selector)
         var uid = $('.cart_item_uid', parent).first().text();
         var count_node = $('.cart_item_count', parent).get(0);
         var count;
