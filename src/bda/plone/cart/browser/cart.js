@@ -64,7 +64,7 @@
         // XXX: support cookie size > 4096 by splitting up cookie
         count = Number(count);
         // item uid consists of ``object_uid;comment``
-        uid = uid + this.UID_DELIMITER + comment;
+        uid = uid + UID_DELIMITER + comment;
         var items = this.items();
         var existent = false;
         var itemuid;
@@ -91,7 +91,7 @@
             if (!itemuid || items[itemuid] === 0) {
                 continue;
             }
-            cookie = cookie + itemuid + this.COUNT_DELIMITER + String(items[itemuid]) + ',';
+            cookie = cookie + itemuid + COUNT_DELIMITER + String(items[itemuid]) + ',';
         }
         if (cookie) {
             cookie = cookie.substring(0, cookie.length - 1);
@@ -147,10 +147,10 @@
                 for (var item in cart_item_data) {
                     var attribute = '';
                     var css = '.' + item;
-                    if (item.indexOf(this.COUNT_DELIMITER) !== -1) {
-                        attribute = item.substring(item.indexOf(this.COUNT_DELIMITER) + 1,
+                    if (item.indexOf(COUNT_DELIMITER) !== -1) {
+                        attribute = item.substring(item.indexOf(COUNT_DELIMITER) + 1,
                                                    item.length);
-                        css = css.substring(0, item.indexOf(this.COUNT_DELIMITER) + 1);
+                        css = css.substring(0, item.indexOf(COUNT_DELIMITER) + 1);
                     }
                     var value = cart_item_data[item];
                     if (item === 'cart_item_comment' && !value) {
@@ -280,14 +280,20 @@
                 cart.add_cart_item(this);
             });
         });
-        $('.update_cart_item', context).each(function() {
+        $('.update_cart_action', context).each(function() {
             $(this).unbind('click').bind('click', function(e) {
                 e.preventDefault();
-                cart.update_cart_item(this);
+                cart.update_cart_item(this, '.cart_item_content');
+            });
+        });
+        $('.remove_from_cart_action', context).each(function() {
+            $(this).unbind('click').bind('click', function(e) {
+                e.preventDefault();
+                cart.update_cart_item(this, '.cart_item_remove');
             });
         });
         var defer_timer = null;
-        $('.cart_item_count', context).each(function() {
+        function bind_key_changed(parent_selector) {
             $(this).unbind('keyup').bind('keyup', function(e) {
                 var kc = e.keyCode;
                 if ((kc >= 48 && kc <= 57) ||
@@ -298,10 +304,16 @@
                     var uid = $('.cart_item_uid', parent).first().text();
                     cart.last_cart_item_count_focus = uid;
                     defer_timer = setTimeout(function () {
-                        cart.update_cart_item(this);
+                        cart.update_cart_item(this, );
                     }.bind(this), 500);
                 }
             });
+        }
+        $('.buyable .cart_item_count', context).each(function() {
+            bind_key_changed('.buyable');
+        });
+        $('.cart_item_content .cart_item_count', context).each(function() {
+            bind_key_changed('.cart_item_content');
         });
     };
 
@@ -320,7 +332,7 @@
             if (!item) {
                 continue;
             }
-            var item_uid = item.split(this.UID_DELIMITER)[0];
+            var item_uid = item.split(UID_DELIMITER)[0];
             if (uid === item_uid) {
                 count += items[item];
             }
@@ -361,10 +373,10 @@
 
     };
 
-    Cart.prototype.update_cart_item = function(node) {
+    Cart.prototype.update_cart_item = function(node, definitions_selector) {
         var defs;
         try {
-            defs = cart.extract(node, '.cart_item_content');
+            defs = cart.extract(node, definitions_selector);
         } catch (ex) {
             bdajax.error(ex.message);
             return;
@@ -377,10 +389,10 @@
                 if (!item) {
                     continue;
                 }
-                if (item === uid + this.UID_DELIMITER + defs[2]) {
+                if (item === uid + UID_DELIMITER + defs[2]) {
                     continue;
                 }
-                var item_uid = item.split(this.UID_DELIMITER)[0];
+                var item_uid = item.split(UID_DELIMITER)[0];
                 if (uid === item_uid) {
                     count += items[item];
                 }
@@ -502,7 +514,7 @@
         var cookieitems = cookie.split(',');
         var items = {};
         for (var i = 0; i < cookieitems.length; i++) {
-            var item = cookieitems[i].split(this.COUNT_DELIMITER);
+            var item = cookieitems[i].split(COUNT_DELIMITER);
             items[item[0]] = Number(item[1]);
         }
         return items;
@@ -534,7 +546,7 @@
             if (!item) {
                 continue;
             }
-            var item_uid = item.split(this.UID_DELIMITER)[0];
+            var item_uid = item.split(UID_DELIMITER)[0];
             if (uid === item_uid) {
                 continue;
             }

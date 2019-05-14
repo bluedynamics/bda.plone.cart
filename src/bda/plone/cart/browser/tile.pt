@@ -27,7 +27,7 @@
              title="Update cart"
              i18n:attributes="title update_cart">&nbsp;</a>
         </span>
-        <span>
+        <span class="cart_item_remove">
           <span class="cart_item_uid" style="display: none;">uid</span>
           <span class="cart_item_comment" style="display: none;">comment</span>
           <span class="cart_item_count" style="display: none;">0</span>
