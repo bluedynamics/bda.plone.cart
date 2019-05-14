@@ -46,6 +46,9 @@ CURRENCY_LITERALS = {
     'NZD': u"$",
 }
 
+UID_DELIMITER = "|"
+COUNT_DELIMITER = ":"
+
 
 def ascur(val, comma=False):
     """Convert float value to currency string.
@@ -87,8 +90,8 @@ def extractitems(items):
     for item in items:
         if not item:
             continue
-        item = item.split(':')
-        uid = item[0].split(';')[0]
+        item = item.split(COUNT_DELIMITER)
+        uid = item[0].split(UID_DELIMITER)[0]
         count = item[1]
         comment = six.moves.urllib.parse.unquote(item[0][len(uid) + 1:])
         ret.append(RawCartItem(uid, Decimal(count), comment))
@@ -114,7 +117,12 @@ def remove_item_from_cart(request, uid):
         if uid == item_uid:
             continue
         cookie_items.append(
-            item_uid + ';' + six.moves.urllib.parse.quote(comment) + ':' + str(count))
+            item_uid
+            + UID_DELIMITER
+            + six.moves.urllib.parse.quote(comment)
+            + COUNT_DELIMITER
+            + str(count)
+        )
     cookie = ','.join(cookie_items)
     request.response.setCookie('cart', cookie, quoted=False, path='/')
 

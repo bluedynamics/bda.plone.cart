@@ -8,7 +8,9 @@
     var CART_EXECUTION_CONTEXT = null,
         CART_EXECUTION_URL = null,
         CART_PORTLET_IDENTIFYER = '#portlet-cart',
-        CART_VIEWLET_IDENTIFYER = '#cart_viewlet';
+        CART_VIEWLET_IDENTIFYER = '#cart_viewlet',
+        UID_DELIMITER = "|",
+        COUNT_DELIMITER = ":";
 
     function Cart() {
         // flag whether cart contains items which are no longer available
@@ -62,7 +64,7 @@
         // XXX: support cookie size > 4096 by splitting up cookie
         count = Number(count);
         // item uid consists of ``object_uid;comment``
-        uid = uid + ';' + comment;
+        uid = uid + this.UID_DELIMITER + comment;
         var items = this.items();
         var existent = false;
         var itemuid;
@@ -89,7 +91,7 @@
             if (!itemuid || items[itemuid] === 0) {
                 continue;
             }
-            cookie = cookie + itemuid + ':' + String(items[itemuid]) + ',';
+            cookie = cookie + itemuid + this.COUNT_DELIMITER + String(items[itemuid]) + ',';
         }
         if (cookie) {
             cookie = cookie.substring(0, cookie.length - 1);
@@ -145,10 +147,10 @@
                 for (var item in cart_item_data) {
                     var attribute = '';
                     var css = '.' + item;
-                    if (item.indexOf(':') !== -1) {
-                        attribute = item.substring(item.indexOf(':') + 1,
+                    if (item.indexOf(this.COUNT_DELIMITER) !== -1) {
+                        attribute = item.substring(item.indexOf(this.COUNT_DELIMITER) + 1,
                                                    item.length);
-                        css = css.substring(0, item.indexOf(':') + 1);
+                        css = css.substring(0, item.indexOf(this.COUNT_DELIMITER) + 1);
                     }
                     var value = cart_item_data[item];
                     if (item === 'cart_item_comment' && !value) {
@@ -318,7 +320,7 @@
             if (!item) {
                 continue;
             }
-            var item_uid = item.split(';')[0];
+            var item_uid = item.split(this.UID_DELIMITER)[0];
             if (uid === item_uid) {
                 count += items[item];
             }
@@ -375,10 +377,10 @@
                 if (!item) {
                     continue;
                 }
-                if (item === uid + ';' + defs[2]) {
+                if (item === uid + this.UID_DELIMITER + defs[2]) {
                     continue;
                 }
-                var item_uid = item.split(';')[0];
+                var item_uid = item.split(this.UID_DELIMITER)[0];
                 if (uid === item_uid) {
                     count += items[item];
                 }
@@ -500,7 +502,7 @@
         var cookieitems = cookie.split(',');
         var items = {};
         for (var i = 0; i < cookieitems.length; i++) {
-            var item = cookieitems[i].split(':');
+            var item = cookieitems[i].split(this.COUNT_DELIMITER);
             items[item[0]] = Number(item[1]);
         }
         return items;
@@ -532,7 +534,7 @@
             if (!item) {
                 continue;
             }
-            var item_uid = item.split(';')[0];
+            var item_uid = item.split(this.UID_DELIMITER)[0];
             if (uid === item_uid) {
                 continue;
             }
