@@ -7,7 +7,7 @@ from Products.Five import BrowserView
 from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
 
-import simplejson as json
+import json
 import zope.deferredimport
 
 

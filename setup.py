@@ -34,10 +34,8 @@ setup(
     install_requires=[
         'bda.plone.ajax',
         'bda.plone.shipping',
-        'Plone',
-        'plone.api',
+        'Products.CMFPlone',
         'setuptools',
-        'simplejson',
     ],
     extras_require={
         'test': [
