@@ -28,22 +28,22 @@ import six.moves.urllib.parse
 import uuid
 
 
-_ = MessageFactory('bda.plone.cart')
+_ = MessageFactory("bda.plone.cart")
 
 
 CURRENCY_LITERALS = {
-    'EUR': u"€",
-    'USD': u"$",
-    'INR': u"₹",
-    'CAD': u"$",
-    'CHF': u"CHF",
-    'GBP': u"£",
-    'AUD': u"$",
-    'NOK': u"kr.",
-    'SEK': u"Kr.",
-    'DKK': u"K.",
-    'YEN': u"¥",
-    'NZD': u"$",
+    "EUR": u"€",
+    "USD": u"$",
+    "INR": u"₹",
+    "CAD": u"$",
+    "CHF": u"CHF",
+    "GBP": u"£",
+    "AUD": u"$",
+    "NOK": u"kr.",
+    "SEK": u"Kr.",
+    "DKK": u"K.",
+    "YEN": u"¥",
+    "NZD": u"$",
 }
 
 UID_DELIMITER = "|"
@@ -56,25 +56,25 @@ def ascur(val, comma=False):
     comma:
          True for ```,``` instead of ```.```.
     """
-    val = '%.2f' % val
+    val = "%.2f" % val
     if comma:
-        return val.replace('.', ',')
+        return val.replace(".", ",")
     return val
 
 
 def readcookie(request):
     """Read, unescape and return the cart cookie.
     """
-    return request.cookies.get('cart', '')
+    return request.cookies.get("cart", "")
 
 
 def deletecookie(request):
     """Delete the cart cookie.
     """
-    request.response.expireCookie('cart', path='/')
+    request.response.expireCookie("cart", path="/")
 
 
-RawCartItem = namedtuple('RawCartItem', ['uid', 'count', 'comment'])
+RawCartItem = namedtuple("RawCartItem", ["uid", "count", "comment"])
 
 
 def extractitems(items):
@@ -86,7 +86,7 @@ def extractitems(items):
     if not items:
         return []
     ret = list()
-    items = items.split(',')
+    items = items.split(",")
     for item in items:
         if not item:
             continue
@@ -123,8 +123,8 @@ def remove_item_from_cart(request, uid):
             + COUNT_DELIMITER
             + str(count)
         )
-    cookie = ','.join(cookie_items)
-    request.response.setCookie('cart', cookie, quoted=False, path='/')
+    cookie = ",".join(cookie_items)
+    request.response.setCookie("cart", cookie, quoted=False, path="/")
 
 
 def cart_item_shippable(context, item):
@@ -161,56 +161,56 @@ class CartDataProviderBase(object):
     @property
     def data(self):
         ret = dict()
-        ret['cart_settings'] = dict()
-        ret['cart_settings']['hide_cart_if_empty'] = self.hide_cart_if_empty
+        ret["cart_settings"] = dict()
+        ret["cart_settings"]["hide_cart_if_empty"] = self.hide_cart_if_empty
         if self.disable_max_article:
-            ret['cart_settings']['cart_max_article_count'] = 10000
+            ret["cart_settings"]["cart_max_article_count"] = 10000
         else:
-            ret['cart_settings']['cart_max_article_count'] = self.max_artice_count
+            ret["cart_settings"]["cart_max_article_count"] = self.max_artice_count
         include_shipping_costs = self.include_shipping_costs
-        ret['cart_settings']['include_shipping_costs'] = include_shipping_costs
-        ret['cart_items'] = list()
-        ret['cart_summary'] = dict()
+        ret["cart_settings"]["include_shipping_costs"] = include_shipping_costs
+        ret["cart_items"] = list()
+        ret["cart_summary"] = dict()
         items = extractitems(readcookie(self.request))
         if items:
             net = self.net(items)
             vat = self.vat(items)
-            ret['cart_items'] = self.cart_items(items)
-            ret['cart_summary']['cart_net'] = ascur(net)
-            ret['cart_summary']['cart_vat'] = ascur(vat)
+            ret["cart_items"] = self.cart_items(items)
+            ret["cart_summary"]["cart_net"] = ascur(net)
+            ret["cart_summary"]["cart_vat"] = ascur(vat)
             cart_discount = self.discount(items)
-            discount_net = cart_discount['net']
-            discount_vat = cart_discount['vat']
+            discount_net = cart_discount["net"]
+            discount_vat = cart_discount["vat"]
             discount_total = discount_net + discount_vat
-            ret['cart_summary']['discount_net'] = '-' + ascur(discount_net)
-            ret['cart_summary']['discount_vat'] = '-' + ascur(discount_vat)
-            ret['cart_summary']['discount_total'] = '-' + ascur(discount_total)
-            ret['cart_summary']['discount_total_raw'] = discount_total
+            ret["cart_summary"]["discount_net"] = "-" + ascur(discount_net)
+            ret["cart_summary"]["discount_vat"] = "-" + ascur(discount_vat)
+            ret["cart_summary"]["discount_total"] = "-" + ascur(discount_total)
+            ret["cart_summary"]["discount_total_raw"] = discount_total
             total = net + vat - discount_total
             if include_shipping_costs:
                 shipping = self.shipping(items)
-                total += shipping['net'] + shipping['vat']
-                label = translate(shipping['label'], context=self.request)
-                ret['cart_summary']['shipping_label'] = label
-                if shipping['description']:
-                    desc = translate(shipping['description'], context=self.request)
-                    ret['cart_summary']['shipping_description'] = '(%s)' % desc
+                total += shipping["net"] + shipping["vat"]
+                label = translate(shipping["label"], context=self.request)
+                ret["cart_summary"]["shipping_label"] = label
+                if shipping["description"]:
+                    desc = translate(shipping["description"], context=self.request)
+                    ret["cart_summary"]["shipping_description"] = "(%s)" % desc
                 else:
-                    ret['cart_summary']['shipping_description'] = ''
-                ret['cart_summary']['shipping_net'] = ascur(shipping['net'])
-                ret['cart_summary']['shipping_vat'] = ascur(shipping['vat'])
-                ret['cart_summary']['shipping_total'] = ascur(
-                    shipping['net'] + shipping['vat']
+                    ret["cart_summary"]["shipping_description"] = ""
+                ret["cart_summary"]["shipping_net"] = ascur(shipping["net"])
+                ret["cart_summary"]["shipping_vat"] = ascur(shipping["vat"])
+                ret["cart_summary"]["shipping_total"] = ascur(
+                    shipping["net"] + shipping["vat"]
                 )
-                ret['cart_summary']['shipping_total_raw'] = (
-                    shipping['net'] + shipping['vat']
+                ret["cart_summary"]["shipping_total_raw"] = (
+                    shipping["net"] + shipping["vat"]
                 )
                 # B/C for bda.plone.cart < 0.6 custom templates
-                ret['cart_summary']['cart_shipping'] = ascur(
-                    shipping['net'] + shipping['vat']
+                ret["cart_summary"]["cart_shipping"] = ascur(
+                    shipping["net"] + shipping["vat"]
                 )
-            ret['cart_summary']['cart_total'] = ascur(total)
-            ret['cart_summary']['cart_total_raw'] = total
+            ret["cart_summary"]["cart_total"] = ascur(total)
+            ret["cart_summary"]["cart_total_raw"] = total
         return ret
 
     @property
@@ -220,14 +220,14 @@ class CartDataProviderBase(object):
         net = self.net(items)
         vat = self.vat(items)
         cart_discount = self.discount(items)
-        discount_net = cart_discount['net']
-        discount_vat = cart_discount['vat']
+        discount_net = cart_discount["net"]
+        discount_vat = cart_discount["vat"]
         discount_total = discount_net + discount_vat
         total = net + vat - discount_total
         if self.include_shipping_costs:
             shipping = self.shipping(items)
-            total += shipping['net'] + shipping['vat']
-        return total.quantize(Decimal('1.000'))
+            total += shipping["net"] + shipping["vat"]
+        return total.quantize(Decimal("1.000"))
 
     @property
     def currency(self):
@@ -321,21 +321,21 @@ class CartDataProviderBase(object):
         cart_count_limit = item_data.cart_count_limit
         if cart_count_limit and float(count) > cart_count_limit:
             message = translate(
-                _('article_limit_reached', default="Article limit reached"),
+                _("article_limit_reached", default="Article limit reached"),
                 context=self.request,
             )
-            return {'success': False, 'error': message, 'update': False}
+            return {"success": False, "error": message, "update": False}
         item_state = get_item_state(cart_item, self.request)
         if item_state.validate_count(count):
-            return {'success': True, 'error': ''}
+            return {"success": True, "error": ""}
         message = translate(
             _(
-                'trying_to_add_more_items_than_available',
+                "trying_to_add_more_items_than_available",
                 default="Not enough items available, abort.",
             ),
             context=self.request,
         )
-        return {'success': False, 'error': message, 'update': False}
+        return {"success": False, "error": message, "update": False}
 
     def net(self, items):
         raise NotImplementedError(u"CartDataProviderBase does not implement ``net``.")
@@ -348,18 +348,18 @@ class CartDataProviderBase(object):
         shipping = shippings.get(self.shipping_method)
         try:
             return {
-                'label': shipping.label,
-                'description': shipping.description,
-                'net': shipping.net(items),
-                'vat': shipping.vat(items),
+                "label": shipping.label,
+                "description": shipping.description,
+                "net": shipping.net(items),
+                "vat": shipping.vat(items),
             }
         # B/C for bda.plone.shipping < 0.4
         except NotImplementedError:
             return {
-                'label': shipping.label,
-                'description': shipping.description,
-                'net': shipping.calculate(items),
-                'vat': Decimal(0),
+                "label": shipping.label,
+                "description": shipping.description,
+                "net": shipping.calculate(items),
+                "vat": Decimal(0),
             }
 
     def discount(self, items):
@@ -368,7 +368,7 @@ class CartDataProviderBase(object):
         if discount:
             net = discount.net(items)
             vat = discount.vat(items)
-        return {'net': net, 'vat': vat}
+        return {"net": net, "vat": vat}
 
     def cart_items(self, items):
         raise NotImplementedError(
@@ -382,35 +382,35 @@ class CartDataProviderBase(object):
         count,
         price,
         url,
-        comment='',
-        description='',
+        comment="",
+        description="",
         comment_required=False,
         quantity_unit_float=False,
-        quantity_unit='',
-        preview_image_url='',
+        quantity_unit="",
+        preview_image_url="",
         no_longer_available=False,
-        alert='',
+        alert="",
         discount=Decimal(0),
     ):
         return {
             # placeholders
-            'cart_item_uid': uid,
-            'cart_item_title': title,
-            'cart_item_count': count,
-            'cart_item_price': ascur(price),
-            'cart_item_location:href': url,
-            'cart_item_preview_image:src': preview_image_url,
-            'cart_item_comment': comment,
-            'cart_item_description': description,
-            'cart_item_quantity_unit': quantity_unit,
-            'cart_item_alert': alert,
-            'cart_item_discount': ascur(discount)
+            "cart_item_uid": uid,
+            "cart_item_title": title,
+            "cart_item_count": count,
+            "cart_item_price": ascur(price),
+            "cart_item_location:href": url,
+            "cart_item_preview_image:src": preview_image_url,
+            "cart_item_comment": comment,
+            "cart_item_description": description,
+            "cart_item_quantity_unit": quantity_unit,
+            "cart_item_alert": alert,
+            "cart_item_discount": ascur(discount)
             if discount != Decimal(0)
             else Decimal(0),
             # control flags
-            'comment_required': comment_required,
-            'quantity_unit_float': quantity_unit_float,
-            'no_longer_available': no_longer_available,
+            "comment_required": comment_required,
+            "quantity_unit_float": quantity_unit_float,
+            "no_longer_available": no_longer_available,
         }
 
 
@@ -421,7 +421,7 @@ class CartItemDataProviderBase(object):
 
     @property
     def title(self):
-        return getattr(self.context, 'title', '')
+        return getattr(self.context, "title", "")
 
     @property
     def net(self):
@@ -570,16 +570,16 @@ class CartItemAvailabilityBase(object):
         """
         available = self.available
         if available is None:
-            return 'green'
+            return "green"
         if available > self.critical_limit:
-            return 'green'
+            return "green"
         if available > 0:
-            return 'yellow'
+            return "yellow"
         if self.overbook is None:
-            return 'orange'
+            return "orange"
         if available > self.overbook * -1:
-            return 'orange'
-        return 'red'
+            return "orange"
+        return "red"
 
     @property
     def details(self):

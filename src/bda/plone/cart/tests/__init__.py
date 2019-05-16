@@ -24,7 +24,7 @@ class CartLayer(PloneSandboxLayer):
         self.loadZCML(package=bda.plone.cart, context=configurationContext)
 
     def setUpPloneSite(self, portal):
-        self.applyProfile(portal, 'bda.plone.cart:default')
+        self.applyProfile(portal, "bda.plone.cart:default")
 
     def tearDownZope(self, app):
         pass

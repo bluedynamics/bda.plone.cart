@@ -15,7 +15,7 @@ from zope.i18nmessageid import MessageFactory
 from zope.interface import implementer
 
 
-_ = MessageFactory('bda.plone.cart')
+_ = MessageFactory("bda.plone.cart")
 
 
 class ICartPortlet(IPortletDataProvider):
@@ -26,19 +26,19 @@ class ICartPortlet(IPortletDataProvider):
 class CartAssignment(base.Assignment):
     @property
     def title(self):
-        return _(u'cart', u'Cart')
+        return _(u"cart", u"Cart")
 
 
 # Patterns to search for in actual browser URL whether to skip rendeing
 # cart. Append to this list from addons if you have specific browser URL's
 # where you want to skip rendering the cart.
 # XXX: use regular expressions
-SKIP_RENDER_CART_PATTERNS = ['@@checkout', '@@confirm_order', '/portal_factory/']
+SKIP_RENDER_CART_PATTERNS = ["@@checkout", "@@confirm_order", "/portal_factory/"]
 
 
 def render_cart(context):
-    url = context.restrictedTraverse('@@plone').getCurrentUrl()
-    if url.endswith('@@cart'):
+    url = context.restrictedTraverse("@@plone").getCurrentUrl()
+    if url.endswith("@@cart"):
         return False
     for pattern in SKIP_RENDER_CART_PATTERNS:
         if url.find(pattern) > -1:
@@ -47,7 +47,7 @@ def render_cart(context):
 
 
 class CartRenderer(base.Renderer, CartMixin):
-    template = ViewPageTemplateFile('portlet.pt')
+    template = ViewPageTemplateFile("portlet.pt")
 
     @property
     def available(self):
@@ -62,7 +62,7 @@ class CartRenderer(base.Renderer, CartMixin):
 
     def render(self):
         if not self.show:
-            return u''
+            return u""
         return self.template()
 
 
@@ -78,14 +78,14 @@ class CartViewlet(ViewletBase, CartMixin):
     def render(self):
         context = self.context
         if not render_cart(context):
-            return u''
+            return u""
         # check whether cart portlet is rendered and skip viewlet if so
         for name, manager in getUtilitiesFor(IPortletManager, context=context):
             retriever = getMultiAdapter((context, manager), IPortletRetriever)
             portlets = retriever.getPortlets()
             for portlet in portlets:
-                if ICartPortlet.providedBy(portlet['assignment']):
-                    return u''
+                if ICartPortlet.providedBy(portlet["assignment"]):
+                    return u""
         # XXX: is customer somewhere in portal
         return super(CartViewlet, self).render()
 
@@ -93,7 +93,7 @@ class CartViewlet(ViewletBase, CartMixin):
     def cart_total_count(self):
         # XXX: how to handle float?
         # XXX: count total items in cart or total unique items in cart?
-        ret = Decimal('0')
+        ret = Decimal("0")
         for uid, count, comment in extractitems(readcookie(self.request)):
             ret += count
         return ret
