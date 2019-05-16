@@ -52,8 +52,7 @@ class CartJSTranslations(BrowserView):
             context=self.request,
         )
         msgs['not_a_number'] = translate(
-            _('cart_not_a_number', default=u'Input not a number'),
-            context=self.request,
+            _('cart_not_a_number', default=u'Input not a number'), context=self.request
         )
         msgs['max_unique_articles_reached'] = translate(
             _(

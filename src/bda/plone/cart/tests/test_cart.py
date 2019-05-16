@@ -157,9 +157,7 @@ class TestCartDataProvider(unittest.TestCase):
 
     def test_item(self):
         self.assertEquals(
-            self.cart_data_provider.item(
-                'foo-uid', u'Le item', 5, 70.0, 'http://foo'
-            ),
+            self.cart_data_provider.item('foo-uid', u'Le item', 5, 70.0, 'http://foo'),
             {
                 'cart_item_uid': 'foo-uid',
                 'cart_item_title': u'Le item',

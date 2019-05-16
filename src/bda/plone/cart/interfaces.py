@@ -26,9 +26,7 @@ class ICartDataProvider(Interface):
 
     max_artice_count = Attribute(u"Max article limit in cart.")
 
-    disable_max_article = Attribute(
-        u"Flag whether to disable max article " u"limit."
-    )
+    disable_max_article = Attribute(u"Flag whether to disable max article " u"limit.")
 
     summary_total_only = Attribute(
         u"Flag whether to show total sum only in " u"summary."
@@ -170,13 +168,11 @@ class ICartItemDataProvider(Interface):
     )
 
     comment_enabled = Attribute(
-        u"Flag whether customer comment can be added "
-        u"when adding buyable to cart"
+        u"Flag whether customer comment can be added " u"when adding buyable to cart"
     )
 
     comment_required = Attribute(
-        u"Flag whether comment input is required in "
-        u"order to add buyable to cart"
+        u"Flag whether comment input is required in " u"order to add buyable to cart"
     )
 
     quantity_unit_float = Attribute(
@@ -207,9 +203,7 @@ class ICartItemStock(Interface):
         u"Number of item available in stock. ``None`` " u"means unlimited"
     )
 
-    overbook = Attribute(
-        u"Allowed overbooking count. ``None`` " u"means unlimited"
-    )
+    overbook = Attribute(u"Allowed overbooking count. ``None`` " u"means unlimited")
 
     stock_warning_threshold = Attribute(
         u"Item stock warning threshold. " u"``None`` means unlimited"
@@ -229,9 +223,7 @@ class ICartItemAvailability(Interface):
 
     addable = Attribute(u"Flag whether item is addable to cart.")
 
-    signal = Attribute(
-        u"Availability signal color. Either red, yellow or " u"green"
-    )
+    signal = Attribute(u"Availability signal color. Either red, yellow or " u"green")
 
     details = Attribute(
         u"Rendered availability details. Gets displayed in "

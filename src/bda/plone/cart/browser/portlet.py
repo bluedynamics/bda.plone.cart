@@ -33,11 +33,7 @@ class CartAssignment(base.Assignment):
 # cart. Append to this list from addons if you have specific browser URL's
 # where you want to skip rendering the cart.
 # XXX: use regular expressions
-SKIP_RENDER_CART_PATTERNS = [
-    '@@checkout',
-    '@@confirm_order',
-    '/portal_factory/',
-]
+SKIP_RENDER_CART_PATTERNS = ['@@checkout', '@@confirm_order', '/portal_factory/']
 
 
 def render_cart(context):

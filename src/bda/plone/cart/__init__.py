@@ -166,9 +166,7 @@ class CartDataProviderBase(object):
         if self.disable_max_article:
             ret['cart_settings']['cart_max_article_count'] = 10000
         else:
-            ret['cart_settings'][
-                'cart_max_article_count'
-            ] = self.max_artice_count
+            ret['cart_settings']['cart_max_article_count'] = self.max_artice_count
         include_shipping_costs = self.include_shipping_costs
         ret['cart_settings']['include_shipping_costs'] = include_shipping_costs
         ret['cart_items'] = list()
@@ -195,9 +193,7 @@ class CartDataProviderBase(object):
                 label = translate(shipping['label'], context=self.request)
                 ret['cart_summary']['shipping_label'] = label
                 if shipping['description']:
-                    desc = translate(
-                        shipping['description'], context=self.request
-                    )
+                    desc = translate(shipping['description'], context=self.request)
                     ret['cart_summary']['shipping_description'] = '(%s)' % desc
                 else:
                     ret['cart_summary']['shipping_description'] = ''
@@ -242,8 +238,7 @@ class CartDataProviderBase(object):
     @property
     def hide_cart_if_empty(self):
         raise NotImplementedError(
-            u"CartDataProviderBase does not implement "
-            u"``hide_cart_if_empty``."
+            u"CartDataProviderBase does not implement ``hide_cart_if_empty``."
         )
 
     @property
@@ -255,15 +250,13 @@ class CartDataProviderBase(object):
     @property
     def disable_max_article(self):
         raise NotImplementedError(
-            u"CartDataProviderBase does not implement "
-            u"``disable_max_article``."
+            u"CartDataProviderBase does not implement ``disable_max_article``."
         )
 
     @property
     def summary_total_only(self):
         raise NotImplementedError(
-            u"CartDataProviderBase does not implement "
-            u"``summary_total_only``."
+            u"CartDataProviderBase does not implement ``summary_total_only``."
         )
 
     @property
@@ -345,14 +338,10 @@ class CartDataProviderBase(object):
         return {'success': False, 'error': message, 'update': False}
 
     def net(self, items):
-        raise NotImplementedError(
-            u"CartDataProviderBase does not implement ``net``."
-        )
+        raise NotImplementedError(u"CartDataProviderBase does not implement ``net``.")
 
     def vat(self, items):
-        raise NotImplementedError(
-            u"CartDataProviderBase does not implement ``vat``."
-        )
+        raise NotImplementedError(u"CartDataProviderBase does not implement ``vat``.")
 
     def shipping(self, items):
         shippings = Shippings(self.context)
@@ -449,43 +438,37 @@ class CartItemDataProviderBase(object):
     @property
     def cart_count_limit(self):
         raise NotImplementedError(
-            u"CartItemDataProviderBase does not "
-            u"implement ``cart_count_limit``."
+            u"CartItemDataProviderBase does not implement ``cart_count_limit``."
         )
 
     @property
     def display_gross(self):
         raise NotImplementedError(
-            u"CartItemDataProviderBase does not "
-            u"implement ``display_gross``."
+            u"CartItemDataProviderBase does not implement ``display_gross``."
         )
 
     @property
     def comment_enabled(self):
         raise NotImplementedError(
-            u"CartItemDataProviderBase does not "
-            u"implement ``comment_enabled``."
+            u"CartItemDataProviderBase does not implement ``comment_enabled``."
         )
 
     @property
     def comment_required(self):
         raise NotImplementedError(
-            u"CartItemDataProviderBase does not "
-            u"implement ``comment_required``."
+            u"CartItemDataProviderBase does not implement ``comment_required``."
         )
 
     @property
     def quantity_unit_float(self):
         raise NotImplementedError(
-            u"CartItemDataProviderBase does not "
-            u"implement ``quantity_unit_float``."
+            u"CartItemDataProviderBase does not implement ``quantity_unit_float``."
         )
 
     @property
     def quantity_unit(self):
         raise NotImplementedError(
-            u"CartItemDataProviderBase does not "
-            u"implement ``quantity_unit``."
+            u"CartItemDataProviderBase does not implement ``quantity_unit``."
         )
 
     @property
@@ -673,9 +656,7 @@ class CartItemStateBase(object):
         return False
 
     def alert(self, count):
-        raise NotImplementedError(
-            u"CartItemStateBase does not implement ``alert``."
-        )
+        raise NotImplementedError(u"CartItemStateBase does not implement ``alert``.")
 
 
 @implementer(ICartItemPreviewImage)
