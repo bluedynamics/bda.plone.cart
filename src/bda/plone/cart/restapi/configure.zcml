@@ -1,0 +1,35 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml">
+  <adapter factory=".converter.decimal_converter" />
+  <adapter factory=".converter.unset_converter" />
+  <adapter factory=".converter.uuid_converter" />
+  <adapter factory=".serializer.SerializeCartDataToJson" />
+  <adapter factory=".serializer.SerializeCartItemDataToJson" />
+  <plone:service
+      accept="application/json"
+      factory=".cartservice.CartDataService"
+      for="*"
+      method="GET"
+      name="@shop-cartdata"
+      permission="zope2.View"
+  />
+  <plone:service
+      accept="application/json"
+      factory=".cartservice.CartItemDataService"
+      for="*"
+      method="GET"
+      name="@shop-cartitemdata"
+      permission="zope2.View"
+  />
+  <plone:service
+      accept="application/json"
+      factory=".cartservice.CartItemValidationService"
+      for="*"
+      method="POST"
+      name="@shop-cartitemvalidation"
+      permission="zope2.View"
+  />
+</configure>
