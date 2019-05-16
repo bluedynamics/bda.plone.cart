@@ -17,6 +17,7 @@ setup(
     long_description=longdesc,
     classifiers=[
         'Framework :: Plone',
+        'Framework :: Plone :: Addon',
         'Framework :: Plone :: 5.1',
         'Framework :: Plone :: 5.2',
         'Programming Language :: Python',
@@ -36,14 +37,9 @@ setup(
         'bda.plone.shipping',
         'Products.CMFPlone',
         'setuptools',
-        'simplejson>=3.12'
+        'simplejson>=3.12',
     ],
-    extras_require={
-        'test': [
-            'plone.app.testing',
-            'mock',
-        ]
-    },
+    extras_require={'test': ['plone.app.testing', 'mock']},
     entry_points="""
     [z3c.autoinclude.plugin]
     target = plone

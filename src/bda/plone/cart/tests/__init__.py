@@ -20,8 +20,8 @@ class CartLayer(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         import bda.plone.cart
-        self.loadZCML(package=bda.plone.cart,
-                      context=configurationContext)
+
+        self.loadZCML(package=bda.plone.cart, context=configurationContext)
 
     def setUpPloneSite(self, portal):
         self.applyProfile(portal, 'bda.plone.cart:default')
@@ -32,5 +32,5 @@ class CartLayer(PloneSandboxLayer):
 
 Cart_FIXTURE = CartLayer()
 Cart_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(Cart_FIXTURE,),
-    name="Cart:Integration")
+    bases=(Cart_FIXTURE,), name="Cart:Integration"
+)

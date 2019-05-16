@@ -26,14 +26,17 @@ class ICartDataProvider(Interface):
 
     max_artice_count = Attribute(u"Max article limit in cart.")
 
-    disable_max_article = Attribute(u"Flag whether to disable max article "
-                                    u"limit.")
+    disable_max_article = Attribute(
+        u"Flag whether to disable max article " u"limit."
+    )
 
-    summary_total_only = Attribute(u"Flag whether to show total sum only in "
-                                   u"summary.")
+    summary_total_only = Attribute(
+        u"Flag whether to show total sum only in " u"summary."
+    )
 
-    include_shipping_costs = Attribute(u"Flag whether to include and display "
-                                       u"shipping costs.")
+    include_shipping_costs = Attribute(
+        u"Flag whether to include and display " u"shipping costs."
+    )
 
     shipping_method = Attribute(u"Current shipping method identifyer.")
 
@@ -41,11 +44,13 @@ class ICartDataProvider(Interface):
 
     cart_url = Attribute(u"URL to cart overview.")
 
-    show_to_cart = Attribute(u"Flag whether to display link to cart "
-                             u"overview in cart portlet")
+    show_to_cart = Attribute(
+        u"Flag whether to display link to cart " u"overview in cart portlet"
+    )
 
-    show_checkout = Attribute(u"Flag whether to display link to checkout "
-                              u"form in cart portlet")
+    show_checkout = Attribute(
+        u"Flag whether to display link to checkout " u"form in cart portlet"
+    )
 
     show_currency = Attribute(u"Show the currency for items in portlet")
 
@@ -115,10 +120,21 @@ class ICartDataProvider(Interface):
         :param type: list of 3-tuples containing ``(uid, count, comment)``
         """
 
-    def item(uid, title, count, price, url, comment='', description='',
-             comment_required=False, quantity_unit_float=False,
-             quantity_unit='', preview_image_url='',
-             no_longer_available=False, alert=''):
+    def item(
+        uid,
+        title,
+        count,
+        price,
+        url,
+        comment='',
+        description='',
+        comment_required=False,
+        quantity_unit_float=False,
+        quantity_unit='',
+        preview_image_url='',
+        no_longer_available=False,
+        alert='',
+    ):
         """Create cart item entry for JSON response.
 
         :param uid: catalog uid
@@ -140,6 +156,7 @@ class ICartDataProvider(Interface):
 class ICartItemDataProvider(Interface):
     """Provide information relevant for being cart item.
     """
+
     title = Attribute(u"Title of the cart item")  # For custom/computed titles
 
     net = Attribute(u"Item base net price as float")
@@ -148,22 +165,29 @@ class ICartItemDataProvider(Interface):
 
     cart_count_limit = Attribute(u"Max count of this item in cart")
 
-    display_gross = Attribute(u"Flag whether whether to display gross "
-                              u"instead of net")
+    display_gross = Attribute(
+        u"Flag whether whether to display gross " u"instead of net"
+    )
 
-    comment_enabled = Attribute(u"Flag whether customer comment can be added "
-                                u"when adding buyable to cart")
+    comment_enabled = Attribute(
+        u"Flag whether customer comment can be added "
+        u"when adding buyable to cart"
+    )
 
-    comment_required = Attribute(u"Flag whether comment input is required in "
-                                 u"order to add buyable to cart")
+    comment_required = Attribute(
+        u"Flag whether comment input is required in "
+        u"order to add buyable to cart"
+    )
 
-    quantity_unit_float = Attribute(u"Flag whether quantity unit value is "
-                                    u"allowed as float")
+    quantity_unit_float = Attribute(
+        u"Flag whether quantity unit value is " u"allowed as float"
+    )
 
     quantity_unit = Attribute(u"Quantity unit")
 
-    discount_enabled = Attribute(u"Flag whether discount is enabled for this "
-                                 u"cart item")
+    discount_enabled = Attribute(
+        u"Flag whether discount is enabled for this " u"cart item"
+    )
 
     def discount_net(count):
         """Item discount. Returns calculated discount for one item as Decimal.
@@ -179,14 +203,17 @@ class ICartItemStock(Interface):
 
     display = Attribute(u"Flag whether whether to display availability")
 
-    available = Attribute(u"Number of item available in stock. ``None`` "
-                          u"means unlimited")
+    available = Attribute(
+        u"Number of item available in stock. ``None`` " u"means unlimited"
+    )
 
-    overbook = Attribute(u"Allowed overbooking count. ``None`` "
-                         u"means unlimited")
+    overbook = Attribute(
+        u"Allowed overbooking count. ``None`` " u"means unlimited"
+    )
 
-    stock_warning_threshold = Attribute(u"Item stock warning threshold. "
-                                        u"``None`` means unlimited")
+    stock_warning_threshold = Attribute(
+        u"Item stock warning threshold. " u"``None`` means unlimited"
+    )
 
 
 class ICartItemPreviewImage(Interface):
@@ -202,11 +229,14 @@ class ICartItemAvailability(Interface):
 
     addable = Attribute(u"Flag whether item is addable to cart.")
 
-    signal = Attribute(u"Availability signal color. Either red, yellow or "
-                       u"green")
+    signal = Attribute(
+        u"Availability signal color. Either red, yellow or " u"green"
+    )
 
-    details = Attribute(u"Rendered availability details. Gets displayed in "
-                        u"buyable viewlet availability overlay.")
+    details = Attribute(
+        u"Rendered availability details. Gets displayed in "
+        u"buyable viewlet availability overlay."
+    )
 
 
 class ICartItemState(Interface):

@@ -24,7 +24,6 @@ class ICartPortlet(IPortletDataProvider):
 
 @implementer(ICartPortlet)
 class CartAssignment(base.Assignment):
-
     @property
     def title(self):
         return _(u'cart', u'Cart')
@@ -37,7 +36,7 @@ class CartAssignment(base.Assignment):
 SKIP_RENDER_CART_PATTERNS = [
     '@@checkout',
     '@@confirm_order',
-    '/portal_factory/'
+    '/portal_factory/',
 ]
 
 
@@ -80,7 +79,6 @@ class CartAddForm(base.NullAddForm):
 
 
 class CartViewlet(ViewletBase, CartMixin):
-
     def render(self):
         context = self.context
         if not render_cart(context):

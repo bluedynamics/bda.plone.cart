@@ -119,14 +119,16 @@ class TestCartDataProvider(unittest.TestCase):
         provideAdapter(MockCartItemDataProvider)
         provideAdapter(MockCartItemState)
         self.cart_data_provider = getMultiAdapter(
-            (self.portal, self.request), interface=ICartDataProvider)
+            (self.portal, self.request), interface=ICartDataProvider
+        )
         self.cart_item_state = getMultiAdapter(
-            (self.portal, self.request), interface=ICartItemState)
+            (self.portal, self.request), interface=ICartItemState
+        )
 
     def test_validate_set(self):
         self.assertEquals(
             self.cart_data_provider.validate_set('foo_id'),
-            {'success': True, 'error': ''}
+            {'success': True, 'error': ''},
         )
 
     @mock.patch('bda.plone.cart.get_object_by_uid')
@@ -134,15 +136,15 @@ class TestCartDataProvider(unittest.TestCase):
         mock_get_object_by_uid.return_value = self.portal
         self.assertEquals(
             self.cart_data_provider.validate_count('foo_id', 4),
-            {'success': True, 'error': ''}
+            {'success': True, 'error': ''},
         )
         self.assertEquals(
             self.cart_data_provider.validate_count('foo_id', 10),
             {
                 'update': False,
                 'success': False,
-                'error': u'Not enough items available, abort.'
-            }
+                'error': u'Not enough items available, abort.',
+            },
         )
 
     def test_shipping(self):
@@ -156,7 +158,8 @@ class TestCartDataProvider(unittest.TestCase):
     def test_item(self):
         self.assertEquals(
             self.cart_data_provider.item(
-                'foo-uid', u'Le item', 5, 70.0, 'http://foo'),
+                'foo-uid', u'Le item', 5, 70.0, 'http://foo'
+            ),
             {
                 'cart_item_uid': 'foo-uid',
                 'cart_item_title': u'Le item',
@@ -171,7 +174,7 @@ class TestCartDataProvider(unittest.TestCase):
                 'comment_required': False,
                 'quantity_unit_float': False,
                 'no_longer_available': False,
-            }
+            },
         )
 
 
@@ -219,6 +222,7 @@ class TestCartItemDataProvider(unittest.TestCase):
 
 class TestHelpers(unittest.TestCase):
     """Test helper methods."""
+
     layer = Cart_INTEGRATION_TESTING
 
     def setUp(self):
@@ -249,16 +253,16 @@ class TestHelpers(unittest.TestCase):
         items = 'uid-1:5,uid-2:100,uid-3:7'
         self.assertEquals(
             extractitems(items),
-            [('uid-1', 5, '', ), ('uid-2', 100, '', ), ('uid-3', 7, '', )]
+            [('uid-1', 5, ''), ('uid-2', 100, ''), ('uid-3', 7, '')],
         )
 
     def test_aggregate_cart_item_count_non_existing_uid(self):
         from bda.plone.cart import aggregate_cart_item_count
 
         items = [
-            ('uid-1', 5, 'no comment', ),
-            ('uid-2', 100, 'no comment', ),
-            ('uid-1', 7, 'no comment', )
+            ('uid-1', 5, 'no comment'),
+            ('uid-2', 100, 'no comment'),
+            ('uid-1', 7, 'no comment'),
         ]
 
         self.assertEquals(aggregate_cart_item_count('uid-foo', items), 0)
@@ -267,9 +271,9 @@ class TestHelpers(unittest.TestCase):
         from bda.plone.cart import aggregate_cart_item_count
 
         items = [
-            ('uid-1', 5, 'no comment', ),
-            ('uid-2', 100, 'no comment', ),
-            ('uid-1', 7, 'no comment', )
+            ('uid-1', 5, 'no comment'),
+            ('uid-2', 100, 'no comment'),
+            ('uid-1', 7, 'no comment'),
         ]
 
         self.assertEquals(aggregate_cart_item_count('uid-1', items), 12)
@@ -310,8 +314,7 @@ class TestCookie(unittest.TestCase):
         from bda.plone.cart import readcookie
 
         self._set_cookie('uid-1:5,uid-2:100,uid-3:7')
-        self.assertEquals(
-            readcookie(self.request), 'uid-1:5,uid-2:100,uid-3:7')
+        self.assertEquals(readcookie(self.request), 'uid-1:5,uid-2:100,uid-3:7')
 
     def test_deletecookie(self):
         from bda.plone.cart import deletecookie

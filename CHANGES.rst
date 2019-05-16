@@ -5,6 +5,9 @@ Changelog
 2.0.dev0 (unreleased)
 ---------------------
 
+- Code style black.
+  [jensens]
+
 - Python 2/3 compatibility
   [agitator]
 
