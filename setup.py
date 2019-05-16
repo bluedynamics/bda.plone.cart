@@ -36,6 +36,7 @@ setup(
         'bda.plone.shipping',
         'Products.CMFPlone',
         'setuptools',
+        'simplejson>=3.12'
     ],
     extras_require={
         'test': [
