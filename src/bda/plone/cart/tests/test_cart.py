@@ -1,107 +1,22 @@
 # -*- coding: utf-8 -*-
-from bda.plone.cart import CartDataProviderBase
-from bda.plone.cart import CartItemDataProviderBase
-from bda.plone.cart import CartItemStateBase
 from bda.plone.cart.interfaces import ICartDataProvider
 from bda.plone.cart.interfaces import ICartItem
 from bda.plone.cart.interfaces import ICartItemDataProvider
 from bda.plone.cart.interfaces import ICartItemState
 from bda.plone.cart.tests import Cart_INTEGRATION_TESTING
 from bda.plone.cart.tests import set_browserlayer
-from bda.plone.shipping.tests.test_shipping import MockShipping
 from decimal import Decimal
 from plone.app.testing import login
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.uuid.interfaces import IUUID
-from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import provideAdapter
 from zope.interface import alsoProvides
 
 import mock
 import unittest
-
-
-class MockCartItemState(CartItemStateBase):
-    """Mock implementation of ICartItemState.
-    """
-
-    def alert(self, count):
-        return "You have too many items in the cart: {0}".format(count)
-
-    def validate_count(self, count):
-        if count < 5:
-            return True
-        return False
-
-
-class MockCartDataProvider(CartDataProviderBase):
-    """Mock implementation of ICartDataProvider.
-    """
-
-    @property
-    def disable_max_article(self):
-        return True
-
-    @property
-    def summary_total_only(self):
-        return True
-
-    @property
-    def checkout_url(self):
-        return "%s/@@checkout" % self.context.absolute_url()
-
-    @property
-    def include_shipping_costs(self):
-        return False
-
-    @property
-    def shipping_method(self):
-        return "mock_shipping"
-
-    def net(self, items):
-        return 100
-
-    def vat(self, items):
-        return 50
-
-    def validate_set(self, uid):
-        return {"success": True, "error": ""}
-
-    def cart_items(self, items):
-        cart_items = []
-
-        uid = "foo-uid"
-        title = u"Le item"
-        count = 5
-        price = 150
-        url = u"http://foo"
-
-        item = self.item(uid, title, count, price, url)
-        cart_items.append(item)
-
-        return items
-
-
-@adapter(ICartItem)
-class MockCartItemDataProvider(CartItemDataProviderBase):
-    """Mock implementation of ICartItemDataProvider.
-    """
-
-    @property
-    def title(self):
-        title = super(MockCartItemDataProvider, self).title
-        return "Most awesome {}".format(title)
-
-    @property
-    def cart_count_limit(self):
-        return 10
-
-    @property
-    def discount_enabled(self):
-        return False
 
 
 class TestCartDataProvider(unittest.TestCase):
@@ -114,10 +29,11 @@ class TestCartDataProvider(unittest.TestCase):
 
         # setup mocks
         alsoProvides(self.portal, ICartItem)
-        provideAdapter(MockShipping, name="mock_shipping")
-        provideAdapter(MockCartDataProvider)
-        provideAdapter(MockCartItemDataProvider)
-        provideAdapter(MockCartItemState)
+        from . import cartmocks
+        provideAdapter(cartmocks.MockShipping, name="mock_shipping")
+        provideAdapter(cartmocks.MockCartDataProvider)
+        provideAdapter(cartmocks.MockCartItemDataProvider)
+        provideAdapter(cartmocks.MockCartItemState)
         self.cart_data_provider = getMultiAdapter(
             (self.portal, self.request), interface=ICartDataProvider
         )
@@ -186,7 +102,8 @@ class TestCartItemDataProvider(unittest.TestCase):
 
         # setup mocks
         alsoProvides(self.portal, ICartItem)
-        provideAdapter(MockCartItemDataProvider)
+        from . import cartmocks
+        provideAdapter(cartmocks.MockCartItemDataProvider)
 
     def test_cartitemdataprovider__properties(self):
         accessor = ICartItemDataProvider(self.portal)
