@@ -5,6 +5,7 @@ from bda.plone.cart.interfaces import ICartItem
 from bda.plone.cart.interfaces import ICartItemDataProvider
 from bda.plone.cart.interfaces import ICartItemState
 from bda.plone.cart.tests import Cart_INTEGRATION_TESTING
+from bda.plone.shipping.tests.test_shipping import MockShipping
 from decimal import Decimal
 from plone.app.testing import login
 from plone.app.testing import setRoles
@@ -30,7 +31,8 @@ class TestCartDataProvider(unittest.TestCase):
         # setup mocks
         alsoProvides(self.portal, ICartItem)
         from . import cartmocks
-        provideAdapter(cartmocks.MockShipping, name="mock_shipping")
+
+        provideAdapter(MockShipping, name="mock_shipping")
         provideAdapter(cartmocks.MockCartDataProvider)
         provideAdapter(cartmocks.MockCartItemDataProvider)
         provideAdapter(cartmocks.MockCartItemState)
@@ -72,23 +74,24 @@ class TestCartDataProvider(unittest.TestCase):
         self.assertEquals(res["vat"], Decimal("2"))
 
     def test_item(self):
-        self.assertEquals(
-            self.cart_data_provider.item("foo-uid", u"Le item", 5, 70.0, "http://foo"),
+        self.assertDictEqual(
             {
-                "cart_item_uid": "foo-uid",
-                "cart_item_title": u"Le item",
+                "cart_item_alert": "",
+                "cart_item_comment": "",
                 "cart_item_count": 5,
-                "cart_item_price": "70.00",
+                "cart_item_description": "",
+                "cart_item_discount": Decimal("0"),
                 "cart_item_location:href": "http://foo",
                 "cart_item_preview_image:src": "",
-                "cart_item_comment": "",
-                "cart_item_description": "",
+                "cart_item_price": "70.00",
                 "cart_item_quantity_unit": "",
-                "cart_item_alert": "",
+                "cart_item_title": u"Le item",
+                "cart_item_uid": "foo-uid",
                 "comment_required": False,
-                "quantity_unit_float": False,
                 "no_longer_available": False,
+                "quantity_unit_float": False,
             },
+            self.cart_data_provider.item("foo-uid", u"Le item", 5, 70.0, "http://foo"),
         )
 
 
@@ -103,6 +106,7 @@ class TestCartItemDataProvider(unittest.TestCase):
         # setup mocks
         alsoProvides(self.portal, ICartItem)
         from . import cartmocks
+
         provideAdapter(cartmocks.MockCartItemDataProvider)
 
     def test_cartitemdataprovider__properties(self):
