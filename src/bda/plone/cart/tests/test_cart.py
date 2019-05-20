@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from bda.plone.cart.interfaces import ICartDataProvider
+from bda.plone.cart.interfaces import ICartExtensionLayer
 from bda.plone.cart.interfaces import ICartItem
 from bda.plone.cart.interfaces import ICartItemDataProvider
 from bda.plone.cart.interfaces import ICartItemState
 from bda.plone.cart.tests import Cart_INTEGRATION_TESTING
-from bda.plone.cart.tests import set_browserlayer
 from decimal import Decimal
 from plone.app.testing import login
 from plone.app.testing import setRoles
@@ -25,7 +25,7 @@ class TestCartDataProvider(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer["portal"]
         self.request = self.layer["request"]
-        set_browserlayer(self.request)
+        alsoProvides(self.request, ICartExtensionLayer)
 
         # setup mocks
         alsoProvides(self.portal, ICartItem)
@@ -98,7 +98,7 @@ class TestCartItemDataProvider(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer["portal"]
         self.request = self.layer["request"]
-        set_browserlayer(self.request)
+        alsoProvides(self.request, ICartExtensionLayer)
 
         # setup mocks
         alsoProvides(self.portal, ICartItem)
@@ -143,7 +143,7 @@ class TestHelpers(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer["portal"]
         self.request = self.layer["request"]
-        set_browserlayer(self.request)
+        alsoProvides(self.request, ICartExtensionLayer)
 
         # create an object for testing
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
@@ -214,7 +214,7 @@ class TestCookie(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer["portal"]
         self.request = self.layer["request"]
-        set_browserlayer(self.request)
+        alsoProvides(self.request, ICartExtensionLayer)
 
     def _set_cookie(self, value):
         # set cookie on the request

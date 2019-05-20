@@ -1,27 +1,18 @@
 # -*- coding: utf-8 -*-
-from bda.plone.cart.interfaces import ICartExtensionLayer
-from plone.app.testing import IntegrationTesting
+from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.testing import FunctionalTesting
-from plone.app.testing import PLONE_FIXTURE
+from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
-from zope.interface import alsoProvides
-
-
-def set_browserlayer(request):
-    """Set the BrowserLayer for the request.
-
-    We have to set the browserlayer manually, since importing the profile alone
-    doesn't do it in tests.
-    """
-    alsoProvides(request, ICartExtensionLayer)
 
 
 class CartLayer(PloneSandboxLayer):
-    defaultBases = (PLONE_FIXTURE,)
+    defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
+        import plone.restapi
         import bda.plone.cart
 
+        self.loadZCML(package=plone.restapi, context=configurationContext)
         self.loadZCML(package=bda.plone.cart, context=configurationContext)
 
     def setUpPloneSite(self, portal):

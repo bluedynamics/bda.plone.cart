@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-# -*- coding: utf-8 -*-
 from bda.plone.cart.interfaces import ICartDataProvider
+from bda.plone.cart.interfaces import ICartExtensionLayer
 from bda.plone.cart.interfaces import ICartItem
 from bda.plone.cart.interfaces import ICartItemDataProvider
 from bda.plone.cart.interfaces import ICartItemState
 from bda.plone.cart.tests import Cart_INTEGRATION_TESTING
-from bda.plone.cart.tests import set_browserlayer
 from decimal import Decimal
 from plone.app.testing import login
 from plone.app.testing import setRoles
@@ -26,8 +25,7 @@ class TestRestAPI(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer["portal"]
         self.request = self.layer["request"]
-        set_browserlayer(self.request)
-
+        alsoProvides(self.request, ICartExtensionLayer)
         # setup mocks
         alsoProvides(self.portal, ICartItem)
         from . import cartmocks
