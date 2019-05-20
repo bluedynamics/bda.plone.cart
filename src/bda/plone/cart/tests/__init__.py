@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from bda.plone.cart.interfaces import ICartExtensionLayer
 from plone.app.testing import IntegrationTesting
+from plone.app.testing import FunctionalTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 from zope.interface import alsoProvides
@@ -33,4 +34,7 @@ class CartLayer(PloneSandboxLayer):
 Cart_FIXTURE = CartLayer()
 Cart_INTEGRATION_TESTING = IntegrationTesting(
     bases=(Cart_FIXTURE,), name="Cart:Integration"
+)
+Cart_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(Cart_FIXTURE,), name="Cart:Functional"
 )
