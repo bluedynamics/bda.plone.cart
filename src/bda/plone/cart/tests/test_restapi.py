@@ -24,22 +24,23 @@ class TestRestAPI(unittest.TestCase):
     layer = Cart_INTEGRATION_TESTING
 
     def setUp(self):
-        self.portal = self.layer["portal"]
         self.request = self.layer["request"]
         alsoProvides(self.request, ICartExtensionLayer)
 
         # create an object for testing
-        setRoles(self.portal, TEST_USER_ID, ["Manager"])
-        login(self.portal, TEST_USER_NAME)
-        self.portal.invokeFactory("Document", "doc")
-        self.doc = self.portal["doc"]
+        setRoles(self.layer["portal"], TEST_USER_ID, ["Manager"])
+        login(self.layer["portal"], TEST_USER_NAME)
+        self.layer["portal"].invokeFactory("Document", "doc")
+        self.doc = self.layer["portal"]["doc"]
         alsoProvides(self.doc, ICartItem)
+
+        # setup mocks
         provideAdapter(MockShipping, name="mock_shipping")
         provideAdapter(cartmocks.MockCartDataProvider)
         provideAdapter(cartmocks.MockCartItemDataProvider)
         provideAdapter(cartmocks.MockCartItemState)
         self.cart_data_provider = getMultiAdapter(
-            (self.portal, self.request), interface=ICartDataProvider
+            (self.doc, self.request), interface=ICartDataProvider
         )
         self.cart_item_state = getMultiAdapter(
             (self.doc, self.request), interface=ICartItemState
@@ -49,8 +50,7 @@ class TestRestAPI(unittest.TestCase):
         )
 
     def _serializer(self, obj):
-        serializer = getMultiAdapter((obj, self.request), ISerializeToJson)
-        return serializer
+        return getMultiAdapter((obj, self.request), ISerializeToJson)
 
     def test_serializer_item(self):
         self.assertDictEqual(
