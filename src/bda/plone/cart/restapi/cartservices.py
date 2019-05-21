@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -2-
-from bda.plone.cart import get_data_provider
+from bda.plone.cart.cart import get_data_provider
 from bda.plone.cart.restapi.service import Service
 from bda.plone.cart.restapi.service import TraversingService
 from decimal import Decimal
