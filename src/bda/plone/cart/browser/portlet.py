@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from bda.plone.cart import extractitems
-from bda.plone.cart import readcookie
+from bda.plone.cart import cookie
 from bda.plone.cart.browser import CartMixin
 from decimal import Decimal
 from plone.app.layout.viewlets.common import ViewletBase
@@ -94,6 +93,6 @@ class CartViewlet(ViewletBase, CartMixin):
         # XXX: how to handle float?
         # XXX: count total items in cart or total unique items in cart?
         ret = Decimal("0")
-        for uid, count, comment in extractitems(readcookie(self.request)):
+        for uid, count, comment in cookie.extractitems(cookie.read(self.request)):
             ret += count
         return ret

@@ -18,6 +18,33 @@ from zope.component import queryAdapter
 from zope.interface import implementer
 from zope.publisher.interfaces import IRequest
 
+import six.moves.urllib.parse
+
+
+def remove_item_from_cart(request, uid):
+    """Remove single item from cart by uid.
+    """
+    items = cookie.extractitems(cookie.read(request))
+    cookie_items = list()
+    for item_uid, count, comment in items:
+        if uid == item_uid:
+            continue
+        cookie_items.append(
+            item_uid
+            + cookie.UID_DELIMITER
+            + six.moves.urllib.parse.quote(comment)
+            + cookie.COUNT_DELIMITER
+            + str(count)
+        )
+    new_cookie = ",".join(cookie_items)
+    request.response.setCookie("cart", new_cookie, quoted=False, path="/")
+
+
+def purge_cart(request):
+    """Purges the whole cart.
+    """
+    request.response.expireCookie("cart", path="/")
+
 
 def cart_item_shippable(context, item):
     """Return boolean whether cart item is shippable.

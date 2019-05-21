@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from bda.plone.cart import CURRENCY_LITERALS
-from bda.plone.cart import get_data_provider
-from bda.plone.cart import readcookie
+from bda.plone.cart.cart import get_data_provider
+from bda.plone.cart import cookie
 from decimal import Decimal
 from Products.Five import BrowserView
 from zope.i18n import translate
@@ -133,8 +133,8 @@ class CartView(BrowserView, DataProviderMixin):
 
     @property
     def checkout_url(self):
-        cookie = readcookie(self.request)
-        if not cookie:
+        keks = cookie.read(self.request)
+        if not keks:
             return
         return self.data_provider.checkout_url
 
