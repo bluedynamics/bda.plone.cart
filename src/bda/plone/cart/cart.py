@@ -5,7 +5,7 @@ from bda.plone.cart import cookie
 from bda.plone.cart import utils
 from bda.plone.cart.interfaces import ICartDataProvider
 from bda.plone.cart.interfaces import ICartDiscount
-from bda.plone.shipping import Shippings
+from bda.plone.cart.shipping import Shippings
 from decimal import Decimal
 from zope.component import adapter
 from zope.component import getMultiAdapter

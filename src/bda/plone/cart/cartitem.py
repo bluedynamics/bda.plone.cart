@@ -8,8 +8,8 @@ from bda.plone.cart.interfaces import ICartItemDiscount
 from bda.plone.cart.interfaces import ICartItemPreviewImage
 from bda.plone.cart.interfaces import ICartItemState
 from bda.plone.cart.interfaces import ICartItemStock
-from bda.plone.shipping.interfaces import IItemDelivery
-from bda.plone.shipping.interfaces import IShippingItem
+from bda.plone.cart.interfaces import IItemDelivery
+from bda.plone.cart.interfaces import IShippingItem
 from decimal import Decimal
 from plone.uuid.interfaces import IUUID
 from zope.component import adapter
