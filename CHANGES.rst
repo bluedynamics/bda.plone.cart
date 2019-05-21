@@ -5,6 +5,15 @@ Changelog
 2.0.dev0 (unreleased)
 ---------------------
 
+- Moved shipping code over to here.
+  [jensens]
+
+- refactored lots of code out of init into more semantic modules.
+  [jensens]
+
+- Added RESTAPI
+  [jensens]
+
 - Code style black.
   [jensens]
 

@@ -88,7 +88,4 @@ class MockCartItemDataProvider(CartItemDataProviderBase):
 
     @property
     def data(self):
-        return {
-            'testkey': 'testvalue',
-            'otherkey': Decimal("1234.5678"),
-        }
+        return {"testkey": "testvalue", "otherkey": Decimal("1234.5678")}
