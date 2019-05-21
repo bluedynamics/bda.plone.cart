@@ -49,7 +49,7 @@ class TestCartDataProvider(unittest.TestCase):
             {"success": True, "error": ""},
         )
 
-    @mock.patch("bda.plone.cart.get_object_by_uid")
+    @mock.patch("bda.plone.cart.utils.get_object_by_uid")
     def test_validate_count(self, mock_get_object_by_uid):
         mock_get_object_by_uid.return_value = self.portal
         self.assertEquals(

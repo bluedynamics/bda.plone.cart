@@ -13,6 +13,7 @@ from bda.plone.shipping.interfaces import IShippingItem
 from decimal import Decimal
 from plone.uuid.interfaces import IUUID
 from zope.component import adapter
+from zope.component import getAdapter
 from zope.component import getMultiAdapter
 from zope.component import queryAdapter
 from zope.interface import implementer
@@ -340,7 +341,7 @@ class CartItemPreviewAdapterBase(object):
 def get_item_data_provider(context):
     """Return ICartItemDataProvider implementation.
     """
-    return ICartItemDataProvider(context)
+    return getAdapter(context, ICartItemDataProvider)
 
 
 def get_item_stock(context):
@@ -366,7 +367,7 @@ def get_item_availability(context, request=None):
 def get_item_delivery(context):
     """Return IItemDelivery implementation.
     """
-    return IItemDelivery(context)
+    return getAdapter(context, IItemDelivery)
 
 
 def get_item_state(context, request=None):
@@ -380,4 +381,4 @@ def get_item_state(context, request=None):
 def get_item_preview(context):
     """Return ICartItemPreviewImage implementation.
     """
-    return ICartItemPreviewImage(context)
+    return getAdapter(context, ICartItemPreviewImage)
