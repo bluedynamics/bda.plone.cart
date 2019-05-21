@@ -7,7 +7,6 @@ from bda.plone.cart.interfaces import ICartItemState
 from bda.plone.cart.tests import Cart_INTEGRATION_TESTING
 from bda.plone.cart.tests import cartmocks
 from bda.plone.shipping.tests.test_shipping import MockShipping
-from decimal import Decimal
 from plone.app.testing import login
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID

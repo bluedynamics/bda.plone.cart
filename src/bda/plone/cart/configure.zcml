@@ -6,7 +6,6 @@
 
   <include package="plone.app.portlets" />
   <include package="bda.plone.ajax" />
-  <include package="bda.plone.shipping" />
 
   <include file="profiles.zcml" />
 
