@@ -38,6 +38,8 @@ setup(
         "Products.CMFPlone",
         "setuptools",
         "simplejson>=3.12",
+        "zope.deferredimport",
+        "zope.deprecation",
     ],
     extras_require={"test": ["plone.app.testing", "mock"]},
     entry_points="""
