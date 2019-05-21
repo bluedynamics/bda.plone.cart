@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
+from bda.plone.cart import _
 from bda.plone.cart.interfaces import IItemDelivery
 from bda.plone.cart.interfaces import IShipping
 from bda.plone.cart.interfaces import IShippingSettings
 from zope.component import adapter
 from zope.component import getAdapter
 from zope.component import getAdapters
-from zope.i18nmessageid import MessageFactory
 from zope.interface import implementer
 from zope.interface import Interface
-
-
-_ = MessageFactory("bda.plone.shipping")
 
 
 class Shippings(object):
