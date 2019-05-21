@@ -1,26 +1,13 @@
 # -*- coding: utf-8 -*-
-from bda.plone.cart.shipping import Shipping
+from bda.plone.cart.interfaces import ICartExtensionLayer
 from bda.plone.cart.interfaces import IShipping
-from bda.plone.cart.tests import set_browserlayer
 from bda.plone.cart.tests import Cart_INTEGRATION_TESTING
+from bda.plone.cart.tests import cartmocks
 from decimal import Decimal
 from zope.component import provideAdapter
+from zope.interface import alsoProvides
 
 import unittest
-
-
-class MockShipping(Shipping):
-    sid = "mock_shipping"
-    label = "Mock Shipping"
-    description = "Mock Shipping Description"
-    available = True
-    default = False
-
-    def net(self, items):
-        return Decimal(10)
-
-    def vat(self, items):
-        return Decimal(2)
 
 
 class TestShipping(unittest.TestCase):
@@ -29,8 +16,8 @@ class TestShipping(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer["portal"]
         self.request = self.layer["request"]
-        set_browserlayer(self.request)
-        provideAdapter(MockShipping)
+        alsoProvides(self.request, ICartExtensionLayer)
+        provideAdapter(cartmocks.MockShipping)
         self.shipping = IShipping(self.portal)
 
     def test_shipping(self):

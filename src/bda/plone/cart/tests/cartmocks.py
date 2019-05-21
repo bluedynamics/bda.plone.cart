@@ -3,6 +3,7 @@ from bda.plone.cart.cart import CartDataProviderBase
 from bda.plone.cart.cartitem import CartItemDataProviderBase
 from bda.plone.cart.cartitem import CartItemStateBase
 from bda.plone.cart.interfaces import ICartItem
+from bda.plone.cart.shipping import Shipping
 from decimal import Decimal
 from zope.component import adapter
 
@@ -89,3 +90,17 @@ class MockCartItemDataProvider(CartItemDataProviderBase):
     @property
     def data(self):
         return {"testkey": "testvalue", "otherkey": Decimal("1234.5678")}
+
+
+class MockShipping(Shipping):
+    sid = "mock_shipping"
+    label = "Mock Shipping"
+    description = "Mock Shipping Description"
+    available = True
+    default = False
+
+    def net(self, items):
+        return Decimal(10)
+
+    def vat(self, items):
+        return Decimal(2)

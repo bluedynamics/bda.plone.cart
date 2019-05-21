@@ -6,7 +6,6 @@ from bda.plone.cart.interfaces import ICartItemDataProvider
 from bda.plone.cart.interfaces import ICartItemState
 from bda.plone.cart.tests import Cart_INTEGRATION_TESTING
 from bda.plone.cart.tests import cartmocks
-from bda.plone.shipping.tests.test_shipping import MockShipping
 from plone.app.testing import login
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -35,7 +34,7 @@ class TestRestAPI(unittest.TestCase):
         alsoProvides(self.doc, ICartItem)
 
         # setup mocks
-        provideAdapter(MockShipping, name="mock_shipping")
+        provideAdapter(cartmocks.MockShipping, name="mock_shipping")
         provideAdapter(cartmocks.MockCartDataProvider)
         provideAdapter(cartmocks.MockCartItemDataProvider)
         provideAdapter(cartmocks.MockCartItemState)

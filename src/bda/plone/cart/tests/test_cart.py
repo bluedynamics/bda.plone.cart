@@ -5,7 +5,6 @@ from bda.plone.cart.interfaces import ICartItem
 from bda.plone.cart.interfaces import ICartItemDataProvider
 from bda.plone.cart.interfaces import ICartItemState
 from bda.plone.cart.tests import Cart_INTEGRATION_TESTING
-from bda.plone.shipping.tests.test_shipping import MockShipping
 from decimal import Decimal
 from plone.app.testing import login
 from plone.app.testing import setRoles
@@ -32,7 +31,7 @@ class TestCartDataProvider(unittest.TestCase):
         alsoProvides(self.portal, ICartItem)
         from . import cartmocks
 
-        provideAdapter(MockShipping, name="mock_shipping")
+        provideAdapter(cartmocks.MockShipping, name="mock_shipping")
         provideAdapter(cartmocks.MockCartDataProvider)
         provideAdapter(cartmocks.MockCartItemDataProvider)
         provideAdapter(cartmocks.MockCartItemState)

@@ -12,4 +12,6 @@
   <include package=".browser" />
   <include package=".restapi" />
 
+  <adapter factory=".shipping.NullItemDelivery" />
+
 </configure>
