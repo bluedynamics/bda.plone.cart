@@ -11,5 +11,6 @@
   <include file="profiles.zcml" />
 
   <include package=".browser" />
+  <include package=".restapi" />
 
 </configure>

@@ -3,6 +3,7 @@ from bda.plone.cart.cart import CartDataProviderBase
 from bda.plone.cart.cartitem import CartItemDataProviderBase
 from bda.plone.cart.cartitem import CartItemStateBase
 from bda.plone.cart.interfaces import ICartItem
+from decimal import Decimal
 from zope.component import adapter
 
 
@@ -84,3 +85,10 @@ class MockCartItemDataProvider(CartItemDataProviderBase):
     @property
     def discount_enabled(self):
         return False
+
+    @property
+    def data(self):
+        return {
+            'testkey': 'testvalue',
+            'otherkey': Decimal("1234.5678"),
+        }

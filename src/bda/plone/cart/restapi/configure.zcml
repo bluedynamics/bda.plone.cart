@@ -10,7 +10,7 @@
   <adapter factory=".serializer.SerializeCartItemDataToJson" />
   <plone:service
       accept="application/json"
-      factory=".cartservice.CartDataService"
+      factory=".cartservices.CartDataService"
       for="*"
       method="GET"
       name="@shop-cartdata"
@@ -18,7 +18,7 @@
   />
   <plone:service
       accept="application/json"
-      factory=".cartservice.CartItemDataService"
+      factory=".cartservices.CartItemDataService"
       for="*"
       method="GET"
       name="@shop-cartitemdata"
@@ -26,7 +26,7 @@
   />
   <plone:service
       accept="application/json"
-      factory=".cartservice.CartItemValidationService"
+      factory=".cartservices.CartItemValidationService"
       for="*"
       method="POST"
       name="@shop-cartitemvalidation"

@@ -13,6 +13,7 @@ from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.restapi.interfaces import ISerializeToJson
+from zope.component import getAdapter
 from zope.component import getMultiAdapter
 from zope.component import provideAdapter
 from zope.interface import alsoProvides
@@ -45,8 +46,8 @@ class TestRestAPI(unittest.TestCase):
         self.cart_item_state = getMultiAdapter(
             (self.doc, self.request), interface=ICartItemState
         )
-        self.cart_item_data = getMultiAdapter(
-            (self.doc, self.request), interface=ICartItemDataProvider
+        self.cart_item_data = getAdapter(
+            self.doc, interface=ICartItemDataProvider
         )
 
     def _serializer(self, obj):
@@ -54,6 +55,7 @@ class TestRestAPI(unittest.TestCase):
 
     def test_serializer_item(self):
         self.assertDictEqual(
+            {'otherkey': '1234.5678', 'testkey': u'testvalue'},
             self._serializer(self.cart_item_data)(),
-            {"net": Decimal("123.45"), "uid": "Unique-Id-0001", "yesno": False},
         )
+
