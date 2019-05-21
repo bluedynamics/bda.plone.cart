@@ -33,8 +33,6 @@ class TestRestAPI(unittest.TestCase):
         login(self.portal, TEST_USER_NAME)
         self.portal.invokeFactory("Document", "doc")
         self.doc = self.portal["doc"]
-
-    def test_serializer(self):
         alsoProvides(self.doc, ICartItem)
         provideAdapter(MockShipping, name="mock_shipping")
         provideAdapter(cartmocks.MockCartDataProvider)
