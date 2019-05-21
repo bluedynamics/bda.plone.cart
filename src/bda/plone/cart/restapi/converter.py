@@ -30,4 +30,4 @@ def uuid_converter(value):
 @adapter(Decimal)
 @implementer(IJsonCompatible)
 def decimal_converter(value):
-    return str(value)
+    return float(value)

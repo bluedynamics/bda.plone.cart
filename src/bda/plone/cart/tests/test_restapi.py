@@ -51,6 +51,6 @@ class TestRestAPI(unittest.TestCase):
 
     def test_serializer_item(self):
         self.assertDictEqual(
-            {"otherkey": "1234.5678", "testkey": u"testvalue"},
+            {"otherkey": 1234.5678, "testkey": u"testvalue"},
             self._serializer(self.cart_item_data)(),
         )
