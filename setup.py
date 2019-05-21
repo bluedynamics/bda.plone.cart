@@ -34,7 +34,6 @@ setup(
     zip_safe=False,
     install_requires=[
         "bda.plone.ajax",
-        "bda.plone.shipping",
         "Products.CMFPlone",
         "setuptools",
         "simplejson>=3.12",
