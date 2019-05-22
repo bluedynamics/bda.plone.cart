@@ -49,8 +49,8 @@ class CartDataProviderBase(object):
             net = self.net(items)
             vat = self.vat(items)
             ret["cart_items"] = self.cart_items(items)
-            ret["cart_summary"]["cart_net"] = utils.utils.ascur(net)
-            ret["cart_summary"]["cart_vat"] = utils.utils.ascur(vat)
+            ret["cart_summary"]["cart_vat"] = utils.ascur(vat)
+            ret["cart_summary"]["cart_net"] = utils.ascur(net)
             cart_discount = self.discount(items)
             discount_net = cart_discount["net"]
             discount_vat = cart_discount["vat"]
