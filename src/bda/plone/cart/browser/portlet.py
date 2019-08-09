@@ -93,6 +93,6 @@ class CartViewlet(ViewletBase, CartMixin):
         # XXX: how to handle float?
         # XXX: count total items in cart or total unique items in cart?
         ret = Decimal("0")
-        for uid, count, comment in cookie.extractitems(cookie.read(self.request)):
+        for uid, count, comment in cookie.extract_items(cookie.read(self.request)):
             ret += count
         return ret

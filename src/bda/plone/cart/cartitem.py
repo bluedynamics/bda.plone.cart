@@ -25,7 +25,7 @@ import six.moves.urllib.parse
 def remove_item_from_cart(request, uid):
     """Remove single item from cart by uid.
     """
-    items = cookie.extractitems(cookie.read(request))
+    items = cookie.extract_items(cookie.read(request))
     cookie_items = list()
     for item_uid, count, comment in items:
         if uid == item_uid:
