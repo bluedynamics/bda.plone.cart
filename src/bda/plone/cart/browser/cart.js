@@ -293,27 +293,27 @@
             });
         });
         var defer_timer = null;
-        function bind_key_changed(parent_selector) {
-            $(this).unbind('keyup').bind('keyup', function(e) {
+        function bind_key_changed(context, parent_selector) {
+            $(context).unbind('keyup').bind('keyup', function (e) {
                 var kc = e.keyCode;
                 if ((kc >= 48 && kc <= 57) ||
                     (kc >= 96 && kc <= 105) ||
-                    kc == 190 || kc == 110 || kc == 8 || kc == 46) {
+                     kc == 190 || kc == 110 || kc == 8 || kc == 46) {
                     clearTimeout(defer_timer);
-                    var parent = cart.find_extraction_parent($(this));
+                    var parent = cart.find_extraction_parent($(context));
                     var uid = $('.cart_item_uid', parent).first().text();
                     cart.last_cart_item_count_focus = uid;
                     defer_timer = setTimeout(function () {
-                        cart.update_cart_item(this, );
-                    }.bind(this), 500);
+                        cart.update_cart_item(context, parent_selector);
+                    }.bind(context), 500);
                 }
             });
         }
         $('.buyable .cart_item_count', context).each(function() {
-            bind_key_changed('.buyable');
+            bind_key_changed(this, '.buyable');
         });
         $('.cart_item_content .cart_item_count', context).each(function() {
-            bind_key_changed('.cart_item_content');
+            bind_key_changed(this, '.cart_item_content');
         });
     };
 
