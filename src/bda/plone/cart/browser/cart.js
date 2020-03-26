@@ -309,9 +309,11 @@
                 }
             });
         }
-        $('.buyable .cart_item_count', context).each(function() {
-            bind_key_changed(this, '.buyable');
-        });
+        // I remove this binding, it is active in the listing, the other one in the cart.
+        // One do not want the cart updated when to be added number changes [jensens]
+        // $('.buyable .cart_item_count', context).each(function() {
+        //     bind_key_changed(this, '.buyable');
+        // });
         $('.cart_item_content .cart_item_count', context).each(function() {
             bind_key_changed(this, '.cart_item_content');
         });

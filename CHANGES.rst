@@ -5,6 +5,9 @@ Changelog
 2.0.dev0 (unreleased)
 ---------------------
 
+- Fix problem, when in listing the to be added number changes was immediately is added to the cart.
+  [jensens]
+
 - Moved shipping code over to here.
   [jensens]
 
