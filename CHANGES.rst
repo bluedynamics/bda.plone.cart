@@ -5,6 +5,9 @@ Changelog
 2.0.dev0 (unreleased)
 ---------------------
 
+- Fix problem, when cart item value is removed while typing item was removed from cart.
+  [jensens]
+
 - Fix problem, when in listing the to be added number changes was immediately is added to the cart.
   [jensens]
 

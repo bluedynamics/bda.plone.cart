@@ -304,8 +304,10 @@
                     var uid = $('.cart_item_uid', parent).first().text();
                     cart.last_cart_item_count_focus = uid;
                     defer_timer = setTimeout(function () {
-                        cart.update_cart_item(context, parent_selector);
-                    }.bind(context), 500);
+                        if (context.value) {
+                            cart.update_cart_item(context, parent_selector);
+                        }
+                    }.bind(context), 750);
                 }
             });
         }
