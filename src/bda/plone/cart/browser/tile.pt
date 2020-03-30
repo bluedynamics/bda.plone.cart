@@ -63,28 +63,28 @@
     <table class="cart_sum_content invisible-grid"
            tal:define="currency view/currency">
       <tal:details condition="not:view/summary_total_only">
-        <tr>
+        <tr class="summary_net">
           <td i18n:translate="summary_net" class="summary_label">Net:</td>
           <td class="cart_net summary_ammount">0.00</td>
           <td tal:content="currency" tal:condition="currency" class="sumary_currency">EUR</td>
         </tr>
-        <tr>
+        <tr class="summary_vat">
           <td i18n:translate="summary_vat" class="summary_label">VAT.:</td>
           <td class="cart_vat summary_ammount">0.00</td>
           <td tal:content="currency" tal:condition="currency" class="sumary_currency">EUR</td>
         </tr>
-        <tr class="discount" style="display: none;">
+        <tr class="discount discount_net" style="display: none;">
           <td i18n:translate="discount_net" class="summary_label">Discount Net:</td>
           <td class="discount_net summary_ammount">0.00</td>
           <td tal:content="currency" tal:condition="currency" class="sumary_currency">EUR</td>
         </tr>
-        <tr class="discount" style="display: none;">
+        <tr class="discount discount_vat" style="display: none;">
           <td i18n:translate="discount_vat" class="summary_label">Discount VAT.:</td>
           <td class="discount_vat summary_ammount">0.00</td>
           <td tal:content="currency" tal:condition="currency" class="sumary_currency">EUR</td>
         </tr>
       </tal:details>
-      <tr class="discount" style="display: none;">
+      <tr class="discount discount_total" style="display: none;">
         <td class="summary_label"><strong i18n:translate="discount_total">Discount Total:</strong></td>
         <td><strong class="discount_total summary_ammount">Total</strong></td>
         <td tal:condition="currency">

@@ -5,6 +5,9 @@ Changelog
 2.0.dev0 (unreleased)
 ---------------------
 
+- More CSS classes on cart 
+  [jensens]
+
 - Fix problem, when cart item value is removed while typing item was removed from cart.
   [jensens]
 
