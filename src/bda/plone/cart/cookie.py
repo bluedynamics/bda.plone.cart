@@ -42,6 +42,7 @@ def extract_items(items):
     if not items:
         return []
     ret = list()
+    __traceback_info__ = str(items)
     items = items.split(",")
     for item in items:
         if not item:
