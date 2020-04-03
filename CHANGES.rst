@@ -5,6 +5,9 @@ Changelog
 2.0.dev0 (unreleased)
 ---------------------
 
+- Handle count number localized.
+  [jensens]
+
 - No longer support for z3c.autoinclude. 
   [jensens]
 

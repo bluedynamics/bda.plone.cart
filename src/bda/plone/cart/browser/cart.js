@@ -10,7 +10,8 @@
         CART_PORTLET_IDENTIFYER = '#portlet-cart',
         CART_VIEWLET_IDENTIFYER = '#cart_viewlet',
         UID_DELIMITER = "|",
-        COUNT_DELIMITER = ":";
+        COUNT_DELIMITER = ":",
+        ITEM_DELIMITER = ";";
 
     function Cart() {
         // flag whether cart contains items which are no longer available
@@ -60,11 +61,18 @@
         this.query(uid);
     };
 
+    Cart.prototype.itemuid = function(uid, comment) {
+        // item uid consists of ``object_uid|comment``
+        comment = comment.replace(UID_DELIMITER, '{{{U}}}')
+        comment = comment.replace(COUNT_DELIMITER, '{{{C}}}')
+        comment = comment.replace(ITEM_DELIMITER, '{{{I}}}')
+        return uid + UID_DELIMITER + comment;
+    };
+
     Cart.prototype.writecookie = function(uid, count, comment, add) {
         // XXX: support cookie size > 4096 by splitting up cookie
         count = Number(count);
-        // item uid consists of ``object_uid;comment``
-        uid = uid + UID_DELIMITER + comment;
+        uid = this.itemuid(uid, comment);
         var items = this.items();
         var existent = false;
         var itemuid;
@@ -91,7 +99,7 @@
             if (!itemuid || items[itemuid] === 0) {
                 continue;
             }
-            cookie = cookie + itemuid + COUNT_DELIMITER + String(items[itemuid]) + ',';
+            cookie = cookie + itemuid + COUNT_DELIMITER + String(items[itemuid]) + ITEM_DELIMITER;
         }
         if (cookie) {
             cookie = cookie.substring(0, cookie.length - 1);
@@ -393,7 +401,7 @@
                 if (!item) {
                     continue;
                 }
-                if (item === uid + UID_DELIMITER + defs[2]) {
+                if (item === this.itemuid(uid, defs[2])) {
                     continue;
                 }
                 var item_uid = item.split(UID_DELIMITER)[0];
@@ -464,11 +472,10 @@
         var count;
         var tagname = count_node.tagName.toUpperCase();
         if (tagname === 'INPUT' || tagname === 'SELECT') {
-            count = $(count_node).val();
+            count = count_node.valueAsNumber;
         } else {
-            count = $(count_node).text();
+            count = Number($(count_node).text());
         }
-        count = Number(count);
         if (isNaN(count)) {
             throw {
                 name: 'Number Required',
@@ -511,11 +518,11 @@
     };
 
     /*
-     * items is a key/value mapping in format items['obj_uid;comment'] = count
+     * items is a key/value mapping in format items['obj_uid|comment'] = count
      */
     Cart.prototype.items = function() {
         var cookie = this.cookie();
-        var cookieitems = cookie.split(',');
+        var cookieitems = cookie.split(ITEM_DELIMITER);
         var items = {};
         for (var i = 0; i < cookieitems.length; i++) {
             var item = cookieitems[i].split(COUNT_DELIMITER);

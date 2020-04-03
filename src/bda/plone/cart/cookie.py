@@ -8,6 +8,7 @@ import six.moves.urllib.parse
 
 UID_DELIMITER = "|"
 COUNT_DELIMITER = ":"
+ITEM_DELIMITER = ";"
 
 RawCartItem = namedtuple("RawCartItem", ["uid", "count", "comment"])
 
@@ -29,6 +30,7 @@ def split_item(raw_item):
     item = raw_item.split(COUNT_DELIMITER)
     uid = item[0].split(UID_DELIMITER)[0]
     count = item[1]
+    count = Decimal(count)
     comment = six.moves.urllib.parse.unquote(item[0][len(uid) + 1 :])
     return uid, count, comment
 
@@ -43,10 +45,11 @@ def extract_items(items):
         return []
     ret = list()
     __traceback_info__ = str(items)
-    items = items.split(",")
+    items = items.split(ITEM_DELIMITER)
+    __traceback_info__ = str(items)
     for item in items:
         if not item:
             continue
         uid, count, comment = split_item(item)
-        ret.append(RawCartItem(uid, Decimal(count), comment))
+        ret.append(RawCartItem(uid, count, comment))
     return ret
