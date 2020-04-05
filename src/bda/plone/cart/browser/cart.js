@@ -1,6 +1,6 @@
 /* jslint browser: true */
-/* global jQuery, bdajax, createCookie, readCookie */
-// Dependencies: jQuery, cookie_functions.js
+/* global jQuery, bdajax */
+// Dependencies: jQuery
 
 (function($, bdajax) {
     "use strict";
@@ -44,6 +44,38 @@
         this.item_template = $($(template_sel).get(0)).clone();
         $('#cart_item_template').remove();
     };
+
+    Cart.prototype.createCookie = function(name,value,days) {
+        var date,
+            expires;
+
+        if (days) {
+            date = new Date();
+            date.setTime(date.getTime()+(days*24*60*60*1000));
+            expires = "; expires="+date.toGMTString();
+        } else {
+            expires = "";
+        }
+        document.cookie = name+"="+escape(value)+expires+"; path=/;";
+    }
+
+    Cart.prototype.readCookie = function(name) {
+        var nameEQ = name + "=",
+            ca = document.cookie.split(';'),
+            i,
+            c;
+
+        for(i=0;i < ca.length;i=i+1) {
+            c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1,c.length);
+            }
+            if (c.indexOf(nameEQ) === 0) {
+                return unescape(c.substring(nameEQ.length,c.length));
+            }
+        }
+        return null;
+    }
 
     Cart.prototype.add = function(uid, count, comment) {
         if (!this.validateOverallCountAdd(count)) {
@@ -108,7 +140,7 @@
             bdajax.error(cart.messages.max_unique_articles_reached);
             return;
         }
-        createCookie('cart', cookie);
+        this.createCookie('cart', cookie);
     };
 
     Cart.prototype.render = function(data) {
@@ -516,7 +548,7 @@
 
     Cart.prototype.cookie = function() {
         // XXX: support cookie size > 4096 by splitting up cookie
-        var cookie = readCookie('cart');
+        var cookie = this.readCookie('cart');
         if (cookie === null) {
             cookie = '';
         }
