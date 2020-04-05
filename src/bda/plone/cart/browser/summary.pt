@@ -6,7 +6,7 @@
         class="cart_execution_context">summary</span>
 
   <span id="cart_item_template" style="display: none;">
-    <div class="cart_item summary_item">
+    <div class="cart_item summary_item ${python:'with-comment' if view.comment_enabled else 'without-comment'}">
       <h3>
         <a href="#" class="cart_item_location">
           <img class="cart_item_preview_image" src="" />
@@ -20,7 +20,7 @@
         <span class="cart_item_comment">comment</span>
       </div>
       <ul class="cart_item_content">
-        <li>
+        <li class="cart_item_update">
           <span class="cart_item_uid" style="display: none;">uid</span>
           <span class="cart_item_comment" style="display: none;">comment</span>
           <input type="number" min="0" size="2" class="cart_item_count" />
@@ -30,7 +30,7 @@
              title="Update cart"
              i18n:attributes="title update_cart">&nbsp;</a>
         </li>
-        <li>
+        <li class="cart_item_remove">
           <span class="cart_item_uid" style="display: none;">uid</span>
           <span class="cart_item_comment" style="display: none;">comment</span>
           <span class="cart_item_count" style="display: none;">0</span>
