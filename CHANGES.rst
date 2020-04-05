@@ -5,6 +5,12 @@ Changelog
 2.0.dev0 (unreleased)
 ---------------------
 
+- Mark cart item in summary and portlet if comment is enabled or not.
+  [jensens]
+
+- Fix broken remove from cart in summary.
+  [jensens]
+
 - Handle count number localized.
   [jensens]
 

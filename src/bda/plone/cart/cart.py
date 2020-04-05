@@ -257,6 +257,7 @@ class CartDataProviderBase(object):
         url,
         comment="",
         description="",
+        comment_enabled=False,
         comment_required=False,
         quantity_unit_float=False,
         quantity_unit="",
@@ -281,6 +282,7 @@ class CartDataProviderBase(object):
             if discount != Decimal(0)
             else Decimal(0),
             # control flags
+            "comment_enabled": comment_enabled,
             "comment_required": comment_required,
             "quantity_unit_float": quantity_unit_float,
             "no_longer_available": no_longer_available,

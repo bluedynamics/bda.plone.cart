@@ -139,12 +139,18 @@
                 var cart_item_data = data.cart_items[i];
                 // item control flags
                 var quantity_unit_float = cart_item_data.quantity_unit_float;
+                var comment_enabled = cart_item_data.comment_enabled;
                 var comment_required = cart_item_data.comment_required;
                 var no_longer_available = cart_item_data.no_longer_available;
                 // delete item control flags from cart_item_data
                 delete cart_item_data.quantity_unit_float;
                 delete cart_item_data.comment_required;
                 delete cart_item_data.no_longer_available;
+                if (comment_enabled) {
+                    $(cart_item).addClass("with-comment")
+                } else {
+                    $(cart_item).addClass("without-comment")
+                }
                 if (no_longer_available) {
                     $('input', cart_item).prop('disabled', true);
                     $('input.cart_item_count', cart_item)
