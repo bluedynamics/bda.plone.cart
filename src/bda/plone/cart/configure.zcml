@@ -5,6 +5,7 @@
   <i18n:registerTranslations directory="locales" />
 
   <include package="plone.app.portlets" />
+  <include package="plone.restapi" />
   <include package="bda.plone.ajax" />
 
   <include file="profiles.zcml" />
