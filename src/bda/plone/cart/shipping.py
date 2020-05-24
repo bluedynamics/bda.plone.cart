@@ -35,7 +35,7 @@ class Shippings(object):
 
     @property
     def default(self):
-        adapters = self._adapters
+        adapters = [x for x in self._adapters]
         for name, shipping in adapters:
             if shipping.default:
                 return name
