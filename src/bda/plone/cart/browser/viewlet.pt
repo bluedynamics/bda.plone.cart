@@ -23,16 +23,31 @@
     <tal:cart replace="structure context/@@cart_tile" />
     <div class="cart_viewlet_actions">
       <a href="@@checkout"
-         class="context go_to_cart_action prevent_if_no_longer_available"
+         class="btn btn-outline-primary go_to_cart_action prevent_if_no_longer_available"
          tal:attributes="href view/checkout_url"
-         tal:condition="view/show_checkout"
-         i18n:translate="checkout">Checkout</a>
+         tal:condition="view/show_checkout">
+        <svg class="bi bi-credit-card" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M14 3H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
+          <rect width="3" height="3" x="2" y="9" rx="1"/>
+          <path d="M1 5h14v2H1z"/>
+        </svg>
+      <span i18n:translate="checkout">Checkout</span>
+
+
+
+         </a>
 
       <a href="@@cart"
-         class="context go_to_cart_action"
+         class="btn btn-outline-primary go_to_cart_action"
          tal:attributes="href view/cart_url"
-         tal:condition="view/show_to_cart"
-         i18n:translate="cart">Cart</a>
+         tal:condition="view/show_to_cart">
+        <svg class="bi bi-bag" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M14 5H2v9a1 1 0 001 1h10a1 1 0 001-1V5zM1 4v10a2 2 0 002 2h10a2 2 0 002-2V4H1z" clip-rule="evenodd"/>
+          <path d="M8 1.5A2.5 2.5 0 005.5 4h-1a3.5 3.5 0 117 0h-1A2.5 2.5 0 008 1.5z"/>
+        </svg>
+        <span i18n:translate="cart">Cart</span>
+
+         </a>
     </div>
   </dd>
 
