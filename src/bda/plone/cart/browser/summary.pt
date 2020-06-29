@@ -86,35 +86,35 @@
     <table class="cart_sum_content invisible-grid"
            tal:define="currency view/currency">
       <tal:details condition="not:view/summary_total_only">
-        <tr>
+        <tr class="cart_summary_net">
           <td i18n:translate="summary_net" class="summary_label">Net:</td>
           <td class="cart_net summary_ammount">0.00</td>
           <td tal:content="currency" tal:condition="currency" class="sumary_currency">EUR</td>
         </tr>
-        <tr>
+        <tr class="cart_summary_vat">
           <td i18n:translate="summary_vat" class="summary_label">VAT.:</td>
           <td class="cart_vat summary_ammount">0.00</td>
           <td tal:content="currency" tal:condition="currency" class="sumary_currency">EUR</td>
         </tr>
-        <tr class="discount" style="display: none;">
+        <tr class="cart_summary_discount_net discount" style="display: none;">
           <td i18n:translate="discount_net" class="summary_label">Discount Net:</td>
           <td class="discount_net summary_ammount">0.00</td>
           <td tal:content="currency" tal:condition="currency" class="sumary_currency">EUR</td>
         </tr>
-        <tr class="discount" style="display: none;">
+        <tr class="cart_summary_discount_vat discount" style="display: none;">
           <td i18n:translate="discount_vat" class="summary_label">Discount VAT.:</td>
           <td class="discount_vat summary_ammount">0.00</td>
           <td tal:content="currency" tal:condition="currency" class="sumary_currency">EUR</td>
         </tr>
       </tal:details>
-      <tr class="discount" style="display: none;">
+      <tr class="cart_summary_discount discount" style="display: none;">
         <td class="summary_label"><strong i18n:translate="discount_total">Discount Total:</strong></td>
         <td class="summary_ammount"><strong class="discount_total">Total</strong></td>
         <td tal:condition="currency" class="sumary_currency">
           <strong tal:content="currency">EUR</strong>
         </td>
       </tr>
-      <tr class="shipping" style="display: none;">
+      <tr class="cart_summary_shipping shipping" style="display: none;">
         <td class="summary_label">
           <span class="shipping_info">
             <span i18n:translate="summary_shipping" tal:omit-tag>Shipping</span>:
@@ -125,7 +125,7 @@
         <td class="shipping_total summary_ammount">0.00</td>
         <td tal:content="currency" tal:condition="currency" class="sumary_currency">EUR</td>
       </tr>
-      <tr>
+      <tr class="cart_summary_total">
         <td class="summary_label"><strong i18n:translate="summary_total">Total:</strong></td>
         <td class="summary_ammount"><strong class="cart_total ">Total</strong></td>
         <td tal:condition="currency" class="sumary_currency">
