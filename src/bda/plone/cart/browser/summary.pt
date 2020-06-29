@@ -49,7 +49,7 @@
           <span class="cart_item_comment" style="display: none;">comment</span>
           <span class="cart_item_count" style="display: none;">0</span>
           <a href=""
-             class="cart-icon update_cart_item remove_from_cart_action"
+             class="cart-icon remove_from_cart remove_from_cart_action"
              title="Remove from cart"
              i18n:attributes="title remove_from_cart">
              <svg class="bi bi-x-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
