@@ -276,10 +276,10 @@
                 var cart_wrapper = $('#cart_viewlet_details', container);
                 if (cart_wrapper.is(':visible')) {
                     cart_wrapper.hide();
-                    $('body').removeClass('menu-open');
+                    cart_wrapper.trigger('bda.plone.cart:hideCart');
                 } else {
                     cart_wrapper.show();
-                    $('body').addClass('menu-open');
+                    cart_wrapper.trigger('bda.plone.cart:showCart');
                 }
             });
         $('.prevent_if_no_longer_available', context)
