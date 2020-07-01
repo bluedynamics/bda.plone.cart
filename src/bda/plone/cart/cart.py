@@ -67,7 +67,7 @@ class CartDataProviderBase(object):
                 ret["cart_summary"]["shipping_label"] = label
                 if shipping["description"]:
                     desc = translate(shipping["description"], context=self.request)
-                    ret["cart_summary"]["shipping_description"] = "(%s)" % desc
+                    ret["cart_summary"]["shipping_description"] = desc
                 else:
                     ret["cart_summary"]["shipping_description"] = ""
                 ret["cart_summary"]["shipping_net"] = utils.ascur(shipping["net"])
