@@ -477,11 +477,15 @@
         var count_node = $('.cart_item_count', parent).get(0);
         var count;
         var tagname = count_node.tagName.toUpperCase();
-        if (tagname === 'INPUT' || tagname === 'SELECT') {
-            count = count_node.valueAsNumber;
+        if (count_node.getAttribute('type') == 'hidden') {
+            count = parseFloat(count_node.value);
         } else {
-            count = Number($(count_node).text());
-        }
+            if (tagname === 'INPUT' || tagname === 'SELECT') {
+                count = count_node.valueAsNumber;
+            } else {
+                count = Number($(count_node).text());
+            }
+        };
         if (isNaN(count)) {
             throw {
                 name: 'Number Required',
