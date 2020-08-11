@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: bda.plone.shipping\n"
-"POT-Creation-Date: 2019-02-10 13:38+0000\n"
+"Project-Id-Version: bda.plone.cart\n"
+"POT-Creation-Date: 2020-05-09 08:40+0000\n"
 "PO-Revision-Date: 2013-06-12 14:38+0100\n"
 "Last-Translator: Peter Holzer <peter.holzer@agitator.com>\n"
 "Language-Team: \n"
@@ -12,23 +12,23 @@ msgstr ""
 "Language-Code: it\n"
 "Language-Name: Italian\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: bda.plone.shipping\n"
+"Domain: bda.plone.cart\n"
 "X-Is-Fallback-For: it-ch it-it\n"
 
 #: ./profiles.zcml:13
 msgid "A generic cart"
-msgstr ""
+msgstr "Un carrello generico"
 
-#: ./browser/portlet.py:83
+#: ./browser/portlet.py:69
 msgid "Add Cart Portlet"
 msgstr "Aggiungere il portlet del carrello"
 
-#: ./browser/portlet.py:84
+#: ./browser/portlet.py:70
 msgid "This portlet displays the shopping cart."
 msgstr "Questo portlet mostra il carrello"
 
 #. Default: "Article limit reached"
-#: ./__init__.py:304
+#: ./cart.py:197
 msgid "article_limit_reached"
 msgstr "La quantità desiderata supera la quantità di ordine massimo per questo prodotto."
 
@@ -38,54 +38,54 @@ msgstr "indietro"
 
 #: ./profiles.zcml:13
 msgid "bda.plone.cart"
-msgstr ""
+msgstr "bda.plone.cart"
 
 #. Default: "Cart"
 #: ./browser/portlet.pt:10
-#: ./browser/portlet.py:38
+#: ./browser/portlet.py:28
 #: ./browser/view.pt:18
 msgid "cart"
 msgstr "Carrello"
 
 #. Default: "Comment is required"
-#: ./browser/__init__.py:63
+#: ./browser/__init__.py:65
 msgid "cart_comment_required"
-msgstr ""
+msgstr "È richiesto un commento"
 
 #. Default: "Input not an integer"
-#: ./browser/__init__.py:67
+#: ./browser/__init__.py:69
 msgid "cart_integer_required"
-msgstr ""
+msgstr "Il valore inserito non è intero"
 
 #. Default: "Item has been added to cart"
-#: ./browser/__init__.py:76
+#: ./browser/__init__.py:81
 msgid "cart_item_added"
 msgstr "Oggetto aggiunto al carrello"
 
 #. Default: "Item has been removed from cart"
-#: ./browser/__init__.py:84
+#: ./browser/__init__.py:89
 msgid "cart_item_removed"
 msgstr "Articolo è stato rimosso dal carrello"
 
 #. Default: "Item has been updated in cart"
-#: ./browser/__init__.py:80
+#: ./browser/__init__.py:85
 msgid "cart_item_updated"
 msgstr "Articolo è stato aggiornato in carrello"
 
 #. Default: "Unique article limit reached"
-#: ./browser/__init__.py:59
+#: ./browser/__init__.py:58
 msgid "cart_max_unique_articles_reached"
 msgstr "Limite articolo unico raggiunt"
 
 #. Default: "One or more items in cart are only partly or no longer available. Please update or remove related items"
-#: ./browser/__init__.py:71
+#: ./browser/__init__.py:73
 msgid "cart_no_longer_available"
-msgstr ""
+msgstr "Uno o più articoli nel carrello non sono più disponibili. Per favoree aggiorna o rimuovi questi articoli"
 
 #. Default: "Input not a number"
 #: ./browser/__init__.py:55
 msgid "cart_not_a_number"
-msgstr ""
+msgstr "Il valore inserito non è un numero"
 
 #. Default: "Cart"
 #: ./browser/portlet.pt:10
@@ -96,7 +96,7 @@ msgstr "Carrello"
 #. Default: "Total limit reached"
 #: ./browser/__init__.py:51
 msgid "cart_total_limit_reached"
-msgstr ""
+msgstr "Il totale ha raggiunto il limite"
 
 #. Default: "Checkout"
 #: ./browser/portlet.pt:21
@@ -115,25 +115,25 @@ msgstr "Commenti"
 #: ./browser/summary.pt:44
 #: ./browser/tile.pt:45
 msgid "discount"
-msgstr ""
+msgstr "Sconto:"
 
 #. Default: "Discount Net:"
 #: ./browser/summary.pt:80
 #: ./browser/tile.pt:77
 msgid "discount_net"
-msgstr ""
+msgstr "Sconto Netto:"
 
 #. Default: "Discount Total:"
 #: ./browser/summary.pt:91
 #: ./browser/tile.pt:88
 msgid "discount_total"
-msgstr ""
+msgstr "Sconto Totale:"
 
 #. Default: "Discount VAT.:"
 #: ./browser/summary.pt:85
 #: ./browser/tile.pt:82
 msgid "discount_vat"
-msgstr ""
+msgstr "Sconto IVA:"
 
 #. Default: "Cart is empty"
 #: ./browser/summary.pt:62
@@ -178,9 +178,9 @@ msgid "summary_vat"
 msgstr "IVA:"
 
 #. Default: "Not enough items available, abort."
-#: ./__init__.py:318
+#: ./cart.py:205
 msgid "trying_to_add_more_items_than_available"
-msgstr ""
+msgstr "Non ci sono abbastanza articoli disponibili, non posso procedere."
 
 #. Default: "Update cart"
 #: ./browser/summary.pt:28

@@ -14,10 +14,10 @@ Changelog
 - Handle count number localized.
   [jensens]
 
-- No longer support for z3c.autoinclude. 
+- No longer support for z3c.autoinclude.
   [jensens]
 
-- More CSS classes on cart 
+- More CSS classes on cart
   [jensens]
 
 - Fix problem, when cart item value is removed while typing item was removed from cart.
@@ -43,6 +43,9 @@ Changelog
 
 - Update version and classifiers - 2.x targets Plone 5.1/5.2 without Archetypes
   [agitator]
+
+- Italian translations
+  [ale-rt]
 
 
 1.0a1 (unreleased)
