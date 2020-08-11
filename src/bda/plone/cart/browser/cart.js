@@ -478,10 +478,10 @@
         var count;
         count = Number(count_node.value);
         if (isNaN(count)) {
-          throw {
-            name: 'Number Required',
-            message: cart.messages.not_a_number
-          };
+            throw {
+                name: 'Number Required',
+                message: cart.messages.not_a_number
+            };
         }
         if (isNaN(count)) {
             throw {
