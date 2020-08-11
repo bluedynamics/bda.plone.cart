@@ -483,12 +483,6 @@
                 message: cart.messages.not_a_number
             };
         }
-        if (isNaN(count)) {
-            throw {
-                name: 'Number Required',
-                message: cart.messages.not_a_number
-            };
-        }
         var force_int = !$(count_node).hasClass('quantity_unit_float');
         if (force_int && count > 0 && count % 1 !== 0) {
             throw {
