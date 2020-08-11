@@ -476,11 +476,12 @@
         var uid = $('.cart_item_uid', parent).first().text();
         var count_node = $('.cart_item_count', parent).get(0);
         var count;
-        var tagname = count_node.tagName.toUpperCase();
-        if (tagname === 'INPUT' || tagname === 'SELECT') {
-            count = count_node.valueAsNumber;
-        } else {
-            count = Number($(count_node).text());
+        count = Number(count_node.value);
+        if (isNaN(count)) {
+            throw {
+                name: 'Number Required',
+                message: cart.messages.not_a_number
+            };
         }
         if (isNaN(count)) {
             throw {
