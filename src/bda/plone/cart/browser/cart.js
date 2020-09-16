@@ -577,27 +577,27 @@
     };
 
     Cart.prototype.status_message = function(elem, message) {
-        var show_message = function(anchor_elem, status_message) {
-            var offset = anchor_elem.offset();
-            var width = anchor_elem.width();
-            var height = anchor_elem.height();
-            var body_width = $('body').width();
-            var top = offset.top + height + 3;
-            var right = body_width - offset.left - width - 8;
-            status_message.css('top', top);
-            status_message.css('right', right);
-            $('body').append(status_message);
-            status_message.fadeIn(500, function() {
-                setTimeout(function() {
-                    status_message.fadeOut(500, function() {
-                        status_message.remove();
-                    });
-                }, 2000);
-            });
-        };
-        var status_message = $('<div class="cart_status_message"></div>');
-        status_message.html(message);
-        show_message(elem, status_message);
+        var popover = $(`
+            <div class="popover bs-popover-top">
+              <div class="arrow" />
+              <div class="popover-body">${message}</div>
+            </div>
+        `);
+        $('body').append(popover);
+        var o = elem.offset();
+        var aw = elem.outerWidth();
+        var sw = popover.outerWidth();
+        var sh = popover.outerHeight();
+        $('.arrow', popover).css('left', sw / 2 - 16);
+        popover.css('top', o.top - sh - 8);
+        popover.css('left', o.left + aw / 2 - sw / 2);
+        popover.fadeIn(500, function() {
+            setTimeout(function() {
+                popover.fadeOut(500, function() {
+                    popover.remove();
+                });
+            }, 2000);
+        });
     };
 
     /*
