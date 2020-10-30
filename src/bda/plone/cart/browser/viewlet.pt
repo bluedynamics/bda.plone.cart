@@ -13,8 +13,8 @@
         <path d="M8 1.5A2.5 2.5 0 005.5 4h-1a3.5 3.5 0 117 0h-1A2.5 2.5 0 008 1.5z"/>
       </svg>
       <span i18n:translate="cart">Cart</span>
-      <span class="countWrapper">(<span class="cart_total_count"
-        tal:content="view/cart_total_count">0</span>)</span>
+      <span class="countWrapper"><span class="brackets">(</span><span class="cart_total_count"
+        tal:content="view/cart_total_count">0</span><span class="brackets">)</span></span>
   </a>
   </dt>
 
