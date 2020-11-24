@@ -37,6 +37,7 @@ setup(
         "Products.CMFPlone",
         "setuptools",
         "simplejson>=3.12",
+        "plone.restapi>=6.13.7",
         "zope.deferredimport",
         "zope.deprecation",
     ],

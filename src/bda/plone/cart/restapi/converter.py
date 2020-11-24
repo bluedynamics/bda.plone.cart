@@ -25,9 +25,3 @@ def unset_converter(value):
 @implementer(IJsonCompatible)
 def uuid_converter(value):
     return str(value)
-
-
-@adapter(Decimal)
-@implementer(IJsonCompatible)
-def decimal_converter(value):
-    return float(value)

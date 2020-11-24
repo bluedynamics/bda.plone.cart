@@ -5,6 +5,9 @@ Changelog
 2.0.dev0 (unreleased)
 ---------------------
 
+- remove decimal_converter and rely on plone.restapi>=6.13.7
+  [agitator]
+
 - Mark cart item in summary and portlet if comment is enabled or not.
   [jensens]
 
