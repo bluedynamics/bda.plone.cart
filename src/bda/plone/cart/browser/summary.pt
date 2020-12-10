@@ -6,13 +6,13 @@
         class="cart_execution_context">summary</span>
 
   <div id="cart_item_template" style="display: none;">
-    <div class="cart_item summary_item media">
-      <div class="cart_item_image_wrapper mr-3">
+    <div class="cart_item summary_item row g-3">
+      <div class="cart_item_image_wrapper col-auto">
         <a href="#" class="cart_item_location">
           <img class="cart_item_preview_image" src="" />
         </a>
       </div>
-      <div class="media-body">
+      <div class="col">
         <h3>
           <a href="#" class="cart_item_location mr-3">
             <span class="cart_item_title">Title</span>
@@ -22,56 +22,58 @@
         <p class="cart_item_description">Description</p>
       </div>
 
-      <div class="cart_item_content form-inline justify-content-end">
-        <div class="cart_item_comment_wrapper input-group mr-3">
-          <label i18n:translate="comment">Comment</label>:
-          <span class="cart_item_comment">comment</span>
-        </div>
+      <div class="cart_item_content col-auto d-flex align-items-end">
+        <div class="row row-cols-lg-auto gx-3 align-items-center">
+          <div class="cart_item_comment_wrapper">
+            <label class="form-label" i18n:translate="comment">Comment</label>:
+            <span class="cart_item_comment">comment</span>
+          </div>
 
-        <div class="cart_item_update input-group">
-          <span class="cart_item_uid" style="display: none;">uid</span>
-          <span class="cart_item_comment" style="display: none;">comment</span>
-          <input type="number" min="0" size="2" class="cart_item_count form-control" />
-          <label class="cart_item_quantity_unit ml-2">Quantity</label>
-          <a href=""
-             class="cart-icon update_cart_item update_cart_action ml-2 mr-2"
-             title="Update cart"
-             i18n:attributes="title update_cart">
-             <svg class="bi bi-arrow-repeat" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M2.854 7.146a.5.5 0 00-.708 0l-2 2a.5.5 0 10.708.708L2.5 8.207l1.646 1.647a.5.5 0 00.708-.708l-2-2zm13-1a.5.5 0 00-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 00-.708.708l2 2a.5.5 0 00.708 0l2-2a.5.5 0 000-.708z" clip-rule="evenodd"/>
-              <path fill-rule="evenodd" d="M8 3a4.995 4.995 0 00-4.192 2.273.5.5 0 01-.837-.546A6 6 0 0114 8a.5.5 0 01-1.001 0 5 5 0 00-5-5zM2.5 7.5A.5.5 0 013 8a5 5 0 009.192 2.727.5.5 0 11.837.546A6 6 0 012 8a.5.5 0 01.501-.5z" clip-rule="evenodd"/>
-            </svg>
-          </a>
-        </div>
+          <div class="cart_item_update ">
+            <span class="cart_item_uid" style="display: none;">uid</span>
+            <span class="cart_item_comment" style="display: none;">comment</span>
+            <input type="number" min="0" size="2" class="cart_item_count form-control" />
+            <label class="cart_item_quantity_unit form-label ml-2 ">Quantity</label>
+            <a href=""
+              class="cart-icon update_cart_item update_cart_action ml-2 mr-2"
+              title="Update cart"
+              i18n:attributes="title update_cart">
+              <svg class="bi bi-arrow-repeat" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2.854 7.146a.5.5 0 00-.708 0l-2 2a.5.5 0 10.708.708L2.5 8.207l1.646 1.647a.5.5 0 00.708-.708l-2-2zm13-1a.5.5 0 00-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 00-.708.708l2 2a.5.5 0 00.708 0l2-2a.5.5 0 000-.708z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M8 3a4.995 4.995 0 00-4.192 2.273.5.5 0 01-.837-.546A6 6 0 0114 8a.5.5 0 01-1.001 0 5 5 0 00-5-5zM2.5 7.5A.5.5 0 013 8a5 5 0 009.192 2.727.5.5 0 11.837.546A6 6 0 012 8a.5.5 0 01.501-.5z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+          </div>
 
-        <div class="cart_item_remove input-group">
-          <span class="cart_item_uid" style="display: none;">uid</span>
-          <span class="cart_item_comment" style="display: none;">comment</span>
-          <span class="cart_item_count" style="display: none;">0</span>
-          <a href=""
-             class="cart-icon remove_from_cart remove_from_cart_action"
-             title="Remove from cart"
-             i18n:attributes="title remove_from_cart">
-             <svg class="bi bi-x-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
-              <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
-              <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
-            </svg>
-          </a>
-        </div>
+          <div class="cart_item_remove ">
+            <span class="cart_item_uid" style="display: none;">uid</span>
+            <span class="cart_item_comment" style="display: none;">comment</span>
+            <span class="cart_item_count" style="display: none;">0</span>
+            <a href=""
+              class="cart-icon remove_from_cart remove_from_cart_action"
+              title="Remove from cart"
+              i18n:attributes="title remove_from_cart">
+              <svg class="bi bi-x-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+          </div>
 
-        <div class="cart_item_discount_wrapper ml-3">
-          <span class="discount">
-            <span i18n:translate="discount">Discount:</span>
-            <span class="cart_item_discount">Discount</span>
-          </span>
-        </div>
+          <div class="cart_item_discount_wrapper ml-3">
+            <span class="discount d-flex no-wrap justify-content-between">
+              <span i18n:translate="discount">Discount:</span>
+              <span class="cart_item_discount">Discount</span>
+            </span>
+          </div>
 
-        <div class="price ml-2">
-          <span class="label mr-2" i18n:translate="price">Price</span>
-          <span class="cart_item_price value">Price</span>
-        </div>
+          <div class="price d-flex no-wrap justify-content-between">
+            <span class="label mr-2" i18n:translate="price">Price</span>
+            <span class="cart_item_price value">Price</span>
+          </div>
 
+        </div>
       </div>
     </div>
   </div>
