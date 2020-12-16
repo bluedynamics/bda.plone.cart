@@ -14,7 +14,7 @@
       </div>
       <div class="col">
         <h3>
-          <a href="#" class="cart_item_location mr-3">
+          <a href="#" class="cart_item_location me-3">
             <span class="cart_item_title">Title</span>
           </a>
         </h3>
@@ -33,9 +33,9 @@
             <span class="cart_item_uid" style="display: none;">uid</span>
             <span class="cart_item_comment" style="display: none;">comment</span>
             <input type="number" min="0" size="2" class="cart_item_count form-control" />
-            <label class="cart_item_quantity_unit form-label ml-2 ">Quantity</label>
+            <label class="cart_item_quantity_unit form-label ms-2 ">Quantity</label>
             <a href=""
-              class="cart-icon update_cart_item update_cart_action ml-2 mr-2"
+              class="cart-icon update_cart_item update_cart_action ms-2 me-2"
               title="Update cart"
               i18n:attributes="title update_cart">
               <svg class="bi bi-arrow-repeat" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -61,7 +61,7 @@
             </a>
           </div>
 
-          <div class="cart_item_discount_wrapper ml-3">
+          <div class="cart_item_discount_wrapper ms-3">
             <span class="discount d-flex no-wrap justify-content-between">
               <span i18n:translate="discount">Discount:</span>
               <span class="cart_item_discount">Discount</span>
@@ -69,7 +69,7 @@
           </div>
 
           <div class="price d-flex no-wrap justify-content-between">
-            <span class="label mr-2" i18n:translate="price">Price</span>
+            <span class="label me-2" i18n:translate="price">Price</span>
             <span class="cart_item_price value">Price</span>
           </div>
 
