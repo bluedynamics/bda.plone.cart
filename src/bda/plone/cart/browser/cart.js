@@ -582,7 +582,7 @@
 
     Cart.prototype.status_message = function(elem, message) {
         var popover = $(`
-            <div class="popover bs-popover-top">
+            <div class="popover bs-popover-top add-to-cart-message">
               <div class="arrow" />
               <div class="popover-body">${message}</div>
             </div>
