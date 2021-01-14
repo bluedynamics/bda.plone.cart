@@ -53,6 +53,9 @@ Changelog
 - Italian translations
   [ale-rt]
 
+- switch to Plone 6 icon resolver
+  [petschki]
+
 
 1.0a1 (unreleased)
 ------------------

@@ -1,34 +1,3 @@
-@font-face {
-  font-family: 'cart';
-  src: url('++resource++bda.plone.cart.font/font/cart.eot?73721910');
-  src: url('++resource++bda.plone.cart.font/font/cart.eot?73721910#iefix') format('embedded-opentype'), url('++resource++bda.plone.cart.font/font/cart.woff2?73721910') format('woff2'), url('++resource++bda.plone.cart.font/font/cart.woff?73721910') format('woff'), url('++resource++bda.plone.cart.font/font/cart.ttf?73721910') format('truetype'), url('++resource++bda.plone.cart.font/font/cart.svg?73721910#cart') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-[class^="cart-icon"]:before,
-[class*=" cart-icon"]:before {
-  font-family: "cart";
-  font-style: normal;
-  font-weight: normal;
-  speak: never;
-  display: inline-block;
-  text-decoration: inherit;
-  width: 1em;
-  text-align: center;
-  /* opacity: .8; */
-  /* For safety - reset parent styles, that can break glyph codes*/
-  font-variant: normal;
-  text-transform: none;
-  /* fix buttons height, for twitter bootstrap */
-  line-height: 1em;
-  /* you can be more comfortable with increased icons size */
-  /* font-size: 120%; */
-  /* Font smoothing. That was taken from TWBS */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* Uncomment for 3D effect */
-  text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3);
-}
 /* general styles */
 .cart_item_alert {
   color: red;
@@ -51,25 +20,6 @@
 .discount_total,
 .cart_item_discount {
   color: red;
-}
-.cart-icon {
-  font-family: 'cart';
-  font-size: 1.5em;
-  line-height: 1.5em;
-  vertical-align: middle;
-  margin-left: 0.25em;
-}
-.cart-icon:hover {
-  text-decoration: none;
-}
-a.update_cart_action:before {
-  content: '\e801';
-}
-a.remove_from_cart_action {
-  margin-left: 0;
-}
-a.remove_from_cart_action:before {
-  content: '\e80a';
 }
 .cart_item_preview_image {
   float: right;
@@ -205,21 +155,6 @@ ul#cart_items h3 {
 .checkout_cart_overview .cart_item {
   margin-bottom: 1em;
 }
-/* cart status message */
-.cart_status_message {
-  display: block;
-  position: absolute;
-  margin-top: -6em;
-  margin-right: 10em;
-  z-index: 1000;
-  border: #cccccc 1px solid;
-  border-radius: 3px;
-  background-color: #efefef;
-  color: #222222;
-  padding: 5px;
-  font-size: 80%;
-  font-weight: bold;
-}
 /* cart summary styles */
 .summary_item {
   padding-top: 1.2em;
@@ -270,41 +205,5 @@ ul#cart_items h3 {
 img.cart_item_preview_image {
   float: right;
   margin-left: 0.5em;
-}
-.context.cart_checkout_button:after {
-  font-family: 'cart';
-  content: '\e812';
-  margin-left: 0.5em;
-}
-.standalone.cart_back:before {
-  font-family: 'cart';
-  content: '\e811';
-  margin-right: 0.5em;
-}
-.context.buyable_add_to_cart:before {
-  font-family: 'cart';
-  content: '\e815';
-  margin-right: 0.5em;
-}
-.context.buyable_update_cart:before {
-  font-family: 'cart';
-  content: '\e801';
-  margin-right: 0.5em;
-}
-.context.go_to_cart_action:before,
-#cart_viewlet_summary a:before {
-  font-family: 'cart';
-  content: '\e815';
-  margin-right: 0.5em;
-}
-input[type=number].cart_item_count {
-  /* Chrome, Safari, Edge, Opera */
-  /* Firefox */
-  -moz-appearance: textfield;
-}
-input[type=number].cart_item_count::-webkit-outer-spin-button,
-input[type=number].cart_item_count::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 /*# sourceMappingURL=++resource++bda.plone.cart.css.map */
