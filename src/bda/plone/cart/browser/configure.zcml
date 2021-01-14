@@ -94,9 +94,4 @@
     file="cart.css.map"
     layer="..interfaces.ICartExtensionLayer" />
 
-  <browser:resourceDirectory
-    name="bda.plone.cart.font"
-    directory="font"
-    layer="..interfaces.ICartExtensionLayer" />
-
 </configure>
