@@ -1,4 +1,5 @@
 <dl id="cart_viewlet"
+    class="viewlet"
     style="display:none;"
     i18n:domain="bda.plone.cart"
     tal:define="icons python:context.restrictedTraverse('@@iconresolver');">
@@ -16,7 +17,8 @@
   </a>
   </dt>
 
-  <dd id="cart_viewlet_details">
+  <dd id="cart_viewlet_details" class="viewlet-details">
+    <div class="container">
 
     <tal:cart replace="structure context/@@cart_tile" />
     <div class="cart_viewlet_actions">
@@ -35,6 +37,7 @@
         <tal:icon replace="structure python:icons.tag('bag')" />
         <span i18n:translate="cart">Cart</span>
       </a>
+    </div>
     </div>
   </dd>
 

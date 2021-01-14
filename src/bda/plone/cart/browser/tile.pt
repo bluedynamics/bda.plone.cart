@@ -7,7 +7,7 @@
         class="cart_execution_context">portlet</span>
 
   <div id="cart_item_template" style="display: none;">
-    <div class="cart_item row g-3">
+    <div class="cart_item row g-0 gap-3">
       <div class="col-auto">
           <a href="#" class="cart_item_preview_wrapper">
             <img class="cart_item_preview_image" src="" />
