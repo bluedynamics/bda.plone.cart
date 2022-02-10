@@ -477,6 +477,10 @@
         var count_node = $('.cart_item_count', parent).get(0);
         var count;
         count = Number(count_node.value);
+        // if count_node is not a form element, get textContent
+        if (!count) {
+            count = Number(count_node.textContent);
+        }
         if (isNaN(count)) {
             throw {
                 name: 'Number Required',
