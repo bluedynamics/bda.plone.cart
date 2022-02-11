@@ -83,7 +83,7 @@ a.remove_from_cart_action:before {
 }
 .summary_item ul.cart_item_content {
   list-style-type: none !important;
-  margin: 0!important;
+  margin: 0 !important;
 }
 .summary_item ul.cart_item_content li {
   display: inline-block !important;
@@ -229,7 +229,7 @@ ul#cart_items h3 {
 .summary_item ul.cart_item_content {
   list-style-type: none !important;
   text-align: right;
-  margin: 0!important;
+  margin: 0 !important;
 }
 .summary_item ul.cart_item_content li {
   display: inline !important;
@@ -301,10 +301,12 @@ input[type=number].cart_item_count {
   /* Chrome, Safari, Edge, Opera */
   /* Firefox */
   -moz-appearance: textfield;
+  text-align: right;
+  width: auto;
+  display: inline-block;
 }
 input[type=number].cart_item_count::-webkit-outer-spin-button,
 input[type=number].cart_item_count::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-/*# sourceMappingURL=++resource++bda.plone.cart.css.map */
