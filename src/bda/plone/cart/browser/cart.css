@@ -302,7 +302,7 @@ input[type=number].cart_item_count {
   /* Firefox */
   -moz-appearance: textfield;
   text-align: right;
-  width: auto;
+  max-width: 4em;
   display: inline-block;
 }
 input[type=number].cart_item_count::-webkit-outer-spin-button,
@@ -310,3 +310,4 @@ input[type=number].cart_item_count::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+/*# sourceMappingURL=./cart.css.map */
