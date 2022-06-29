@@ -16,7 +16,7 @@
     <value key="jscompilation">++resource++bda.plone.cart.js</value>
     <value key="csscompilation">++resource++bda.plone.cart.css</value>
     <value key="last_compilation">2021-01-13 11:00:00</value>
-    <value key="depends">bdajax,cookie-functions</value>
+    <value key="depends">bdajax</value>
   </records>
 
   <records prefix="plone.bundles/bda-plone-cart-translations"
