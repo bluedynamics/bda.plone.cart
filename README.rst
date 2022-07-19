@@ -150,6 +150,16 @@ Create translations
     $ ./i18n.sh
 
 
+Develop CSS Styles
+==================
+
+CSS Styles are written in Sass and compiled via `npm`::
+
+    $ npm install
+    $ npm run build  # to build the resources or
+    $ npm run watch  # to watch changes during development
+
+
 Contributors
 ============
 

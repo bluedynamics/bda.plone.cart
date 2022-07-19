@@ -5,6 +5,9 @@ Changelog
 2.0.dev0 (unreleased)
 ---------------------
 
+- rewrite LESS resources to SASS and remove grunt in favor of npm/sass
+  [petschki]
+
 - Use bs popover markup to display cart status message.
   [rnix]
 

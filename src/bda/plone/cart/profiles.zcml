@@ -16,4 +16,14 @@
   <utility factory=".setuphandlers.HiddenProfiles" name="bda.plone.cart" />
   <utility factory=".setuphandlers.HiddenProducts" name="bda.plone.cart" />
 
-</configure>
+  <!-- upgradeSteps -->
+  <genericsetup:upgradeDepends
+      title="Reload Resourceregistry"
+      description=""
+      profile="bda.plone.cart:default"
+      source="1.0"
+      destination="2000"
+      import_steps="plone.app.registry"
+      />
+
+    </configure>
