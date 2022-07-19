@@ -1,13 +1,14 @@
 <div id="cart"
      i18n:domain="bda.plone.cart"
      tal:attributes="data-context-url view/context_url"
-    tal:define="icons python:context.restrictedTraverse('@@iconresolver');">
+    tal:define="icons python:context.restrictedTraverse('@@iconresolver');
+                currency view/currency">
 
   <span style="display:none;"
         class="cart_execution_context">portlet</span>
 
   <div id="cart_item_template" style="display: none;">
-    <div class="cart_item row g-0 gap-3">
+    <div class="cart_item row g-0 border-bottom mb-2 pb-2">
       <div class="col-auto">
           <a href="#" class="cart_item_preview_wrapper">
             <img class="cart_item_preview_image" src="" />
@@ -16,24 +17,24 @@
 
       <div class="col">
         <div>
-          <h3 class="clearfix">
+          <h3 class="clearfix fs-6">
             <a href="#" class="cart_item_location">
               <span class="cart_item_title">Title</span>
             </a>
           </h3>
 
         </div>
-        <div class="row gx-3 align-items-center">
+        <div class="row align-items-center g-0">
           <div class="col">
             <div class="cart_item_alert" style="display: none;">Alert</div>
-            <div class="cart_item_content">
-              <span>
+            <div class="cart_item_content d-flex align-items-center">
+              <span class="d-flex align-items-center">
                 <span class="cart_item_uid" style="display: none;">uid</span>
                 <span class="cart_item_comment" style="display: none;">comment</span>
-                <input type="number" size="2" min="0" class="cart_item_count form-control" />
+                <input type="number" size="2" min="0" class="cart_item_count form-control form-control-sm flex-shrink-0" style="width:3rem" />
                 <span class="cart_item_quantity_unit">Quantity</span>
                 <a href=""
-                  class="update_cart_item update_cart_action"
+                  class="update_cart_item update_cart_action px-1"
                   title="Update cart"
                   i18n:attributes="title update_cart">
                   <tal:icon replace="structure python:icons.tag('arrow-repeat')" />
@@ -52,7 +53,7 @@
               </span>
             </div>
           </div>
-          <div class="col">
+          <div class="col text-end">
             <div class="cart_item_comment_wrapper">
               <span i18n:translate="comment">Comment</span>:
               <span class="cart_item_comment">comment</span>
@@ -64,6 +65,7 @@
             <div class="cart_item_price_wrapper">
               <span i18n:translate="price">Price</span>
               <span class="cart_item_price">Price</span>
+              <span class="cart_item_currency" tal:content="currency">Currency</span>
             </div>
           </div>
         </div>
@@ -80,46 +82,45 @@
 
   <div id="cart_summary" class="clearfix"
        style="display: none;">
-    <table class="cart_sum_content invisible-grid"
-           tal:define="currency view/currency">
+    <table class="cart_sum_content text-end">
       <tal:details condition="not:view/summary_total_only">
         <tr class="summary_net">
-          <td i18n:translate="summary_net" class="summary_label">Net:</td>
+          <td i18n:translate="summary_net" class="summary_label w-100">Net:</td>
           <td class="cart_net summary_ammount">0.00</td>
           <td tal:content="currency" tal:condition="currency" class="sumary_currency">EUR</td>
         </tr>
         <tr class="summary_vat">
-          <td i18n:translate="summary_vat" class="summary_label">VAT.:</td>
+          <td i18n:translate="summary_vat" class="summary_label w-100">VAT.:</td>
           <td class="cart_vat summary_ammount">0.00</td>
           <td tal:content="currency" tal:condition="currency" class="sumary_currency">EUR</td>
         </tr>
         <tr class="discount discount_net" style="display: none;">
-          <td i18n:translate="discount_net" class="summary_label">Discount Net:</td>
+          <td i18n:translate="discount_net" class="summary_label w-100">Discount Net:</td>
           <td class="discount_net summary_ammount">0.00</td>
           <td tal:content="currency" tal:condition="currency" class="sumary_currency">EUR</td>
         </tr>
         <tr class="discount discount_vat" style="display: none;">
-          <td i18n:translate="discount_vat" class="summary_label">Discount VAT.:</td>
+          <td i18n:translate="discount_vat" class="summary_label w-100">Discount VAT.:</td>
           <td class="discount_vat summary_ammount">0.00</td>
           <td tal:content="currency" tal:condition="currency" class="sumary_currency">EUR</td>
         </tr>
       </tal:details>
       <tr class="discount discount_total" style="display: none;">
-        <td class="summary_label"><strong i18n:translate="discount_total">Discount Total:</strong></td>
+        <td class="summary_label w-100"><strong i18n:translate="discount_total">Discount Total:</strong></td>
         <td><strong class="discount_total summary_ammount">Total</strong></td>
         <td tal:condition="currency">
           <strong tal:content="currency" class="sumary_currency">EUR</strong>
         </td>
       </tr>
       <tr class="shipping" style="display: none;">
-        <td class="summary_label">
+        <td class="summary_label w-100">
           <span i18n:translate="summary_shipping">Shipping</span>:
         </td>
         <td class="shipping_total summary_ammount">0.00</td>
         <td tal:content="currency" tal:condition="currency" class="sumary_currency">EUR</td>
       </tr>
       <tr class="summary_total">
-        <td class="summary_label"><strong i18n:translate="summary_total">Total:</strong></td>
+        <td class="summary_label w-100"><strong i18n:translate="summary_total">Total:</strong></td>
         <td class="summary_ammount"><strong class="cart_total">Total</strong></td>
         <td tal:condition="currency" class="sumary_currency">
           <strong tal:content="currency">EUR</strong>

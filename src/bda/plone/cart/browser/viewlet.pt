@@ -1,4 +1,4 @@
-<dl id="cart_viewlet"
+<div id="cart_viewlet"
     class="viewlet"
     style="display:none;"
     i18n:domain="bda.plone.cart"
@@ -6,39 +6,41 @@
 
   <p class="hiddenStructure">Cart</p>
 
-  <dt id="cart_viewlet_summary">
+  <div id="cart_viewlet_summary">
     <a href="#"
        title="Cart"
+       class="dropdown-toggle"
+       aria-expanded="false"
        i18n:attributes="title cart_summary">
       <tal:icon replace="structure python:icons.tag('bag')" />
       <span i18n:translate="cart">Cart</span>
       <span class="countWrapper"><span class="brackets">(</span><span class="cart_total_count"
         tal:content="view/cart_total_count">0</span><span class="brackets">)</span></span>
-  </a>
-  </dt>
+    </a>
 
-  <dd id="cart_viewlet_details" class="viewlet-details">
-    <div class="container">
+    <div id="cart_viewlet_details" class="viewlet-details dropdown-menu dropdown-menu-end">
+      <tal:cart replace="structure context/@@cart_tile" />
 
-    <tal:cart replace="structure context/@@cart_tile" />
-    <div class="cart_viewlet_actions">
-      <a href="@@checkout"
-         class="btn btn-outline-primary go_to_cart_action prevent_if_no_longer_available"
-         tal:attributes="href view/checkout_url"
-         tal:condition="view/show_checkout">
-        <tal:icon replace="structure python:icons.tag('credit-card')" />
-        <span i18n:translate="checkout">Checkout</span>
-      </a>
+      <div class="cart_viewlet_actions">
+        <a href="@@checkout"
+          class="btn btn-primary btn-sm go_to_cart_action prevent_if_no_longer_available"
+          tal:attributes="href view/checkout_url"
+          tal:condition="view/show_checkout">
+          <tal:icon replace="structure python:icons.tag('credit-card')" />
+          <span i18n:translate="checkout">Checkout</span>
+        </a>
 
-      <a href="@@cart"
-         class="btn btn-outline-primary go_to_cart_action"
-         tal:attributes="href view/cart_url"
-         tal:condition="view/show_to_cart">
-        <tal:icon replace="structure python:icons.tag('bag')" />
-        <span i18n:translate="cart">Cart</span>
-      </a>
+        <a href="@@cart"
+          class="btn btn-primary btn-sm go_to_cart_action"
+          tal:attributes="href view/cart_url"
+          tal:condition="view/show_to_cart">
+          <tal:icon replace="structure python:icons.tag('bag')" />
+          <span i18n:translate="cart">Cart</span>
+        </a>
+      </div>
+
     </div>
-    </div>
-  </dd>
 
-</dl>
+  </div>
+
+</div>
