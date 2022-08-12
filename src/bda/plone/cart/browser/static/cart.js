@@ -271,6 +271,10 @@
         $('#cart_viewlet_summary a', context)
             .unbind('click')
             .bind('click', function(e) {
+                if($(this).hasClass("go_to_cart_action")) {
+                    // go to cart clicked
+                    return;
+                }
                 e.preventDefault();
                 var container = $(this).closest('#cart_viewlet');
                 var cart_wrapper = $('#cart_viewlet_details', container);
