@@ -35,13 +35,13 @@
               <span class="cart_item_comment">comment</span>
             </div>
 
-            <div class="cart_item_update ">
+            <div class="cart_item_update d-flex flex-nowrap align-items-center me-2">
               <span class="cart_item_uid" style="display: none;">uid</span>
               <span class="cart_item_comment" style="display: none;">comment</span>
               <input type="number" min="0" size="2" class="cart_item_count form-control" />
-              <label class="cart_item_quantity_unit form-label ms-2 ">Quantity</label>
+              <label class="cart_item_quantity_unit form-label ms-2 my-0">Quantity</label>
               <a href=""
-                class="update_cart_item update_cart_action ms-2 me-2"
+                class="update_cart_item update_cart_action mx-2"
                 title="Update cart"
                 i18n:attributes="title update_cart">
                 <tal:icon replace="structure python:icons.tag('arrow-clockwise')" />
@@ -75,7 +75,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
   </div>
 
@@ -140,7 +140,7 @@
   </div>
 
   <div class="cart_summary_buttons d-flex justify-content-between">
-    <a href="javascript:history.back()" class="btn btn-secondary icon icon-prev cart_back">
+    <a href="${context/absolute_url}" class="btn btn-secondary icon icon-prev cart_back">
       <tal:icon replace="structure python:icons.tag('chevron-left')" />
       <span i18n:translate="back">back</span>
     </a>

@@ -57,26 +57,8 @@
     text-decoration: none;
   }
 
-  // .summary_item .price {
-  //     width: 7em;
-  //     display: inline-block;
-  // }
-  // .summary_item input.cart_item_count,
-  // .portletCart input.cart_item_count {
-  //     margin-right: 0.1em;
-  // }
-  // .summary_item span.cart_item_quantity_unit {
-  //     margin-right: 0.5em;
-  // }
-  // .summary_item a.update_cart_action,
-  // .summary_item a.remove_from_cart_action {
-  //     float:none;
-  // }
 }
 
-// .summary_wrapper {
-//     text-align:right;
-// }
 #cart_summary .cart_sum_content.invisible-grid {
   width: 100%;
   // float: right;
@@ -144,6 +126,7 @@ ul#cart_items {
       height: unset;
       padding: 0em 0.25em;
       text-align: right;
+      width: 3rem;
     }
   }
 
@@ -219,6 +202,7 @@ ul#cart_items {
   .price {
     width: 7em;
     display: inline-block;
+    text-align: right;
   }
 
   input.cart_item_count,

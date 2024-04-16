@@ -584,28 +584,22 @@
         return true;
     };
 
-    Cart.prototype.status_message = function(elem, message) {
-        var popover = $(`
-            <div class="position-absolute add-to-cart-message translate-middle top-50 start-50 border border-dark p-3 bg-white rounded">
-              <div class="arrow" />
-              <div class="popover-body">${message}</div>
+    Cart.prototype.status_message = function (elem, message) {
+        let toast_container = document.querySelector(".toast-container");
+        if(!toast_container) {
+            toast_container = document.createElement("div");
+            toast_container.classList.add("toast-container", "bottom-0", "end-0", "p-4", "d-flex", "justify-content-end");
+            document.body.append(toast_container);
+        }
+        toast_container.innerHTML = `
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="1500">
+                <div class="toast-body">
+                    ${message}
+                </div>
             </div>
-        `);
-        $('body').append(popover);
-        var o = elem.offset();
-        var aw = elem.outerWidth();
-        var sw = popover.outerWidth();
-        var sh = popover.outerHeight();
-        $('.arrow', popover).css('left', sw / 2 - 16);
-        popover.css('top', o.top - sh - 8);
-        popover.css('left', o.left + aw / 2 - sw / 2);
-        popover.fadeIn(500, function() {
-            setTimeout(function() {
-                popover.fadeOut(500, function() {
-                    popover.remove();
-                });
-            }, 2000);
-        });
+        `;
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast_container.querySelector(".toast"));
+        toastBootstrap.show();
     };
 
     /*

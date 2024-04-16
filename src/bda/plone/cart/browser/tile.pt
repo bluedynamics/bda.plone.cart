@@ -27,11 +27,11 @@
         <div class="row align-items-center g-0">
           <div class="col">
             <div class="cart_item_alert" style="display: none;">Alert</div>
-            <div class="cart_item_content d-flex align-items-center">
+            <div class="cart_item_content d-flex align-items-center me-2">
               <span class="d-flex align-items-center">
                 <span class="cart_item_uid" style="display: none;">uid</span>
                 <span class="cart_item_comment" style="display: none;">comment</span>
-                <input type="number" size="2" min="0" class="cart_item_count form-control form-control-sm flex-shrink-0" style="width:3rem" />
+                <input type="number" size="2" min="0" class="cart_item_count form-control form-control-sm flex-shrink-0" />
                 <span class="cart_item_quantity_unit">Quantity</span>
                 <a href=""
                   class="update_cart_item update_cart_action px-1"
