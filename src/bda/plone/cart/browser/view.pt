@@ -15,7 +15,9 @@
     <body>
         <metal:main fill-slot="main">
             <tal:main-macro metal:define-macro="main">
+              <header>
                 <h1 class="documentFirstHeading" i18n:translate="cart">Cart</h1>
+              </header>
                 <tal:cart replace="structure context/@@cart_summary" />
             </tal:main-macro>
         </metal:main>

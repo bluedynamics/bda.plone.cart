@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from bda.plone.cart import _
 from bda.plone.cart.interfaces import IItemDelivery
 from bda.plone.cart.interfaces import IShipping
 from bda.plone.cart.interfaces import IShippingSettings
@@ -24,18 +23,18 @@ class Shippings(object):
     @property
     def shippings(self):
         # XXX translating the adapter name is pointless
-        return [_[1] for _ in self._adapters]
+        return [ad[1] for ad in self._adapters]
 
     @property
     def vocab(self):
         # XXX translating the adapter name is pointless
         # the label should be delivered already as i18n messageid,
         # otherwise it is pointless
-        return [(_[0], _[1].label) for _ in self._adapters if _[1].available]
+        return [(ad[0], ad[1].label) for ad in self._adapters if ad[1].available]
 
     @property
     def default(self):
-        adapters = self._adapters
+        adapters = [x for x in self._adapters]
         for name, shipping in adapters:
             if shipping.default:
                 return name

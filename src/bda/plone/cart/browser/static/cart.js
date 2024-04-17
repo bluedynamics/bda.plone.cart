@@ -271,13 +271,19 @@
         $('#cart_viewlet_summary a', context)
             .unbind('click')
             .bind('click', function(e) {
+                if($(this).hasClass("go_to_cart_action")) {
+                    // go to cart clicked
+                    return;
+                }
                 e.preventDefault();
                 var container = $(this).closest('#cart_viewlet');
                 var cart_wrapper = $('#cart_viewlet_details', container);
                 if (cart_wrapper.is(':visible')) {
                     cart_wrapper.hide();
+                    cart_wrapper.trigger('bda.plone.cart:hideCart');
                 } else {
                     cart_wrapper.show();
+                    cart_wrapper.trigger('bda.plone.cart:showCart');
                 }
             });
         $('.prevent_if_no_longer_available', context)
@@ -578,28 +584,22 @@
         return true;
     };
 
-    Cart.prototype.status_message = function(elem, message) {
-        var show_message = function(anchor_elem, status_message) {
-            var offset = anchor_elem.offset();
-            var width = anchor_elem.width();
-            var height = anchor_elem.height();
-            var body_width = $('body').width();
-            var top = offset.top + height + 3;
-            var right = body_width - offset.left - width - 8;
-            status_message.css('top', top);
-            status_message.css('right', right);
-            $('body').append(status_message);
-            status_message.fadeIn(500, function() {
-                setTimeout(function() {
-                    status_message.fadeOut(500, function() {
-                        status_message.remove();
-                    });
-                }, 2000);
-            });
-        };
-        var status_message = $('<div class="cart_status_message"></div>');
-        status_message.html(message);
-        show_message(elem, status_message);
+    Cart.prototype.status_message = function (elem, message) {
+        let toast_container = document.querySelector(".toast-container");
+        if(!toast_container) {
+            toast_container = document.createElement("div");
+            toast_container.classList.add("toast-container", "bottom-0", "end-0", "p-4", "d-flex", "justify-content-end");
+            document.body.append(toast_container);
+        }
+        toast_container.innerHTML = `
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="1500">
+                <div class="toast-body">
+                    ${message}
+                </div>
+            </div>
+        `;
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast_container.querySelector(".toast"));
+        toastBootstrap.show();
     };
 
     /*

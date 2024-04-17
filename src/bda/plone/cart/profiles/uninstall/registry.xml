@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="bda.plone.cart">
+
+  <records prefix="plone.bundles/cookie-functions" interface='Products.CMFPlone.interfaces.IBundleRegistry' remove="true" />
+  <records prefix="plone.bundles/bda-plone-cart" interface='Products.CMFPlone.interfaces.IBundleRegistry' remove="true" />
+  <records prefix="plone.bundles/bda-plone-cart-translations" interface='Products.CMFPlone.interfaces.IBundleRegistry' remove="true" />
+
+</registry>

@@ -12,8 +12,24 @@
     description="A generic cart"
     provides="Products.GenericSetup.interfaces.EXTENSION" />
 
+  <genericsetup:registerProfile
+    name="uninstall"
+    title="bda.plone.cart (uninstall profile)"
+    directory="profiles/uninstall"
+    description="Uninstall plone cart"
+    provides="Products.GenericSetup.interfaces.EXTENSION" />
+
   <!-- Hide profiles/products from Quick Installer -->
   <utility factory=".setuphandlers.HiddenProfiles" name="bda.plone.cart" />
-  <utility factory=".setuphandlers.HiddenProducts" name="bda.plone.cart" />
 
-</configure>
+  <!-- upgradeSteps -->
+  <genericsetup:upgradeDepends
+      title="Reload Resourceregistry"
+      description=""
+      profile="bda.plone.cart:default"
+      source="1.0"
+      destination="2000"
+      import_steps="plone.app.registry"
+      />
+
+    </configure>

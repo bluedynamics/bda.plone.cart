@@ -5,7 +5,13 @@ Changelog
 2.0.dev0 (unreleased)
 ---------------------
 
-- remove decimal_converter and rely on plone.restapi>=6.13.7
+- rewrite LESS resources to SASS and remove grunt in favor of npm/sass
+  [petschki]
+
+- Use bs popover markup to display cart status message.
+  [rnix]
+
+- Remove decimal_converter and rely on plone.restapi>=6.13.7
   [agitator]
 
 - Mark cart item in summary and portlet if comment is enabled or not.
@@ -49,6 +55,9 @@ Changelog
 
 - Italian translations
   [ale-rt]
+
+- switch to Plone 6 icon resolver
+  [petschki]
 
 
 1.0a1 (unreleased)
