@@ -2,8 +2,8 @@
 Changelog
 =========
 
-2.0.dev0 (unreleased)
----------------------
+2.0b1 (unreleased)
+------------------
 
 - rewrite LESS resources to SASS and remove grunt in favor of npm/sass
   [petschki]
