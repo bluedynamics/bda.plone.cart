@@ -2,7 +2,7 @@
 Changelog
 =========
 
-2.0b1 (unreleased)
+2.0b1 (2024-04-17)
 ------------------
 
 - rewrite LESS resources to SASS and remove grunt in favor of npm/sass
