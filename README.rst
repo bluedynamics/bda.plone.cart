@@ -1,4 +1,3 @@
-==============
 bda.plone.cart
 ==============
 
@@ -15,14 +14,14 @@ Shopping cart for plone.
 
 
 Base package Installation
-=========================
+-------------------------
 
 Depend your instance to ``bda.plone.cart`` and install it as addon
 in plone control panel.
 
 
 Provide contracts
-=================
+-----------------
 
 This package provides components needed to render a shopping cart. It expects
 several contracts defined in:
@@ -43,7 +42,7 @@ implementations.
 
 
 Cart Visibility
-===============
+---------------
 
 The cart can be rendered as a portlet or inside a viewlet in the portal
 header. It's not possible to render the cart twice in one page. Thus, the
@@ -62,16 +61,8 @@ custom payment implementations and similar:
     SKIP_RENDER_CART_PATTERNS.append('@@my_payment')
 
 
-A ready-to-use implementation
-=============================
-
-Concrete implementations of the expected contracts already exists in
-``bda.plone.shop`` for Archetypes and Dexterity. Please refer to
-``https://github.com/bluedynamics/bda.plone.shop`` for more details.
-
-
 Markup
-======
+------
 
 Take a look at ``bda.plone.cart.browser:tile.pt`` how HTML markup
 for adding items to cart might look like.
@@ -142,7 +133,7 @@ add or update a cart item:
 
 
 Create translations
-===================
+-------------------
 
 ::
 
@@ -151,7 +142,7 @@ Create translations
 
 
 Develop CSS Styles
-==================
+------------------
 
 CSS Styles are written in Sass and compiled via `npm`::
 
@@ -160,8 +151,16 @@ CSS Styles are written in Sass and compiled via `npm`::
     $ npm run watch  # to watch changes during development
 
 
+A ready-to-use implementation
+-----------------------------
+
+This package was developed as part of the ``bda.plone.shop`` stack. Please
+refer to `bda.plone.shop <https://github.com/bluedynamics/bda.plone.shop>`_ for
+concrete implementations of the expected contracts.
+
+
 Contributors
-============
+------------
 
 - Robert Niederreiter (Autor)
 - Sven Plage
